@@ -592,3 +592,215 @@ Processing CategoriesController#index (for 127.0.0.1 at 2009-03-05 00:46:49) [GE
 Rendering template within layouts/categories
 Rendering categories/index
 Completed in 23ms (View: 14, DB: 1) | 200 OK [http://localhost/categories]
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+  [4;36;1mSQL (0.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090305024433)
+Migrating to CreateCategories (20090305034624)
+Migrating to CreateProducts (20090305035340)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (11.2ms)[0m   [0mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "canonical_name" varchar(255), "description" text, "code" varchar(255), "price" decimal, "featured" boolean, "category_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (10.4ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090305035340')[0m
+Migrating to CreateSites (20090305040433)
+  [4;35;1mSQL (9.7ms)[0m   [0mCREATE TABLE "sites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title_home" varchar(255), "text_home" text, "title_we" varchar(255), "text_we" text, "showroom_title" varchar(255), "showroom_text" text, "login_text" text, "search_list_text" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (6.8ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090305040433')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("categories")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("products")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("sites")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090305024433)
+Migrating to CreateCategories (20090305034624)
+Migrating to CreateProducts (20090305035340)
+Migrating to CreateSites (20090305040433)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("categories")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("products")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("sites")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+  [4;36;1mSQL (0.9ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateSites (20090305040433)
+  [4;36;1mSQL (8.8ms)[0m   [0;1mDROP TABLE "sites"[0m
+  [4;35;1mSQL (6.7ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20090305040433'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("categories")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("products")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_info('index_users_on_login')[0m
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090305024433)
+Migrating to CreateCategories (20090305034624)
+Migrating to CreateProducts (20090305035340)
+Migrating to CreateSites (20090305040433)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (6.6ms)[0m   [0mCREATE TABLE "sites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title_home" varchar(255), "text_home" text, "title_we" varchar(255), "text_we" text, "showroom_title" varchar(255), "showroom_text" text, "login_text" text, "search_list_text" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (4.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090305040433')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("categories")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("products")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("sites")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+  [4;36;1mSQL (0.9ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateSites (20090305040433)
+  [4;36;1mSQL (7.5ms)[0m   [0;1mDROP TABLE "sites"[0m
+  [4;35;1mSQL (7.4ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20090305040433'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("categories")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("products")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_info('index_users_on_login')[0m
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090305024433)
+Migrating to CreateCategories (20090305034624)
+Migrating to CreateProducts (20090305035340)
+Migrating to CreateSites (20090305040433)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (17.8ms)[0m   [0mCREATE TABLE "sites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "home_title" varchar(255), "home_text" text, "we_title" varchar(255), "we_text" text, "showroom_title" varchar(255), "showroom_text" text, "login_text" text, "search_list_text" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (7.4ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090305040433')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("categories")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("products")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("sites")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m

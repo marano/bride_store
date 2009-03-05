@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title_home: MyString
+  text_home: MyText
+  title_we: MyString
+  text_we: MyText
+  showroom_title: MyString
+  showroom_text: MyText
+  login_text: MyText
+  search_list_text: MyText
+
+two:
+  title_home: MyString
+  text_home: MyText
+  title_we: MyString
+  text_we: MyText
+  showroom_title: MyString
+  showroom_text: MyText
+  login_text: MyText
+  search_list_text: MyText

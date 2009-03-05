@@ -1,0 +1,38 @@
+<p>
+  <b>Name:</b>
+  <%=h @product.name %>
+</p>
+
+<p>
+  <b>Canonical name:</b>
+  <%=h @product.canonical_name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @product.description %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%=h @product.code %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%=h @product.price %>
+</p>
+
+<p>
+  <b>Featured:</b>
+  <%=h @product.featured %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @product.category %>
+</p>
+
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
