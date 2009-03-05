@@ -810,3 +810,61 @@ Migrating to CreateSites (20090305040433)
 ** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
 ** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
 ** [localized_dates] locales loaded from config/locales.
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+  [4;36;1mSQL (1.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090305024433)
+Migrating to CreateCategories (20090305034624)
+Migrating to CreateProducts (20090305035340)
+Migrating to CreateSites (20090305040433)
+Migrating to CreatePolicies (20090305041227)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (6.9ms)[0m   [0mCREATE TABLE "policies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "menu_title" varchar(255), "text_title" varchar(255), "text" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (8.4ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090305041227')[0m
+Migrating to AddSiteContentToSite (20090305041900)
+  [4;35;1mSQL (10.4ms)[0m   [0mALTER TABLE "sites" ADD "footer_text" text[0m
+  [4;36;1mSQL (13.7ms)[0m   [0;1mVACUUM[0m
+  [4;35;1mSQL (6.5ms)[0m   [0mALTER TABLE "sites" ADD "create_accout_text" text[0m
+  [4;36;1mSQL (12.5ms)[0m   [0;1mVACUUM[0m
+  [4;35;1mSQL (11.9ms)[0m   [0mALTER TABLE "sites" ADD "welcome_text" text[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mVACUUM[0m
+  [4;35;1mSQL (5.7ms)[0m   [0mALTER TABLE "sites" ADD "names_text" text[0m
+  [4;36;1mSQL (36.9ms)[0m   [0;1mVACUUM[0m
+  [4;35;1mSQL (11.9ms)[0m   [0mALTER TABLE "sites" ADD "personal_space_text" text[0m
+  [4;36;1mSQL (19.4ms)[0m   [0;1mVACUUM[0m
+  [4;35;1mSQL (5.8ms)[0m   [0mALTER TABLE "sites" ADD "empty_list_text" text[0m
+  [4;36;1mSQL (15.3ms)[0m   [0;1mVACUUM[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mALTER TABLE "sites" ADD "spam_text" text[0m
+  [4;36;1mSQL (17.7ms)[0m   [0;1mVACUUM[0m
+  [4;35;1mSQL (9.1ms)[0m   [0mALTER TABLE "sites" ADD "message_text" text[0m
+  [4;36;1mSQL (20.3ms)[0m   [0;1mVACUUM[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090305041900')[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("categories")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("policies")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("products")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("sites")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m

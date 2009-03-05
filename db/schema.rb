@@ -9,10 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090305040433) do
+ActiveRecord::Schema.define(:version => 20090305041900) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "policies", :force => true do |t|
+    t.string   "name"
+    t.string   "menu_title"
+    t.string   "text_title"
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,6 +49,14 @@ ActiveRecord::Schema.define(:version => 20090305040433) do
     t.text     "search_list_text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "footer_text"
+    t.text     "create_accout_text"
+    t.text     "welcome_text"
+    t.text     "names_text"
+    t.text     "personal_space_text"
+    t.text     "empty_list_text"
+    t.text     "spam_text"
+    t.text     "message_text"
   end
 
   create_table "users", :force => true do |t|
