@@ -804,3 +804,9 @@ Migrating to CreateSites (20090305040433)
   [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("sites")[0m
   [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("users")[0m
   [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.

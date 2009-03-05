@@ -1,0 +1,23 @@
+<p>
+  <b>Name:</b>
+  <%=h @policy.name %>
+</p>
+
+<p>
+  <b>Menu title:</b>
+  <%=h @policy.menu_title %>
+</p>
+
+<p>
+  <b>Text title:</b>
+  <%=h @policy.text_title %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%=h @policy.text %>
+</p>
+
+
+<%= link_to 'Edit', edit_policy_path(@policy) %> |
+<%= link_to 'Back', policies_path %>

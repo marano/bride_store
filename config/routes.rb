@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :policies
+
   map.resources :products
 
   map.resources :categories
