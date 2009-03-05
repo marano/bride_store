@@ -868,3 +868,29 @@ Migrating to AddSiteContentToSite (20090305041900)
   [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("sites")[0m
   [4;35;1mSQL (0.3ms)[0m   [0mPRAGMA index_list("users")[0m
   [4;36;1mSQL (0.3ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-03-05 01:23:52) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 38ms (View: 28, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-03-05 01:23:55) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 34ms (View: 25, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-03-05 01:24:08) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 30ms (View: 21, DB: 1) | 200 OK [http://localhost/products]
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
