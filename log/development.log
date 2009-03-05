@@ -551,3 +551,44 @@ Processing SessionsController#create (for 127.0.0.1 at 2009-03-05 00:45:13) [POS
   [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."login" = 'jose') AND (users.state = 'active') LIMIT 1[0m
 Redirected to /
 Completed in 13ms (DB: 1) | 302 Found [http://localhost/session]
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/bride_store/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090305024433)
+Migrating to CreateCategories (20090305034624)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (6.1ms)[0m   [0mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (6.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090305034624')[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("categories")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-03-05 00:46:49) [GET]
+  [4;36;1mCategory Load (0.7ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 23ms (View: 14, DB: 1) | 200 OK [http://localhost/categories]
