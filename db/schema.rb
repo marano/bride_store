@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090305041900) do
+ActiveRecord::Schema.define(:version => 20090305175808) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(:version => 20090305041900) do
     t.text     "empty_list_text"
     t.text     "spam_text"
     t.text     "message_text"
+  end
+
+  create_table "testimonials", :force => true do |t|
+    t.time     "time"
+    t.text     "body"
+    t.boolean  "active"
+    t.boolean  "featured"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

@@ -1,0 +1,28 @@
+<h1>Listing testimonials</h1>
+
+<table>
+  <tr>
+    <th>Time</th>
+    <th>Body</th>
+    <th>Active</th>
+    <th>Featured</th>
+    <th>User</th>
+  </tr>
+
+<% for testimonial in @testimonials %>
+  <tr>
+    <td><%=h testimonial.time %></td>
+    <td><%=h testimonial.body %></td>
+    <td><%=h testimonial.active %></td>
+    <td><%=h testimonial.featured %></td>
+    <td><%=h testimonial.user %></td>
+    <td><%= link_to 'Show', testimonial %></td>
+    <td><%= link_to 'Edit', edit_testimonial_path(testimonial) %></td>
+    <td><%= link_to 'Destroy', testimonial, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New testimonial', new_testimonial_path %>
