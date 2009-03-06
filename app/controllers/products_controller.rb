@@ -2,23 +2,31 @@ class ProductsController < ApplicationController
 
   layout 'adm'
 
-  before_filter :login_required, :except => 'find'
+  before_filter :login_required, :except => ['find', 'view']
+
+  def view
+    @product = Product.find params[:id]
+    render :layout => 'site'
+  end
 
   def find
+    verify_list_products_options
+    
     if params[:search].blank?
       if params[:category_id_filter].blank?
-        @products = Product.all
+        @products = Product.paginate :page => params[:page], :order => order, :per_page => per_page
       else
         @category_filter = Category.find(params[:category_id_filter])
-        @products = Product.all :conditions => { :category_id => @category_filter.id }
+        @products = Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => { :category_id => @category_filter.id }
       end
     else
       @search = params[:search]
+      s = @search.downcase
       if params[:category_id_filter].blank?
-        @products = (Product.all :conditions => "canonical_name like '%#{@search}%'")
+        @products = (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => "canonical_name like '%#{s}%'")
       else
         @category_filter = Category.find(params[:category_id_filter])
-        @products =  (Product.all :conditions => "category_id = #{@category_filter.id} AND canonical_name like '%#{@search}%'")
+        @products =  (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => "category_id = #{@category_filter.id} AND canonical_name like '%#{s}%'")
       end
     end
     render :layout => 'site'
@@ -144,6 +152,35 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(products_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  private
+  
+  def verify_list_products_options
+    unless params[:order].blank?
+      session[:order_by_products] = params[:order]
+    end
+    unless params[:per_page].blank?
+      session[:per_page_products] = params[:per_page]
+    end
+  end
+  
+  def order
+    order = session[:order_by_products]
+    if order.blank?
+      'name'
+    else
+      order
+    end
+  end
+  
+  def per_page
+    per_page = session[:per_page_products]
+    if per_page.blank?
+      '4'
+    else
+      per_page
     end
   end
 end

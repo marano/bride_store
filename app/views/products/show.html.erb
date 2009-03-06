@@ -1,33 +1,29 @@
+<h1>Pruduto</h1>
+
 <p>
   <b>Nome:</b>
   <%=h @product.name %>
 </p>
-
-<p>
-  <b>Descrição:</b>
-  <%=h @product.description %>
-</p>
-
 <p>
   <b>Código:</b>
   <%=h @product.code %>
 </p>
-
 <p>
-  <b>Preço:</b>
-  <%=h @product.price %>
+  <b>Categoria:</b>
+  <%=h @product.category.name %>
 </p>
-
+<p>
+  <b>Descrição:</b>
+  <%=h @product.description %>
+</p>
+<p>
+  <b>Price:</b>
+  <%=h @product.description %>
+</p>
 <p>
   <b>Destaque:</b>
   <%=h @product.featured %>
 </p>
-
-<p>
-  <b>Categoria:</b>
-  <%=h @product.category %>
-</p>
-
 
 <%= link_to 'Editar', edit_product_path(@product) %> |
 <%= link_to 'Voltar', products_path %>

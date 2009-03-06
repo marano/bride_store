@@ -11,7 +11,8 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_showroom '/adm/showroom', :controller => 'site_adm', :action => 'showroom'
   map.edit_site_data '/adm/site_data', :controller => 'site_adm', :action => 'site_data'
   
-  map.find_product '/product/find', :controller => 'products', :action => 'find'
+  map.find_product '/products/find', :controller => 'products', :action => 'find'
+  map.view_product '/products/:id/view', :controller => 'products', :action => 'view'
   
   map.resources :testimonials
   map.resources :policies
