@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
 
+  has_many :testmonials
+
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login
@@ -38,6 +40,10 @@ class User < ActiveRecord::Base
     return nil if login.blank? || password.blank?
     u = find_in_state :first, :active, :conditions => {:login => login.downcase} # need to get the salt
     u && u.authenticated?(password) ? u : nil
+  end
+  
+  def admin?
+    admin
   end
 
   def login=(value)

@@ -1,0 +1,27 @@
+<div id="rodape">
+  <div>
+    <%= image_tag site.logo_footer.url, :width => '165', :height => '46' %>
+    <p>
+      <%= site.footer_text %>
+    </p>
+  </div>
+  <ul class="listaVertical">
+      <li>Institucional</li>
+      <li><%= link_to '> Quem somos', we_path %></li>
+      <li><%= link_to '> Nossa loja', showroom_path %></li>
+      <li><%= link_to '> Fale conosco', '' %></li>
+      <li><%= link_to '> Depoimentos', '' %></li>
+  </ul>
+  <ul class="listaVertical">
+      <li>Listas de presentes</li>
+      <li><a href="#"> > Criar minha lista de presentes</a></li>
+      <li><a href="#"> > Minha lista de presentes</a></li>
+      <li><a href="#"> > Visitar listas</a></li>
+  </ul>
+  <ul class="listaVertical">
+      <li>Política do site</li>
+      <% for polyce in Policy.all %>
+        <li><a href=""> > <%= polyce.menu_title %></a></li>
+      <% end %>
+  </ul>
+</div>

@@ -1,4 +1,68 @@
 class ProductsController < ApplicationController
+
+  layout 'adm'
+
+  before_filter :login_required, :except => 'find'
+
+  def find
+    if params[:search].blank?
+      if params[:category_id_filter].blank?
+        @products = Product.all
+      else
+        @category_filter = Category.find(params[:category_id_filter])
+        @products = Product.all :conditions => { :category_id => @category_filter.id }
+      end
+    else
+      @search = params[:search]
+      if params[:category_id_filter].blank?
+        @products = (Product.all :conditions => "canonical_name like '%#{@search}%'")
+      else
+        @category_filter = Category.find(params[:category_id_filter])
+        @products =  (Product.all :conditions => "category_id = #{@category_filter.id} AND canonical_name like '%#{@search}%'")
+      end
+    end
+    render :layout => 'site'
+  end
+
+#  def find
+#    if params[:search].blank?
+#      if params[:category_id_filter].blank?
+#        @products = Product.all
+#      else
+#        @products = Product.all :conditions => { :category_id => params[:category_id_filter] }
+#      end
+#    else
+#      buscas = params[:search].split ' '
+#      resultados = []
+#      for b in buscas do
+#        #b.low
+#        if params[:category_id_filter].blank?
+#          resultados << (Product.all :conditions => { :canonical_name => '%#{params[:search]}%' })
+#        else
+#          resultados << (Product.all :conditions => { :category_id => params[:category_id_filter], :canonical_name => '%#{params[:search]}%' })
+#        end
+#      end
+#      @products = []
+#      for r in resultados do
+#        for p in r do
+#          ok = true
+#          for r1 in resultados do
+#            unless r1 == r || r1.include?(p)
+#              ok = false
+#              break
+#            end
+#          end
+#          if ok
+#            unless @products.include? p
+#              @products << p
+#            end
+#          end
+#        end
+#      end
+#    end
+#    render :layout => 'site'
+#  end
+
   # GET /products
   # GET /products.xml
   def index
@@ -83,3 +147,4 @@ class ProductsController < ApplicationController
     end
   end
 end
+

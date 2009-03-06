@@ -5,13 +5,21 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Arte de Receber</title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <%= javascript_include_tag 'adm/menu' %>  
+  <%= stylesheet_link_tag 'adm/estrutura' %>
+  <%= stylesheet_link_tag 'adm/estruturamenu' %>  
+  <%= stylesheet_link_tag 'adm/tabela' %>
 </head>
 <body>
 
 <p style="color: green"><%= flash[:notice] %></p>
 
-<%= yield  %>
+<%= render :partial => 'adm/user_bar' %>
+<%= render :partial => 'layouts/menu_adm' %>
+
+<div id="conteudo">
+  <%= yield  %>
+</div>
 
 </body>
 </html>

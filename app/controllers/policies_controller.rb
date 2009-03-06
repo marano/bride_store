@@ -1,4 +1,7 @@
 class PoliciesController < ApplicationController
+
+  layout 'adm'
+  
   # GET /policies
   # GET /policies.xml
   def index

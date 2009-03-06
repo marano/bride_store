@@ -1,11 +1,11 @@
-<h1>Listing policies</h1>
+<h1>Políticas</h1>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Menu title</th>
-    <th>Text title</th>
-    <th>Text</th>
+    <th>Nome</th>
+    <th>Título do menu</th>
+    <th>Título do texto</th>
+    <th>Texto</th>
   </tr>
 
 <% for policy in @policies %>
@@ -14,13 +14,13 @@
     <td><%=h policy.menu_title %></td>
     <td><%=h policy.text_title %></td>
     <td><%=h policy.text %></td>
-    <td><%= link_to 'Show', policy %></td>
-    <td><%= link_to 'Edit', edit_policy_path(policy) %></td>
-    <td><%= link_to 'Destroy', policy, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Exibir', policy %></td>
+    <td><%= link_to 'Editar', edit_policy_path(policy) %></td>
+    <td><%= link_to 'Remover', policy, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New policy', new_policy_path %>
+<%= link_to 'Nova Política', new_policy_path %>

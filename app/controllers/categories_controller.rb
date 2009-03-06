@@ -1,4 +1,8 @@
 class CategoriesController < ApplicationController
+
+  layout 'adm'
+  before_filter :login_required
+  
   # GET /categories
   # GET /categories.xml
   def index

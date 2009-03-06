@@ -1,0 +1,23 @@
+<div id="sideContent"> 
+  <% form_tag :controller => 'products', :action => 'find' do %>
+    <h3 title=":: Buscar">:: BUSCAR<span></span></h3>
+    <p>
+      <%= select_tag :category_id_filter, options_for_select([['Todo o site', '']]) + options_from_collection_for_select(Category.all, :id, :name, @category_filter && @category_filter.id) %>
+    </p>
+    <p>
+      <%= label_tag 'Entre a palavra-chave:' %><br/>
+      <%= text_field_tag 'search', @search, :class => 'campoTexto' %>
+      <input type="image"  src="/images/btSubmitBusca.gif" name="buscar" title="Buscar" onclick="this.form.submit()">
+    </p>
+  <% end %>
+  
+  <hr>
+  <div id="sideProdutos">
+    <h3 title=":: Produtos">:: PRODUTOS<span></span></h3>
+    <ul class="listaVertical">
+      <% for category in Category.all %>
+        <li><%= link_to ">  #{category.name}", {:controller => 'products', :action => 'find', :category_id_filter => category.id} %></li>
+      <% end %>
+     </ul>
+  </div>
+</div>

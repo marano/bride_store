@@ -1,0 +1,56 @@
+<div id="content">
+  <%= render :partial => 'layouts/actions_menu' %>
+  <%= render :partial => 'layouts/user_panel' %>
+  <hr>
+  <%= render :partial => 'layouts/migalha', :object => @category_filter %>
+  <hr>
+
+  <% unless @category_filter.nil? %>
+    <h1><%= @category_filter.name %></h1>    
+  <% end %>
+
+  <ul id="navegacaoProdutos" class="listaHorizontal">
+    <li>PRODUTOS POR PÁGINA</li>
+    <li>
+    <form action="/noiva/siteprodutolistar.listar.logic">
+      <input type="hidden" name="filtroCategoriaId" value="${filtroCategoria.id}" />
+        Combo Quantidade
+        <u:combo lista="4,8,15,20" selecionado="${paginacaoQuantidade}" onChange="this.form.submit()" nome="paginacaoQuantidade" />
+      </form>
+    </li>
+    <li>ORDENAR POR:</li>
+    <li><a href="/noiva/siteprodutolistar.listar.logic?filtroCategoriaId=${filtroCategoria.id}&ordenacao=nome">nome</a></li>
+    <li> | </li>
+    <li><a href="/noiva/siteprodutolistar.listar.logic?filtroCategoriaId=${filtroCategoria.id}&ordenacao=preco">preço</a></li>
+    </ul>
+    <hr>
+    <div id="listaProdutos">
+      <ul id="produtosVarejo" class="listaVertical">
+      <% for p in @products  %>
+        <li>
+          <a href="#"><img src="${p.foto.caminho}" width="200" height="200"/></a>
+          <h3><%= p.name %> <span>(ref: <%= p.code %>)</span></h3>
+          <p><%= p.description %></p>
+          <h3>R$ <%= p.price %></h3>
+          <a>SAIBA MAIS ></a>
+        </li>
+      <% end %>
+      </ul>    
+    </div>
+                    
+    <!--
+      <ul id="paginacao">
+       <li><a href="#" title="Página anterior">< Anterior </a></li>
+       <li><a href="#">1</a></li>
+       <li> | </li>
+      <li><a href="#">2</a></li>
+       <li> | </li>
+        <li><a href="#">3</a></li>
+        <li> | </li>
+            <li><a href="#">4</a></li>
+      <li> | </li>
+      <li><a href="#">5</a></li>
+     <li><a href="#" title="Próxima página"> Próxima ></a></li>
+      </ul>
+    -->
+</div>

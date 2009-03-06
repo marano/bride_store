@@ -1,0 +1,58 @@
+/* 
+Document   : estrutura
+Created on : 13/09/2008, 10:19:21
+Author     : Diego
+Description:
+Purpose of the stylesheet follows.
+*/
+
+/* 
+TODO customize this sample style
+Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+body {    
+    font-family:arial;
+    font-size:10px;
+}
+
+img {
+    border: none;
+}
+#topo {
+    margin: 5px;
+    height: 22px;
+    position:absolute;
+    top:15px;
+    right:15px;
+}
+#topo img{padding-top:7px;}
+#esquerda {
+    position: absolute;
+    background: #d9e6f7;
+}
+#meio {
+    margin-left: 170px;
+    margin-right: 220px;
+    background: silver;
+}
+#direita {
+    position: absolute;
+    top: 105px;
+    right: 10px;
+    width: 200px;
+    background: silver;
+}
+
+#footer {
+    font-style:normal;
+    margin: 5px 0 25px 0;
+    height: 27px;
+    background: #d9e6f7;
+}
+
+#conteudo {
+    padding-left:180px;
+}
+
+

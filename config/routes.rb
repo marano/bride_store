@@ -1,13 +1,26 @@
 ActionController::Routing::Routes.draw do |map|
+
+  map.root :controller => 'site', :action => 'home'
+  map.home '/home', :controller => 'site', :action => 'home'
+  map.we '/we', :controller => 'site', :action => 'we'
+  map.showroom '/showroom', :controller => 'site', :action => 'showroom'
+  map.adm '/adm', :controller => 'adm', :action => 'home'
+    
+  map.edit_home '/adm/home', :controller => 'site_adm', :action => 'home'
+  map.edit_we '/adm/we', :controller => 'site_adm', :action => 'we'
+  map.edit_showroom '/adm/showroom', :controller => 'site_adm', :action => 'showroom'
+  map.edit_site_data '/adm/site_data', :controller => 'site_adm', :action => 'site_data'
+  
+  map.find_product '/product/find', :controller => 'products', :action => 'find'
+  
   map.resources :testimonials
-
   map.resources :policies
-
   map.resources :products
-
   map.resources :categories
-
-
+  map.resources :users
+  map.resources :sites, :controller => 'site', :only => [:update]
+  map.resource :session
+  
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   
@@ -15,9 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
   
-  map.resources :users
 
-  map.resource :session
 
   # The priority is based upon order of creation: first created -> highest priority.
 

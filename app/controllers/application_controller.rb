@@ -9,4 +9,10 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+  
+  protected
+  
+  def save_success
+    flash[:notice] = 'Dados salvos com sucesso!'
+  end
 end

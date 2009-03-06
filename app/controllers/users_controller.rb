@@ -1,18 +1,53 @@
 class UsersController < ApplicationController
+
+  layout 'adm'
   
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
-  
+  before_filter :login_required
 
   # render new.rhtml
   def new
     @user = User.new
   end
+  
+  def index
+    @users = User.all
+  end
+  
+  def update
+    @user = User.find(params[:id])
+
+    params[:user] -= :password if params[:user][:password].blank?
+    params[:user] -= :password_confirmation if params[:user][:password_confirmation].blank?
+
+    if @user.update_attributes(params[:user])
+      save_success
+      redirect_to users_path
+    else
+      flash[:error] = "Couldn't update Usee!"
+      render :action => 'edit'
+    end
+  end
+ 
+#  def create_admin
+#    @user = User.new(params[:user])
+#    @user.admin = true
+#    @user.register!
+#    @user.do_activate
+#    @user.activate!
+#    @user.save
+#  end
+
+  def create_admin
+    create
+  end
  
   def create
-    logout_keeping_session!
+    #logout_keeping_session!
     @user = User.new(params[:user])
+    @user.admin = false
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?

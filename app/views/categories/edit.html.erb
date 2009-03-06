@@ -1,10 +1,10 @@
-<h1>Editing category</h1>
+<h1>Editar Categoria</h1>
 
 <% form_for(@category) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name, 'Nome' %><br />
     <%= f.text_field :name %>
   </p>
   <p>
@@ -12,5 +12,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to 'Exibir', @category %> |
+<%= link_to 'Voltar', categories_path %>

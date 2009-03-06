@@ -1,0 +1,16 @@
+<div id="content" class="institucional">
+<%= render :partial => 'layouts/actions_menu' %>
+<%= render :partial => 'layouts/user_panel' %>
+<hr>
+<%= render :partial => 'layouts/migalha', :object => 'quem somos'
+<hr>
+<h1><%= site.we_title %></h1>
+<ul id="thumbInstitucional" class="listaVertical">
+<!--
+<c:forEach var="foto" items="${tela.galeria.fotos}">
+<li><a href="${foto.caminho}" title="" rel="milkbox[gal]"><img src="${foto.caminhoThumb}" width="82" height="82" /></a></li>
+</c:forEach>
+-->
+</ul>
+<p><%= site.we_text %></p>
+</div>

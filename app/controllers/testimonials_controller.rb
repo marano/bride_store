@@ -1,4 +1,7 @@
 class TestimonialsController < ApplicationController
+
+  layout 'adm'  
+  
   # GET /testimonials
   # GET /testimonials.xml
   def index

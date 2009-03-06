@@ -1,0 +1,62 @@
+/* 
+    Document   : color
+    Created on : 26/01/2009, 14:17:12
+    Author     : Administrador
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+body {background: #958e80 url(/images/bgSombra.gif) repeat-y center; padding:0; margin:0; border:0;}
+h1, h2, h3{color:#ffffff;}
+p, span, a{color:#373125;}
+hr {color:#5e5548; background:#5e5548;}
+#miolo{background: url(/images/bg.gif) repeat;}
+#armacao{background-color:#776d5b;}
+/*---------------RESULT---------------*/
+#result{background-color: #fffabe; border-bottom-color:#5e5548; border-right-color:#5e5548;}
+#result #container #mensagem{color:#373125;}
+/*---------------TOPO---------------*/
+#topo {background:url(/images/bgTopo.jpg) no-repeat 0 0;}
+.depoimento span{color:#ffffff;}
+#depoimentoTopo a {color:#373125;}
+.depoimento {background:url(/images/depoimentoAbreAspas.gif) no-repeat 0 -15px;}
+.depoimento h3 {background:url(/images/depoimentoFechaAspas.gif) no-repeat right bottom;}
+/*---------------MENU INSTITUCIONAL---------------*/
+#menuInstitucional ul * {color:#ffffff;}
+#menuInstitucional ul li a:hover {color:#d2c09e;}
+/*---------------DESTAQUE---------------*/
+#destaque {background: #756b59 url(/images/starDestaque.gif) no-repeat 13px center;}
+#destaque h3{color:#ffffff;}
+#destaque a span{background: url(/images/btSaibaMais.gif) no-repeat;}
+/*---------------MENU DE AÇÕES---------------*/
+#menuAcoes * {color:#ffffff;}
+/*---------------BREAD CRUMB---------------*/
+#migalha * {color:#373125;}
+/*---------------CONTENT---------------*/
+#primaryContent a span{background: url(/images/btCriarListaPresentes.gif) no-repeat;}
+.home form a {color:#373125;}
+/*#content #boxHome {background:url(/images/bgContentBoxHome.gif) repeat-y -15px 0;}*/
+/*---------------NAVEGAÇÃO PRODUTOS---------------*/
+#navegacaoProdutos li {color:#373125;}
+#navegacaoProdutos li a {color:#373125;}
+/*---------------LISTA PRODUTOS---------------*/
+#listaProdutos table tr td {border-bottom-color: #5e5548;}
+#listaProdutos h3 span {color:#ffffff;}
+#listaProdutos a {color:#373125;}
+/*---------------SIDE CONTENT---------------*/
+#sideContent form h3 span{background: url(/images/titleBusca.gif) no-repeat;}
+#sideContent #sideProdutos h3 span{background: url(/images/titleSideMenu.gif) no-repeat;}
+#sideContent #sideProdutos ul a {color:#ffffff;}
+#sideContent #sideProdutos ul a:hover {color:#494235;}
+/*---------------RODAPE---------------*/
+#rodape {background-color:#776d5b;}
+#rodape * {color:#ffffff;}
+/*---------------BORDAS---------------*/
+#content, #destaque, #sideContent, #rodape{border-top-color: #5e5548;}
+/*---------------GALERIAS MOLDURA---------------*/
+#thumbInstitucional li a img {background-color:#ffffff; border-color: #000000;}
+#listaProdutos .capaProduto img {background-color:#ffffff; border-color: #000000;}

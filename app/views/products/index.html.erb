@@ -1,28 +1,24 @@
-<h1>Listing products</h1>
+<h1>Produtos</h1>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Canonical name</th>
-    <th>Description</th>
-    <th>Code</th>
-    <th>Price</th>
-    <th>Featured</th>
-    <th>Category</th>
+    <th>Nome</th>
+    <th>Código</th>
+    <th>Preço</th>
+    <th>Destaque</th>
+    <th>Categoria</th>
   </tr>
 
 <% for product in @products %>
   <tr>
     <td><%=h product.name %></td>
-    <td><%=h product.canonical_name %></td>
-    <td><%=h product.description %></td>
     <td><%=h product.code %></td>
     <td><%=h product.price %></td>
     <td><%=h product.featured %></td>
     <td><%=h product.category %></td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Exibir', product %></td>
+    <td><%= link_to 'Editar', edit_product_path(product) %></td>
+    <td><%= link_to 'Remover', product, :confirm => 'Tem certeza?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -1,20 +1,20 @@
-<h1>Listing categories</h1>
+<h1>Cagegorias</h1>
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Nome</th>
   </tr>
 
 <% for category in @categories %>
   <tr>
     <td><%=h category.name %></td>
-    <td><%= link_to 'Show', category %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Exibir', category %></td>
+    <td><%= link_to 'Editar', edit_category_path(category) %></td>
+    <td><%= link_to 'Remover', category, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New category', new_category_path %>
+<%= link_to 'Nova Categoria', new_category_path %>

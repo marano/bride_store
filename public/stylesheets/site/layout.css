@@ -1,0 +1,118 @@
+/* 
+Document   : layout
+Created on : 26/01/2009, 14:16:42
+Author     : Administrador
+Description:
+Purpose of the stylesheet follows.
+*/
+
+/* 
+TODO customize this sample style
+Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/*correção do bug de Posicionamento absoluto em um container relativo*/
+* html #topo {height:1%;}
+/*fim da corrção*/
+hr {height:1px; border:none; clear:both;}
+.campoTexto, .campoAreaTexto, .campoSelect, select {display:block; height:19px; border:none;}
+#armacao {width:780px; position:absolute; left:50%; margin:0 0 0 -389px;}
+/*---------------RESULT---------------*/
+#result{display:none; position:fixed; float:left; min-width:100px; max-width:600px; left:50%;}
+#result #container #mensagem{float:left; margin:4px 30px 6px 10px;}
+#result #container #btClose{position:absolute; float:right; right:6px; top:5px;}
+#result #container #btClose img{border:none;}
+/*---------------TOPO---------------*/
+#topo {height:166px; padding:0 30px 0 30px; position:relative;}
+#logomarca{float:left; position:relative; top:30px; left:-22px;}
+#depoimentoTopo{float:right; width:350px; text-align:right;}
+#depoimentoTopo a {clear:both; float:right;}
+.depoimento {padding-left:20px;}
+.depoimento h3 {padding:10px 30px 0;}
+/*---------------MENU INSTITUCIONAL---------------*/
+#menuInstitucional{float:right; width:720px; bottom:24px; position:absolute; left:0; padding:0 30px 0 30px;}
+#menuInstitucional ul {float:right;}
+#menuInstitucional ul li {padding-left:7px;}
+#menuInstitucional span{display:none;}
+/*---------------MIOLO---------------*/
+#miolo{float:left;}
+/*---------------DESTAQUE---------------*/
+#destaque {padding: 0 20px 0 40px; width:503px; float:right;}
+#destaque h3{float:left; max-width:370px;}
+#destaque a{width:119px; height:16px; float:right;}
+#destaque a span{position:absolute; width:119px; height:16px;}
+#destaque h3, #destaque a {margin:8px 0;}
+/*---------------MENU DE AÇÕES---------------*/
+#menuPainel p {float:left;}
+#menuPainel ul {float:right;}
+/*---------------MENU DE AÇÕES---------------*/
+#menuAcoes {padding-bottom:5px; text-align:center;}
+#menuAcoes li a {padding: 0 7px 0 7px}
+/*---------------BREAD CRUMB---------------*/
+#migalha{display:block;}
+/*---------------CONTENT---------------*/
+#content {padding:20px 20px 0 20px; width:523px; float:right;}
+#content p{padding:0 0 0 10px; margin:0 0 10px 0; }
+#primaryContent a {width:391px; height:19px; float:right; clear:both; margin-bottom:15px; padding:0; }
+#primaryContent a span{position:absolute; width:391px; height:19px;}
+#content #boxHome {float:left; padding-bottom:20px;}
+.home #loginHome {width:251px; padding-left:20px; float:right;}
+.home #visitarLista {width:241px; padding-right:10px; float:left;}
+.home form p {width:190px;}
+.home form{padding-left:10px;}
+.home form a {float:right; margin-right:10px;}
+.home form .campoTexto, .home form select{width: 190px;}
+.home form .botaoForm{float:right;}
+/*---------------INSTITUCIONAL---------------*/
+.institucional p {width:330px; float:left; padding-top:0; margin-top:0;}
+#thumbInstitucional{float:right; width:175px;}
+#thumbInstitucional li {padding-bottom:15px;}
+#thumbInstitucional li a img {padding:5px;}
+/*---------------FALE CONOSCO---------------*/
+.faleConosco form{margin-bottom:60px; width:310px;}
+.faleConosco form p {margin:0 0 10px 0;}
+.faleConosco form p label {margin-left:4px;}
+.faleConosco form p .campoTexto{width: 300px;}
+.faleConosco form p .campoAreaTexto {width:300px; min-width:300px; max-width:300px; height:150px;}
+.faleConosco .botaoForm{float:right;}
+/*---------------NAVEGAÇÃO PRODUTOS---------------*/
+#navegacaoProdutos {margin-bottom: 20px;}
+#navegacaoProdutos li {margin-right: 7px;}
+#navegacaoProdutos li form {display:inline; margin-right:15px;}
+#navegacaoProdutos li form select{display:inline;}
+/*---------------LISTA PRODUTOS---------------*/
+#listaProdutos .capaProduto {float:left; margin-right:20px;}
+#listaProdutos table {width:100%; border:none; border-collapse:collapse;}
+#listaProdutos table tr td {padding:15px;}
+#listaProdutos h3 {margin:0; }
+#listaProdutos .saibaMais {float:right; position:relative; width:118px; height:20px;}
+#listaProdutos .saibaMais span {background:url(/images/btSaibaMaisContent.gif) no-repeat; position:absolute; width:118px; height:20px;}
+/*---------------PAGINAÇÃO---------------*/
+#listaProdutos .pagelinks {height:40px; text-align:center; }
+#listaProdutos .pagelinks a { font-size: 12px; text-align:center; text-decoration:none; float:none; color:#373125;}
+
+/*---------------SIDE CONTENT---------------*/
+#sideContent {float:left; padding:20px; width:177px;}
+#sideContent form h3{width:100px; height:17px; position:relative; padding:0; margin:0 0 10px 0;}
+#sideContent form h3 span{position:absolute; width:100%; height:100%; left:0;}
+#sideContent form select, #sideContent form .campoTexto {display:inline; width:137px;}
+#sideContent form label {margin-left:5px;}
+#sideContent form input[type=image] {white-space:nowrap; margin-left:2px; vertical-align:middle;}
+#sideContent #sideProdutos h3{width:161px; height:22px; position:relative; padding:0; margin:25px 0 15px 0;}
+#sideContent #sideProdutos h3 span{position:absolute; width:100%; height:100%; left:0;}
+#sideContent #sideProdutos ul {margin-left:18px;}
+/*---------------RODAPE---------------*/
+#rodape {padding:15px 30px 30px 30px; float:left; clear:both; background-color:#776d5b; width:720px; text-align:center;}
+#rodape div {max-width:170px;}
+#rodape ul, #rodape div{float:left;}
+#rodape ul {margin-left: 50px; text-align:left;}
+/*---------------BORDAS---------------*/
+#content, #destaque, #sideContent, #rodape{border-top-style: solid; border-top-width: 1px;}
+#listaProdutos table tr td {border-style:solid; border-top-width:0; border-right-width:0; border-bottom-width:1px; border-left-width:0;}
+#result{border-bottom-style:solid; border-bottom-width:1px; border-right-style:solid; border-right-width:1px;}
+/*---------------GALERIAS MOLDURA---------------*/
+#thumbInstitucional li a img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0; }
+#listaProdutos .capaProduto img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0;}
+/*---------------LISTAS---------------*/
+.listaHorizontal, .listaVertical {margin:0; padding:0; list-style:none; display:block;}
+.listaHorizontal li{display:inline;}

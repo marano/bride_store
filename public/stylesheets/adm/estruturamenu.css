@@ -1,0 +1,37 @@
+*{margin:0px;padding:0px; list-style:none;}
+/* ESTRUTURA PRINCIPAL */
+.menu {border:0; font:12px Arial; width: 150px; margin-top: 0px; }
+.menu a {outline:none; text-decoration:none !important; height:20px; line-height:20px;}
+.menu li {border-bottom:1px solid #E4EEFA; }
+.menu ul ul {border-left:0;border-right:0;}
+
+/* ESTRUTURA DOS LINKS */
+.menu li a {border-left:4px solid;padding:7px 0 0 8px; display:block; font-weight:bold;_height:1%;}
+.menu li.nivelA a {border:0 none; background:url('../img/menu/arrow_close.gif') no-repeat 4px center;; padding-left:18px; padding-right:0; padding-top:7px;}
+.menu li.abertoA a {background-image:url('../img/menu/arrow_open.gif');}
+.menu li.nivelA li a {background-image:none; padding:7px 0 0 20px;border-left:7px solid; font:12px Arial;}
+
+/* FUNCIONAMENTO DO MENU */
+.menu li.nivelA ul.listaA, .menu li.nivelA ul.listaB, .menu li.nivelC ul.listaC {display:none;}
+.menu li.abertoA ul.listaA, .menu li.abertoB ul.listaB, .menu li.abertoC ul.listaC {display:block;}
+.menu li.abertoA, .menu li.abertoB, .menu li.abertoC {border-bottom:0;}
+
+/* CORES PADROES */
+.menu li a {border-left-color:#bb1836; background-color:#d9e6f7; color:#000;}
+.menu li a:hover {background-color:#bb1836; color:#fff;}
+.menu li a span {color:#81AD00;}
+.menu li a:hover span {color:#FFF;}
+
+.menu li.nivelA a {background-color:#C5D9F3; color:#000;}
+.menu li.nivelA a:hover {background-color:#d9e6f7; }
+.menu li.nivelA li a {background-color:#ECF2FB; border-left-color:#d9e6f7;}
+.menu li.nivelA li a:hover {background-color:#d9e6f7; color:#000;}
+
+.menu li.nivelA li.nivelB a {background-color:#2C2F2B;}
+.menu li.nivelA li.nivelB a:hover {background-color:#595E55;}
+.menu li.nivelA li.nivelB li {border-bottom-color:#2C2F2B;}
+.menu li.nivelA li.nivelB li a {background-color:#252525; color:#fff;}
+
+.menu li.ultimo {border-color:#fff;}
+
+/* FIM ESTILO CSS */

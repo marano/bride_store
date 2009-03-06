@@ -1,0 +1,2 @@
+module SiteAdmHelper
+end

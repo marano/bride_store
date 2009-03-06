@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090305175808) do
+ActiveRecord::Schema.define(:version => 20090306005049) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -57,6 +57,12 @@ ActiveRecord::Schema.define(:version => 20090305175808) do
     t.text     "empty_list_text"
     t.text     "spam_text"
     t.text     "message_text"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.string   "logo_footer_file_name"
+    t.string   "logo_footer_content_type"
+    t.integer  "logo_footer_file_size"
   end
 
   create_table "testimonials", :force => true do |t|
@@ -83,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20090305175808) do
     t.datetime "activated_at"
     t.string   "state",                                    :default => "passive"
     t.datetime "deleted_at"
+    t.boolean  "admin"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

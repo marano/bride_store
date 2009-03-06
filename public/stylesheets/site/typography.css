@@ -1,0 +1,60 @@
+/* 
+    Document   : typography
+    Created on : 26/01/2009, 14:17:03
+    Author     : Administrador
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+*{font-family:Arial, helvetica, serif; font-weight:normal; text-decoration:none;}
+h1{font-family:"Times New Roman", Times, serif; font-style:italic; font-size:36px;}
+h2{font-family:"Times New Roman", Times, serif; font-style:italic; font-size:22px;}
+h3{font-size:14px;}
+p, a{font-size:12px;}
+a{text-decoration:underline;}
+span{font-size:11px;}
+/*---------------RESULT---------------*/
+#result #container #mensagem{font-size:14px; text-align:center;}
+/*---------------TOPO---------------*/
+.depoimento span{font-size:12px; font-style:italic; font-weight:bolder;}
+#depoimentoTopo a {font-size:12px; font-weight:bold;}
+/*---------------MENU INSTITUCIONAL---------------*/
+#menuInstitucional ul li * {font-size:12px; font-weight:bold;}
+#menuInstitucional ul li a:hover {text-decoration:underline;}
+/*---------------DESTAQUE---------------*/
+#destaque h3{font-size:14px; font-weight:normal;}
+/*---------------MENU DE AÇÕES---------------*/
+#menuAcoes * {font-size:12px;}
+#menuAcoes li a {text-decoration:underline;}
+/*---------------BREAD CRUMB---------------*/
+#migalha * {font-size:11px;}
+#migalha a {text-decoration:underline;}
+/*---------------CONTENT---------------*/
+.home form a {font-size:11px; text-decoration:underline;}
+/*---------------INSTITUCIONAL---------------*/
+#thumbInstitucional {text-align:center;}
+/*---------------NAVEGAÇÃO PRODUTOS---------------*/
+#navegacaoProdutos li {font-size:12px; font-weight:bold;}
+#navegacaoProdutos li a {text-decoration:underline;}
+/*---------------LISTA PRODUTOS---------------*/
+#listaProdutos h3 {font-size:20px; }
+#listaProdutos h3 span {font-size:14px;}
+#listaProdutos a {font-size:14px; text-decoration:underline;}
+/**/
+.listaPresentes .infoLista{text-align:center;}
+/*---------------SIDE CONTENT---------------*/
+#sideContent form label {font-size:11px;}
+#sideContent #sideProdutos ul a {font-size:14px; line-height:30px; text-decoration:underline;}
+#sideContent #sideProdutos ul a:hover {font-weight:bold;}
+/*---------------RODAPE---------------*/
+#rodape {text-align:center;}
+#rodape ul {text-align:left;}
+#rodape * {line-height:20px;}
+#rodape div p {font-size: 11px;}
+#rodape ul li {font-size: 12px; font-weight:bold;}
+#rodape ul li a {font-size: 12px; font-weight:normal; text-decoration:underline;}

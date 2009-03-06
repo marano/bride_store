@@ -1,0 +1,31 @@
+<div style="float:left" class="menu" id="menuA" >
+  <ul>
+    <li class="nivelA"><a style="cursor:hand;">Institucional</a>
+      <ul class="listaA">
+        <li><%= link_to 'Home', edit_home_path %></li>
+        <li><%= link_to 'Nossa Loja', edit_we_path %></li>
+        <li><%= link_to 'Quem Somos', edit_showroom_path %></li>
+        <li><%= link_to 'Depoimentos', testimonials_path %></li>
+        <li><%= link_to 'Dados Site', edit_site_data_path %></li>
+        <li><%= link_to 'Políticas', policies_path %></li>
+      </ul>
+    </li>
+  </ul>
+  <ul>
+    <li class="nivelA"><a style="cursor:hand;">Catálogo</a>
+      <ul class="listaA">
+        <li><%= link_to 'Produto', products_path %></li>
+        <li><%= link_to 'Categoria', categories_path %></li>
+      </ul>
+    </li>
+  </ul>
+  <ul>
+    <li class="nivelA"><a style="cursor:hand;">Cadastro</a>
+      <ul class="listaA">
+        <li><%= link_to 'Usuário', users_path %></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">var menuA = new menuObj( {div:'menuA'} );</script>

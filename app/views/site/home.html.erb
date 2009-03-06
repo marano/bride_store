@@ -1,0 +1,74 @@
+<% content_for(:display) { %>
+  <div id="display">
+    <%= image_tag 'display.jpg' , :width => '780', :height => '279' %>
+  </div>
+<% } %>
+
+<%= render :partial => 'featured_product' %>
+
+<div id="content" class="home">
+  <%= render :partial => 'layouts/actions_menu' %>
+  <%= render :partial => 'layouts/user_panel' %>
+  <hr>
+  <div id="primaryContent">
+    <h1><%= site.home_title %></h1>
+    <p><%= site.home_text %></p>
+    <% unless logged_in? %>
+      <a href="/noiva/sitecontaadicionar.formulario.logic" title="Criar minha lista de presentes agora"><span></span>CRIAR MINHA LISTA DE PRESENTES AGORA ></a>
+    <% end %>
+    <% if logged_in? %>
+      <a href="/noiva/siteconta.minhaconta.logic" title="Criar minha lista de presentes agora"><span></span>CRIAR MINHA LISTA DE PRESENTES AGORA ></a>
+    <% end %>
+  </div>
+  <hr>
+  <div id="boxHome">
+    <div id="visitarLista" class="boxContentHome">
+      <h2> > Visitar listas</h2>
+      <p><%= site.search_list_text %></p>
+      <form name="visitarLista" action="/noiva/sitelistabuscar.buscar.logic">
+        <p>
+          <label for="tipo">- Procurar por</label>
+          <u:combo lista="${tiposParente}" nome="tipo" campoTexto="descricao" />
+        </p>
+        <p>
+          <label for="busca">- Nome</label>
+          <input type="text" name="busca" class="campoTexto" />
+        </p>
+        <p>
+          <input class="botaoForm" name="acessarLista" type="image" src="/images/btAcessar.gif" title="acessar" onclick="this.form.submit();return false" />
+        </p>
+      </form>
+    </div>
+    <script language="JavaScript">
+      document.getElementById("boxHome").style.background = "url(/images/bgContentBoxHome.gif) repeat-y -15px 0";
+    </script>
+    <% unless logged_in? %>
+      <div id="loginHome">
+        <h2> > Minha lista de presentes</h2>
+        <p><%= site.login_text %></p>
+        
+        <% form_tag session_path do -%>
+          <p>
+            <%= label_tag 'login', '- Nome de usuário' %><br />
+            <%= text_field_tag 'login', @login, :class => 'campoTexto' %>
+          </p>
+
+          <p>
+            <%= label_tag 'password', '- Senha' %><br/>
+            <%= password_field_tag 'password', nil, :class => 'campoTexto' %>
+          </p>
+
+          <p>
+            <%= check_box_tag 'remember_me', '1', @remember_me %>
+            <span>Salvar as minhas informações neste computador.</span>
+          </p>
+
+          <p>
+            <input class="botaoForm" name="login" type="image" src="/images/btLogin.gif"  title="login" onclick="this.form.submit()">
+            <a href="/noiva/loginrecuperar.requerir.logic">Esqueci minha senha</a>
+          </p>
+        <% end -%>
+      </div>
+    <% end %>
+  </div>
+</div>
