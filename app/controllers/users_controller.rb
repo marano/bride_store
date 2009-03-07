@@ -5,15 +5,16 @@ class UsersController < ApplicationController
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
-  before_filter :login_required
+  before_filter :login_required, :except => ['new', 'create', 'activate']
 
   # render new.rhtml
   def new
     @user = User.new
+    render :layout  => 'site'
   end
   
   def index
-    @users = User.all
+    @users = User.all :conditions => "state NOT LIKE 'deleted'"
   end
   
   def update
@@ -52,11 +53,11 @@ class UsersController < ApplicationController
     success = @user && @user.valid?
     if success && @user.errors.empty?
       redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."      
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       render :action => 'new'
-    end
+    end    
   end
 
   def activate

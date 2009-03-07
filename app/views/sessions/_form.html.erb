@@ -1,0 +1,21 @@
+<h2> > Minha lista de presentes</h2>
+<p><%= site.login_text %></p>        
+
+<% form_tag session_path do -%>
+    <p>
+    <%= label_tag 'login', '- Nome de usuário' %><br />
+    <%= text_field_tag 'login', @login, :class => 'campoTexto' %>
+  </p>
+  <p>
+    <%= label_tag 'password', '- Senha' %><br/>
+    <%= password_field_tag 'password', nil, :class => 'campoTexto' %>
+  </p>
+  <p>
+    <%= check_box_tag 'remember_me', '1', @remember_me %>
+    <span>Salvar as minhas informações neste computador.</span>
+  </p>
+  <p>
+    <input class="botaoForm" name="login" type="image" src="/images/btLogin.gif"  title="login" onclick="this.form.submit()">
+    <a href="/sessions/forgot_password">Esqueci minha senha</a>
+  </p>
+<% end %>

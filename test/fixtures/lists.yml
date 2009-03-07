@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  title: MyString
+  text: MyText
+  nome_noivo: MyString
+  nome_noivo_pai: MyString
+  nome_noivo_mae: MyString
+  nome_noiva: MyString
+  nome_noiva_pai: MyString
+  nome_noiva_mae: MyString
+  nome_outros: MyString
+
+two:
+  name: MyString
+  title: MyString
+  text: MyText
+  nome_noivo: MyString
+  nome_noivo_pai: MyString
+  nome_noivo_mae: MyString
+  nome_noiva: MyString
+  nome_noiva_pai: MyString
+  nome_noiva_mae: MyString
+  nome_outros: MyString

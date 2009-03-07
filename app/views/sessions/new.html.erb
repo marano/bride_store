@@ -1,14 +1,2 @@
-<h1>Log In</h1>
-
-<% form_tag session_path do -%>
-  <p><%= label_tag 'login' %><br />
-  <%= text_field_tag 'login', @login %></p>
-
-  <p><%= label_tag 'password' %><br/>
-  <%= password_field_tag 'password', nil %></p>
-
-  <p><%= label_tag 'remember_me', 'Salvar as minhas informações neste computador.' %>
-  <%= check_box_tag 'remember_me', '1', @remember_me %></p>
-
-  <p><%= submit_tag 'Entrar' %></p>
-<% end -%>
+<%= render :partial => 'layouts/migalha', :object => 'entrar' %>  
+<%= render :partial => 'form' %>  

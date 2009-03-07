@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :lists
+
 
   map.root :controller => 'site', :action => 'home'
   map.home '/home', :controller => 'site', :action => 'home'
@@ -18,7 +20,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :policies
   map.resources :products
   map.resources :categories
-  map.resources :users
+  
+  map.resources :users, :member => { :suspend   => :put,
+                                   :unsuspend => :put,
+                                   :purge     => :delete }
+
   map.resources :sites, :controller => 'site', :only => [:update]
   map.resource :session
   

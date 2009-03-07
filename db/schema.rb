@@ -9,10 +9,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090306005049) do
+ActiveRecord::Schema.define(:version => 20090307042832) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lists", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.text     "text"
+    t.string   "nome_noivo"
+    t.string   "nome_noivo_pai"
+    t.string   "nome_noivo_mae"
+    t.string   "nome_noiva"
+    t.string   "nome_noiva_pai"
+    t.string   "nome_noiva_mae"
+    t.string   "nome_outros"
+    t.string   "nome_noivo_busca"
+    t.string   "nome_noivo_pai_busca"
+    t.string   "nome_noivo_mae_busca"
+    t.string   "nome_noiva_busca"
+    t.string   "nome_noiva_pai_busca"
+    t.string   "nome_noiva_mae_busca"
+    t.string   "nome_outros_busca"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20090306005049) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "footer_text"
-    t.text     "create_accout_text"
+    t.text     "create_account_text"
     t.text     "welcome_text"
     t.text     "names_text"
     t.text     "personal_space_text"

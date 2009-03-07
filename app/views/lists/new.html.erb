@@ -1,0 +1,51 @@
+<h1>New list</h1>
+
+<% form_for(@list) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :text %><br />
+    <%= f.text_area :text %>
+  </p>
+  <p>
+    <%= f.label :nome_noivo %><br />
+    <%= f.text_field :nome_noivo %>
+  </p>
+  <p>
+    <%= f.label :nome_noivo_pai %><br />
+    <%= f.text_field :nome_noivo_pai %>
+  </p>
+  <p>
+    <%= f.label :nome_noivo_mae %><br />
+    <%= f.text_field :nome_noivo_mae %>
+  </p>
+  <p>
+    <%= f.label :nome_noiva %><br />
+    <%= f.text_field :nome_noiva %>
+  </p>
+  <p>
+    <%= f.label :nome_noiva_pai %><br />
+    <%= f.text_field :nome_noiva_pai %>
+  </p>
+  <p>
+    <%= f.label :nome_noiva_mae %><br />
+    <%= f.text_field :nome_noiva_mae %>
+  </p>
+  <p>
+    <%= f.label :nome_outros %><br />
+    <%= f.text_field :nome_outros %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', lists_path %>

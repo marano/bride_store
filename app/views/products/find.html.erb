@@ -1,41 +1,35 @@
-<div id="content">
-  <%= render :partial => 'layouts/actions_menu' %>
-  <%= render :partial => 'layouts/user_panel' %>
-  <hr>
-  <%= render :partial => 'layouts/migalha', :object => @category_filter %>
-  <hr>
+<%= render :partial => 'layouts/migalha', :object => @category_filter %>
+<hr>  
+<% unless @category_filter.nil? %>
+<h1><%= @category_filter.name %></h1>    
+<% end %>
 
-  <% unless @category_filter.nil? %>
-    <h1><%= @category_filter.name %></h1>    
-  <% end %>
-
-  <ul id="navegacaoProdutos" class="listaHorizontal">
-    <li>PRODUTOS POR PÁGINA</li>
-    <li>
-      <form action="#{find_product_path}" method="GET">
-        <%= select_tag :per_page, options_for_select([['4', '4'], ['8', '8'], ['15', '15'], ['20', '20']], per_page_products), :onchange => 'this.form.submit()' %>
-      <form>
-    </li>
-    <li>ORDENAR POR:</li>
-    <li><%= link_to 'nome', find_product_path, :search => @search, :category_id_filter => (@category_filter && @category_filter.id), :order => 'name' %></li>
-    <li> | </li>
-        <li><%= link_to 'preco', find_product_path, :search => @search, :category_id_filter => (@category_filter && @category_filter.id), :order => 'price' %></li>
-    </ul>
-    <hr>
-    <div id="listaProdutos">
-      <ul id="produtosVarejo" class="listaVertical">
-        <% for p in @products  %>
-          <li>
-            <a href="#"><img src="${p.foto.caminho}" width="200" height="200"/></a>
-            <h3><%= p.name %> <span>(ref: <%= p.code %>)</span></h3>
-            <p><%= p.description %></p>
-            <h3>R$ <%= p.price %></h3>
-            <%= link_to '<span></span>SAIBA MAIS >', view_product_path(p), :class => 'saibaMais', :title => 'saiba mais' %>
-          </li>
-          <hr/>
-        <% end %>
-      </ul>
+<ul id="navegacaoProdutos" class="listaHorizontal">
+  <li>PRODUTOS POR PÁGINA</li>
+  <li>
+    <form action="#{find_product_path}" method="GET">
+      <%= select_tag :per_page, options_for_select([['4', '4'], ['8', '8'], ['15', '15'], ['20', '20']], per_page_products), :onchange => 'this.form.submit()' %>
+    <form>
+  </li>
+  <li>ORDENAR POR:</li>
+  <li><%= link_to 'nome', find_product_path, :search => @search, :category_id_filter => (@category_filter && @category_filter.id), :order => 'name' %></li>
+  <li> | </li>
+  <li><%= link_to 'preco', find_product_path, :search => @search, :category_id_filter => (@category_filter && @category_filter.id), :order => 'price' %></li>
+</ul>
+<hr>
+<div id="listaProdutos">
+  <ul id="produtosVarejo" class="listaVertical">
+    <% for p in @products  %>
+      <li>
+        <a href="#"><img src="${p.foto.caminho}" width="200" height="200"/></a>
+        <h3><%= p.name %> <br/><span>(ref: <%= p.code %>)</span></h3>
+        <p><%= p.description %></p>
+        <h2>R$ <%= p.price %></h2>
+        <%= link_to '<span></span>SAIBA MAIS >', view_product_path(p), :class => 'saibaMais', :title => 'saiba mais' %>
+      </li>
+      <hr/>
+    <% end %>
+  </ul>
       
-      <%= will_paginate @products, :previous_label => '&laquo Anterior', :next_label => 'Próxima &raquo' %>
-    </div>
+  <%= will_paginate @products, :previous_label => '&laquo Anterior', :next_label => 'Próxima &raquo' %>
 </div>

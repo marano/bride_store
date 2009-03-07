@@ -1,12 +1,13 @@
 <ul id="migalha" class="listaHorizontal">
   <li>:: </li>
-  <li><%= link_to 'home', home_path %></li>
-  <li>/</li>
+  <li><%= link_to 'home', home_path %></li>  
   <% if migalha.respond_to? 'each' %>    
     <% for m in migalha do %>
+      <li>/</li>
       <li><%= m %></li>
     <% end %>
   <% else %>
+    <li>/</li>
     <li><%= migalha %></li>
   <% end %>
 </ul>

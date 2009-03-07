@@ -10,15 +10,21 @@
 </head>
 <body>
 
-<div id="armacao">
+<div id="armacao">  
   <%= render :partial => 'layouts/top' %>
 
   <%= yield :display %>
-
-  <div id="miolo">  
-    <%= yield  %> 
   
-    <%= render :partial => 'layouts/side_bar' %>  
+  <div id="miolo">  
+    <%= render :partial => 'layouts/side_bar' %>
+    <%= yield :miolo %>
+    
+    <div id="content" class="<%= yield :content_class %>">
+      <%= render :partial => 'layouts/actions_menu' %>
+      <%= render :partial => 'layouts/user_panel' %>
+      <hr> 
+      <%= yield %> 
+    </div>
   </div>
 
   <%= render :partial => 'layouts/footer' %>

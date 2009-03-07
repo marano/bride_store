@@ -1,21 +1,17 @@
-<div id="content">
-  <%= render :partial => 'layouts/actions_menu' %>
-  <%= render :partial => 'layouts/user_panel' %>
-  <hr>
-  <%= render :partial => 'layouts/migalha', :object => [ link_to(@product.category.name.downcase, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}), @product.name.downcase ] %>
-  <hr>
+<%= render :partial => 'layouts/migalha', :object => [ link_to(@product.category.name.downcase, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}), @product.name.downcase ] %>
+<hr>
 
-  <!-- Aqui entra o painel da lista -->
-  <h1><%= @product.category.name %></h1>
-  <hr />
-  <h2><%= @product.name %></h2>
+<!-- Aqui entra o painel da lista -->
+<h1><%= @product.category.name %></h1>
+<hr />
+<h2><%= @product.name %></h2>
+<div>
+  <div></div>
   <div>
-    <div></div>
-    <div>
-      <p>(ref: <%= @product.code %>)</p>
-      <p><%= @product.description %></p>
-      <h2>R$ <%= @product.price %></h2>
-      <hr />
+    <p>(ref: <%= @product.code %>)</p>
+    <p><%= @product.description %></p>
+    <h2>R$ <%= @product.price %></h2>
+    <hr />
       <!--<c:if test="${minhaListaId != null}">
         <form action="/noiva/siteitemlistaadicionar.adicionar.logic">
           <input type="hidden" name="produtoId" value="${produto.id}">
@@ -27,8 +23,7 @@
         <a href="/noiva/siteitemlistalistar.listar.logic" title="ver minha lista de presentes"><span></span>ver minha lista de presentes</a>
         <hr />
       </c:if>-->
-    </div>
   </div>
-
-  <%= link_to "Voltar para: #{@product.category.name}", {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id} %>
 </div>
+
+<%= link_to "Voltar para: #{@product.category.name}", {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id} %>

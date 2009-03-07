@@ -7,6 +7,6 @@ class Product < ActiveRecord::Base
   private
   
   def update_canonical_name
-    write_attribute :canonical_name, name.downcase
+    write_attribute :canonical_name, name.mb_chars.strip.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').downcase.to_s
   end
 end

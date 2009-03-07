@@ -1,0 +1,41 @@
+<h1>Dados site</h1>
+
+<% form_for @site do |f| %>
+  <%= f.error_messages %>
+  <%= hidden_field_tag :edit_what, 'site_data' %>
+  <p>
+    <%= f.label :footer_text, 'Rodapé' %><br />
+    <%= f.text_area :footer_text %>
+  </p>
+  <p>
+    <%= f.label :create_account_text, "Texto \"Crie sua conta\"" %><br />
+    <%= f.text_area :create_account_text %>
+  </p>
+  <p>
+    <%= f.label :welcome_text, "Texto \"Boas Vindas\"" %><br />
+    <%= f.text_area :welcome_text %>
+  </p>
+  <p>
+    <%= f.label :names_text, "Texto \"Noivos\"" %><br />
+    <%= f.text_area :names_text %>
+  </p>
+  <p>
+    <%= f.label :personal_space_text, "Texto \"Espaço pessoal\"" %><br />
+  </p>
+    <%= f.text_area :personal_space_text %>
+  <p>
+    <%= f.label :empty_list_text, "Texto \"Lista vazia de presentes\"" %><br />
+    <%= f.text_area :empty_list_text %>
+  </p>
+  <p>
+    <%= f.label :spam_text, "Texto \"Divulgação\"" %><br />
+    <%= f.text_area :spam_text %>
+  </p>
+  <p>
+    <%= f.label :message_text, "Texto \"Mensagens\"" %><br />
+    <%= f.text_area :message_text %>
+  </p>
+  <p>
+    <%= f.submit "Salvar" %>
+  </p>  
+<% end %>
