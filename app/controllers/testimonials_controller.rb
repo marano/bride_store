@@ -2,6 +2,10 @@ class TestimonialsController < ApplicationController
 
   layout 'adm'  
   
+  def view
+    layout 'site'
+  end
+  
   # GET /testimonials
   # GET /testimonials.xml
   def index
@@ -44,7 +48,7 @@ class TestimonialsController < ApplicationController
   # POST /testimonials.xml
   def create
     @testimonial = Testimonial.new(params[:testimonial])
-
+    @testimonial.user = current_user
     respond_to do |format|
       if @testimonial.save
         flash[:notice] = 'Testimonial was successfully created.'

@@ -1,8 +1,38 @@
 class ListsController < ApplicationController
 
-  before_filter :login_required
+  before_filter :login_required, :except => ['new', 'create', 'activate']
 
-  layout 'adm'
+  layout 'site'
+
+  def edit_nomes
+  end
+
+  def edit_personal_space
+  end
+  
+  def personal_space
+    @list = current_list    
+  end
+
+  def select
+    set_current_list List.find params[:id]
+    if current_list.list_items.empty?
+      redirect_to edit_list_nomes_path
+    else
+      redirect_to list_items_path
+    end    
+  end
+
+  def find
+    search = params[:search]
+    search = search.mb_chars.strip.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').downcase.to_s
+    @list = List.first :conditions => "#{params[:name_filter]}_busca LIKE '#{search}'"
+    if list
+      redirect_to '/list_name'
+    else
+      redirect_to home_path
+    end
+  end
 
   # GET /lists
   # GET /lists.xml
@@ -10,7 +40,7 @@ class ListsController < ApplicationController
     @lists = List.find(:all)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @lists }
     end
   end
@@ -19,22 +49,12 @@ class ListsController < ApplicationController
   # GET /lists/1.xml
   def show
     @list = List.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @list }
-    end
   end
 
   # GET /lists/new
   # GET /lists/new.xml
   def new
     @list = List.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @list }
-    end
   end
 
   # GET /lists/1/edit
@@ -46,16 +66,13 @@ class ListsController < ApplicationController
   # POST /lists.xml
   def create
     @list = List.new(params[:list])
-
-    respond_to do |format|
-      if @list.save
-        flash[:notice] = 'List was successfully created.'
-        format.html { redirect_to(@list) }
-        format.xml  { render :xml => @list, :status => :created, :location => @list }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @list.errors, :status => :unprocessable_entity }
-      end
+    @list.user = current_user
+    if @list.save
+      set_current_list @list
+      flash[:notice] = 'List was successfully created.'
+      redirect_to edit_list_nomes_path
+    else
+      render :action => "new"
     end
   end
 
@@ -64,15 +81,25 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
 
-    respond_to do |format|
-      if @list.update_attributes(params[:list])
-        flash[:notice] = 'List was successfully updated.'
-        format.html { redirect_to(@list) }
-        format.xml  { head :ok }
+    if @list.update_attributes(params[:list])
+      flash[:notice] = 'List was successfully updated.'
+
+      unless params[:edit_what].blank?
+        case params[:edit_what]
+        when 'nomes'
+          redirect_to edit_list_personal_space_path
+        when 'personal_space'
+          if(@list.list_items.empty?)
+            redirect_to list_items_path
+          else
+            redirect_to list_personal_space_path
+          end
+        end
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @list.errors, :status => :unprocessable_entity }
+        redirect_to(@list)
       end
+    else
+      render :action => "edit"
     end
   end
 
@@ -82,9 +109,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @list.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(lists_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(lists_url)
   end
 end
+

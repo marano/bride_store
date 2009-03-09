@@ -1,4 +1,6 @@
-<div id="destaque">
-    <a href="/noiva/siteprodutovisualizar.visualizar.logic?id=${produtoDestaque.id}" title="saiba mais"><span></span>saiba mais</a>
-    <h3>Produto em destaque > nome_produto R$ preço</h3>
-</div>
+<% unless featured_product.nil? %>
+  <div id="destaque">  
+    <%= link_to '<span></span>saiba mais', view_product_path(featured_product.id) %>
+    <h3>Produto em destaque > <%= featured_product.name %> R$ <%= featured_product.price %></h3>
+  </div>
+<% end %>

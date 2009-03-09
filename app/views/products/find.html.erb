@@ -1,7 +1,17 @@
-<%= render :partial => 'layouts/migalha', :object => @category_filter %>
-<hr>  
+<% texto_migalha = ''
+unless current_list.nil?
+  texto_migalha += "#{link_to('minha conta', account_path)} / #{current_list.name.downcase} / presentes / "
+end
+texto_migalha += @category_filter ? @category_filter.to_s.downcase : "todo o site"
+
+migalha texto_migalha %>
+
+<% unless current_list.nil? %>
+  <h1>Presentes</h1>
+<% end %>
+
 <% unless @category_filter.nil? %>
-<h1><%= @category_filter.name %></h1>    
+  <h1><%= @category_filter.name %></h1>    
 <% end %>
 
 <ul id="navegacaoProdutos" class="listaHorizontal">
@@ -21,7 +31,9 @@
   <ul id="produtosVarejo" class="listaVertical">
     <% for p in @products  %>
       <li>
-        <a href="#"><img src="${p.foto.caminho}" width="200" height="200"/></a>
+        <% if p.photo.file? %>
+          <a href="#"><%= image_tag p.photo.url(:thumb) %></a>
+        <% end %>
         <h3><%= p.name %> <br/><span>(ref: <%= p.code %>)</span></h3>
         <p><%= p.description %></p>
         <h2>R$ <%= p.price %></h2>

@@ -1,6 +1,26 @@
 <h1>Editar Produto</h1>
 
 <%= render :partial => 'form' %>
+<br/>
+<% form_for @product, :html => { :multipart => true } do |f| %>
+  <p>
+    <%= f.label :display, 'Display' %><br />
+    <%= image_tag @product.display.url %><br/><br/>
+    <%= f.file_field :display %>
+    <%= f.submit "Enviar" %>
+  </p>
+<% end %>
+<br/>
+<% form_for @product, :html => { :multipart => true } do |f| %>
+  <p>
+    <%= f.label :photo, 'Foto' %><br />
+    <%= image_tag @product.photo.url %><br/><br/>
+    <%= f.file_field :photo %>
+    <%= f.submit "Enviar" %>
+  </p>
+<% end %>
+
+<%= render :partial => 'galery/galery', :object => @product.galery %>
 
 <%= link_to 'Exibir', @product %> |
-<%= link_to 'Voltar', products_path %>
+<%= link_to 'Voltar', products_path %><br/>

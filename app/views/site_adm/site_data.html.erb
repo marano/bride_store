@@ -1,5 +1,5 @@
-<h1>Dados site</h1>
-
+<h1>Site</h1>
+<br />
 <% form_for @site do |f| %>
   <%= f.error_messages %>
   <%= hidden_field_tag :edit_what, 'site_data' %>
@@ -35,7 +35,28 @@
     <%= f.label :message_text, "Texto \"Mensagens\"" %><br />
     <%= f.text_area :message_text %>
   </p>
+  <br />
   <p>
     <%= f.submit "Salvar" %>
   </p>  
+<% end %>
+
+<% form_for @site, :html => { :multipart => true } do |f| %>
+  <br />
+  <p>
+    <%= f.label :logo, "Logo" %><br /><br />
+    <%= image_tag site.logo.url %><br /><br />
+    <%= f.file_field :logo %>
+    <%= f.submit 'Enviar' %>
+  </p>
+<% end %>
+
+<% form_for @site, :html => { :multipart => true } do |f| %>
+  <br />
+  <p>    
+    <%= f.label :logo_footer, "Logo rodapé" %><br /><br />
+    <%= image_tag site.logo_footer.url %><br /><br />
+    <%= f.file_field :logo_footer %>
+    <%= f.submit 'Enviar' %>
+  </p>
 <% end %>

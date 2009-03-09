@@ -1,0 +1,21 @@
+<% content_for(:migalha) do %> minha conta / <%= current_list.name.downcase %> / messages <% end %>
+
+<h1>Mensagens</h1>
+<p><%= site.message_text %></p>
+<hr>
+  <table>
+    <% for m in current_list.messages %>
+      <tr>
+        <td>
+          <p>
+            <span><%= m.created_at %></span>
+            <%= m.body %>
+            <span><%= m.user.name %></span>
+          </p>
+        </td>
+        <td>
+        <%= link_to 'EXCLUIR MENSAGEM', destroy_message_path %>
+      </td>
+    </tr>
+  <% end %>
+</table>

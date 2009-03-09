@@ -9,10 +9,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090307042832) do
+ActiveRecord::Schema.define(:version => 20090309050813) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "galeries", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "galery_photos", :force => true do |t|
+    t.integer  "galery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  create_table "list_items", :force => true do |t|
+    t.integer  "list_id"
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.integer  "quantity_bought"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -37,6 +61,19 @@ ActiveRecord::Schema.define(:version => 20090307042832) do
     t.string   "nome_outros_busca"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "policies", :force => true do |t|
@@ -58,6 +95,15 @@ ActiveRecord::Schema.define(:version => 20090307042832) do
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "galery_id"
+    t.string   "display_file_name"
+    t.string   "display_content_type"
+    t.integer  "display_file_size"
+    t.datetime "display_updated_at"
   end
 
   create_table "sites", :force => true do |t|
@@ -85,10 +131,11 @@ ActiveRecord::Schema.define(:version => 20090307042832) do
     t.string   "logo_footer_file_name"
     t.string   "logo_footer_content_type"
     t.integer  "logo_footer_file_size"
+    t.integer  "we_galery_id"
+    t.integer  "showroom_galery_id"
   end
 
   create_table "testimonials", :force => true do |t|
-    t.time     "time"
     t.text     "body"
     t.boolean  "active"
     t.boolean  "featured"

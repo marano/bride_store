@@ -1,9 +1,18 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'milkbox/mootools-1' %>
+  <%= javascript_include_tag 'milkbox/mootools-1_002' %>
+  <%= javascript_include_tag 'milkbox/milkbox' %>
+  <%= stylesheet_link_tag 'milkbox/milkbox' %>
+<% end %>
+
+<% migalha 'quem somos' %>
+
 <h1><%= site.we_title %></h1>
+
 <ul id="thumbInstitucional" class="listaVertical">
-<!--
-<c:forEach var="foto" items="${tela.galeria.fotos}">
-<li><a href="${foto.caminho}" title="" rel="milkbox[gal]"><img src="${foto.caminhoThumb}" width="82" height="82" /></a></li>
-</c:forEach>
--->
+<% for p in site.we_galery.galery_photos %>
+  <li><%= link_to image_tag(p.url :thumb), p.url, :rel => 'milkbox[gal1]' %></li>
+<% end %>
 </ul>
+
 <p><%= site.we_text %></p>

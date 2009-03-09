@@ -8,27 +8,40 @@
   <%= stylesheet_link_tag 'site/complete' %>
   <%= yield :head %>
 </head>
-<body>
+<body id='<%= yield :body_id %>'>
 
-<div id="armacao">  
-  <%= render :partial => 'layouts/top' %>
-
-  <%= yield :display %>
+  <div id="armacao">  
+    <%= render :partial => 'layouts/top' %>
   
-  <div id="miolo">  
-    <%= render :partial => 'layouts/side_bar' %>
-    <%= yield :miolo %>
+    <%= yield :display %>
     
-    <div id="content" class="<%= yield :content_class %>">
-      <%= render :partial => 'layouts/actions_menu' %>
-      <%= render :partial => 'layouts/user_panel' %>
-      <hr> 
-      <%= yield %> 
+    <div id="miolo">
+      
+      <% sidebar_content = yield :sidebar %>
+      <% unless sidebar_content %>
+        <%= render :partial => 'layouts/side_bar' %>
+      <% else %>
+        <div id='sideContent'>
+          <%= sidebar_content %>
+        </div>
+      <% end %>
+      
+      <%= yield :miolo %>
+      
+      <div id="content" class="<%= yield :content_class %>">
+        <%= render :partial => 'layouts/actions_menu' %>
+        <%= render :partial => 'layouts/user_panel' %>
+        <% migalha_content = yield(:migalha) %>
+        <% if migalha_content %>
+          <%= render :partial => 'layouts/migalha', :object => migalha_content %>
+        <% end %>
+        <%= render :partial => 'layouts/list_menu_panel' %>
+        <%= yield %> 
+      </div>
     </div>
+  
+    <%= render :partial => 'layouts/footer' %>
   </div>
-
-  <%= render :partial => 'layouts/footer' %>
-</div>
 
 </body>
 </html>

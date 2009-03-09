@@ -1,7 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :lists
-
-
+  
   map.root :controller => 'site', :action => 'home'
   map.home '/home', :controller => 'site', :action => 'home'
   map.we '/we', :controller => 'site', :action => 'we'
@@ -16,6 +14,25 @@ ActionController::Routing::Routes.draw do |map|
   map.find_product '/products/find', :controller => 'products', :action => 'find'
   map.view_product '/products/:id/view', :controller => 'products', :action => 'view'
   
+  map.find_list '/lists/find', :controller => 'lists', :action => 'find'
+  map.edit_list_nomes '/list/edit_nomes', :controller => 'lists', :action => 'edit_nomes'
+  map.edit_list_personal_space '/list/edit_personal_space', :controller => 'lists', :action => 'edit_personal_space'
+  map.list_personal_space '/list/personal_space', :controller => 'lists', :action => 'personal_space'
+  map.select_list '/list/:id/select', :controller => 'lists', :action => 'select'
+  
+  map.destroy_list_item '/list_item/:id/destroy', :controller => 'list_items', :action => 'destroy'
+  
+  map.fale_conosco '/fale_conosco', :controller => 'fale_conosco', :action => 'new'
+  map.send_fale_conosco '/fale_conosco/send', :controller => 'fale_conosco', :action => 'enviar'
+  
+  map.destroy_galery_photo '/galery_photo/:id/destroy', :controller => 'galery_photos', :action => 'destroy'
+  
+  map.view_policies '/policies/view', :controller => 'policies', :action => 'view'
+  
+  map.resources :galery_photos
+  map.resources :messages
+  map.resources :lists
+  map.resources :list_items
   map.resources :testimonials
   map.resources :policies
   map.resources :products
@@ -34,8 +51,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
-  
-
+  map.account '/account', :controller => 'users', :action => 'account'
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -76,6 +92,6 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
 end

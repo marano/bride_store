@@ -1,43 +1,50 @@
 <% content_for(:content_class) { %>home<% } %>
 
-<% content_for(:display) { %>
-  <div id="display">
-    <%= image_tag 'display.jpg' , :width => '780', :height => '279' %>
-  </div>
-<% } %>
+<% featured_product = Product.random_featured %>
+
+<% unless featured_product.nil? %>
+  <% content_for(:display) { %>
+    <div id="display">    
+      <%= image_tag featured_product.display.url %>
+    </div>
+  <% } %>
+<% end %>
 
 <% content_for(:miolo) { %>
-  <%= render :partial => 'site/featured_product' %>
+  <%= render :partial => 'site/featured_product', :object => featured_product %>
 <% } %>
 
 <div id="primaryContent">
   <h1><%= site.home_title %></h1>
   <p><%= site.home_text %></p>
-  <% unless logged_in? %>
-    <a href="<%= signup_path %>" title="Criar minha lista de presentes agora"><span></span>CRIAR MINHA LISTA DE PRESENTES AGORA ></a>
-  <% end %>
-  <% if logged_in? %>
-    <a href="/noiva/siteconta.minhaconta.logic" title="Criar minha lista de presentes agora"><span></span>CRIAR MINHA LISTA DE PRESENTES AGORA ></a>
-  <% end %>
+  <%= link_to '<span></span>CRIAR MINHA LISTA DE PRESENTES AGORA >', account_path %>
 </div>
 <hr>
 <div id="boxHome">
   <div id="visitarLista" class="boxContentHome">
     <h2> > Visitar listas</h2>
     <p><%= site.search_list_text %></p>
-    <form name="visitarLista" action="/noiva/sitelistabuscar.buscar.logic">
+    <% form_tag find_list_path do %>
       <p>
         <label for="tipo">- Procurar por</label>
-        <u:combo lista="${tiposParente}" nome="tipo" campoTexto="descricao" />
+        <%= select_tag :name_filter, options_for_select([
+          ['Noivo', 'nome_noivo'], 
+          ['Pai do noivo', 'nome_noivo_pai'], 
+          ['Mãe do noivo', 'nome_noivo_mae'], 
+          ['Noiva', 'nome_noiva'], 
+          ['Pai da noiva', 'nome_noiva_pai'], 
+          ['Mãe da noiva', 'nome_noiva_mae'],
+          ['Outros', 'nome_outros']
+        ]) %>
       </p>
       <p>
         <label for="busca">- Nome</label>
-        <input type="text" name="busca" class="campoTexto" />
+        <input type="text" name="search" class="campoTexto" />
       </p>
       <p>
         <input class="botaoForm" name="acessarLista" type="image" src="/images/btAcessar.gif" title="acessar" onclick="this.form.submit();return false" />
       </p>
-    </form>
+    <% end %>
   </div>
   <script language="JavaScript">
     document.getElementById("boxHome").style.background = "url(/images/bgContentBoxHome.gif) repeat-y -15px 0";

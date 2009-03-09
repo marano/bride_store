@@ -1,7 +1,7 @@
 module SiteHelper
 
-  def site
-    site = Site.first
-    site ? site : Site.new
+  def migalha(text)
+    content_for :migalha do text end
   end
+  
 end

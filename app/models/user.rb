@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
 
+  has_many :lists, :dependent => :destroy
   has_many :testmonials
 
   validates_presence_of     :login
@@ -53,6 +54,10 @@ class User < ActiveRecord::Base
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
   end
+  
+  def to_s
+    name
+  end    
 
   protected
     

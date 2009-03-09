@@ -1,51 +1,40 @@
-<h1>New list</h1>
+<% migalha 'minha conta' %>
 
-<% form_for(@list) do |f| %>
-  <%= f.error_messages %>
+<% if current_user.lists.empty? %>
+  <h1>Boas Vindas</h1>
+  <p><%= site.welcome_text %></p>
+<% else %>
 
+<h1>Minhas Listas - <span>você tem (<%= current_user.lists.size %>) listas de presentes</span></h1>
+<ul class="listaVertical">
+  <% for list in current_user.lists %>
+    <li><%= link_to list.name, select_list_path(list) %></li>
+  <% end %>
+</ul>
+<h2>Criar Listas</h2>
+<% end %>
+
+<% form_for List.new, :html => { :id => 'formCriarLista' } do |f| %>
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :text %><br />
-    <%= f.text_area :text %>
-  </p>
-  <p>
-    <%= f.label :nome_noivo %><br />
-    <%= f.text_field :nome_noivo %>
-  </p>
-  <p>
-    <%= f.label :nome_noivo_pai %><br />
-    <%= f.text_field :nome_noivo_pai %>
-  </p>
-  <p>
-    <%= f.label :nome_noivo_mae %><br />
-    <%= f.text_field :nome_noivo_mae %>
-  </p>
-  <p>
-    <%= f.label :nome_noiva %><br />
-    <%= f.text_field :nome_noiva %>
-  </p>
-  <p>
-    <%= f.label :nome_noiva_pai %><br />
-    <%= f.text_field :nome_noiva_pai %>
-  </p>
-  <p>
-    <%= f.label :nome_noiva_mae %><br />
-    <%= f.text_field :nome_noiva_mae %>
-  </p>
-  <p>
-    <%= f.label :nome_outros %><br />
-    <%= f.text_field :nome_outros %>
-  </p>
-  <p>
-    <%= f.submit "Create" %>
+    <%= label_tag 'nomeLista', 'Nome da lista:' %>
+    <%= f.text_field :name, :class => 'campoTexto' %>
+    <input class="botaoForm" type="image" title="criar lista" value="criar lista" src="/images/btEnviar.gif"/>
   </p>
 <% end %>
 
-<%= link_to 'Back', lists_path %>
+<% unless current_user.lists.empty? %>
+  <% current_user.password = current_user.password_confirmation = nil  %>
+  <hr/>
+  <h2>Alterar Dados</2h>
+  <% form_for current_user do |f| %>
+    <p>
+      <%= f.label :password, '*Senha:' %><br/>
+      <%= f.text_field :password, :class => 'campoTexto' %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation, '*Confirmar senha:' %><br/>
+      <%= f.text_field :password_confirmation, :class => 'campoTexto' %>
+    </p>
+    <input class="botaoForm" type="image" title="confirmar" value="confirmar" src="/images/btEnviar.gif"/>
+  <% end %>
+<% end %>

@@ -13,9 +13,8 @@ Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 
 body {    
     font-family:arial;
-    font-size:10px;
+    font-size:12px;
 }
-
 img {
     border: none;
 }

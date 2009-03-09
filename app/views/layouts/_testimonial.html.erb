@@ -1,6 +1,10 @@
-<div id="depoimentoTopo">
-  <div class="depoimento">
-    <h3>texto depoimento destaque<br /><span>usuário</span></h3>
+<% featured_testimonial = Testimonial.random_featured %>
+
+<% unless featured_testimonial.nil? %>
+  <div id="depoimentoTopo">
+    <div class="depoimento">
+      <h3><%= featured_testimonial.body %><br/><br/><span><%= featured_testimonial.user.name %></span></h3>
+    </div>
+    <%= link_to 'Veja todos os depoimentos >', testimonials_path %>
   </div>
-  <% link_to 'Veja todos os depoimentos', testimonials_path %>
-</div>
+<% end %>

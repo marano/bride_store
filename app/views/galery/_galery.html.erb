@@ -1,0 +1,17 @@
+<br/>
+<h2>Galeria</h2>
+<br/>
+<p>Adicionar Foto
+  <% form_for GaleryPhoto.new, :html => { :multipart => true } do |f| %>
+    <%= hidden_field_tag 'galery_photo[galery_id]', galery.id %>
+    <%= f.file_field :photo %>
+    <%= f.submit 'Enviar' %>
+  <% end %>
+</p>
+
+<% for p in galery.galery_photos %>
+  <br/>
+  <p><%= image_tag p.url :thumb %></p><%= link_to 'remover', destroy_galery_photo_path(p), :confirm => 'Tem certeza?' %>
+  <br/>   
+<% end %>
+<br/>

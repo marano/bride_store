@@ -1,0 +1,18 @@
+<% unless current_list.nil? %>
+  <ul class="listaHorizontal">
+    <li><%= link_to 'noivos', edit_list_nomes_path %></li>
+    <li>|</li>
+    <li><%= link_to 'espaco pessoal', edit_list_personal_space_path %></li>
+    <li>|</li>
+    <li><%= link_to 'presentes', list_items_path %></li>
+    <li>|</li>
+    <li><%= link_to 'divulgação', '' %></li>
+    <li>|</li>
+    <li><%= link_to 'mensagens', messages_path %></li>
+    <li>|</li>
+    <li><%= link_to 'visualizar', list_personal_space_path %></li>
+    <li>|</li>
+    <li><%= link_to 'encerrar lista', '' %></li>
+  </ul>
+  <hr>
+<% end %>

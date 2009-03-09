@@ -1,5 +1,6 @@
-<%= render :partial => 'layouts/migalha', :object => [ link_to(@product.category.name.downcase, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}), @product.name.downcase ] %>
-<hr>
+<% content_for(:migalha) do %>
+  <%= link_to(@product.category.name.downcase, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}) + " / " + @product.name.downcase %>
+<% end %>
 
 <!-- Aqui entra o painel da lista -->
 <h1><%= @product.category.name %></h1>
@@ -8,21 +9,24 @@
 <div>
   <div></div>
   <div>
+    <% if @product.photo.file? %>
+      <p><%= image_tag  @product.photo.url %></p>
+    <% end %>    
     <p>(ref: <%= @product.code %>)</p>
     <p><%= @product.description %></p>
     <h2>R$ <%= @product.price %></h2>
     <hr />
-      <!--<c:if test="${minhaListaId != null}">
-        <form action="/noiva/siteitemlistaadicionar.adicionar.logic">
-          <input type="hidden" name="produtoId" value="${produto.id}">
-          <label for="quantidade">Quantidade</label>
-          <input type="text" name="quantidade" value="1"/>
-          <input type="image" title="adicionar à minha lista de presentes" />
-        </form>
+    <% unless current_list.nil? %>
+      <% form_for ListItem.new do |f| %>
+        <%= hidden_field_tag 'list_item[product_id]', @product.id  %>
+        <%= f.label :quantity, 'Quantidade' %>
+        <%= text_field_tag 'list_item[quantity]', '1', :class => 'campoTexto' %>
+        <input type="image" title="adicionar à minha lista de presentes" />
         <hr />
-        <a href="/noiva/siteitemlistalistar.listar.logic" title="ver minha lista de presentes"><span></span>ver minha lista de presentes</a>
+        <%= link_to '<span></span>ver minha lista de presentes', list_items_path %>
         <hr />
-      </c:if>-->
+      <% end %>
+    <% end %>
   </div>
 </div>
 

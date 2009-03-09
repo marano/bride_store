@@ -1,0 +1,30 @@
+<% migalha "minha conta / #{current_list.name.downcase} / visualizar" %>
+
+<h1><%= @list.title %></h1>
+<%= image_tag @list.photo.url %>
+<ul>
+  <li><img src="/noiva/img/fotoExe.jpg" /></li>
+  <li>
+    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
+    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
+    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
+    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
+    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
+    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
+    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
+    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
+  </li>
+</ul>
+<p><%= @list.text %></p>
+<% if @list.messages.empty? %>
+  <h2>Não há mensagens ainda</h2>
+<% else %>
+<h2>Mensagens</h2>
+  <% for m in @list.messages %>
+    <div class="mensagensPerfil">
+      <h3><%= m.created_at %></h3>
+      <p><%= m.body %></p>
+      <h3><%= m.user.name %></h3>
+    </div>
+  <% end %>
+<% end %>

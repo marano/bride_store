@@ -1,0 +1,28 @@
+<% content_for :migalha do %>fale conosco<% end %>
+
+<h1 title="Fale Conosco">Fale Conosco</h1>
+
+<form method="post" action="<%=  %>">
+  <p>
+    <label for="nome">Nome:</label>
+    <input class="campoTexto" name="nome" type="text" />
+  </p>
+  <p>
+    <label for="emailCliente">E-mail:</label>
+    <input class="campoTexto" name="emailCliente"  type="text" />
+  </p>
+  <p>
+    <label for="telefone">Telefone:</label>
+    <input class="campoTexto" name="telefone" type="text" />
+  </p>
+  <p>
+    <label for="mensagem">Mensagem:</label><br/>
+    <textarea name="mensagem" cols='40'></textarea>
+  </p>
+  <p class="checkNews">
+    <%= check_box_tag :newsletter, '1', :checked => true %>
+    <u:checkbox nome="cadastroCliente" valor="true" />
+    <label for="cadastroCliente">Desejo receber informações sobre a Arte de Receber.</label>
+  </p>
+  <input class="botaoForm" type="image" onclick="faleConosco()" title="enviar" value="Enviar" src="/images/btEnviar.gif"/>
+</form>

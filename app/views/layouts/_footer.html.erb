@@ -9,8 +9,8 @@
       <li>Institucional</li>
       <li><%= link_to '> Quem somos', we_path %></li>
       <li><%= link_to '> Nossa loja', showroom_path %></li>
-      <li><%= link_to '> Fale conosco', '' %></li>
-      <li><%= link_to '> Depoimentos', '' %></li>
+      <li><%= link_to '> Fale conosco', fale_conosco_path %></li>
+      <li><%= link_to '> Depoimentos', testimonials_path %></li>
   </ul>
   <ul class="listaVertical">
       <li>Listas de presentes</li>
@@ -20,8 +20,8 @@
   </ul>
   <ul class="listaVertical">
       <li>Política do site</li>
-      <% for polyce in Policy.all %>
-        <li><a href=""> > <%= polyce.menu_title %></a></li>
+      <% for polyce in Policy.all %>      
+        <li><%= link_to '> ' + polyce.menu_title, view_policies_path %></li>
       <% end %>
   </ul>
 </div>

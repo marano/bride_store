@@ -10,7 +10,7 @@
     <td><%=h category.name %></td>
     <td><%= link_to 'Exibir', category %></td>
     <td><%= link_to 'Editar', edit_category_path(category) %></td>
-    <td><%= link_to 'Remover', category, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Remover', category, :confirm => 'Tem certeza?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

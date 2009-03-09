@@ -1,0 +1,41 @@
+<% content_for(:content_class) do %>boasVindas<% end %>
+
+<% migalha "minha conta / #{current_list.name.downcase} / noivos" %>
+
+<h1>Noivos</h1>
+
+<% form_for(current_list) do |f| %>
+  <%= hidden_field_tag 'edit_what', 'nomes' %>
+  
+  <p>
+    <%= f.label :nome_noivo, 'Nome do Noivo:'%>
+    <%= f.text_field :nome_noivo, :class => 'campoTexto' %>
+  </p>
+  <p>
+    <%= f.label :nome_noivo_pai, 'Nome do Pai do Noivo:'%>
+    <%= f.text_field :nome_noivo_pai, :class => 'campoTexto' %>
+  </p>
+  <p>
+    <%= f.label :nome_noivo_pai_mae, 'Nome da Mãe do Noivo:'%>
+    <%= f.text_field :nome_noivo_mae, :class => 'campoTexto' %>
+  </p>
+  <p>
+    <%= f.label :nome_noiva, 'Nome da Noiva:'%>
+    <%= f.text_field :nome_noiva, :class => 'campoTexto' %>
+  </p>
+  <p>
+    <%= f.label :nome_noiva_pai, 'Nome do Pai da Noiva:'%>
+    <%= f.text_field :nome_noiva_pai, :class => 'campoTexto' %>
+  </p>
+  <p>
+    <%= f.label :nome_noiva_mae, 'Nome da Mãe da Noiva:'%>
+    <%= f.text_field :nome_noiva_mae, :class => 'campoTexto' %>
+  </p>
+  <p>
+    <%= f.label :nome_outros, 'Outros:'%>
+    <%= f.text_field :nome_outros, :class => 'campoTexto' %>
+  </p>
+  <input class="botaoForm" type="image" title="salvar" value="salvar" src="/images/btEnviar.gif"/>
+<% end %>
+
+

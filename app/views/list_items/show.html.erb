@@ -1,0 +1,23 @@
+<p>
+  <b>List:</b>
+  <%=h @list_item.list %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%=h @list_item.product %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @list_item.quantity %>
+</p>
+
+<p>
+  <b>Quantity bought:</b>
+  <%=h @list_item.quantity_bought %>
+</p>
+
+
+<%= link_to 'Edit', edit_list_item_path(@list_item) %> |
+<%= link_to 'Back', list_items_path %>

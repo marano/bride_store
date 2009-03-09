@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  list: 
+  product: 
+  quantity: 1
+  quantity_bought: 1
+
+two:
+  list: 
+  product: 
+  quantity: 1
+  quantity_bought: 1

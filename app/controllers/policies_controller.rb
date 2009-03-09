@@ -2,6 +2,10 @@ class PoliciesController < ApplicationController
 
   layout 'adm'
   
+  def view
+    render :layout => 'site'
+  end
+  
   # GET /policies
   # GET /policies.xml
   def index

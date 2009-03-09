@@ -2,9 +2,10 @@
   <div id="menuPainel">
     <p>Olá <%= current_user.name %></p>
     <ul class="listaHorizontal">
-      <li><a href="/noiva/siteconta.minhaconta.logic">Minha Conta</a></li>
+      <li><%= link_to 'Minha Conta', account_path %></li>
       <li>|</li>
       <li><%= link_to 'Sair', logout_path %></li>
     </ul>
   </div>
 <% end %>
+<hr>
