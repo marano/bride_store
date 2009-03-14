@@ -21,12 +21,24 @@ class ProductsController < ApplicationController
       end
     else
       @search = params[:search]
-      s = @search.downcase
+      s = @search.canonical
+      
+      s = s.split ' '
+      sql_search = ''      
+      for trecho in s
+        next if trecho.blank?
+        trecho.gsub!(/ /,'')
+        unless sql_search.blank?
+          sql_search << ' AND '
+        end
+        sql_search << "canonical_name like'%#{trecho}%'"
+      end
+      
       if params[:category_id_filter].blank?
-        @products = (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => "canonical_name like '%#{s}%'")
+        @products = (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => sql_search)
       else
         @category_filter = Category.find(params[:category_id_filter])
-        @products =  (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => "category_id = #{@category_filter.id} AND canonical_name like '%#{s}%'")
+        @products =  (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => "category_id = #{@category_filter.id} AND #{sql_search}")
       end
     end
     render :layout => 'site'

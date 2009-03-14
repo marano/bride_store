@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
 
-  before_create :create_galery
+  after_create :create_galery
   before_save :update_canonical_name
   
   belongs_to :category
@@ -14,11 +14,11 @@ class Product < ActiveRecord::Base
   private
   
   def update_canonical_name
-    write_attribute :canonical_name, name.mb_chars.strip.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').downcase.to_s
+    write_attribute :canonical_name, name.canonical
   end
   
   def create_galery
-    write_attribute :galery, Galery.new
+    update_attributes!(:galery => Galery.new)
   end
   
   def self.random_featured

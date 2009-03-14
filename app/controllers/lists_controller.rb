@@ -11,7 +11,7 @@ class ListsController < ApplicationController
   end
   
   def personal_space
-    @list = current_list    
+    @list = List.find(params[:id])
   end
 
   def select
@@ -25,7 +25,7 @@ class ListsController < ApplicationController
 
   def find
     search = params[:search]
-    search = search.mb_chars.strip.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').downcase.to_s
+    search = search.canonical
     @list = List.first :conditions => "#{params[:name_filter]}_busca LIKE '#{search}'"
     if list
       redirect_to '/list_name'
@@ -81,6 +81,8 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
 
+    params[:list].delete :photo if params[:list][:photo].blank?
+
     if @list.update_attributes(params[:list])
       flash[:notice] = 'List was successfully updated.'
 
@@ -92,7 +94,7 @@ class ListsController < ApplicationController
           if(@list.list_items.empty?)
             redirect_to list_items_path
           else
-            redirect_to list_personal_space_path
+            redirect_to personal_space_list_path(@list)
           end
         end
       else
@@ -107,9 +109,11 @@ class ListsController < ApplicationController
   # DELETE /lists/1.xml
   def destroy
     @list = List.find(params[:id])
+    if current_list? @list
+      set_current_list nil
+    end
     @list.destroy
-
-    redirect_to(lists_url)
+    redirect_to(new_list_path)
   end
 end
 

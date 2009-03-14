@@ -1,0 +1,1 @@
+page["message_#{@message.id}"].remove

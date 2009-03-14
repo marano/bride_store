@@ -1,24 +1,6 @@
-<h1>Editing testimonial</h1>
-
-<% form_for(@testimonial) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </p>
-  <p>
-    <%= f.label :featured %><br />
-    <%= f.check_box :featured %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @testimonial %> |
-<%= link_to 'Back', testimonials_path %>
+<h1>Depoimento</h1>
+<br/>
+<%= render :partial => 'form', :locals => { :testimonial => @testimonial } %>
+<br/>
+<%= link_to 'Exibir', @testimonial %> |
+<%= link_to 'Voltar', testimonials_path %>

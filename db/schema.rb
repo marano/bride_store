@@ -9,10 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090309050813) do
+ActiveRecord::Schema.define(:version => 20090311024938) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "email_configs", :force => true do |t|
+    t.string   "email_adress"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,9 +42,9 @@ ActiveRecord::Schema.define(:version => 20090309050813) do
     t.integer  "list_id"
     t.integer  "product_id"
     t.integer  "quantity"
-    t.integer  "quantity_bought"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "quantity_bought", :default => 0
   end
 
   create_table "lists", :force => true do |t|
@@ -66,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20090309050813) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "galery_id"
   end
 
   create_table "messages", :force => true do |t|
@@ -135,13 +142,28 @@ ActiveRecord::Schema.define(:version => 20090309050813) do
     t.integer  "showroom_galery_id"
   end
 
+  create_table "spams", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.text     "to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "list_id"
+    t.boolean  "sent"
+  end
+
   create_table "testimonials", :force => true do |t|
     t.text     "body"
-    t.boolean  "active"
-    t.boolean  "featured"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "home_text"
+    t.boolean  "active",     :default => false
+    t.boolean  "featured",   :default => false
   end
 
   create_table "users", :force => true do |t|
@@ -159,6 +181,7 @@ ActiveRecord::Schema.define(:version => 20090309050813) do
     t.string   "state",                                    :default => "passive"
     t.datetime "deleted_at"
     t.boolean  "admin"
+    t.boolean  "newsletter"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

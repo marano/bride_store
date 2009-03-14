@@ -1,11 +1,11 @@
-<h1>Listing testimonials</h1>
+<h1>Depoimentos</h1>
 
 <table>
   <tr>
-    <th>Body</th>
-    <th>Active</th>
-    <th>Featured</th>
-    <th>User</th>
+    <th>Texto</th>
+    <th>Ativo</th>
+    <th>Destaque</th>
+    <th>Usuário</th>
   </tr>
 
 <% for testimonial in @testimonials %>
@@ -14,13 +14,11 @@
     <td><%=h testimonial.active %></td>
     <td><%=h testimonial.featured %></td>
     <td><%=h testimonial.user %></td>
-    <td><%= link_to 'Show', testimonial %></td>
-    <td><%= link_to 'Edit', edit_testimonial_path(testimonial) %></td>
-    <td><%= link_to 'Destroy', testimonial, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Exibir', testimonial %></td>
+    <td><%= link_to 'Editar', edit_testimonial_path(testimonial) %></td>
+    <td><%= link_to 'Remover', testimonial, :confirm => 'Tem certeza?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New testimonial', new_testimonial_path %>
+<%= link_to 'Novo Depoimento', new_testimonial_path %>

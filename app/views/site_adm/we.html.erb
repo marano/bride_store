@@ -1,5 +1,5 @@
 <h1>Quem Somos</h1>
-
+<br/>
 <% form_for @site do |f| %>
   <%= f.error_messages %>
   <%= hidden_field_tag :edit_what, 'we' %>
@@ -7,10 +7,12 @@
     <%= f.label :we_title, 'Título' %><br />
     <%= f.text_field :we_title %>
   </p>
+  <br/>
   <p>
     <%= f.label :we_text, 'Texto' %><br />
     <%= f.text_area :we_text %>
   </p>
+  <br/>
   <p>
     <%= f.submit "Salvar" %>
   </p>  

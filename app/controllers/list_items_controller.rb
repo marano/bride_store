@@ -50,7 +50,7 @@ class ListItemsController < ApplicationController
     respond_to do |format|
       if @list_item.update_attributes(params[:list_item])
         flash[:notice] = 'ListItem was successfully updated.'
-        format.html { redirect_to(@list_item) }
+        format.html { redirect_to :back }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

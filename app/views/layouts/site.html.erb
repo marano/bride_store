@@ -6,17 +6,25 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Arte de Receber <%= yield :title %></title>
   <%= stylesheet_link_tag 'site/complete' %>
+  <%= javascript_include_tag 'site/Tween' %>
+  <%= javascript_include_tag 'site/result' %>
   <%= yield :head %>
 </head>
-<body id='<%= yield :body_id %>'>
+<body id="<%= yield :body_id %>">
 
   <div id="armacao">  
-    <%= render :partial => 'layouts/top' %>
+  
+    <div id="topo">
+      <%= render :partial => 'layouts/testimonial' %>
+      <div id="logomarca">
+        <%= image_tag site.logo.url %>
+      </div>
+      <%= render :partial => 'layouts/institutional_menu' %>
+    </div>
   
     <%= yield :display %>
     
-    <div id="miolo">
-      
+    <div id="miolo">      
       <% sidebar_content = yield :sidebar %>
       <% unless sidebar_content %>
         <%= render :partial => 'layouts/side_bar' %>
@@ -35,13 +43,37 @@
         <% if migalha_content %>
           <%= render :partial => 'layouts/migalha', :object => migalha_content %>
         <% end %>
-        <%= render :partial => 'layouts/list_menu_panel' %>
-        <%= yield %> 
+                
+        <%= yield %>
+        <br/>
+        <br/>
       </div>
     </div>
   
     <%= render :partial => 'layouts/footer' %>
+    
+    <% if flash[:notice] or flash[:error] %>
+      <div id="result">
+        <div id="container">
+          <div id="btClose">
+            <a href="javascript:hide();"><img src="/images/iconCloseResult.png" title="Fechar mensagem"></a>
+          </div>
+          <div id="mensagem">
+            <% if flash[:notice] %>
+              <%= flash[:notice] %>              
+            <% end %>
+            <% if flash[:error] %>
+              <%= flash[:error] %>              
+            <% end %>
+          </div>
+        </div>
+      </div>
+    
+      <script language="JavaScript">
+        show();
+      </script>
+    <% end %>
+    
   </div>
-
 </body>
 </html>

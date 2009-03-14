@@ -1,30 +1,28 @@
-<% migalha "minha conta / #{current_list.name.downcase} / visualizar" %>
+<% content_for :head do %><%= javascript_include_tag :defaults %><% end  %>
+
+<% migalha "minha conta / #{@list.name.downcase} / visualizar" %>
 
 <h1><%= @list.title %></h1>
+
 <%= image_tag @list.photo.url %>
-<ul>
-  <li><img src="/noiva/img/fotoExe.jpg" /></li>
-  <li>
-    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
-    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
-    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
-    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
-    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
-    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
-    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
-    <li><a href="#"><img src="/noiva/img/fotoExe.jpg" width="82" height="82" /></a></li>
-  </li>
-</ul>
-<p><%= @list.text %></p>
-<% if @list.messages.empty? %>
-  <h2>Não há mensagens ainda</h2>
-<% else %>
-<h2>Mensagens</h2>
-  <% for m in @list.messages %>
-    <div class="mensagensPerfil">
-      <h3><%= m.created_at %></h3>
-      <p><%= m.body %></p>
-      <h3><%= m.user.name %></h3>
-    </div>
+<br/>
+<br/>
+<ul class='listaHorizontal'>
+  <% for p in current_list.galery.galery_photos %>
+    <li><%= image_tag p.url :thumb %></li> 
   <% end %>
+</ul>
+<br/>
+<p><%= @list.text %></p>
+
+<h2>Mensagens</h2>
+<hr/>
+<div id='messages'>
+  <%= render :partial => @list.messages %>
+</div>
+<br/>
+<% remote_form_for Message.new do |f| %>
+  <%= hidden_field_tag 'message[list_id]', @list.id %>
+  <%= f.text_area :body, :rows => 3 %><br/>
+  <%= f.submit 'Enviar' %>
 <% end %>

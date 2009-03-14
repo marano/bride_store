@@ -2,7 +2,7 @@
 
 <% content_for(:migalha) do %>minha conta / <%= current_list.name.downcase %> / presentes<% end %>
 
-<h1>Presentes</h1>
+<% content_for :title do %><h2><%= current_list.name %></h2><% end %>
 
 <% if current_list.list_items.empty? %>
   <p>
@@ -34,13 +34,17 @@
         <tr>
           <td><%= i.product.name %></td>
           <td>
-            <% form_for i do |f| %>
+            <p>
               <span>Desejada:</span>
-              <%= f.text_field :quantity, :class => 'campoTexto', :style => 'width:30px' %>
-              <%= link_to '- alterar quantidade', '' %>
+              <% form_for i do |f| %>
+                <%= f.text_field :quantity, :class => 'campoTexto', :style => 'width:30px' %>
+                <%= f.submit 'alterar quantidade' %>
+              <% end %>
+            </p>
+            <p>
               <span>Comprada:</span>
-              <p><%= i.quantity_bought %></p>
-            <% end %>
+              <%= i.quantity_bought %>
+            </p>
           </td>
           <td><h2>R$ <%= i.product.price %></h2></td>
           <td><h2>R$ <%=  i.total_price %></h2></td>

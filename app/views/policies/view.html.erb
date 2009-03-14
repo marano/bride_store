@@ -6,15 +6,15 @@
 
 <% content_for :sidebar do %>
   <%= image_tag site.logo.url, :width => 170, :height => 80 %>
-  <ul>
+  <ul class='listaVertical'>
     <% for p in Policy.all %>
-      <li><%= link_to '> ' + p.name, '#' + p.name.strip %></li>
+      <li><%= link_to '> ' + p.name, :anchor => p.name %></li>
     <% end %>
   </ul>
 <% end %>
 
 <% for p in Policy.all %>
-  <a name="<%= p.name.strip %>"></a>
+  <a name="<%= p.name %>"></a>
   <h2><%= p.name %></h2>
   <p><%= p.text %></p>
 <% end %>

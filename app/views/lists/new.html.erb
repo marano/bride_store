@@ -8,7 +8,7 @@
 <h1>Minhas Listas - <span>você tem (<%= current_user.lists.size %>) listas de presentes</span></h1>
 <ul class="listaVertical">
   <% for list in current_user.lists %>
-    <li><%= link_to list.name, select_list_path(list) %></li>
+    <li><%= link_to list.name, select_list_path(list) %> - <%= link_to 'excluir', list_path(list), :method => 'DELETE', :confirm => 'Tem certeza?' %></li>
   <% end %>
 </ul>
 <h2>Criar Listas</h2>
@@ -29,11 +29,11 @@
   <% form_for current_user do |f| %>
     <p>
       <%= f.label :password, '*Senha:' %><br/>
-      <%= f.text_field :password, :class => 'campoTexto' %>
+      <%= f.password_field :password, :class => 'campoTexto' %>
     </p>
     <p>
       <%= f.label :password_confirmation, '*Confirmar senha:' %><br/>
-      <%= f.text_field :password_confirmation, :class => 'campoTexto' %>
+      <%= f.password_field :password_confirmation, :class => 'campoTexto' %>
     </p>
     <input class="botaoForm" type="image" title="confirmar" value="confirmar" src="/images/btEnviar.gif"/>
   <% end %>

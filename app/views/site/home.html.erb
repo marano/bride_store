@@ -46,10 +46,10 @@
       </p>
     <% end %>
   </div>
-  <script language="JavaScript">
-    document.getElementById("boxHome").style.background = "url(/images/bgContentBoxHome.gif) repeat-y -15px 0";
-  </script>
   <% unless logged_in? %>
+    <script language="JavaScript">
+      document.getElementById("boxHome").style.background = "url(/images/bgContentBoxHome.gif) repeat-y -15px 0";
+    </script>
     <div id="loginHome">
       <%= render :partial => 'sessions/form' %>
     </div>

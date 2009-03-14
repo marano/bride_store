@@ -1,0 +1,3 @@
+page.insert_html :bottom, :messages, :partial => @message
+#page[@message].visual_effect :highlight
+page[:new_message].reset

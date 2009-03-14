@@ -65,6 +65,4 @@ class User < ActiveRecord::Base
         self.deleted_at = nil
         self.activation_code = self.class.make_token
     end
-
-
 end

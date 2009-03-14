@@ -22,6 +22,7 @@ module Authorization
         end
         
         aasm_event :activate do
+          transitions :from => :passive, :to => :active, :guard => Proc.new {|u| u.admin? } 
           transitions :from => :pending, :to => :active 
         end
         

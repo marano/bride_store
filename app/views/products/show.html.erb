@@ -1,32 +1,39 @@
 <h1>Pruduto</h1>
+<br/>
 <p>
   <b>Foto</b><br/>
   <%= image_tag @product.photo.url %>
 </p>
+<br/>
 <p>
   <b>Nome:</b>
   <%=h @product.name %>
 </p>
+<br/>
 <p>
   <b>Código:</b>
   <%=h @product.code %>
 </p>
+<br/>
 <p>
   <b>Categoria:</b>
   <%=h @product.category.name %>
 </p>
+<br/>
 <p>
   <b>Descrição:</b>
   <%=h @product.description %>
 </p>
+<br/>
 <p>
   <b>Price:</b>
   <%=h @product.description %>
 </p>
+<br/>
 <p>
   <b>Destaque:</b>
   <%=h @product.featured %>
 </p>
-
+<br/>
 <%= link_to 'Editar', edit_product_path(@product) %> |
 <%= link_to 'Voltar', products_path %>

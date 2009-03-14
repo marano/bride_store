@@ -1,23 +1,27 @@
-<h1>Criar Usuário</h1>
+<h1>Novo Usuário</h1>
+<%= @erros %>
+<br/>
 <% @user.password = @user.password_confirmation = nil %>
-
-  <%= error_messages_for :user %>
-  <% form_for :user, :url => { :controller => 'users', :action => 'create_admin' } do |f| -%>
+  <%= error_messages_for @user %>
+  <% form_for :user, @user, :url => create_admin_path do |f| -%>
 
   <p><%= label_tag 'name', 'Nome' %><br/>
   <%= f.text_field :name %></p>
-
+  <br/>
   <p><%= label_tag 'login', 'Usuário' %><br/>
   <%= f.text_field :login %></p>
-
+  <br/>
   <p><%= label_tag 'email', 'Email' %><br/>
   <%= f.text_field :email %></p>
-
+  <br/>
+  <p><%= label_tag 'admin', 'Administrador' %>
+  <%= check_box_tag 'admin', '1' %></p>
+  <br/>
   <p><%= label_tag 'password', 'Senha' %><br/>
   <%= f.password_field :password %></p>
-
+  <br/>
   <p><%= label_tag 'password_confirmation', 'Confirmar senha' %><br/>
   <%= f.password_field :password_confirmation %></p>
-
-  <p><%= submit_tag 'Criar' %></p>
+  <br/>
+  <p><%= submit_tag 'Salvar' %></p>
 <% end -%>

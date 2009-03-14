@@ -12,12 +12,17 @@
 </head>
 <body>
 
-<p style="color: green"><%= flash[:notice] %></p>
-
 <%= render :partial => 'adm/user_bar' %>
+<%= render :partial => 'adm/top' %>
 <%= render :partial => 'layouts/menu_adm' %>
 
 <div id="conteudo">
+  <% if flash[:notice] %>
+    <p align="center" style="color: green"><%= flash[:notice] %></p>
+  <% end %>  
+  <% if flash[:error] %>
+    <p align="center" style="color: red"><%= flash[:error] %></p>
+  <% end %>
   <%= yield  %>
 </div>
 

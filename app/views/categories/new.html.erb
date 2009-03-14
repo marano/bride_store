@@ -1,5 +1,5 @@
 <h1>Nova Categoria</h1>
-
+<br/>
 <% form_for(@category) do |f| %>
   <%= f.error_messages %>
 
@@ -7,9 +7,10 @@
     <%= f.label :name, 'Nome' %><br />
     <%= f.text_field :name %>
   </p>
+  <br/>
   <p>
     <%= f.submit "Salvar" %>
   </p>
 <% end %>
-
+<br/>
 <%= link_to 'Voltar', categories_path %>

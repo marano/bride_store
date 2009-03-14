@@ -1,0 +1,20 @@
+<h1>Listing email_configs</h1>
+
+<table>
+  <tr>
+    <th>Email adress</th>
+  </tr>
+
+<% for email_config in @email_configs %>
+  <tr>
+    <td><%=h email_config.email_adress %></td>
+    <td><%= link_to 'Show', email_config %></td>
+    <td><%= link_to 'Edit', edit_email_config_path(email_config) %></td>
+    <td><%= link_to 'Destroy', email_config, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New email_config', new_email_config_path %>

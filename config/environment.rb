@@ -39,6 +39,8 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :pt_BR
+  
+  config.action_mailer.perform_deliveries = true
 end
 
 ActionMailer::Base.delivery_method = :smtp
@@ -46,9 +48,9 @@ ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
   :tls => true,
   :address => "smtp.gmail.com",
-  :port => "587",
+  :port => "587", #465
   :domain => "gmail.com",
-  :authentication => :plain, # pode usar também :login
+  :authentication => :login, # pode usar também :login, :plain
   :user_name => "thiagomarano@gmail.com",
   :password => "salamaleicozen"
 }

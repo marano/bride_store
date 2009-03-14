@@ -17,7 +17,6 @@ ActionController::Routing::Routes.draw do |map|
   map.find_list '/lists/find', :controller => 'lists', :action => 'find'
   map.edit_list_nomes '/list/edit_nomes', :controller => 'lists', :action => 'edit_nomes'
   map.edit_list_personal_space '/list/edit_personal_space', :controller => 'lists', :action => 'edit_personal_space'
-  map.list_personal_space '/list/personal_space', :controller => 'lists', :action => 'personal_space'
   map.select_list '/list/:id/select', :controller => 'lists', :action => 'select'
   
   map.destroy_list_item '/list_item/:id/destroy', :controller => 'list_items', :action => 'destroy'
@@ -29,9 +28,21 @@ ActionController::Routing::Routes.draw do |map|
   
   map.view_policies '/policies/view', :controller => 'policies', :action => 'view'
   
+  map.edit_email_config '/email_config/edit', :controller => 'email_configs', :action => 'edit'
+  
+  map.change_quantity_list_item '/list_item/:id/change_quantity', :controller => 'list_items', :action => 'update'
+  
+  map.view_testimonials '/testimonials/view', :controller => 'testimonials', :action => 'view'
+  
+  map.new_admin '/user/adm/new', :controller => 'users', :action => 'new_admin'
+  map.create_admin '/user/adm/create', :controller => 'users', :action => 'create_admin'
+  map.update_admin '/user/adm/:id/update', :controller => 'users', :action => 'update_admin'
+  
+  map.resources :email_configs
+  map.resources :spams, :member => [ :enviar ]
   map.resources :galery_photos
   map.resources :messages
-  map.resources :lists
+  map.resources :lists, :member => [ :personal_space ]
   map.resources :list_items
   map.resources :testimonials
   map.resources :policies
@@ -52,6 +63,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
   map.account '/account', :controller => 'users', :action => 'account'
+  map.account_list '/account', :controller => 'users', :action => 'account_list'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

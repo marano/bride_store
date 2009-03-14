@@ -1,0 +1,10 @@
+#Ignore backup files
+*~
+log/*.log
+tmp/**/*
+db/*.sqlite3
+doc/api
+doc/app
+public/system
+config/initializers/mail_config.rb
+config/database_production.yml

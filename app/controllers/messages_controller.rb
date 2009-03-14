@@ -28,7 +28,8 @@ class MessagesController < ApplicationController
   # GET /messages/new.xml
   def new
     @message = Message.new
-
+    @message.user = current_user
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @message }
@@ -44,12 +45,13 @@ class MessagesController < ApplicationController
   # POST /messages.xml
   def create
     @message = Message.new(params[:message])
-
+    @message.user = current_user
     respond_to do |format|
       if @message.save
         flash[:notice] = 'Message was successfully created.'
-        format.html { redirect_to(@message) }
+        format.html { redirect_to :back }
         format.xml  { render :xml => @message, :status => :created, :location => @message }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
@@ -81,8 +83,9 @@ class MessagesController < ApplicationController
     @message.destroy
 
     respond_to do |format|
-      format.html { redirect_to(messages_url) }
+      format.html { redirect_to :back }
       format.xml  { head :ok }
+      format.js
     end
   end
 end

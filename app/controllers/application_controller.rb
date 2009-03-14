@@ -18,7 +18,15 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_list(list)
-    session[:current_list] = list.id
+    if list.nil?
+      session[:current_list] = nil
+    else
+      session[:current_list] = list.id
+    end    
+  end
+
+  def current_list?(list)
+    session[:current_list] == list.id 
   end
 
   def current_list
@@ -41,6 +49,30 @@ class ApplicationController < ActionController::Base
     end
     @site
   end
+  
+  def email_config
+    config = EmailConfig.first
+    if config.nil?
+      config = EmailConfig.new
+    end
+    config
+  end
+
+#  def authorized?(action = action_name, resource = nil)
+#    #logged_in?
+#    if @require_admin =~ action_name.to_sym
+#      logged_in? and current_user.admin?
+#    else
+#      logged_in?
+#    end    
+#  end
+#  
+#  def admin_required(actions)
+#    unless actions.respond_to? 'each'
+#      actions = [actions]
+#    end
+#    @require_admin = actions
+#  end
 
 end
 

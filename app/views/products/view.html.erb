@@ -2,6 +2,10 @@
   <%= link_to(@product.category.name.downcase, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}) + " / " + @product.name.downcase %>
 <% end %>
 
+<% unless current_list.nil? %>
+  <h1>Presentes</h1>
+<% end %>
+
 <!-- Aqui entra o painel da lista -->
 <h1><%= @product.category.name %></h1>
 <hr />

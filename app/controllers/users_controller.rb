@@ -9,25 +9,60 @@ class UsersController < ApplicationController
 
   def account
     if logged_in?
-      if current_user.lists.size == 1
-        set_current_list user.lists.first
-        if current_list.list_items.empty?
-          edit_nomes_list_path
-        else
-          list_items_path
-        end
-      else
-        redirect_to new_list_path
-      end      
+      redirect_to new_list_path
     else
       redirect_to new_user_path
     end
+  end
+  
+  def account_list
+    if logged_in?
+      if current_user.lists.size == 1
+        set_current_list current_user.lists.first
+        if current_list.list_items.empty?
+          redirect_to edit_list_nomes_path
+        else
+          redirect_to list_items_path
+        end
+      else
+        redirect_to new_list_path
+      end
+    else
+      redirect_to new_user_path
+    end
+  end
+  
+  def edit
+    @user = User.find(params[:id])
   end
 
   # render new.rhtml
   def new
     @user = User.new
     render :layout  => 'site'
+  end
+
+  def new_admin
+    @user = User.new
+  end
+
+  def create_admin
+    @erros = 'aqui! '
+    @user = User.new(params[:user])
+    @user.admin = params[:admin]
+    #@user.register!
+    @user.activate!
+    if @user.save
+      redirect_to users_path
+      flash[:notice] = "Usuário criado com sucesso!"
+    else
+      flash[:error]  = "Erro ao criar usuário"
+      render :action => 'new_admin'
+    end
+  end
+
+  def update_admin
+    update
   end
 
   def index
@@ -42,7 +77,11 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params[:user])
       save_success
-      redirect_to users_path
+      if @user == current_user
+        redirect_to account_path
+      else
+        redirect_to users_path
+      end
     else
       flash[:error] = "Couldn't update Usee!"
       if(current_user.admin?)
@@ -53,21 +92,8 @@ class UsersController < ApplicationController
     end
   end
 
-  #  def create_admin
-  #    @user = User.new(params[:user])
-  #    @user.admin = true
-  #    @user.register!
-  #    @user.do_activate
-  #    @user.activate!
-  #    @user.save
-  #  end
-
-  def create_admin
-    create
-  end
-
   def create
-    #logout_keeping_session!
+    logout_keeping_session!
     @user = User.new(params[:user])
     @user.admin = false
     @user.register! if @user && @user.valid?

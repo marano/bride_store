@@ -19,16 +19,30 @@
       <br/><br/>
     <% end %>
     <label for="photo">Alterar imagem</label>
-    <%= f.file_field :photo %>&nbsp;&nbsp; <input type="submit" value="Enviar"/>
+    <%= f.file_field :photo %> <input type="submit" value="Enviar"/>
   </p>
   <p>
-    <label for="texto">Escreva uma mensagem de boas vindas para os convidados que visitarem a sua lista de presentes</label>
-    <%= f.text_area :text, :width => '500', :height => '140' %>
-  </p>
-  <h2>Galeria de Imagens<span>(máximo de 08 imagens)</span></h2>
-  <p>
-    <label for="addImgGaleria">Adicionar imagem</label>
-    <%= file_field_tag :photo_galery %>&nbsp;&nbsp;&nbsp <input type="submit" value="Enviar"/>
+    <p><label for="texto">Escreva uma mensagem de boas vindas para os convidados que visitarem a sua lista de presentes</label></p>
+    <p>
+      <%= f.text_area :text, :rows => 4, :cols => 60 %>
+    </p>
   </p>
   <input class="botaoForm" type="image" title="salvar" value="salvar" src="/images/btEnviar.gif"/>
 <% end %>
+
+<h2>Galeria de Imagens<span>(máximo de 08 imagens)</span></h2>
+<% form_for GaleryPhoto.new, :html => { :multipart => true } do |f| %>
+  <%= hidden_field_tag 'galery_photo[galery_id]', current_list.galery.id %>
+  <p>
+    <label for="addImgGaleria">Adicionar imagem</label>
+    <%= f.file_field :photo %>
+    <%= f.submit 'Enviar' %>
+  </p>  
+<% end %>
+
+<ul class='listaHorizontal'>
+  <% for p in current_list.galery.galery_photos %>
+    <li><%= image_tag p.url :thumb %><%= link_to 'remover', destroy_galery_photo_path(p), :confirm => 'Tem certeza?' %></li> 
+  <% end %>
+</ul>
+<br/>
