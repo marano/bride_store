@@ -1,38 +1,19 @@
+# Referências
+# http://railstips.org/2008/12/12/using-gmail-to-send-email-with-rails
+# http://gist.github.com/35005
+
 require "openssl"
 require "net/smtp"
 
 Net::SMTP.class_eval do
-  
-  def self.start( address, port = nil,
-                  helo = 'localhost.localdomain',
-                  user = nil, secret = nil, authtype = nil, use_tls = false,
-                  &block) # :yield: smtp
-    new(address, port).start(helo, user, secret, authtype, use_tls, &block)
-  end
-
-  def start( helo = 'localhost.localdomain',
-             user = nil, secret = nil, authtype = nil, use_tls = false ) # :yield: smtp
-    start_method = use_tls ? :do_tls_start : :do_start
-    if block_given?
-      begin
-        send start_method, helo, user, secret, authtype
-        return yield(self)
-      ensure
-        do_finish
-      end
-    else
-      send start_method helo, user, secret, authtype
-      return self
-    end
-  end
-
   private
-  
-  def do_tls_start(helodomain, user, secret, authtype)
+  def do_start(helodomain, user, secret, authtype)
     raise IOError, 'SMTP session already started' if @started
-    #check_auth_args user, secret, authtype if user or secret
-    check_auth_args user, secret if user or secret
-
+    if RAILS_ENV == 'production'
+      check_auth_args user, secret, authtype if user or secret
+    else
+      check_auth_args user, secret
+    end
 
     sock = timeout(@open_timeout) { TCPSocket.open(@address, @port) }
     @socket = Net::InternetMessageIO.new(sock)
@@ -57,13 +38,13 @@ Net::SMTP.class_eval do
   ensure
     unless @started
       # authentication failed, cancel connection.
-        @socket.close if not @started and @socket and not @socket.closed?
+      @socket.close if not @started and @socket and not @socket.closed?
       @socket = nil
     end
   end
 
   def do_helo(helodomain)
-     begin
+    begin
       if @esmtp
         ehlo helodomain
       else
@@ -86,7 +67,9 @@ Net::SMTP.class_eval do
   def quit
     begin
       getok('QUIT')
-    rescue EOFError, OpenSSL::SSL::SSLError
+    rescue EOFError
     end
   end
 end
+
+puts "SMTP TLS initialized"
