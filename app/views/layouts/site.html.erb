@@ -17,7 +17,7 @@
     <div id="topo">
       <%= render :partial => 'layouts/testimonial' %>
       <div id="logomarca">
-        <%= image_tag site.logo.url %>
+        <%= image_tag site.logo.url if site.logo.file?%>
       </div>
       <%= render :partial => 'layouts/institutional_menu' %>
     </div>
