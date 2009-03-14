@@ -42,16 +42,3 @@ Rails::Initializer.run do |config|
   
   config.action_mailer.perform_deliveries = true
 end
-
-ActionMailer::Base.delivery_method = :smtp
-
-ActionMailer::Base.smtp_settings = {
-  :tls => true,
-  :address => "smtp.gmail.com",
-  :port => "587", #465
-  :domain => "gmail.com",
-  :authentication => :login, # pode usar também :login, :plain
-  :user_name => "thiagomarano@gmail.com",
-  :password => "salamaleicozen"
-}
-

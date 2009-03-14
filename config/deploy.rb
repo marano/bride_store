@@ -1,11 +1,11 @@
 set :user, "bolongu"
-set :domain, "bolongu.com"
-set :application, "bolongu"
+set :domain, "adr.bolongu.com"
+set :application, "adr"
 
 default_run_options[:pty] = true
 set :scm_user, "marano"
 set :scm_password, Proc.new { Capistrano::CLI.password_prompt "Git Password for marano: "}
-set :repository,  "git@github.com:marano/bolongu-bongo.git" 
+set :repository,  "git@github.com:marano/bride_store.git" 
 set :scm, :git
 set :deploy_via, :remote_cache
 set :remote, scm_user
