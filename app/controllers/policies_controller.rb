@@ -2,6 +2,8 @@ class PoliciesController < ApplicationController
 
   layout 'adm'
   
+  before_filter :adm_required, :except => [ 'view' ]
+  
   def view
     render :layout => 'site'
   end

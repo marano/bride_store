@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
   layout 'adm'
 
-  before_filter :login_required, :except => ['find', 'view']
+  before_filter :adm_required, :except => ['find', 'view']
 
   def view
     @product = Product.find params[:id]

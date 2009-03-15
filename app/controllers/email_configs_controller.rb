@@ -1,6 +1,8 @@
 class EmailConfigsController < ApplicationController
 
   layout 'adm'
+  
+  before_filter :adm_required
 
   # GET /email_configs/1/edit
   def edit

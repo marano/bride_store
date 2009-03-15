@@ -2,7 +2,7 @@ class SiteAdmController < ApplicationController
 
   layout 'adm'
   
-  before_filter :login_required
+  before_filter :adm_required
   
   def home
     @site = site

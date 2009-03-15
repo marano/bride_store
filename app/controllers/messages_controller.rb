@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
 
   layout 'site'
+  before_filter :login_required, :except => [ 'create' ]
   
   # GET /messages
   # GET /messages.xml
@@ -48,7 +49,7 @@ class MessagesController < ApplicationController
     @message.user = current_user
     respond_to do |format|
       if @message.save
-        flash[:notice] = 'Message was successfully created.'
+        #flash[:notice] = 'Message was successfully created.'
         format.html { redirect_to :back }
         format.xml  { render :xml => @message, :status => :created, :location => @message }
         format.js

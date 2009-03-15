@@ -2,6 +2,9 @@ class TestimonialsController < ApplicationController
 
   layout 'adm'
   
+  before_filter :adm_required, :except => [ 'view' ]
+  before_filter :login_required, :only => [ 'create' ] 
+  
   def view
     @testimonials = Testimonial.find(:all, :conditions => { :active => true })
     render :layout => 'site'

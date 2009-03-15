@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
-  before_filter :login_required, :except => ['new', 'create', 'activate', 'account']
+  before_filter :adm_required, :except => ['new', 'create', 'activate', 'account', 'account_list' ]
 
   def account
     if logged_in?
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?
-      redirect_back_or_default(account_path)
+      redirect_back_or_default('/')
       flash[:notice] = "Obrigado por cadastrar-se! Estamos enviando para você o email de ativação."
     else
       flash[:error]  = "Não foi possível criar esta conta, desculpe.  Por favor tente de novo, ou contacte o administrador do sistema."
@@ -111,8 +111,8 @@ class UsersController < ApplicationController
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
-      flash[:notice] = "Signup complete! Please sign in to continue."
-      redirect_to '/login'
+      flash[:notice] = "Usuário ativado! Por favor entre para continuar."
+      redirect_to account_list_path
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
       redirect_back_or_default('/')

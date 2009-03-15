@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
 
-  before_filter :login_required, :except => ['new', 'create', 'activate']
+  before_filter :login_required, :except => ['new', 'create', 'find']
 
   layout 'site'
 

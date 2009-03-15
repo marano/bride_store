@@ -1,20 +1,28 @@
 <% content_for :head do %><%= javascript_include_tag :defaults %><% end  %>
 
-<% migalha "minha conta / #{@list.name.downcase} / visualizar" %>
+<% unless current_list.nil? and current_list != @list %>
+  <% migalha "minha conta / #{@list.name.downcase} / visualizar" %>
+<% end %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
 
 <h1><%= @list.title %></h1>
 
-<%= image_tag @list.photo.url %>
-<br/>
-<br/>
-<ul class='listaHorizontal'>
-  <% for p in current_list.galery.galery_photos %>
-    <li><%= image_tag p.url :thumb %></li> 
-  <% end %>
-</ul>
-<br/>
+<% if @list.photo.file? %>
+  <%= image_tag @list.photo.url %>
+  <br/>
+  <br/>  
+<% end %>
+
+<% unless @list.galery.galery_photos.empty? %>
+  <ul class='listaHorizontal'>
+    <% for p in @list.galery.galery_photos %>
+      <li><%= image_tag p.url :thumb %></li> 
+    <% end %>
+  </ul>
+  <br/>  
+<% end %>
+
 <p><%= @list.text %></p>
 
 <h2>Mensagens</h2>

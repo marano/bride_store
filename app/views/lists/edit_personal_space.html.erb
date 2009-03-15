@@ -16,7 +16,7 @@
    </p>
    <h2>Imagem Principal</h2>
    <p>
-    <% unless current_list.photo.nil? %>
+    <% if current_list.photo.file? %>
       <%= image_tag current_list.photo.url %>
       <br/><br/>
     <% end %>
@@ -26,7 +26,7 @@
   <p>
     <p><label for="texto">Escreva uma mensagem de boas vindas para os convidados que visitarem a sua lista de presentes</label></p>
     <p>
-      <%= f.text_area :text, :rows => 4, :cols => 60 %>
+      <%= f.text_area :text, :rows => 4, :cols => 50 %>
     </p>
   </p>
   <input class="botaoForm" type="image" title="salvar" value="salvar" src="/images/btEnviar.gif"/>

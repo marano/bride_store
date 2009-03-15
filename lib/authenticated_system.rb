@@ -52,6 +52,14 @@ module AuthenticatedSystem
     def login_required
       authorized? || access_denied
     end
+    
+    def adm_required
+      unless authorized? and current_user.admin?
+        access_denied
+      else
+        true
+      end
+    end
 
     # Redirect as appropriate when an access request fails.
     #
