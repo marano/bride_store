@@ -1,5 +1,7 @@
 <% migalha "minha conta / #{current_list.name.downcase} / espaço pessoal" %>
 
+<%= render :partial => 'layouts/list_menu_panel' %>
+
 <h1>Espaço Pessoal</h1>
 <p><%= site.personal_space_text %></p>
 <% form_for current_list, :html => { :multipart => true } do |f| %>

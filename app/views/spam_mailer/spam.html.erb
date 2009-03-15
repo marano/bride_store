@@ -1,11 +1,11 @@
 <h1><%= @spam.title %></h1>
 
 <p>
-  <%= image_tag @spam.photo.url %>
+  <%= image_tag 'http://' + SITE_URL + @spam.photo.url %>
 </p>
 
 <p><%= @spam.body %></p>
 
 <p>
-  <%= link_to 'Ir para minha lista de presentes no ARD', 'store_path(@spam.user.store_name)' %>
+  <%= link_to "Ir para a loja pessoal #{@spam.list.title}", 'store_path(@spam.user.store_name)' %>
 </p>

@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
   def save_success
     flash[:notice] = 'Dados salvos com sucesso!'
   end
+  
+  def save_error
+    flash[:error] = 'Os dados não foram salvos!'
+  end
 
   def set_current_list(list)
     if list.nil?

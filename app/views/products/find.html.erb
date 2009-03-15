@@ -6,12 +6,14 @@ texto_migalha += @category_filter ? @category_filter.to_s.downcase : "todo o sit
 
 migalha texto_migalha %>
 
+<%= render :partial => 'layouts/list_menu_panel' %>
+
 <% unless current_list.nil? %>
   <h1>Presentes</h1>
 <% end %>
 
 <% unless @category_filter.nil? %>
-  <h1><%= @category_filter.name %></h1>    
+  <h1><%= @category_filter.name %></h1>
 <% end %>
 
 <ul id="navegacaoProdutos" class="listaHorizontal">

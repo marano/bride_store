@@ -1,4 +1,5 @@
 <% unless current_list.nil? %>
+  <h2><%= current_list.name %></h2>
   <ul class="listaHorizontal">
     <li><%= link_to_unless_current 'noivos', edit_list_nomes_path %></li>
     <li>|</li>
@@ -16,5 +17,3 @@
   </ul>
   <hr>
 <% end %>
-
-<%= image_tag 'box.gif' %>

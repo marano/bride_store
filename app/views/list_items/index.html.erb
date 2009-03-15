@@ -2,7 +2,7 @@
 
 <% content_for(:migalha) do %>minha conta / <%= current_list.name.downcase %> / presentes<% end %>
 
-<% content_for :title do %><h2><%= current_list.name %></h2><% end %>
+<%= render :partial => 'layouts/list_menu_panel' %>
 
 <% if current_list.list_items.empty? %>
   <p>

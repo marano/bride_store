@@ -1,10 +1,12 @@
 <h1>Pruduto</h1>
 <br/>
-<p>
-  <b>Foto</b><br/>
-  <%= image_tag @product.photo.url %>
-</p>
-<br/>
+<% if @product.photo.file? %>
+  <p>
+    <b>Foto</b><br/>
+    <%= image_tag @product.photo.url %>
+  </p>
+  <br/>
+<% end %>
 <p>
   <b>Nome:</b>
   <%=h @product.name %>

@@ -2,6 +2,8 @@
 
 <% migalha "minha conta / #{@list.name.downcase} / visualizar" %>
 
+<%= render :partial => 'layouts/list_menu_panel' %>
+
 <h1><%= @list.title %></h1>
 
 <%= image_tag @list.photo.url %>

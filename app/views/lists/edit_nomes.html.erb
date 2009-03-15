@@ -2,6 +2,8 @@
 
 <% migalha "minha conta / #{current_list.name.downcase} / noivos" %>
 
+<%= render :partial => 'layouts/list_menu_panel' %>
+
 <h1>Noivos</h1>
 
 <% form_for(current_list) do |f| %>

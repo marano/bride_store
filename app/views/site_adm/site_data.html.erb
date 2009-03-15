@@ -45,7 +45,9 @@
   <br />
   <p>
     <%= f.label :logo, "Logo" %><br /><br />
-    <%= image_tag site.logo.url %><br /><br />
+    <% if site.logo.file? %>
+      <%= image_tag site.logo.url %><br /><br />
+    <% end %>    
     <%= f.file_field :logo %>
     <%= f.submit 'Enviar' %>
   </p>
@@ -55,7 +57,9 @@
   <br />
   <p>    
     <%= f.label :logo_footer, "Logo rodapé" %><br /><br />
-    <%= image_tag site.logo_footer.url %><br /><br />
+    <% if site.logo_footer.file? %>
+      <%= image_tag site.logo_footer.url %><br /><br />
+    <% end %>    
     <%= f.file_field :logo_footer %>
     <%= f.submit 'Enviar' %>
   </p>

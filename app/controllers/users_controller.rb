@@ -46,21 +46,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create_admin
-    @erros = 'aqui! '
-    @user = User.new(params[:user])
-    @user.admin = params[:admin]
-    #@user.register!
-    @user.activate!
-    if @user.save
-      redirect_to users_path
-      flash[:notice] = "Usuário criado com sucesso!"
-    else
-      flash[:error]  = "Erro ao criar usuário"
-      render :action => 'new_admin'
-    end
-  end
-
   def update_admin
     update
   end
@@ -77,13 +62,13 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params[:user])
       save_success
-      if @user == current_user
-        redirect_to account_path
-      else
+      if @user.admin?
         redirect_to users_path
+      else
+        redirect_to account_path        
       end
     else
-      flash[:error] = "Couldn't update Usee!"
+      save_error
       if(current_user.admin?)
         render :action => 'edit'
       else
@@ -100,10 +85,23 @@ class UsersController < ApplicationController
     success = @user && @user.valid?
     if success && @user.errors.empty?
       redirect_back_or_default(account_path)
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      flash[:notice] = "Obrigado por cadastrar-se! Estamos enviando para você o email de ativação."
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash[:error]  = "Não foi possível criar esta conta, desculpe.  Por favor tente de novo, ou contacte o administrador do sistema."
       render :action => 'new'
+    end
+  end
+
+  def create_admin
+    @user = User.new(params[:user])
+    @user.admin = params[:admin]
+    @user.activate!
+    if @user.save
+      redirect_to users_path
+      flash[:notice] = "Usuário criado com sucesso!"
+    else
+      flash[:error]  = "Erro ao criar usuário"
+      render :action => 'new_admin'
     end
   end
 

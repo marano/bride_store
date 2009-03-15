@@ -24,8 +24,13 @@ class ListsController < ApplicationController
   end
 
   def find
-    search = params[:search]
-    search = search.canonical
+    if params[:search].blank?
+      flash[:error] = 'Digite um nome para a busca!'
+      redirect_to :back
+      return
+    end
+    
+    search = params[:search].canonical
     @list = List.first :conditions => "#{params[:name_filter]}_busca LIKE '#{search}'"
     if list
       redirect_to '/list_name'
@@ -69,7 +74,7 @@ class ListsController < ApplicationController
     @list.user = current_user
     if @list.save
       set_current_list @list
-      flash[:notice] = 'List was successfully created.'
+      flash[:notice] = 'Lista criada com sucesso!'
       redirect_to edit_list_nomes_path
     else
       render :action => "new"
@@ -84,7 +89,7 @@ class ListsController < ApplicationController
     params[:list].delete :photo if params[:list][:photo].blank?
 
     if @list.update_attributes(params[:list])
-      flash[:notice] = 'List was successfully updated.'
+      flash[:notice] = 'Lista salva com sucesso!'
 
       unless params[:edit_what].blank?
         case params[:edit_what]
@@ -116,4 +121,3 @@ class ListsController < ApplicationController
     redirect_to(new_list_path)
   end
 end
-

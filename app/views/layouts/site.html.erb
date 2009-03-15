@@ -6,8 +6,10 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Arte de Receber <%= yield :title %></title>
   <%= stylesheet_link_tag 'site/complete' %>
-  <%= javascript_include_tag 'site/Tween' %>
-  <%= javascript_include_tag 'site/result' %>
+  <% if flash[:notice] or flash[:error] %>
+    <%= javascript_include_tag 'site/Tween' %>
+    <%= javascript_include_tag 'site/result' %>
+  <% end %>
   <%= yield :head %>
 </head>
 <body id="<%= yield :body_id %>">
@@ -43,7 +45,7 @@
         <% if migalha_content %>
           <%= render :partial => 'layouts/migalha', :object => migalha_content %>
         <% end %>
-                
+        
         <%= yield %>
         <br/>
         <br/>

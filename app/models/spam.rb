@@ -19,4 +19,8 @@ class Spam < ActiveRecord::Base
     list.user
   end
   
+  def sent?
+    sent
+  end
+  
 end

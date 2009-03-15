@@ -20,7 +20,7 @@ class SpamsController < ApplicationController
 
   def new
     @spam = Spam.new
-    old = Spam.last
+    old = Spam.last(:conditions => { :list_id => current_list.id })
     unless old.nil?
       @spam.to = old.to
     end

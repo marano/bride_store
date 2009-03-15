@@ -3,7 +3,7 @@
 <h1><%= @spam.title %></h1>
 
 <h3>
-  <% if @spam.sent %>
+  <% if @spam.sent? %>
     enviada em:
   <% else %>
     salva em:
@@ -13,11 +13,14 @@
 
 <p><%= @spam.to %></p>
 
-<p>
-  <%= image_tag @spam.photo.url %>
-</p>
+<% if @spam.photo.file? %>
+  <p>
+    <%= image_tag @spam.photo.url %>
+  </p>  
+<% end %>
 
 <p><%= @spam.body %></p>
 
-<%= link_to '<< EDITAR', edit_spam_path(@spam) %>
-<%= link_to 'ENVIAR >>', enviar_spam_path(@spam) %>
+<%= link_to '<< VOLTAR', spams_path %>
+<%= link_to 'EDITAR', edit_spam_path(@spam) %>
+<%= link_to @spam.sent? ? 'REENVIAR >>' : 'ENVIAR >>', enviar_spam_path(@spam) %>

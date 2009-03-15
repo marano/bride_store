@@ -1,10 +1,12 @@
 <div id="rodape">
-  <div>
-    <%= image_tag site.logo_footer.url, :width => '165', :height => '46' %>
-    <p>
-      <%= site.footer_text %>
-    </p>
-  </div>
+  <% if site.logo_footer.file? %>
+    <div>
+      <%= image_tag site.logo_footer.url, :width => '165', :height => '46' %>
+      <p>
+        <%= site.footer_text %>
+      </p>
+    </div>
+  <% end %>  
   <ul class="listaVertical">
       <li>Institucional</li>
       <li><%= link_to '> Quem somos', we_path %></li>
