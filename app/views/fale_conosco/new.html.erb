@@ -1,8 +1,8 @@
-<% content_for :migalha do %>fale conosco<% end %>
+<% migalha 'fale conosco' %>
 
 <h1 title="Fale Conosco">Fale Conosco</h1>
 
-<% form_tag send_fale_conosco_path do %>
+<% form_tag send_fale_conosco_path do |f| %>
   <p>
     <label for="nome">Nome:</label>
     <input class="campoTexto" name="name" type="text" />

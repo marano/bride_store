@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090311024938) do
+ActiveRecord::Schema.define(:version => 20090315225110) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20090311024938) do
     t.datetime "deleted_at"
     t.boolean  "admin"
     t.boolean  "newsletter"
+    t.string   "phone"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

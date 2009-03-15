@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     u && u.authenticated?(password) ? u : nil
   end
   
+  def find_by_email(email)
+    User.first(:conditions => { :email => email })
+  end
+  
   def admin?
     admin
   end
