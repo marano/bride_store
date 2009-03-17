@@ -2,7 +2,7 @@
 
 <% featured_product = Product.random_featured %>
 
-<% unless featured_product.nil? %>
+<% unless featured_product.nil? or !featured_product.display.file? %>
   <% content_for(:display) { %>
     <div id="display">    
       <%= image_tag featured_product.display.url %>

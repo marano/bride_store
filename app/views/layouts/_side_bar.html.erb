@@ -1,5 +1,5 @@
 <div id="sideContent"> 
-  <% form_tag :controller => 'products', :action => 'find' do %>
+  <% form_tag find_products_path, :method => 'get' do %>
     <h3 title=":: Buscar">:: BUSCAR<span></span></h3>
     <p>
       <%= select_tag :category_id_filter, options_for_select([['Todo o site', '']]) + options_from_collection_for_select(Category.all, :id, :name, @category_filter && @category_filter.id) %>

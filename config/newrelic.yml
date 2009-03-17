@@ -26,7 +26,7 @@ common: &default_settings
   # with Rake or the console.  Set to false to completely turn the agent off
   # regardless of the other settings.  Valid values are true, false and auto.
   # agent_enabled: auto
-  agent_enabled: auto
+  #agent_enabled: auto
 
   # the 'enabled' setting is used to turn on the NewRelic Agent.  When false,
   # your application is not instrumented and the Agent does not start up or

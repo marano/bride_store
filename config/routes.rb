@@ -11,9 +11,6 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_showroom '/adm/showroom', :controller => 'site_adm', :action => 'showroom'
   map.edit_site_data '/adm/site_data', :controller => 'site_adm', :action => 'site_data'
   
-  map.find_product '/products/find', :controller => 'products', :action => 'find'
-  map.view_product '/products/:id/view', :controller => 'products', :action => 'view'
-  
   map.find_list '/lists/find', :controller => 'lists', :action => 'find'
   map.edit_list_nomes '/list/edit_nomes', :controller => 'lists', :action => 'edit_nomes'
   map.edit_list_personal_space '/list/edit_personal_space', :controller => 'lists', :action => 'edit_personal_space'
@@ -25,8 +22,6 @@ ActionController::Routing::Routes.draw do |map|
   map.send_fale_conosco '/fale_conosco/send', :controller => 'fale_conosco', :action => 'enviar'
   
   map.destroy_galery_photo '/galery_photo/:id/destroy', :controller => 'galery_photos', :action => 'destroy'
-  
-  map.view_policies '/policies/view', :controller => 'policies', :action => 'view'
   
   map.edit_email_config '/email_config/edit', :controller => 'email_configs', :action => 'edit'
   
@@ -45,8 +40,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :lists, :member => [ :personal_space ]
   map.resources :list_items
   map.resources :testimonials
-  map.resources :policies
-  map.resources :products
+  map.resources :policies, :collection => [ :view ]
+  map.resources :products, :collection => [ :find ], :member => [ :view ]
   map.resources :categories
   
   map.resources :users, :member => { :suspend   => :put,

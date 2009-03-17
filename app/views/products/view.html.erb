@@ -11,14 +11,13 @@
 <hr />
 <h2><%= @product.name %></h2>
 <div>
-  <div></div>
   <div>
     <% if @product.photo.file? %>
       <p><%= image_tag  @product.photo.url %></p>
     <% end %>    
     <p>(ref: <%= @product.code %>)</p>
     <p><%= @product.description %></p>
-    <h2>R$ <%= @product.price %></h2>
+    <h2>R$ <%= number_with_precision(@product.price, 2) %></h2>
     <hr />
     <% unless current_list.nil? %>
       <% form_for ListItem.new do |f| %>

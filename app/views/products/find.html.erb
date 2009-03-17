@@ -19,14 +19,16 @@ migalha texto_migalha %>
 <ul id="navegacaoProdutos" class="listaHorizontal">
   <li>PRODUTOS POR PÁGINA</li>
   <li>
-    <form action="#{find_product_path}" method="GET">
+    <% form_tag '', :method => 'get' do %>
+      <%= hidden_field_tag :search, @search %>
+      <%= hidden_field_tag :category_id_filter, (@category_filter && @category_filter.id) %>
       <%= select_tag :per_page, options_for_select([['4', '4'], ['8', '8'], ['15', '15'], ['20', '20']], per_page_products), :onchange => 'this.form.submit()' %>
-    <form>
+    <% end %>
   </li>
   <li>ORDENAR POR:</li>
-  <li><%= link_to 'nome', find_product_path, :search => @search, :category_id_filter => (@category_filter && @category_filter.id), :order => 'name' %></li>
+  <li><%= link_to 'nome', :search => @search, :category_id_filter => (@category_filter && @category_filter.id), :order => 'name' %></li>
   <li> | </li>
-  <li><%= link_to 'preco', find_product_path, :search => @search, :category_id_filter => (@category_filter && @category_filter.id), :order => 'price' %></li>
+  <li><%= link_to 'preco', :search => @search, :category_id_filter => (@category_filter && @category_filter.id), :order => 'price' %></li>
 </ul>
 <hr>
 <div id="listaProdutos">
@@ -38,7 +40,7 @@ migalha texto_migalha %>
         <% end %>
         <h3><%= p.name %> <br/><span>(ref: <%= p.code %>)</span></h3>
         <p><%= p.description %></p>
-        <h2>R$ <%= p.price %></h2>
+        <h2>R$ <%= number_with_precision(p.price, 2) %></h2>
         <%= link_to '<span></span>SAIBA MAIS >', view_product_path(p), :class => 'saibaMais', :title => 'saiba mais' %>
       </li>
       <hr/>
