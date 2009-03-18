@@ -27,7 +27,7 @@ window.addEvent('domready', function(){
   <% unless @product.galery.galery_photos.empty? %>
     <ul class="listaHorizontal">
       <% if @product.photo.file? %>
-        <li class='fotoCapa'><%= link_to image_tag(@product.photo.url), @product.photo.url(:big), :rel => 'milkbox[gal]' %></li>
+        <li class='fotoCapa'><%= link_to image_tag(@product.photo.url(:big)), @product.photo.url, :rel => 'milkbox[gal]' %></li>
       <% end %>
       <% for p in @product.galery.galery_photos %>
         <li><%= link_to image_tag(p.url(:thumb)), p.url, :rel => 'milkbox[gal]' %></li>

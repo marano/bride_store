@@ -3,7 +3,7 @@
 <% if @product.photo.file? %>
   <p>
     <b>Foto</b><br/>
-    <%= image_tag @product.photo.url %>
+    <%= image_tag @product.photo.url :big %>
   </p>
   <br/>
 <% end %>
