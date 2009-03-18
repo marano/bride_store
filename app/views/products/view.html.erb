@@ -1,6 +1,23 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'milkbox/mootools-1.2.1-core-yc' %>
+  <%= javascript_include_tag 'milkbox/mootools-1.2-more' %>
+  <%= javascript_include_tag 'milkbox/milkbox' %>
+  <%= stylesheet_link_tag 'milkbox/milkbox' %>
+<% end %>
+
+<script>
+window.addEvent('domready', function(){
+	milkbox.setAutoPlay([
+		{ gallery:'gal', autoplay:true, delay:4 },
+	]);
+});
+</script>
+
 <% content_for(:migalha) do %>
   <%= link_to(@product.category.name.downcase, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}) + " / " + @product.name.downcase %>
 <% end %>
+
+<%= render :partial => 'layouts/list_menu_panel' %>
 
 <% unless current_list.nil? %>
   <h1>Presentes</h1>
@@ -14,7 +31,14 @@
   <div>
     <% if @product.photo.file? %>
       <p><%= image_tag  @product.photo.url %></p>
-    <% end %>    
+    <% end %>
+    <% unless @product.galery.galery_photos.empty? %>
+      <ul class="listaHorizontal">
+        <% for p in @product.galery.galery_photos %>
+          <li><%= link_to image_tag(p.url(:thumb)), p.url, :rel => 'milkbox[gal]' %></li>
+        <% end %>
+      </ul>    
+    <% end %>
     <p>(ref: <%= @product.code %>)</p>
     <p><%= @product.description %></p>
     <h2>R$ <%= number_with_precision(@product.price, 2) %></h2>

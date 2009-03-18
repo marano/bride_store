@@ -11,6 +11,10 @@
     <%= f.text_field :name, :class => 'campoTexto' %>
   </p>
   <p>
+    <label for="nome">Endereço da loja pessoal</label><br/>
+    <%= SITE_URL + '/' %><%= f.text_field :adress, :class => 'campoTexto' %>
+  </p>
+  <p>
     <label for="titulo">Escolha o título da sua Lista de Presentes que aparecerá no seu espaço pessoal</label>
     <%= f.text_field :title, :class => 'campoTexto' %>
    </p>
@@ -29,7 +33,7 @@
       <%= f.text_area :text, :rows => 4, :cols => 50 %>
     </p>
   </p>
-  <input class="botaoForm" type="image" title="salvar" value="salvar" src="/images/btEnviar.gif"/>
+  <input class="botaoForm" type="image" title="salvar" value="salvar" src="/images/btSalvar.gif"/>
 <% end %>
 
 <h2>Galeria de Imagens<span>(máximo de 08 imagens)</span></h2>

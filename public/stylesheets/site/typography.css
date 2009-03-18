@@ -15,7 +15,7 @@
 h1{font-family:"Times New Roman", Times, serif; font-style:italic; font-size:36px;}
 h2{font-family:"Times New Roman", Times, serif; font-style:italic; font-size:22px;}
 h3{font-size:14px;}
-p, a{font-size:12px;}
+p, li, a{font-size:12px;}
 a{text-decoration:underline;}
 span{font-size:11px;}
 /*---------------RESULT---------------*/

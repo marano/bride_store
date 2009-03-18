@@ -1,48 +1,66 @@
+﻿/*
+	Milkbox v2.2.1 - required: mootools.js v1.2.1 core + more: Assets
+		
+	by Luca Reghellin (http://www.reghellin.com) February 2009, MIT-style license.
+	Inspiration Lokesh Dhakar (http://www.lokeshdhakar.com/projects/lightbox2/)
+	AND OF COURSE, SPECIAL THANKS TO THE MOOTOOLS DEVELOPERS
+*/
+
 var Milkbox = new Class({
 
-	Implements:Options,
+	Implements:[Options,Events],
 	
 	options:{//set all the options here
 		overlayOpacity:0.7,
-		topPosition:80,
+		topPosition:50,
 		initialWidth:250,
 		initialHeight:250,
+		canvasBorderWidth:'0px',
+		canvasBorderColor:'#000000',
+		canvasPadding:'0px',
 		resizeDuration:500,
-		resizeTransition:'sine:in:out',/*function (ex. Transitions.Sine.easeIn) or string (ex. 'quint:out')*/
-		hoverBackgroundPosition:'0 -23px',
+		resizeTransition:'sine:in:out',/*function (ex. Transitions.Sine.easeIn) or string (ex. 'bounce:out')*/
 		autoPlay:false,
 		autoPlayDelay:7,
-		removeTitle:true
+		removeTitle:false,
+		onXmlGalleries:$empty,
+		onClosed:$empty,
+		onFileReady:$empty
 	},
 	
 	initialize: function(options){
 		
 		this.setOptions(options);
+		this.autoPlayBkup = { autoPlayDelay:this.options.autoPlayDelay, autoPlay:this.options.autoPlay };
+		this.fullOptionsBkup = {};
 		this.galleries = [];
-		this.currentImage = null;
+		this.families = [];
+		this.xmlFiles = [];
+		this.loadedImages = [];//to check the preloaded images
+		this.currentFile = null;
 		this.currentIndex = null;
 		this.currentGallery = null;
+		this.currentRequest = null;
+		this.currentResponse = null;
 		
-		this.specialDescription = null;//for showThisImage
-		this.activated = false;//used in showThisImage 
-		
-		this.mode = null;//'singleImage','imageGallery','showThisImage'
+		this.mode = null;//'singleFile','fileGallery'
 		this.closed = true;
 		this.busy = true;//to control keyboard and autoplay events
+		this.paused = true;
+		this.fileReady = false;//to prevent overlapping loadFile calls via next_prev_aux()
+		this.eventsok = false;
+		this.first = true;//true if it's the first file since it opened 
 		
 		this.intObj = null;
 		
 		this.formtags = null;
-		
-		this.loadedImages = [];//to check the preloaded images
-		
 		this.prepareGalleries();
 		//if no galleries, stop here and prevent extra memory usage.
 		//so you can keep milkbox in every page of a site.
 		if(this.galleries.length == 0){ return; };
 				
 		this.initMilkbox();
-		
+		this.saveOptions();//then use restoreOptions()
 	},//end init
 	
 	initMilkbox:function(){
@@ -51,17 +69,20 @@ var Milkbox = new Class({
 		this.prepareEffects();
 		this.prepareEvents();
 		
-		this.activated = true;
 		this.formtags = $$('select','textarea');
+		this.activated = true;
 	},
+	
+	/* ****** SHOW/HIDE ****** */
 	
 	//runs only 1 time per gallery
 	openMilkbox:function(gallery,index){
+
+		this.closed = false;
+		
 		if(this.formtags.length != 0){ this.formtags.setStyle('display','none') };
 
 		this.overlay.setStyles({ 'top': -$(window).getScroll().y,'height':$(window).getScrollSize().y+$(window).getScroll().y });
-		
-		this.center.addClass('mbLoading');
 		this.center.setStyle('top',$(window).getScroll().y+this.options.topPosition);
 
 		this.currentGallery = gallery;
@@ -69,168 +90,447 @@ var Milkbox = new Class({
 		this.overlay.tween('opacity',this.options.overlayOpacity);//onComplete: center.tween opacity
 		
 		if(gallery.length == 1){
-			this.mode = 'singleImage';
-			this.loadImages(gallery[index].href);
+			this.mode = 'singleFile';
+			this.loadFile(gallery[index],index);
 		} else {
-			this.mode = 'imageGallery';
-			
-			var images = gallery.map(function(item){ return item.href; });
-
-			$$(this.prev, this.next, this.count).setStyles({'display':'block'});
+			this.mode = 'fileGallery';
+			var playpauseWidth = 0;
+			//interface
+			$$(this.prev, this.next, this.count).setStyle('display','block');
+			if(this.options.autoPlay){ 
+				this.playpause.setStyle('display','block');
+				var playpauseWidth = this.playpause.getSize().x;
+			}
 			var border = this.center.getStyle('border-right-width').toInt();//border-right is just ok for design purposes..
-			var navWidth = this.prev.getSize().x+this.next.getSize().x+this.close.getSize().x+border;
+			var navWidth = this.prev.getSize().x+this.next.getSize().x+this.close.getSize().x+playpauseWidth+border;
 			this.navigation.setStyle('width',navWidth);
 			this.description.setStyle('margin-right',navWidth);
-			
-			var next = (index != images.length-1) ? images[index+1] : images[0];
-			var prev = (index != 0) ? images[index-1] : images[images.length-1];
-			var preloads = (prev == next) ? prev : [prev,next]; //if gallery.length == 2, then prev == next
+			//files
+			var next = (index != gallery.length-1) ? gallery[index+1] : gallery[0];
+			var prev = (index != 0) ? gallery[index-1] : gallery[gallery.length-1];
+			var preloads = (prev == next) ? [prev] : [prev,next]; //if gallery.length == 2, then prev == next
 						
-			this.loadImages(images[index],preloads);
-		}
-		
-		this.closed = false;
+			this.loadFile(gallery[index],preloads);
+		}//end else
 	},
 	
-	//call with js
-	showThisImage:function(image,description){
+	loadFile:function(fileObj,preloads){
+		this.fileReady = false;
+		var swf = this.checkFileType(fileObj,'swf');
+		if(!swf){ 
+			if(!this.loadedImages.contains(fileObj.retrieve('href'))){ this.center.addClass('mbLoading'); } 
+			this.loadImage(fileObj.retrieve('href'));
+		} else {
+			this.loadSwf(fileObj);
+		}
 		
-		//if init was not done because of the absence of galleries, do it now.
-		if(!this.activated){ this.initMilkbox(); }
-		
-		this.mode = 'showThisImage';
-		
-		this.specialDescription = description;
-		
-		this.overlay.setStyles({ 'top': -$(window).getScroll().y,'height':$(window).getScrollSize().y+$(window).getScroll().y });
-		
-		this.center.addClass('mbLoading');
-		this.center.setStyle('top',$(window).getScroll().y+this.options.topPosition);
-		
-		this.overlay.tween('opacity',this.options.overlayOpacity);//onComplete: center.tween opacity
-		this.loadImages(image);
-		
-		this.closed = false;
+		if(preloads){ this.preloadFiles(preloads); }
 	},
+	
+	preloadFiles:function(preloads){
+		preloads.each(function(fileObj,index){
+			var swf = this.checkFileType(fileObj.retrieve('href'),"swf");
+			if(!swf){ this.preloadImage(fileObj.retrieve('href')); }
+		},this);
+	},
+	
+	loadImage:function(file){
+		var imageAsset = new Asset.image(file, { onload:function(img){
+			if(!this.loadedImages.contains(file)){ this.loadedImages.push(file); };//see next/prev events
+			this.currentFile = img;
+			this.loadAux(this.currentFile);
+		}.bindWithEvent(this)});
+	},
+	
+	preloadImage:function(file){
+		if(!this.loadedImages.contains(file)){
+			var imageAsset = new Asset.image(file, { onload:function(img){
+					this.loadedImages.push(file);
+			}.bindWithEvent(this)});
+		}
+	},
+	
 
- 	//see loadImages()
- 	showImage:function(image){
+	loadSwf:function(swf){
+
+		var swfObj = new Swiff(swf.retrieve('href'),{
+			width:swf.retrieve('width').toInt(),
+			height:swf.retrieve('height').toInt(),
+			params:{ wMode:'opaque', swLiveConnect:'false' }
+		});
+		
+		this.currentFile = swfObj;
+		this.loadAux(swf);
+	},
+	
+	loadAux:function(file){
+		this.fileReady = true; //the file is loaded and ready to be showed (see next_prev_aux())
+		this.fireEvent('fileReady');
+		$$(this.description,this.navigation).setStyle('visibility','hidden');
+		this.navigation.setStyle('height','');//reset the height setted in center.morph.onComplete
+		$$(this.next,this.prev,this.close).setStyle('backgroundPosition','0 0');
+		this.showFile(file);
+	},
+	
+	
+	showFile:function(file){
  		
  		if(this.closed){ return; };//if you close the Milkbox and an onload event is still running
  		
- 		var imageBoxSize = this.image.getSize();
- 		
- 		this.image.setStyles({'opacity':0, 'width':'', 'height':''});
- 		
- 		var imageSize = new Hash(image.getProperties('width','height')).map(function(item, index){
-			return item.toInt();
-		});
- 		
- 		var centerSize = new Hash(this.center.getStyles('width','height')).map(function(item, index){
- 			return item.toInt();
-		});
- 		
+ 		var fileSize = new Hash();
  		var targetSize = {};
+ 		var b = null;
+ 		var p = null;
+ 		if(this.options.canvasBorderWidth.toInt() != 0 && this.canvas.getStyle('borderWidth').toInt() == 0){
+ 			b = this.options.canvasBorderWidth + ' solid ' + this.options.canvasBorderColor;
+ 			this.canvas.setStyle('border',b);
+ 		}
  		
- 		if(imageSize.width != centerSize.width){ 
- 			targetSize.width = imageSize.width;
- 			targetSize.marginLeft = -(imageSize.width/2).round();
- 		};
+ 		if(this.options.canvasPadding.toInt() != 0 && this.canvas.getStyle('padding').toInt() == 0){
+ 			p = this.options.canvasPadding;
+ 			this.canvas.setStyle('padding',p);
+ 		}
  		
- 		var gap = (imageBoxSize.y > 0) ? centerSize.height - imageBoxSize.y : 0; 
+ 		var canvasSize = this.canvas.getSize();
+ 		var canvasAddSize = this.canvas.getStyle('borderWidth').toInt()*2 + this.canvas.getStyle('padding').toInt()*2;
+ 		this.canvas.setStyles({'opacity':0, 'width':'', 'height':''});
+ 		
+ 		if(!file.retrieve('width')){//is an image file
+ 			fileSize = fileSize.extend(file.getProperties('width','height')).map(function(item, index){ return item.toInt(); });
+ 		} else {//is an swf file
+ 			fileSize.extend({ 'height':file.retrieve('height').toInt(), 'width':file.retrieve('width').toInt() });
+ 		}
 
- 		var targetHeight = imageSize.height + gap;
+ 		var centerSize = new Hash(this.center.getStyles('width','height')).map(function(item, index){ return item.toInt(); });
 
- 	   targetSize.height = targetHeight;
+ 		if(fileSize.width != centerSize.width){ 
+ 			targetSize.width = fileSize.width + canvasAddSize;
+ 			targetSize.marginLeft = -(targetSize.width/2).round();
+ 		}
+ 		 		
+ 		var gap = (canvasSize.y-canvasAddSize > 0) ? centerSize.height - canvasSize.y : 0; 
+
+ 	   targetSize.height = fileSize.height + canvasAddSize + gap;
  	   
 		//so nav doesn't move when you click next/prev
-		this.image.setStyles({'width':imageSize.width, 'height':imageSize.height})
+		this.canvas.setStyles({'width':fileSize.width, 'height':fileSize.height});
 
  		this.center.removeClass('mbLoading');
- 		this.center.morph(targetSize);//onComplete: show all items
  		
- 	},
- 	
-	loadImages:function(currentImage,preloads){
-			var loadImage = new Asset.image(currentImage, { onload:function(img){
-				this.currentImage = img;
-				if(!this.loadedImages.contains(currentImage)){ this.loadedImages.push(currentImage); };//see next/prev events
-				$$(this.description,this.navigation).setStyle('visibility','hidden');
-				this.navigation.setStyle('height','');//reset the height setted in center.morph.onComplete
-				$$(this.next,this.prev,this.close).setStyle('backgroundPosition','0 0');
-				this.showImage(this.currentImage);
-			}.bindWithEvent(this)});
-			
-			if(preloads && !this.loadedImages.contains(preloads)){
-				var preloadImages = new Asset.images(preloads, { onComplete:function(img){
-					preloads.each(function(item){
-						if(!(this.loadedImages.contains(item))){ this.loadedImages.push(item); }
-					}.bind(this));
-				}.bindWithEvent(this)});
-			};
-			
+ 		var d = 0;
+ 		if(this.first){ d = 500; this.first = false; }
+ 		(function(){ this.center.morph(targetSize); }).delay(d,this)//onComplete: show all items
+	},
+
+	
+	//{ gallery:'gall1', index:2, autoplay:true, delay:7 }
+	showGallery:function(opt){
+		if(!opt || !opt.gallery){ return; }
+		var fileIndex = ($chk(opt.index)) ? opt.index : 0;
+		var g = this.getGallery(opt.gallery);
+		var auto = false;
+		var d;
+		if(opt.autoplay || (g['options'] && g['options'].autoplay)){ auto = true; }
+		if(g != -1 && !this.opened){
+			if(auto){
+				d = (opt && opt.delay) ? opt.delay : (g['options'] && g['options'].delay) ? g['options'].delay : this.autoPlayDelay;
+				this.startAutoPlay({ gallery:g, index:fileIndex, delay:d });
+			} else {
+				this.openMilkbox(g,fileIndex);
+			}
+		}
 	},
 	
-	//all the main events
-	prepareEvents:function(){
+	/* ******* XML/AJAX ******* */
+
+	addGalleries:function(xmlfile){
+		this.currentRequest = new Request({
+			method:'get',
+			autoCancel:true,
+			url:xmlfile,
+			onRequest:function(){
+				//placeholder
+			}.bindWithEvent(this),
+			onSuccess:function(text,xml){
+				var t = text.replace(/(<a.+)\/>/gi,"$1></a>");
+				this.setGalleries(new Element('div',{ html:t }),xmlfile);
+			}.bindWithEvent(this),
+			onFailure:function(transport){ alert('Milkbox :: addGalleries: XML file path error or local Ajax test: please test addGalleries() on-line'); }
+		});
+		
+		this.currentRequest.send();
+	},
 	
-		//galleries
+	setGalleries:function(container,xmlfile){
+		if(!this.xmlFiles.contains(xmlfile)){ this.xmlFiles.push(xmlfile); }
+		var c = container;
+		var galleries = c.getElements('.gallery');
+		var links = [];
+		var aplist = [];
+		galleries.each(function(gallery,i){
+						
+			var obj = { 
+				gallery:gallery.getProperty('name'), 
+				autoplay:Boolean(gallery.getProperty('autoplay')),
+				delay:Number(gallery.getProperty('delay'))
+			}
+			
+			var l = gallery.getChildren('a');
+			var lx = l.map(function(link){ return link.setProperty('rel','milkbox['+obj.gallery+']'); });
+			links.push(lx);
+			if(obj.autoplay){ aplist.push(obj); }
+		});
+		
+		this.prepareGalleries(links.flatten());
+		this.setAutoPlay(aplist);
+		
+		if(!this.activated){ this.initMilkbox(); }
+		
+		this.fireEvent('xmlGalleries');
+	},
+	
+	
+	
+	/* ****** UTILS ****** */
+	
+	checkFileType:function(file,type){
+		var href = null;
+		if($type(file) != 'string'){ href = file.retrieve('href'); } 
+		else{ href = file; }
+		var regexp = new RegExp("\.("+type+")$","i");
+		return href.split('?')[0].test(regexp);
+	},
+	
+	//retrieves galleries from strings like 'gall1' or 'milkbox[gall1]' or 'milkbox:gall1'
+	getGallery:function(gallery){
+		var f = null;
+		if(gallery.test(/^milkbox/i)){
+			f = this.families;
+		} else {
+			//create a temporary array with names without 'milkbox'
+			f = this.families.map(function(item){
+				var trimmed = item.trim();
+				var name = trimmed.slice(0,trimmed.length).substr(8);
+				var cleanName = name.replace(/(.+)]$/,"$1");
+				return cleanName;
+			});
+		}
+		var i = f.indexOf(gallery);
+		var g = (i != -1) ? this.galleries[i] : i;
+		return g;
+	},
+	
+	setFileProps:function(fileObj,propString){
+		var s = propString.split(',');
+		s.each(function(p,i){
+			var clean = p.trim().split(':');
+			fileObj.store(clean[0].trim(),clean[1].trim())
+		},this);
+	},
+	
+	changeOptions:function(obj){
+		if(!obj){ return; }
+		this.setOptions(obj);
+ 		this.center.get('morph').setOptions({ transition:this.options.resizeTransition,  duration:this.options.resizeDuration });
+	},
+	
+	saveOptions:function(obj){
+		if($chk(obj)){
+			this.fullOptionsBkup = obj;
+		} else {
+			this.fullOptionsBkup = this.options;
+		}
+	},
+	
+	restoreOptions:function(){
+		this.setOptions(this.fullOptionsBkup);
+ 		b = this.options.canvasBorderWidth + ' solid ' + this.options.canvasBorderColor;
+ 		this.canvas.setStyles({ 'border':b, 'padding':this.options.canvasPadding});
+ 		this.center.get('morph').setOptions({ transition:this.options.resizeTransition,  duration:this.options.resizeDuration });
+	},
+	
+	reloadGalleries:function(){
+	
+		this.galleries = [];
+		this.families = [];
+		//re-check for tags
+		this.formtags = $$('select','textarea');
+		
+		//reload standard galleries
+		this.prepareGalleries();
+		this.removeGalleriesEvents();
+		this.setGalleriesEvents();
+		
+		if(this.xmlFiles.length == 0){ return; }
+		//reload xmlGalleries
+		this.xmlFiles.each(function(xmlfile,index){
+			this.addGalleries(xmlfile);
+		}.bind(this));
+	},
+	
+	/* ****** AUTOPLAY ****** */
+	
+	//list:Array of objects or an object > [ { gallery:'gall1', autoplay:true, delay:6 } ]
+	//to permanently define autoplay options for any gallery 
+	setAutoPlay:function(list){
+		var l = ($type(list) == 'object') ? [list] : list;
+		l.each(function(item){
+			var g = this.getGallery(item.gallery);
+			if(g == -1){ return; }
+			var a = (item.autoplay == true) ? item.autoplay : false;
+			var d = ($chk(item.delay) && a) ? item.delay : this.options.autoPlayDelay;
+			g['options'] = { autoplay:a, delay:d }
+		},this);
+	},
+	
+	startAutoPlay:function(opt){//opt: gallery, index, delay (in seconds)
+		
+		var g = -1;
+		var i,d;
+		if(opt && opt.gallery){
+			if($type(opt.gallery) == 'array'){ g = opt.gallery }
+			else if($type(opt.gallery) == 'string'){ 
+				g = this.getGallery(opt.gallery);
+			}
+		}
+		
+		if(g == -1){ g = this.galleries[0]; }
+		
+		d = (opt && opt.delay && ($type(opt.delay) == 'number')) ? opt.delay*1000 : (g['options'] && g['options'].delay) ? g['options'].delay*1000 : this.options.autoPlayDelay*1000;
+		i = (opt && opt.index && ($type(opt.index) == 'number')) ? opt.index : 0;
+		if(d < this.options.resizeDuration*2){ d = this.options.resizeDuration*2 };
+		this.options.autoPlayDelay = d/1000;//save autoPlayDelay because now it is customized
+		
+		if(!this.options.autoPlay){ this.setOptions({ autoPlay:true, autoPlayDelay:this.options.autoPlayDelay }); }
+		
+		if(this.closed){ 
+			this.openMilkbox(g,i); 
+			if(this.mode != 'fileGallery'){ return; }
+			this.addEvent('fileReady',function(){
+				//wait until the first file is loaded
+				this.intObj = this.next_prev_aux.periodical(d,this,[null,'next']);
+				this.removeEvents('fileReady');
+			}.bindWithEvent(this));
+		} else {
+			if(!this.closed){ this.next_prev_aux(null,'next'); }
+			this.intObj = this.next_prev_aux.periodical(d,this,[null,'next']);
+		}
+
+		this.paused = false;
+	},
+	
+	stopAutoPlay:function(){
+		if(this.intObj){ $clear(this.intObj); this.intObj = null; }
+		this.playpause.setStyle('backgroundPosition','0 -44px');
+		this.paused = true;
+	},
+	
+	
+	/* ****** INIT/CLOSE ****** */
+	
+	removeGalleriesEvents:function(){
 		this.galleries.each(function(gallery){
+			$$(gallery).removeEvents('click');
+		},this);
+	},
+	
+	setGalleriesEvents:function(){
+		this.galleries.each(function(gallery){
+		
 			$$(gallery).addEvent('click',function(e){
+				//console.log('click');
 				var button=($(e.target).match('a')) ? $(e.target) : $(e.target).getParent('a');
 				e.preventDefault();
 				
-				if(this.options.autoPlay){
-					this.autoPlay({ gallery:gallery, index:gallery.indexOf(button) });
+				var g = this.getGallery(button.rel);
+				if(g.options && g.options.autoplay){
+					this.setOptions({ autoPlay:g.options.autoplay, autoPlayDelay:g.options.delay });
 				}
-				
-				else{ this.openMilkbox(gallery, gallery.indexOf(button)); }
+
+				if(this.options.autoPlay){
+					this.startAutoPlay({ gallery:gallery, index:gallery.indexOf(button) });
+				} else { 
+					this.openMilkbox(gallery, gallery.indexOf(button)); 
+				}
 				
 			}.bindWithEvent(this));
 		},this);
+	},
+	
+	//all the main events
+	prepareEvents:function(xml){
+	
+		//galleries
+		this.setGalleriesEvents();
 		
 		//next, prev, see next_prev_aux()
 		this.next.addEvent('click',this.next_prev_aux.bindWithEvent(this,'next'));
 		this.prev.addEvent('click',this.next_prev_aux.bindWithEvent(this,'prev'));
 		
-		//keyboard next/prev/close
-		$(window.document).addEvent('keydown',function(e){
-			if(this.mode != 'imageGallery' || this.busy == true){ return; };
-			if(e.key == 'right' || e.key == 'space'){ this.next_prev_aux(e,'next'); }
-			else if(e.key == 'left'){ this.next_prev_aux(e,'prev'); }
-			else if(e.key == 'esc'){ this.closeMilkbox(); };
-		}.bindWithEvent(this));
-		
 		
 		//css hover doesn't work in ie6, so I must do it via js...
 		$$(this.next,this.prev,this.close).addEvents({
-				'mouseover':function(e){ 
-					var button=($(e.target).match('a')) ? $(e.target) : $(e.target).getParent('a');
-					button.setStyle('backgroundPosition',this.options.hoverBackgroundPosition); 
-				}.bindWithEvent(this),
-				'mouseout':function(){ this.setStyle('backgroundPosition','0 0'); }
+			'mouseover':function(){ this.setStyle('backgroundPosition','0 -22px'); },
+			'mouseout':function(){ this.setStyle('backgroundPosition','0 0'); }
 		});
 
+		//keyboard next/prev/close
+		$(window.document).addEvent('keydown',function(e){
+			if(this.mode != 'fileGallery' || this.busy == true){ return; }
+			if(e.key == 'right' || e.key == 'space'){ this.next_prev_aux(e,'next'); }
+			else if(e.key == 'left'){ this.next_prev_aux(e,'prev'); }
+			else if(e.key == 'esc'){ this.closeMilkbox(); }
+		}.bindWithEvent(this));
+		
+		//playpause for autoPlay
+		this.playpause.addEvents({
+				'mouseover':function(e){ 
+					if(this.paused == false){ this.playpause.setStyle('backgroundPosition','0 -22px'); } 
+					else { this.playpause.setStyle('backgroundPosition','0 -66px'); }
+				}.bindWithEvent(this),
+				'mouseout':function(){ 
+					if(this.paused == false){ this.playpause.setStyle('backgroundPosition','0 0'); } 
+					else { this.playpause.setStyle('backgroundPosition','0 -44px'); }
+				}.bindWithEvent(this),
+				'click':function(){
+					if(this.paused == false){ 
+						this.stopAutoPlay();
+						this.paused = true;
+						this.playpause.setStyle('backgroundPosition','0 -66px');
+					} else {
+						var d = (this.currentGallery.options && this.currentGallery.options.delay) ? this.currentGallery.options.delay : this.options.autoPlayDelay;
+						this.startAutoPlay({gallery:this.currentGallery, index:this.currentIndex+1, delay:d });
+						this.paused = false;
+						this.playpause.setStyle('backgroundPosition','0 0');
+					}
+				}.bindWithEvent(this)
+		});
+		
 		//overlay
 		this.overlay.get('tween').addEvent('onComplete',function(){
 			if(this.overlay.getStyle('opacity') == this.options.overlayOpacity){ 
 				this.center.tween('opacity',1);
 			} else if(this.overlay.getStyle('opacity') == 0) {
-				this.overlay.setStyles({'height':'','top':''});
+				this.overlay.setStyles({'height':0,'top':''});
 			};
 		}.bindWithEvent(this));
 		
 		//center
 		this.center.get('morph').addEvent('onComplete',function(){
-			
- 			 this.image.grab(this.currentImage);
-			 this.image.tween('opacity',1);
+						
+			 if($type(this.currentFile) == "element"){//is image file
+				this.canvas.grab(this.currentFile);
+			 } else {//object: is swf file
+			 	(function(){ this.canvas.grab(this.currentFile); }).delay(500,this);
+			 }
+ 			 
+			 this.canvas.tween('opacity',1);
 			 			 
 			 var d = (!(this.mode == 'showThisImage')) ? this.currentGallery[this.currentIndex].retrieve('title') : this.specialDescription;
 			 if($chk(d)){ this.description.innerHTML = d; };
 			 
-			 if(this.mode == 'imageGallery'){ 
-			 	this.count.appendText((this.currentIndex+1)+' de '+this.currentGallery.length); 
+			 if(this.mode == 'fileGallery'){
+			 	this.count.appendText((this.currentIndex+1)+' of '+this.currentGallery.length); 
 			 }
 			 
 			 var currentCenterHeight = this.center.getStyle('height').toInt();
@@ -238,8 +538,8 @@ var Milkbox = new Class({
 			 this.navigation.setStyle('height',this.bottom.getStyle('height').toInt());//to have the right-border height == total bottom height
 			 var bottomSize = this.bottom.getSize().y;
 			 
-			 //after the 1st time, currentCenterHeight is always > this.image.getSize().y
-			 var targetOffset = (currentCenterHeight > this.image.getSize().y) ? (this.bottom.getSize().y+this.image.getSize().y)-currentCenterHeight : bottomSize;
+			 //after the 1st time, currentCenterHeight is always > this.canvas.getSize().y
+			 var targetOffset = (currentCenterHeight > this.canvas.getSize().y) ? (this.bottom.getSize().y+this.canvas.getSize().y)-currentCenterHeight : bottomSize;
 				
 			 this.bottom.setStyle('display','none');//to avoid rendering problems during setFinalHeight
 
@@ -248,16 +548,14 @@ var Milkbox = new Class({
 		}.bindWithEvent(this));
 		
 		this.center.retrieve('setFinalHeight').addEvent('onComplete',function(){
-			
 			this.bottom.setStyles({'visibility':'visible','display':'block'});
 			$$(this.description,this.navigation).setStyle('visibility','visible');
 			//reset overlay height based on position and height
 			var scrollSize = $(window).getScrollSize().y;
 			var scrollTop = $(window).getScroll().y;
 			
-			this.overlay.setStyle('height',scrollSize+scrollTop);
+			this.overlay.setStyles({'height':scrollSize+scrollTop, 'top':-scrollTop });
 			this.busy = false;
-			
 		}.bindWithEvent(this));
 		
 		//reset overlay height and position onResize
@@ -266,22 +564,25 @@ var Milkbox = new Class({
 			var scrollSize = $(window).getScrollSize().y;
 			var scrollTop = $(window).getScroll().y;
 			this.overlay.setStyles({ 'height':scrollSize+scrollTop,'top':-scrollTop });
-		}.bindWithEvent(this))
+		}.bindWithEvent(this));
 
 		//close
-		$$(this.overlay,this.image,this.close).addEvent('click',function(){ this.closeMilkbox(); }.bindWithEvent(this));
+		$$(this.overlay,this.close).addEvent('click',function(){ this.closeMilkbox(); }.bindWithEvent(this));
 		
+		//check
+		this.eventsok = true;
 	},
 	
 	next_prev_aux:function(e,direction){
 		
 		if(e){ 
 			e.preventDefault();
-			if(this.intObj){ $clear(this.intObj); this.intObj = null; };
-		} //if there's no event obj, than this is called by autoPlay()
-		
-		else{ if(this.busy){ return; } }//stop autoplay()
-		
+			this.stopAutoPlay();
+		} else { 
+			//if there's no event obj, than this is called by autoPlay()
+			if(this.busy || !this.fileReady){ return; }//stop autoplay()
+		}
+
 		this.busy = true; //for keyboard and autoplay
 		
 		var backupIndex = this.currentIndex;
@@ -294,65 +595,11 @@ var Milkbox = new Class({
 			var _i= (this.currentIndex != 0) ? this.currentIndex - 1 : this.currentGallery.length-1;		
 		};
 		
-		this.image.empty();
+		this.canvas.empty();
 		this.description.empty();
 		this.count.empty();
-		
-		if(!this.loadedImages.contains(this.currentGallery[i].href)){ 
-			this.center.addClass('mbLoading');
-		};
-		this.loadImages(this.currentGallery[i].href,[this.currentGallery[_i].href]);
-	},
-	
-	autoPlay:function(obj){//obj: gallery, index, delay (in seconds)
-		
-		var g = (obj && obj.gallery && ($type(obj.gallery) == 'array')) ? obj.gallery : Milkbox.galleries[0];
-		var i = (obj && obj.index && ($type(obj.index) == 'number')) ? obj.index : 0;
-		var d = (obj && obj.delay && ($type(obj.delay) == 'number')) ? obj.delay*1000 : this.options.autoPlayDelay*1000;
-		if(d < this.options.resizeDuration*2){ d = this.options.resizeDuration*2 };
-		
-		Milkbox.openMilkbox(g,i);
-		if(this.mode != 'imageGallery'){ return; };
-		this.intObj = this.next_prev_aux.periodical(d,this,[null,'next']);
-		
-	},
-	
-	closeMilkbox:function(){
-		this.cancelAllEffects();
-		if(this.intObj){ $clear(this.intObj); };
-		
-		this.currentImage = null;
-		this.currentIndex = null;
-		this.currentGallery = null;
- 		
-		$$(this.prev, this.next, this.count).setStyle('display','none');
-		var border = this.center.getStyle('border-right-width').toInt();
-		var navWidth = this.close.getSize().x+border;
-		this.navigation.setStyles({'width':navWidth,'height':'','visibility':'hidden'});
-		this.description.setStyle('margin-right',navWidth);
-		this.description.empty();
-		this.bottom.setStyles({'visibility':'hidden','display':''});
-		
-   	this.image.setStyles({'opacity':0, 'width':'', 'height':''});
- 		this.image.empty();
- 		
- 		this.count.empty();
-		
-		this.center.setStyles({'opacity':0,'width':this.options.initialWidth,'height':this.options.initialHeight,'marginLeft':-(this.options.initialWidth/2)});
-		this.overlay.tween('opacity',0);//see onComplete in prepareEvents() 
-		
-		if(this.formtags.length != 0){ this.formtags.setStyle('display','inline') };
-		
-		this.mode = null;
-		this.closed = true;
-	},
-	
-	cancelAllEffects:function(){
-		this.overlay.get('tween').cancel();
-		this.center.get('morph').cancel();
-		this.center.get('tween').cancel();
-		this.center.retrieve('setFinalHeight').cancel();
-		this.image.get('tween').cancel();
+
+		this.loadFile(this.currentGallery[i],[this.currentGallery[_i]]);
 	},
 	
 	prepareEffects:function(){
@@ -360,48 +607,59 @@ var Milkbox = new Class({
 		this.center.set('tween',{ duration:'short',link:'chain' });
 		this.center.set('morph',{ duration:this.options.resizeDuration,link:'chain',transition:this.options.resizeTransition });
 		this.center.store('setFinalHeight',new Fx.Tween(this.center,{property:'height',duration:'short'}));
-		this.image.set('tween',{ link:'chain' });
+		this.canvas.set('tween',{ link:'chain' });
 	},
 	
-	prepareGalleries:function(){
-		var families = [];
+	prepareGalleries:function(responseElements){
 		var milkbox_a = [];
-		
-		$$('a').each(function(a){
+		var gIndex;
+		var a_tags = (responseElements) ? responseElements : $$('a');
+				
+		a_tags.each(function(a){
 			//test 'milkbox' and link extension, and collect all milkbox links
-			if(a.rel && a.rel.test(/^milkbox/i) && a.href.test(/\.(gif|jpg|png)$/i)){
-				if(a.rel.length>7 && !families.contains(a.rel)){ families.push(a.rel); };
+			if(a.rel && a.rel.test(/^milkbox/i) && a.href.split('?')[0].test(/\.(gif|jpg|jpeg|png|swf)$/i)){
+				if(a.rel.length>7 && !this.families.contains(a.rel)){ this.families.push(a.rel); };
 				milkbox_a.push(a);
 			}
 		},this);
 
-		//console.log(milkbox_a)
-		
 		//create an array of arrays with all galleries
 		milkbox_a.each(function(a){
 			$(a).store('href',a.href);
 			$(a).store('rel',a.rel);
 			$(a).store('title',a.title);
+			if(this.checkFileType(a.href,"swf")){ this.setFileProps($(a),a.rev); }
+
 			if(this.options.removeTitle){ $(a).removeProperty('title'); }
 			if(a.rel.length > 7){
-				families.each(function(f,i){
+				this.families.each(function(f,i){
 					if(a.rel == f){
-						if(!this.galleries[i]){ this.galleries[i] = [] };
-						this.galleries[i].push($(a));
+						var gMounted = false;
+						var index;
+						this.galleries.each(function(g,k){
+							if(g[0].rel == f){ 
+								gMounted = true;
+								index = k;
+								return;
+							}
+						});
+						
+						if(gMounted == true){ this.galleries[index].push($(a)); } 
+						else { this.galleries.push([$(a)]); }
 					};
 				},this);
 			} else { this.galleries.push([$(a)]); };
 		},this);
 		
-		//console.log(this.galleries)
+		//console.log(this.galleries);
 	},
 		
 	prepareHTML:function(){		
 		
-		this.overlay = new Element('div', { 'id':'mbOverlay','styles':{ 'opacity':'0','visibility':'visible' }}).inject($(document.body));
+		this.overlay = new Element('div', { 'id':'mbOverlay','styles':{ 'opacity':0,'visibility':'visible','height':0,'overflow':'hidden' }}).inject($(document.body));
 		
-		this.center = new Element('div', {'id':'mbCenter', 'styles':{'width':this.options.initialWidth,'height':this.options.initialHeight,'marginLeft':-(this.options.initialWidth/2),'opacity':0}}).inject($(document.body));
-		this.image = new Element('div', {'id':'mbImage'}).inject(this.center);
+		this.center = new Element('div', {'id':'mbCenter', 'styles':{'width':this.options.initialWidth,'height':this.options.initialHeight,'marginLeft':-(this.options.initialWidth/2),'opacity':0 }}).inject($(document.body));
+		this.canvas = new Element('div', {'id':'mbCanvas'}).inject(this.center);
 		
 		this.bottom = new Element('div',{'id':'mbBottom'}).inject(this.center).setStyle('visibility','hidden');
 		this.navigation = new Element('div',{'id':'mbNavigation'}).setStyle('visibility','hidden');
@@ -412,16 +670,61 @@ var Milkbox = new Class({
 		this.close = new Element('a',{'id':'mbCloseLink'});
 		this.next = new Element('a',{'id':'mbNextLink'});
 		this.prev = new Element('a',{'id':'mbPrevLink'});
+		this.playpause = new Element('a',{'id':'mbPlayPause'});
 		this.count = new Element('span',{'id':'mbCount'});
 		
-		$$(this.next, this.prev, this.count).setStyle('display','none');
+		$$(this.next, this.prev, this.count, this.playpause).setStyle('display','none');
 		
-		this.navigation.adopt(this.close, this.next, this.prev,new Element('div',{'class':'clear'}), this.count);
+		this.navigation.adopt(this.close, this.next, this.prev, this.playpause, new Element('div',{'class':'clear'}), this.count);
+	},
+	
+	closeMilkbox:function(){
+		this.cancelAllEffects();
+		this.stopAutoPlay();
+		this.setOptions(this.autoPlayBkup);
 
+		this.currentFile = null;
+		this.currentIndex = null;
+		this.currentGallery = null;
+		this.currentRequest = null;
+		this.currentResponse = null;
+ 		
+		$$(this.prev, this.next, this.playpause, this.count).setStyle('display','none');
+		this.playpause.setStyle('backgroundPosition','0 0');
+		var border = this.center.getStyle('border-right-width').toInt();
+		var navWidth = this.close.getSize().x+border;
+		this.navigation.setStyles({'width':navWidth,'height':'','visibility':'hidden'});
+		this.description.setStyle('margin-right',navWidth);
+		this.description.empty();
+		this.bottom.setStyles({'visibility':'hidden','display':''});
+		
+   	this.canvas.setStyles({'opacity':0, 'width':'', 'height':''});
+ 		this.canvas.empty();
+ 		
+ 		this.count.empty();
+		
+		this.center.setStyles({'opacity':0,'width':this.options.initialWidth,'height':this.options.initialHeight,'marginLeft':-(this.options.initialWidth/2)});
+		this.overlay.tween('opacity',0);//see onComplete in prepareEvents() 
+		
+		if(this.formtags.length != 0){ this.formtags.setStyle('display','') };
+		
+		this.mode = null;
+		this.closed = true;
+		this.first = true;
+		this.fileReady = false;
+		this.fireEvent('closed');
+	},
+	
+	cancelAllEffects:function(){
+		this.overlay.get('tween').cancel();
+		this.center.get('morph').cancel();
+		this.center.get('tween').cancel();
+		this.center.retrieve('setFinalHeight').cancel();
+		this.canvas.get('tween').cancel();
 	}
 	
 });//END MILKBOX;
 
 window.addEvent('domready', function(){ 
-	Milkbox = new Milkbox();
+	milkbox = new Milkbox();
 });

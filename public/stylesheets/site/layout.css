@@ -15,6 +15,8 @@ Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 * html #topo {height:1%;}
 /*fim da corrção*/
 hr {height:1px; border:none; clear:both;}
+/*---------------ESPECIFICAÇÕES FORMULÁRIOS---------------*/
+form p label {margin-left:4px;}
 .campoTexto, .campoAreaTexto, .campoSelect, select {display:block; height:19px; border:none;}
 #armacao {width:780px; position:absolute; left:50%; margin:0 0 0 -389px;}
 /*---------------RESULT---------------*/
@@ -51,7 +53,8 @@ hr {height:1px; border:none; clear:both;}
 /*---------------BREAD CRUMB---------------*/
 #migalha{display:block;}
 /*---------------CONTENT---------------*/
-#content {padding:20px 20px 0 20px; width:523px; float:right;}
+#content {padding:20px 20px 30px 20px; width:523px; float:right;}
+#content.home {padding-bottom:0;}
 #content p{padding:0 0 0 10px; margin:0 0 10px 0; }
 #primaryContent a {width:391px; height:19px; float:right; clear:both; margin-bottom:15px; padding:0; }
 #primaryContent a span{position:absolute; width:391px; height:19px;}
@@ -69,12 +72,32 @@ hr {height:1px; border:none; clear:both;}
 #thumbInstitucional li {padding-bottom:15px;}
 #thumbInstitucional li a img {padding:5px;}
 /*---------------FALE CONOSCO---------------*/
-.faleConosco form{margin-bottom:60px; width:310px;}
+.faleConosco form{width:310px;}
 .faleConosco form p {margin:0 0 10px 0;}
 .faleConosco form p label {margin-left:4px;}
 .faleConosco form p .campoTexto{width: 300px;}
 .faleConosco form p .campoAreaTexto {width:300px; min-width:300px; max-width:300px; height:150px;}
 .faleConosco .botaoForm{float:right;}
+/*---------------NOVA CONTA---------------*/
+.criarConta #formCriarConta {width:240px;}
+.criarConta .campoTexto {width:100%;}
+.criarConta .botaoForm {float:right;}
+/*---------------MINHA CONTA---------------*/
+.minhasListas form {width:240px;}
+.minhasListas .campoTexto {width:100%;}
+.minhasListas form .botaoForm {float:right;}
+/*---------------EDITAR NOMES---------------*/
+.boasVindas form {width:240px;}
+.boasVindas .campoTexto {width:100%;}
+.boasVindas form .botaoForm {float:right;}
+/*---------------EDITAR ESPAÇO PESSOAL---------------*/
+.espacoPessoal .campoTexto {width:240px;}
+.espacoPessoal form .botaoForm {float:right;}
+/*---------------EDITAR DIVULGAÇÃO---------------*/
+.editarDivulgacao form {width:300px;}
+.editarDivulgacao .campoTexto, .editarDivulgacao .campoAreaTexto {width:100%;}
+.editarDivulgacao .campoAreaTexto {height:150px;}
+.editarDivulgacao form .botaoForm {float:right;}
 /*---------------NAVEGAÇÃO PRODUTOS---------------*/
 #navegacaoProdutos {margin-bottom: 20px;}
 #navegacaoProdutos li {margin-right: 7px;}
@@ -82,8 +105,9 @@ hr {height:1px; border:none; clear:both;}
 #navegacaoProdutos li form select{display:inline;}
 /*---------------LISTA PRODUTOS---------------*/
 #listaProdutos .capaProduto {float:left; margin-right:20px;}
-#listaProdutos table {width:100%; border:none; border-collapse:collapse;}
-#listaProdutos table tr td {padding:15px;}
+#listaProdutos p {padding: 0; margin-top:10px;}
+#listaProdutos ul {width:100%;}
+#listaProdutos ul li {padding:15px;}
 #listaProdutos h3 {margin:0; }
 #listaProdutos .saibaMais {float:right; position:relative; width:118px; height:20px;}
 #listaProdutos .saibaMais span {background:url(/images/btSaibaMaisContent.gif) no-repeat; position:absolute; width:118px; height:20px;}
@@ -112,6 +136,7 @@ hr {height:1px; border:none; clear:both;}
 #result{border-bottom-style:solid; border-bottom-width:1px; border-right-style:solid; border-right-width:1px;}
 /*---------------GALERIAS MOLDURA---------------*/
 #thumbInstitucional li a img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0; }
+#listaProdutos .capaProduto img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0;}
 #listaProdutos .capaProduto img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0;}
 /*---------------LISTAS---------------*/
 .listaHorizontal, .listaVertical {margin:0; padding:0; list-style:none; display:block;}

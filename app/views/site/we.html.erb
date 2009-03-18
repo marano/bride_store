@@ -1,9 +1,17 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'milkbox/mootools-1' %>
-  <%= javascript_include_tag 'milkbox/mootools-1_002' %>
+  <%= javascript_include_tag 'milkbox/mootools-1.2.1-core-yc' %>
+  <%= javascript_include_tag 'milkbox/mootools-1.2-more' %>
   <%= javascript_include_tag 'milkbox/milkbox' %>
   <%= stylesheet_link_tag 'milkbox/milkbox' %>
 <% end %>
+
+<script>
+window.addEvent('domready', function(){
+	milkbox.setAutoPlay([
+		{ gallery:'gal', autoplay:true, delay:4 },
+	]);
+});
+</script>
 
 <% migalha 'quem somos' %>
 
@@ -11,7 +19,7 @@
 
 <ul id="thumbInstitucional" class="listaVertical">
 <% for p in site.we_galery.galery_photos %>
-  <li><%= link_to image_tag(p.url :thumb), p.url, :rel => 'milkbox[gal1]' %></li>
+  <li><%= link_to image_tag(p.url :thumb), p.url, :rel => 'milkbox[gal]' %></li>
 <% end %>
 </ul>
 

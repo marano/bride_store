@@ -60,6 +60,8 @@ ActionController::Routing::Routes.draw do |map|
   map.account '/account', :controller => 'users', :action => 'account'
   map.account_list '/account', :controller => 'users', :action => 'account_list'
 
+  map.personal_space '/:adress', :controller => 'lists', :action => 'personal_space'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

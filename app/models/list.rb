@@ -1,6 +1,7 @@
 class List < ActiveRecord::Base
 
   after_create :create_galery
+  before_create :create_adress
 
   has_many :list_items, :dependent => :destroy
   has_many :spams, :dependent => :destroy
@@ -12,6 +13,10 @@ class List < ActiveRecord::Base
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
 
   private
+  
+  def create_adress
+    adress = name.trim
+  end
   
   def create_galery
     update_attributes!(:galery => Galery.new)

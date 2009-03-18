@@ -3,9 +3,9 @@
   <p><%= message.body %></p>
   <h3><%= message.user.name %></h3>  
   <% if logged_in? and message.list.user == current_user %>
-    <%= #link_to_remote 'EXCLUIR', :url => { :controller => 'messages', :action => 'destroy' }, :confirm => 'Tem certeza?', :method => 'DELETE'
+    <%= #link_to_remote 'EXCLUIR', :url => message_path(message), :confirm => 'Tem certeza?', :method => :delete 
     %>
-    <%= link_to_remote 'EXCLUIR', :url => message_path(message), :confirm => 'Tem certeza?', :method => :delete %>
+    <%= link_to 'EXCLUIR', message_path(message), :confirm => 'Tem certeza?', :method => :delete %>
   <% end %>
   <hr/>
 </div>

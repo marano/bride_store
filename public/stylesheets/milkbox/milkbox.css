@@ -1,10 +1,10 @@
-﻿/* MILKBOX */
+/* MILKBOX */
 
 #mbOverlay {
 	position: absolute;
 	left: 0;
 	width:100%;
-	background-color:#373125;; /* set the Milkbox overlay color // opacity: see the js options */
+	background-color: #000; /* set the Milkbox overlay color // opacity: see the js options */
 	z-index:100;
 	cursor: pointer;
 }
@@ -16,17 +16,14 @@
 	overflow:hidden;
 	left: 50%;
 	top:10%;/* overwritten in the js options to properly position the milkbox when activated in a scrolled window */
-	background-color: #ffffff;/* set the Milkbox background color */
-	border-left:0;
-	border-top:0;
-	border-right:1px #000000 solid;
-	border-bottom:1px #000000 solid;
-	margin:0; padding:5px;
+	background-color: #fff;/* set the Milkbox background color */
+	border: 5px solid #fff;/* set the Milkbox border */
+	margin:0; padding:5px;/* set the Milkbox padding */
 }
 
 .mbLoading{ background: #fff url(loading.gif) no-repeat center; }/* IMAGE: loading gif */
 
-#mbImage{ margin:0; padding:0; height:0; border:none; font-size:0; overflow:hidden; }
+#mbCanvas{ margin:0; padding:0; height:0; border:none; font-size:0; overflow:hidden; }
 
 .clear{ clear:both; height:0; margin:0; padding:0; font-size:0; overflow:hidden; }
 
@@ -50,41 +47,42 @@
 #mbNavigation{
 	float:right;
 	width:27px;
-	padding:3px 0 0 10px;
-	border-left:1px solid #666;/* set nav border */
+	padding-top:3px;
+	border-left:1px solid #9c9c9c;/* set nav border */
 }
 
 
 #mbCount{ 
-	width:70px; 
+	width:55px; 
 	overflow:hidden;
-	padding:5px 0 0 17px;
-	float:left;
-	text-align:left;
-	font-size:10px; /* count font size */
+	padding-top:1px;
+	float:right;
+	text-align:right;
+	font-size:9px; /* count font size */
 }
 
-#mbCloseLink, #mbPrevLink, #mbNextLink{
+#mbCloseLink, #mbPrevLink, #mbNextLink, #mbPlayPause{
 	outline:none;
 	display:block;
 	float:right;
-	height:20px;
+	height:19px;
 	cursor: pointer;
-	padding:0 5px 0 5px;
 }
 
 
-#mbPrevLink, #mbNextLink{ width:17px;}
+#mbPrevLink, #mbNextLink{ width:15px; }
 #mbPrevLink{ background: transparent url(prev.gif) no-repeat; }/* IMAGE: prev */
 #mbNextLink{ background: transparent url(next.gif) no-repeat; }/* IMAGE: next */
 
-/* NOTE: doesn't work in ie6, so, just see the js options :) */
-/*PrevLink, #mbNextLink, #mbCloseLink { background-position: 0 -23px; }*/
-/*mbPrevLink:hover,a#mbNextLink:hover,a#mbCloseLink:hover { background-position: 0; }*/
+#mbPlayPause{ width:13px; }
+#mbPlayPause{ background: transparent url(play-pause.gif) no-repeat; }/* IMAGE: prev */
 
+
+/* NOTE: doesn't work in ie6, so, just see the js options :) */
+a#mbPrevLink:hover,a#mbNextLink:hover,a#mbCloseLink:hover,a#mbPlayPause:hover { background-position: 0 -22px; }
 
 #mbCloseLink {
-	width:20px;
+	width:17px;
 	background: transparent url(close.gif) no-repeat;/* IMAGE: close */
 }
 
@@ -93,7 +91,6 @@
 #mbDescription{
 	margin-right:27px;
 	padding:0px 10px 0 0;
-	min-height:23px;
 	font-weight: normal;
 	text-align:justify;
 }

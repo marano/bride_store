@@ -36,9 +36,9 @@ migalha texto_migalha %>
     <% for p in @products  %>
       <li>
         <% if p.photo.file? %>
-          <a href="#"><%= image_tag p.photo.url(:thumb) %></a>
+          <%= link_to image_tag(p.photo.url(:thumb)), view_product_path(p), :class => 'capaProduto', :style => 'padding-bottom: 10px;' %></a>
         <% end %>
-        <h3><%= p.name %> <br/><span>(ref: <%= p.code %>)</span></h3>
+        <h2><%= p.name %> <br/><span>(ref: <%= p.code %>)</span></h2>
         <p><%= p.description %></p>
         <h2>R$ <%= number_with_precision(p.price, 2) %></h2>
         <%= link_to '<span></span>SAIBA MAIS >', view_product_path(p), :class => 'saibaMais', :title => 'saiba mais' %>
