@@ -22,22 +22,19 @@ window.addEvent('domready', function(){
   <h1>Presentes</h1>
 <% end %>
 
-<!-- Aqui entra o painel da lista -->
-<h1><%= @product.category.name %></h1>
-<hr />
-<h2><%= @product.name %></h2>
+<h1><%= @product.name %></h1>
 <div>
-  <div>
-    <% if @product.photo.file? %>
-      <p><%= image_tag  @product.photo.url %></p>
-    <% end %>
-    <% unless @product.galery.galery_photos.empty? %>
-      <ul class="listaHorizontal">
-        <% for p in @product.galery.galery_photos %>
-          <li><%= link_to image_tag(p.url(:thumb)), p.url, :rel => 'milkbox[gal]' %></li>
-        <% end %>
-      </ul>    
-    <% end %>
+  <% unless @product.galery.galery_photos.empty? %>
+    <ul class="listaHorizontal">
+      <% if @product.photo.file? %>
+        <li class='fotoCapa'><%= link_to image_tag(@product.photo.url), @product.photo.url(:big), :rel => 'milkbox[gal]' %></li>
+      <% end %>
+      <% for p in @product.galery.galery_photos %>
+        <li><%= link_to image_tag(p.url(:thumb)), p.url, :rel => 'milkbox[gal]' %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class='descricaoProduto'>
     <p>(ref: <%= @product.code %>)</p>
     <p><%= @product.description %></p>
     <h2>R$ <%= number_with_precision @product.price, :precision => 2 %></h2>

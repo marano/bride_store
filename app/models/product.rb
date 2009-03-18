@@ -6,8 +6,8 @@ class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :galery, :dependent => :destroy
   
-  has_attached_file :photo, :styles => { :original => ['300x300', 'jpg'], :thumb => ['150x150', 'jpg'] }
-  has_attached_file :display, :styles => { :original => ['780x780', 'jpg'] }  
+  has_attached_file :photo, :styles => { :original => ['800x800>', 'jpg'], :big => ['300x300>', 'jpg'], :thumb => ['150x150>', 'jpg'] }
+  has_attached_file :display, :styles => { :original => ['780x780>', 'jpg'] }  
   
   #composed_of :price, :class_name => 'Money'
   

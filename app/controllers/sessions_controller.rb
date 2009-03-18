@@ -18,7 +18,11 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      redirect_back_or_default(account_list_path)
+      if current_store
+        redirect_back_or_default(account_path)
+      else
+        redirect_back_or_default(account_list_path)
+      end
       flash[:notice] = "Usuário entrou com sucesso!"
     else
       note_failed_signin
