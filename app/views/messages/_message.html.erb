@@ -1,5 +1,5 @@
 <div id="message_<%= message.id %>" class="mensagensPerfil">
-  <h3><%= message.created_at %></h3>
+  <h3><%= time_ago_in_words message.created_at %> atrás</h3>
   <p><%= message.body %></p>
   <h3><%= message.user.name %></h3>  
   <% if logged_in? and message.list.user == current_user %>
