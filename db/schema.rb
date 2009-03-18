@@ -188,4 +188,4 @@ ActiveRecord::Schema.define(:version => 20090317185208) do
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
-end
+end 
