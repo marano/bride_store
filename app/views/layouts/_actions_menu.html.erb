@@ -1,9 +1,9 @@
 <% unless logged_in? %>
   <ul id="menuAcoes" class="listaHorizontal">
-    <li><a href="#">Criar minha lista de presentes</a></li>
+    <li><%= link_to 'Criar minha lista de presentes', account_path %></li>
     <li> | </li>
-    <li><a href="#">Minha lista de presentes</a></li>
+    <li><%= link_to 'Minha lista de presentes', account_list_path %></li>
     <li> | </li>
-    <li><a href="#">Visitar listas de presentes</a></li>
+    <li><%= link_to 'Visitar listas de presentes', account_list_path %></li>
   </ul>
 <% end %>

@@ -1,6 +1,6 @@
 <% content_for :content_class do %>listaPresentes<% end %>
 
-<% content_for(:migalha) do %>minha conta / <%= current_list.name.downcase %> / presentes<% end %>
+<% migalha_current_list 'presentes' %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
 
@@ -48,8 +48,8 @@
               <%= i.quantity_bought %>
             </p>
           </td>
-          <td><h2>R$ <%= i.product.price %></h2></td>
-          <td><h2>R$ <%=  i.total_price %></h2></td>
+          <td><h2>R$ <%= number_with_precision i.product.price, :precision => 2 %></h2></td>
+          <td><h2>R$ <%=  number_with_precision i.total_price, :precision => 2 %></h2></td>
           <td><%= link_to 'EXCLUIR', destroy_list_item_path(i.id) , :confirm => 'Tem certeza?' %></td>
         </tr>
       <% end %>

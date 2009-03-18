@@ -13,9 +13,7 @@ window.addEvent('domready', function(){
 });
 </script>
 
-<% content_for(:migalha) do %>
-  <%= link_to(@product.category.name.downcase, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}) + " / " + @product.name.downcase %>
-<% end %>
+<% migalha [link_to(@product.category.name.downcase, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}), @product.name.downcase] %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
 
@@ -41,7 +39,7 @@ window.addEvent('domready', function(){
     <% end %>
     <p>(ref: <%= @product.code %>)</p>
     <p><%= @product.description %></p>
-    <h2>R$ <%= number_with_precision(@product.price, 2) %></h2>
+    <h2>R$ <%= number_with_precision @product.price, :precision => 2 %></h2>
     <hr />
     <% unless current_list.nil? %>
       <% form_for ListItem.new do |f| %>

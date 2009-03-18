@@ -46,7 +46,7 @@
     # numeros
     :number => {
       :format => {
-        :precision => 3,
+        :precision => 2,
         :separator => ',',
         :delimiter => '.'
       },
@@ -92,17 +92,17 @@
         }
       },
       :models => { 
-        :employee => { 
-          :one => "Empregado", :other => "Empregados",
+        :user => { 
+          :one => "Usuário", :other => "Usuários",
         }
       },
       :attributes => {
-        :employee => {
-          :first_name => "Nome",
-          :last_name => "Sobrenome",
-          :email => "E-mail",
+        :user => {
+          :password => "Nome",
+          :login => "Nome de usuário",
           :password => "Senha",
-          :employee_number => "Núm. do empregado"
+          :password_confirmation => "Confirmação de senha",
+          :email => "E-mail",
         }
       }
     },

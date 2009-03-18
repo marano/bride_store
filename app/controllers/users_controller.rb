@@ -84,11 +84,11 @@ class UsersController < ApplicationController
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?
-      redirect_back_or_default('/')
       flash[:notice] = "Obrigado por cadastrar-se! Estamos enviando para você o email de ativação."
+      redirect_to root_path
     else
       flash[:error]  = "Não foi possível criar esta conta, desculpe.  Por favor tente de novo, ou contacte o administrador do sistema."
-      render :action => 'new'
+      render :action => 'new', :layout => 'site'
     end
   end
 
@@ -111,8 +111,10 @@ class UsersController < ApplicationController
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
-      flash[:notice] = "Usuário ativado! Por favor entre para continuar."
+      self.current_user = user
+      handle_remember_cookie! true
       redirect_to account_list_path
+      flash[:notice] = "Usuário ativado!"      
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
       redirect_back_or_default('/')

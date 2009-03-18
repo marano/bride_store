@@ -1,4 +1,6 @@
-<% migalha "minha conta / #{current_list.name.downcase} / divulgação / #{@spam.title}" %>
+<% migalha_current_list [ link_to('divulgação', spams_path), 'nova divulgacão'] %>
+
+<%= render :partial => 'layouts/list_menu_panel' %>
 
 <h1>Nova Divulgação</h1>
 

@@ -1,7 +1,56 @@
 module SiteHelper
 
   def migalha(text)
-    content_for :migalha do text end
+    content = ['::', link_to('home', home_path)]
+    
+    if text.class == Array
+      content.concat text
+    else
+      content << text.to_s
+    end
+    
+    put_content(make_items(content))
   end
   
+  def make_items(text)
+    items = format(text.delete_at 0)
+    for m in text
+      items += make_item(m)
+    end
+    items
+  end
+  
+  def put_content(content)
+    content_for :migalha do
+      content
+    end
+  end
+  
+  def format(text)
+    "<li>#{text}</li>"
+  end
+  
+  def make_item(text)
+    migalha_separator + format(text)
+  end
+  
+  def migalha_separator
+    format(' / ')
+  end
+  
+  def migalha_current_list(text)
+    list = []
+    
+    unless current_list.nil?
+      list << link_to('minha conta', account_path) << current_list.name.downcase
+    end
+    
+    if text.class == Array
+      list.concat(text)
+    else
+      list << text
+    end
+    
+    migalha list
+  end
 end

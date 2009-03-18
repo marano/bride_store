@@ -4,8 +4,8 @@
 <p><%= site.create_account_text %></p>
 <% @user.password = @user.password_confirmation = nil %>
 
-  <%= error_messages_for :user %>
-  <% form_for @user, :html => { :id => 'formCriarConta' } do |f| -%>
+<%= error_messages_for :user %>
+<% form_for @user, :html => { :id => 'formCriarConta' } do |f| -%>
 
   <p><%= label_tag 'name', '*Seu nome:' %><br/>
   <%= f.text_field :name, :class => 'campoTexto' %></p>

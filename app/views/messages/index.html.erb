@@ -1,6 +1,6 @@
 <% content_for :head do %><%= javascript_include_tag :defaults %><% end  %>
 
-<% migalha "minha conta / #{current_list.name.downcase} / messages" %>
+<% migalha_current_list 'mensagens' %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
 

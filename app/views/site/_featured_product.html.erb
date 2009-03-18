@@ -1,6 +1,6 @@
 <% unless featured_product.nil? %>
   <div id="destaque">  
     <%= link_to '<span></span>saiba mais', view_product_path(featured_product.id) %>
-    <h3>Produto em destaque > <%= featured_product.name %> R$ <%= number_with_precision(featured_product.price, 2) %></h3>
+    <h3>Produto em destaque > <%= featured_product.name %> R$ <%= number_with_precision featured_product.price, :precision => 2 %></h3>
   </div>
 <% end %>

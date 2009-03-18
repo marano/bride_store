@@ -14,7 +14,7 @@ window.addEvent('domready', function(){
 </script>
 
 <% unless current_list.nil? and current_list != @list %>
-  <% migalha "minha conta / #{@list.name.downcase} / visualizar" %>
+  <% migalha_current_list 'visualizar' %>
 <% end %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
