@@ -6,4 +6,8 @@ class ListItem < ActiveRecord::Base
   def total_price
     product.price * quantity
   end
+  
+  def category
+    product.category
+  end
 end

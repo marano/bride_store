@@ -1,4 +1,4 @@
-<% unless logged_in? %>
+<% if !logged_in? and current_store.nil? %>
   <ul id="menuAcoes" class="listaHorizontal">
     <li><%= link_to 'Criar minha lista de presentes', account_path %></li>
     <li> | </li>
@@ -6,4 +6,5 @@
     <li> | </li>
     <li><%= link_to 'Visitar listas de presentes', account_list_path %></li>
   </ul>
+  <hr/>
 <% end %>

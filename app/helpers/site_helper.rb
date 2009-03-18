@@ -53,4 +53,20 @@ module SiteHelper
     
     migalha list
   end
+  
+  def migalha_current_store(text)
+    list = []
+    
+    unless current_store.nil?
+      list << link_to(current_store.title.downcase, store_path(current_store.adress))
+    end
+    
+    if text.class == Array
+      list.concat(text)
+    else
+      list << text
+    end
+    
+    migalha list
+  end
 end

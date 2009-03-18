@@ -7,5 +7,5 @@
 <p><%= @spam.body %></p>
 
 <p>
-  <%= link_to "Ir para a loja pessoal #{@spam.list.title}", 'store_path(@spam.user.store_name)' %>
+  <%= link_to "Ir para a loja pessoal #{@spam.list.title}", store_url(@spam.user.adress) %>
 </p>

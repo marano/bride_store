@@ -2,7 +2,14 @@
   <% form_tag find_products_path, :method => 'get' do %>
     <h3 title=":: Buscar">:: BUSCAR<span></span></h3>
     <p>
-      <%= select_tag :category_id_filter, options_for_select([['Todo o site', '']]) + options_from_collection_for_select(Category.all, :id, :name, @category_filter && @category_filter.id) %>
+      <%      
+      if current_store
+        categories = current_store.categories 
+      else
+        categories = Category.all
+      end
+      %>
+      <%= select_tag :category_id_filter, options_for_select([['Todo o site', '']]) + options_from_collection_for_select(categories, :id, :name, @category_filter && @category_filter.id) %>
     </p>
     <p>
       <%= label_tag 'palavraChave', 'Entre a palavra-chave:' %><br/>

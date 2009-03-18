@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
 
-  before_filter :login_required, :except => ['new', 'create', 'find']
+  before_filter :login_required, :except => ['new', 'create', 'find', 'store']
 
   layout 'site'
 
@@ -9,9 +9,30 @@ class ListsController < ApplicationController
 
   def edit_personal_space
   end
-  
+
   def personal_space
     @list = List.find(params[:id])
+  end
+
+  def store
+    @list = List.first(:conditions => { :adress => params[:adress] })
+    if @list.nil?
+      redirect_to :back
+      flash[:error] = 'Não foi possível localizar a loja!'
+    else
+      if logged_in?
+        if @list.user == current_user
+          set_current_store nil
+          set_current_list @list
+        else
+          set_current_list nil
+          set_current_store @list
+        end
+      else
+        set_current_store @list
+      end
+      render :personal_space
+    end
   end
 
   def select
@@ -20,7 +41,7 @@ class ListsController < ApplicationController
       redirect_to edit_list_nomes_path
     else
       redirect_to list_items_path
-    end    
+    end
   end
 
   def find
@@ -29,7 +50,7 @@ class ListsController < ApplicationController
       redirect_to :back
       return
     end
-    
+
     search = params[:search].canonical
     @list = List.first :conditions => "#{params[:name_filter]}_busca LIKE '#{search}'"
     if list

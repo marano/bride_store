@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
 
   helper :all # include all helpers, all the time
-  helper_method :current_list, :site
+  helper_method :current_list, :current_store, :site
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
@@ -20,13 +20,32 @@ class ApplicationController < ActionController::Base
   def save_error
     flash[:error] = 'Os dados não foram salvos!'
   end
+  
+  def set_current_store(store)
+    if store.nil?
+      session[:current_store] = nil
+    else
+      session[:current_store] = store.id
+    end
+  end
+  
+  def current_store
+    if session[:current_store].nil?
+      nil
+    else
+      if(@current_store.nil?)
+        @current_store = List.find(session[:current_store])
+      end
+      @current_store
+    end
+  end
 
   def set_current_list(list)
     if list.nil?
       session[:current_list] = nil
     else
       session[:current_list] = list.id
-    end    
+    end
   end
 
   def current_list?(list)

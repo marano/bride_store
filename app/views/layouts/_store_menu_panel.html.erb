@@ -1,0 +1,9 @@
+<% unless current_store.nil? %>
+  <h2><%= current_store.title %></h2>
+  <ul class="listaHorizontal">
+    <li><%= link_to_unless_current 'espaço pessoal', store_path(current_store.adress) %></li>
+    <li>|</li>
+    <li><%= link_to_unless_current 'presentes', 'cart_path' %></li>
+  </ul>
+  <hr>
+<% end %>

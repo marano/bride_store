@@ -16,8 +16,12 @@ window.addEvent('domready', function(){
 <% unless current_list.nil? and current_list != @list %>
   <% migalha_current_list 'visualizar' %>
 <% end %>
+<% unless current_store.nil? and current_store != @list %>
+  <% migalha_current_list current_store.title %>
+<% end %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
+<%= render :partial => 'layouts/store_menu_panel' %>
 
 <h1><%= @list.title %></h1>
 

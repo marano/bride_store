@@ -12,72 +12,78 @@ class ProductsController < ApplicationController
   def find
     verify_list_products_options
     
-    if params[:search].blank?
-      if params[:category_id_filter].blank?
-        @products = Product.paginate :page => params[:page], :order => order, :per_page => per_page
-      else
-        @category_filter = Category.find(params[:category_id_filter])
-        @products = Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => { :category_id => @category_filter.id }
-      end
-    else
+    sql_conditions = ''
+    
+    unless params[:search].blank?
       @search = params[:search]
-      s = @search.canonical
-      
-      s = s.split ' '
+            
+      splited = @search.canonical.split ' '
       sql_search = ''      
-      for trecho in s
+      for trecho in splited
         next if trecho.blank?
-        trecho.gsub!(/ /,'')
+        trecho = trecho.trim
         unless sql_search.blank?
           sql_search << ' AND '
         end
-        sql_search << "canonical_name like'%#{trecho}%'"
+        sql_search << "canonical_name like '%#{trecho}%'"
       end
       
-      if params[:category_id_filter].blank?
-        @products = (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => sql_search)
-      else
-        @category_filter = Category.find(params[:category_id_filter])
-        @products =  (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => "category_id = #{@category_filter.id} AND #{sql_search}")
+      unless sql_conditions.blank?
+          sql_condition << ' AND '
       end
+      
+      sql_conditions << sql_search
     end
+    
+    unless params[:category_id_filter].blank?
+      @category_filter = Category.find(params[:category_id_filter])
+      
+      unless sql_conditions.blank?
+          sql_conditions << ' AND '
+      end
+      
+      sql_conditions << "category_id = #{@category_filter.id}"
+    end
+    
+    if current_store.nil?
+      @products = Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => sql_conditions
+    else
+      @products = current_store.products.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => sql_conditions
+    end
+    
     render :layout => 'site'
   end
 
 #  def find
+#    verify_list_products_options
+#    
 #    if params[:search].blank?
 #      if params[:category_id_filter].blank?
-#        @products = Product.all
+#        @products = Product.paginate :page => params[:page], :order => order, :per_page => per_page
 #      else
-#        @products = Product.all :conditions => { :category_id => params[:category_id_filter] }
+#        @category_filter = Category.find(params[:category_id_filter])
+#        @products = Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => { :category_id => @category_filter.id }
 #      end
 #    else
-#      buscas = params[:search].split ' '
-#      resultados = []
-#      for b in buscas do
-#        #b.low
-#        if params[:category_id_filter].blank?
-#          resultados << (Product.all :conditions => { :canonical_name => '%#{params[:search]}%' })
-#        else
-#          resultados << (Product.all :conditions => { :category_id => params[:category_id_filter], :canonical_name => '%#{params[:search]}%' })
+#      @search = params[:search]
+#      s = @search.canonical
+#      
+#      s = s.split ' '
+#      sql_search = ''      
+#      for trecho in s
+#        next if trecho.blank?
+#        trecho.gsub!(/ /,'')
+#        unless sql_search.blank?
+#          sql_search << ' AND '
 #        end
+#        sql_search << "canonical_name like'%{trecho}%'"
 #      end
-#      @products = []
-#      for r in resultados do
-#        for p in r do
-#          ok = true
-#          for r1 in resultados do
-#            unless r1 == r || r1.include?(p)
-#              ok = false
-#              break
-#            end
-#          end
-#          if ok
-#            unless @products.include? p
-#              @products << p
-#            end
-#          end
-#        end
+#      
+#      if params[:category_id_filter].blank?
+#        @products = (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => sql_search)
+#      else
+#        @category_filter = Category.find(params[:category_id_filter])
+#        @products =  (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => "category_id = {@category_filter.id} AND #{sql_search}")
 #      end
 #    end
 #    render :layout => 'site'
