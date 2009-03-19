@@ -54,50 +54,12 @@ class ProductsController < ApplicationController
     render :layout => 'site'
   end
 
-#  def find
-#    verify_list_products_options
-#    
-#    if params[:search].blank?
-#      if params[:category_id_filter].blank?
-#        @products = Product.paginate :page => params[:page], :order => order, :per_page => per_page
-#      else
-#        @category_filter = Category.find(params[:category_id_filter])
-#        @products = Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => { :category_id => @category_filter.id }
-#      end
-#    else
-#      @search = params[:search]
-#      s = @search.canonical
-#      
-#      s = s.split ' '
-#      sql_search = ''      
-#      for trecho in s
-#        next if trecho.blank?
-#        trecho.gsub!(/ /,'')
-#        unless sql_search.blank?
-#          sql_search << ' AND '
-#        end
-#        sql_search << "canonical_name like'%{trecho}%'"
-#      end
-#      
-#      if params[:category_id_filter].blank?
-#        @products = (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => sql_search)
-#      else
-#        @category_filter = Category.find(params[:category_id_filter])
-#        @products =  (Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => "category_id = {@category_filter.id} AND #{sql_search}")
-#      end
-#    end
-#    render :layout => 'site'
-#  end
-
   # GET /products
   # GET /products.xml
   def index
-    @products = Product.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @products }
-    end
+    order = params[:order]
+    order ||= 'name'
+    @products = Product.paginate :page => params[:page], :order => order, :per_page => 30
   end
 
   # GET /products/1

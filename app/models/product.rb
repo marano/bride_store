@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
 
+  default_scope :order => :name
+
   after_create :create_galery
   before_save :update_canonical_name
   
