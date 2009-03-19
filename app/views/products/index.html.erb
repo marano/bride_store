@@ -8,11 +8,11 @@
   <tr>
     <th></th>
     <th></th>
-    <th><%= link_to 'Nome', :order => 'name' %></th>
-    <th><%= link_to 'Categoria', :order => 'categories.name' %></th>
+    <%= sortable_table_header :name => "Nome",  :sort => "name" %>
+    <%= sortable_table_header :name => "Categoria",  :sort => "category" %>
     <th>Código</th>
-    <th>Preço</th>
-    <th>Destaque</th>    
+    <%= sortable_table_header :name => "Preço",  :sort => "price" %>
+    <%= sortable_table_header :name => "Destaque",  :sort => "featured" %>
   </tr>
 
 <% for product in @products %>
