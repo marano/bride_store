@@ -1,6 +1,9 @@
 <% migalha_current_list 'espaço pessoal' %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
+<% content_for :head do %>
+  <%= javascript_include_tag :fckeditor %>
+<% end %>
 
 <h1>Espaço Pessoal</h1>
 <p><%= site.personal_space_text %></p>
@@ -30,7 +33,7 @@
   <p>
     <p><label for="texto">Escreva uma mensagem de boas vindas para os convidados que visitarem a sua lista de presentes</label></p>
     <p>
-      <%= f.text_area :text, :rows => 4, :cols => 50 %>
+      <%= fckeditor_textarea(:list, :text, :toolbarSet => 'Basic', :width => '100%', :height => '200px') %>
     </p>
   </p>
   <input class="botaoForm" type="image" title="salvar" value="salvar" src="/images/btSalvar.gif"/>
