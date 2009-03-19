@@ -42,10 +42,17 @@ span{font-size:11px;}
 #navegacaoProdutos li {font-size:12px; font-weight:bold;}
 #navegacaoProdutos li a {text-decoration:underline;}
 /*---------------LISTA PRODUTOS---------------*/
+#listaProdutos li div h2 {font-size:20px; font-family:Arial, helvetica, serif; font-weight:normal; text-decoration:none; font-style: normal;}
+#listaProdutos li div h2 span {font-size:14px;}
 #listaProdutos h3 {font-size:20px; }
 #listaProdutos h3 span {font-size:14px;}
 #listaProdutos a {font-size:14px; text-decoration:underline;}
-/**/
+/*---------------PAGINAÇÃO---------------*/
+#listaProdutos .pagination {text-align:center; font-size: 14px;}
+#listaProdutos .pagination * {font-size: 14px;}
+#listaProdutos .pagination a {text-decoration:underline;}
+#listaProdutos .pagination .current {font-weight:bold;}
+/*---------------LISTA DE PRESENTES---------------*/
 .listaPresentes .infoLista{text-align:center;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent form label {font-size:11px;}

@@ -48,8 +48,8 @@
               <%= i.quantity_bought %>
             </p>
           </td>
-          <td><h2>R$ <%= number_with_precision i.product.price, :precision => 2 %></h2></td>
-          <td><h2>R$ <%=  number_with_precision i.total_price, :precision => 2 %></h2></td>
+          <td><p>R$ <%= number_with_precision i.product.price, :precision => 2 %></p></td>
+          <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
           <td><%= link_to 'EXCLUIR', destroy_list_item_path(i.id) , :confirm => 'Tem certeza?' %></td>
         </tr>
       <% end %>

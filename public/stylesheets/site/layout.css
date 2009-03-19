@@ -15,9 +15,11 @@ Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 * html #topo {height:1%;}
 /*fim da corrção*/
 hr {height:1px; border:none; clear:both;}
+.base {clear:both;}
 /*---------------ESPECIFICAÇÕES FORMULÁRIOS---------------*/
 form p label {margin-left:4px;}
-.campoTexto, .campoAreaTexto, .campoSelect, select {display:block; height:19px; border:none;}
+.campoTexto, .campoSelect, select {display:block; height:19px; border:none;}
+.campoAreaTexto {display:block; border: none; height: 100px;}
 #armacao {width:780px; position:absolute; left:50%; margin:0 0 0 -389px;}
 /*---------------RESULT---------------*/
 #result{display:none; position:fixed; float:left; min-width:100px; max-width:600px; left:50%;}
@@ -27,10 +29,11 @@ form p label {margin-left:4px;}
 /*---------------TOPO---------------*/
 #topo {height:166px; padding:0 30px 0 30px; position:relative;}
 #logomarca{float:left; position:relative; top:30px; left:-22px;}
-#depoimentoTopo{float:right; width:350px; text-align:right;}
+#depoimentoTopo{float:right; max-width:350px; text-align:right;}
 #depoimentoTopo a {clear:both; float:right;}
 .depoimento {padding-left:20px;}
-.depoimento h3 {padding:10px 30px 0;}
+.depoimento h3 {padding:10px 30px 0; margin:15px 0 10px 0;}
+.depoimento span {display:block;}
 /*---------------MENU INSTITUCIONAL---------------*/
 #menuInstitucional{float:right; width:720px; bottom:24px; position:absolute; left:0; padding:0 30px 0 30px;}
 #menuInstitucional ul {float:right;}
@@ -78,6 +81,7 @@ form p label {margin-left:4px;}
 .faleConosco form p .campoTexto{width: 300px;}
 .faleConosco form p .campoAreaTexto {width:300px; min-width:300px; max-width:300px; height:150px;}
 .faleConosco .botaoForm{float:right;}
+.faleConosco .campoAreaTexto, .faleConosco .campoTexto{width: 200px;}
 /*---------------NOVA CONTA---------------*/
 .criarConta #formCriarConta {width:240px;}
 .criarConta .campoTexto {width:100%;}
@@ -107,14 +111,15 @@ form p label {margin-left:4px;}
 #listaProdutos .capaProduto {float:left; margin-right:20px;}
 #listaProdutos p {padding: 0; margin-top:10px;}
 #listaProdutos ul {width:100%;}
-#listaProdutos ul li {padding:15px;}
-#listaProdutos h3 {margin:0; }
-#listaProdutos .saibaMais {float:right; position:relative; width:118px; height:20px;}
+#listaProdutos ul li div {float:left; width:305px; margin:0 0 10px 0;}
+#listaProdutos ul li div h2 {margin:0;}
+#listaProdutos h3 {margin:0;}
+#listaProdutos hr {margin: 20px 0 20px 0;}
+#listaProdutos .saibaMais {float:right; position:relative; width:118px; height:20px; margin:4px;}
 #listaProdutos .saibaMais span {background:url(/images/btSaibaMaisContent.gif) no-repeat; position:absolute; width:118px; height:20px;}
 /*---------------PAGINAÇÃO---------------*/
-#listaProdutos .pagelinks {height:40px; text-align:center; }
-#listaProdutos .pagelinks a { font-size: 12px; text-align:center; text-decoration:none; float:none; color:#373125;}
-
+#listaProdutos .pagination * {margin:0 3px 0 3px;}
+#listaProdutos .pagination a {float:none;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent {float:left; padding:20px; width:177px;}
 #sideContent form h3{width:100px; height:17px; position:relative; padding:0; margin:0 0 10px 0;}
@@ -132,7 +137,6 @@ form p label {margin-left:4px;}
 #rodape ul {margin-left: 50px; text-align:left;}
 /*---------------BORDAS---------------*/
 #content, #destaque, #sideContent, #rodape{border-top-style: solid; border-top-width: 1px;}
-#listaProdutos table tr td {border-style:solid; border-top-width:0; border-right-width:0; border-bottom-width:1px; border-left-width:0;}
 #result{border-bottom-style:solid; border-bottom-width:1px; border-right-style:solid; border-right-width:1px;}
 /*---------------GALERIAS MOLDURA---------------*/
 #thumbInstitucional li a img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0; }
