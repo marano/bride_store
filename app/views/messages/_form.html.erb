@@ -1,0 +1,9 @@
+<% remote_form_for Message.new do |f| %>
+  <%= hidden_field_tag 'message[list_id]', list.id %>
+  <% unless logged_in? %>
+    <span>Nome</span> <%= f.text_field :user_name, :class => 'campoTexto'%>
+  <% end %>  
+  <span>Mensagem</span>
+  <%= f.text_area :body, :rows => 3, :class => 'campoAreaTexto' %><br/>
+  <%= f.submit 'Enviar' %>
+<% end %>

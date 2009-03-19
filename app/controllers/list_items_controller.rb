@@ -41,7 +41,7 @@ class ListItemsController < ApplicationController
     @list_item = ListItem.new(params[:list_item])
     @list_item.list = current_list
     if @list_item.save
-      flash[:notice] = 'ListItem was successfully created.'
+      flash[:notice] = 'Produto adicionado.'
       redirect_to(list_items_path)
     else
       render :action => "new"
@@ -55,7 +55,7 @@ class ListItemsController < ApplicationController
 
     respond_to do |format|
       if @list_item.update_attributes(params[:list_item])
-        flash[:notice] = 'ListItem was successfully updated.'
+        flash[:notice] = 'Lista atualizada.'
         format.html { redirect_to :back }
         format.xml  { head :ok }
       else
@@ -70,7 +70,7 @@ class ListItemsController < ApplicationController
   def destroy
     @list_item = ListItem.find(params[:id])
     @list_item.destroy
-
+    flash[:notice] = 'Produto removido.'
     redirect_to(list_items_path)
   end
 end

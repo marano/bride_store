@@ -10,10 +10,6 @@
 <%= render :partial => 'layouts/list_menu_panel' %>
 <%= render :partial => 'layouts/store_menu_panel' %>
 
-<% unless current_list.nil? %>
-  <h1>Presentes</h1>
-<% end %>
-
 <% unless @category_filter.nil? %>
   <h1><%= @category_filter.name %></h1>
 <% end %>
@@ -24,7 +20,7 @@
     <% form_tag '', :method => 'get' do %>
       <%= hidden_field_tag :search, @search %>
       <%= hidden_field_tag :category_id_filter, (@category_filter && @category_filter.id) %>
-      <%= select_tag :per_page, options_for_select([['4', '4'], ['8', '8'], ['15', '15'], ['20', '20']], per_page_products), :onchange => 'this.form.submit()' %>
+      <%= select_tag :per_page, options_for_select([['4'], ['8'], ['15'], ['20']], per_page_products), :onchange => 'this.form.submit()' %>
     <% end %>
   </li>
   <li>ORDENAR POR:</li>

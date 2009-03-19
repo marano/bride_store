@@ -48,10 +48,11 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        flash[:notice] = 'Category was successfully created.'
+        save_sucess
         format.html { redirect_to(@category) }
         format.xml  { render :xml => @category, :status => :created, :location => @category }
       else
+        save_error
         format.html { render :action => "new" }
         format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
       end
@@ -65,10 +66,11 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        flash[:notice] = 'Category was successfully updated.'
+        save_sucess
         format.html { redirect_to(@category) }
         format.xml  { head :ok }
       else
+        save_error
         format.html { render :action => "edit" }
         format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
       end

@@ -60,6 +60,8 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
   map.account '/account', :controller => 'users', :action => 'account'
   map.account_list '/account', :controller => 'users', :action => 'account_list'
+
+  map.visit_list '/visit_list', :controller => 'lists', :action => 'visit_list'
   
   map.store '/:adress', :controller => 'lists', :action => 'store'
 

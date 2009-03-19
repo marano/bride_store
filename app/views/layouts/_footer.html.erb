@@ -21,7 +21,7 @@
       <li><a href="#"> > Visitar listas</a></li>
   </ul>
   <ul class="listaVertical">
-      <li>Política do site</li>
+      <li>Políticas do site</li>
       <% for polyce in Policy.all %>      
         <li><%= link_to '> ' + polyce.menu_title, view_policies_path %></li>
       <% end %>

@@ -53,7 +53,7 @@ class PoliciesController < ApplicationController
 
     respond_to do |format|
       if @policy.save
-        flash[:notice] = 'Policy was successfully created.'
+        save_sucess
         format.html { redirect_to(@policy) }
         format.xml  { render :xml => @policy, :status => :created, :location => @policy }
       else
@@ -70,7 +70,7 @@ class PoliciesController < ApplicationController
 
     respond_to do |format|
       if @policy.update_attributes(params[:policy])
-        flash[:notice] = 'Policy was successfully updated.'
+        save_sucess
         format.html { redirect_to(@policy) }
         format.xml  { head :ok }
       else
@@ -85,7 +85,7 @@ class PoliciesController < ApplicationController
   def destroy
     @policy = Policy.find(params[:id])
     @policy.destroy
-
+    flash[:notice] = 'Política removida com sucesso!'
     respond_to do |format|
       format.html { redirect_to(policies_url) }
       format.xml  { head :ok }

@@ -12,6 +12,7 @@ class EmailConfigsController < ApplicationController
   def create
     @email_config = EmailConfig.new(params[:email_config])
     @email_config.save
+    save_sucess
     redirect_to adm_path
   end
 
@@ -21,9 +22,10 @@ class EmailConfigsController < ApplicationController
     @email_config = EmailConfig.find(params[:id])
 
     if @email_config.update_attributes(params[:email_config])
-      flash[:notice] = 'EmailConfig was successfully updated.'
+      save_sucess
       redirect_to adm_path
     else
+      save_error
       render :action => "edit"
     end
   end

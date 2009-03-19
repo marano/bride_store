@@ -34,7 +34,7 @@ class SpamsController < ApplicationController
     @spam = Spam.new(params[:spam])
     @spam.list = current_list
     if @spam.save
-      flash[:notice] = 'Spam was successfully created.'
+      flash[:notice] = 'Divulgação criada com sucesso.'
       redirect_to(@spam)
     else
       render :action => "new"
@@ -47,7 +47,7 @@ class SpamsController < ApplicationController
     params[:spam].delete :photo if params[:spam][:photo].nil?
     
     if @spam.update_attributes(params[:spam])
-      flash[:notice] = 'Spam was successfully updated.'
+      flash[:notice] = 'Divulgação salva com sucesso.'
       redirect_to(@spam)
     else
       render :action => "edit"
@@ -57,7 +57,7 @@ class SpamsController < ApplicationController
   def destroy
     @spam = Spam.find(params[:id])
     @spam.destroy
-
+    flash[:notice] = 'Divulgação removida com sucesso.'
     redirect_to(spams_url)
   end
 end

@@ -134,7 +134,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        flash[:notice] = 'Product was successfully created.'
+        salve_sucess
         format.html { redirect_to(@product) }
         format.xml  { render :xml => @product, :status => :created, :location => @product }
       else
@@ -151,7 +151,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        flash[:notice] = 'Product was successfully updated.'
+        save_sucess
         format.html { redirect_to(@product) }
         format.xml  { head :ok }
       else
@@ -166,7 +166,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-
+    flash[:notice] = 'Produto removido com sucesso!'
     respond_to do |format|
       format.html { redirect_to(products_url) }
       format.xml  { head :ok }

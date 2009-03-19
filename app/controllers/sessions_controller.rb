@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
       else
         redirect_back_or_default(account_list_path)
       end
-      flash[:notice] = "Usuário entrou com sucesso!"
+      flash[:notice] = "Usuário entrou."
     else
       note_failed_signin
       @login       = params[:login]

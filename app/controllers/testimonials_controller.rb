@@ -55,7 +55,7 @@ class TestimonialsController < ApplicationController
     @testimonial.user = current_user
     respond_to do |format|
       if @testimonial.save
-        flash[:notice] = 'Testimonial was successfully created.'
+        save_sucess
         format.html { redirect_to(@testimonial) }
         format.xml  { render :xml => @testimonial, :status => :created, :location => @testimonial }
       else
@@ -72,7 +72,7 @@ class TestimonialsController < ApplicationController
 
     respond_to do |format|
       if @testimonial.update_attributes(params[:testimonial])
-        flash[:notice] = 'Testimonial was successfully updated.'
+        save_sucess
         format.html { redirect_to(@testimonial) }
         format.xml  { head :ok }
       else
@@ -87,7 +87,7 @@ class TestimonialsController < ApplicationController
   def destroy
     @testimonial = Testimonial.find(params[:id])
     @testimonial.destroy
-
+    flash[:notice] = 'Depoimento removido com sucesso!'
     respond_to do |format|
       format.html { redirect_to(testimonials_url) }
       format.xml  { head :ok }

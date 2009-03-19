@@ -2,12 +2,8 @@
 
 <% migalha 'políticas' %>
 
-<h1>Política do Site</h1>
-
 <% content_for :sidebar do %>
-  <% if site.logo.file? %>
-    <%= image_tag site.logo.url, :width => 170, :height => 80 %>
-  <% end %>
+  <h2>Políticas do Site</h2>
   <ul class='listaVertical'>
     <% for p in Policy.all %>
       <li><%= link_to '> ' + p.name, :anchor => p.name %></li>

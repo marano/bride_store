@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
 
-  before_filter :login_required, :except => ['new', 'create', 'find', 'store']
+  before_filter :login_required, :except => ['new', 'create', 'find', 'store', 'visit_list']
 
   layout 'site'
 
@@ -137,6 +137,7 @@ class ListsController < ApplicationController
       set_current_list nil
     end
     @list.destroy
+    flash[:notice] = 'Lista removida com sucesso!'
     redirect_to(new_list_path)
   end
 end

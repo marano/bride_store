@@ -44,12 +44,9 @@ window.addEvent('domready', function(){
 
 <h2>Mensagens</h2>
 <hr/>
+<%= render :partial => 'messages/form', :locals => { :list => @list } %>
+<hr/>
 <div id='messages'>
   <%= render :partial => @list.messages %>
 </div>
 <br/>
-<% remote_form_for Message.new do |f| %>
-  <%= hidden_field_tag 'message[list_id]', @list.id %>
-  <%= f.text_area :body, :rows => 3 %><br/>
-  <%= f.submit 'Enviar' %>
-<% end %>

@@ -22,29 +22,7 @@
 <hr>
 <div id="boxHome">
   <div id="visitarLista" class="boxContentHome">
-    <h2> > Visitar listas</h2>
-    <p><%= site.search_list_text %></p>
-    <% form_tag find_list_path do %>
-      <p>
-        <label for="tipo">- Procurar por</label>
-        <%= select_tag :name_filter, options_for_select([
-          ['Noivo', 'nome_noivo'], 
-          ['Pai do noivo', 'nome_noivo_pai'], 
-          ['Mãe do noivo', 'nome_noivo_mae'], 
-          ['Noiva', 'nome_noiva'], 
-          ['Pai da noiva', 'nome_noiva_pai'], 
-          ['Mãe da noiva', 'nome_noiva_mae'],
-          ['Outros', 'nome_outros']
-        ]) %>
-      </p>
-      <p>
-        <label for="busca">- Nome</label>
-        <input type="text" name="search" class="campoTexto" />
-      </p>
-      <p>
-        <input class="botaoForm" name="acessarLista" type="image" src="/images/btAcessar.gif" title="acessar" onclick="this.form.submit();return false" />
-      </p>
-    <% end %>
+    <%= render :partial => 'lists/find' %>
   </div>
   <% unless logged_in? %>
     <script language="JavaScript">
