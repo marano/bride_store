@@ -1,4 +1,4 @@
-<% migalha_category = @category_filter ? @category_filter.to_s.downcase : "todo o site" %>
+<% migalha_category = @category_filter ? @category_filter.to_s : "todo o site" %>
 <% if current_list %>
   <% migalha_current_list [ link_to('presentes', list_items_path), migalha_category] %>
 <% elsif current_store %>

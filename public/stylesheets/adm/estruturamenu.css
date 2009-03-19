@@ -7,8 +7,8 @@
 
 /* ESTRUTURA DOS LINKS */
 .menu li a {border-left:4px solid;padding:7px 0 0 8px; display:block; font-weight:bold;_height:1%;}
-.menu li.nivelA a {border:0 none; background:url('../img/menu/arrow_close.gif') no-repeat 4px center;; padding-left:18px; padding-right:0; padding-top:7px;}
-.menu li.abertoA a {background-image:url('../img/menu/arrow_open.gif');}
+.menu li.nivelA a {border:0 none; background:url('/images/arrow_close.gif') no-repeat 4px center;; padding-left:18px; padding-right:0; padding-top:7px;}
+.menu li.abertoA a {background-image:url('/images/arrow_open.gif');}
 .menu li.nivelA li a {background-image:none; padding:7px 0 0 20px;border-left:7px solid; font:12px Arial;}
 
 /* FUNCIONAMENTO DO MENU */

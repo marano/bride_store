@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  include SortableTable::App::Controllers::ApplicationController
 
   helper :all # include all helpers, all the time
   helper_method :current_list, :current_store, :site

@@ -48,7 +48,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        save_sucess
+        save_success
         format.html { redirect_to(@category) }
         format.xml  { render :xml => @category, :status => :created, :location => @category }
       else
@@ -66,7 +66,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        save_sucess
+        save_success
         format.html { redirect_to(@category) }
         format.xml  { head :ok }
       else

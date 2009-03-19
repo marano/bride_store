@@ -11,6 +11,8 @@ class Product < ActiveRecord::Base
   
   #composed_of :price, :class_name => 'Money'
   
+  default_scope :order => 'name ASC'
+  
   private
   
   def update_canonical_name

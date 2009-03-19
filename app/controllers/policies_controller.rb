@@ -53,7 +53,7 @@ class PoliciesController < ApplicationController
 
     respond_to do |format|
       if @policy.save
-        save_sucess
+        save_success
         format.html { redirect_to(@policy) }
         format.xml  { render :xml => @policy, :status => :created, :location => @policy }
       else
@@ -70,7 +70,7 @@ class PoliciesController < ApplicationController
 
     respond_to do |format|
       if @policy.update_attributes(params[:policy])
-        save_sucess
+        save_success
         format.html { redirect_to(@policy) }
         format.xml  { head :ok }
       else

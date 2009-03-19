@@ -1,26 +1,31 @@
 <h1>Produtos</h1>
 
+<p><%= image_tag 'adicionar.gif' %> <%= link_to 'Novo Produto', new_product_path %></p>
+
+<p><%= will_paginate @products, :previous_label => '&laquo Anterior', :next_label => 'Próxima &raquo' %></p>
+
 <table>
   <tr>
-    <th>Nome</th>
-    <th>Código</th>
-    <th>Preço</th>
-    <th>Destaque</th>
+    <th></th>
+    <th></th>
+    <%= sortable_table_header :name => "Nome",  :sort => "name" %>
     <th>Categoria</th>
+    <th>Código</th>
+    <%= sortable_table_header :name => "Preço",  :sort => "price" %>
+    <%= sortable_table_header :name => "Destaque",  :sort => "featured" %>
   </tr>
 
 <% for product in @products %>
   <tr>
-    <td><%=h product.name %></td>
-    <td><%=h product.code %></td>
-    <td><%=h product.price %></td>
-    <td><%=h product.featured %></td>
+    <td><%= link_to image_tag('editar.gif'), edit_product_path(product) %></td>
+    <td><%= link_to image_tag('remover.gif'), product, :confirm => 'Tem certeza?', :method => :delete %></td>
+    <td><%= link_to product.name, product %></td>
     <td><%=h product.category %></td>
-    <td><%= link_to 'Exibir', product %></td>
-    <td><%= link_to 'Editar', edit_product_path(product) %></td>
-    <td><%= link_to 'Remover', product, :confirm => 'Tem certeza?', :method => :delete %></td>
+    <td><%=h product.code %></td>
+    <td><%=h number_with_precision product.price %></td>
+    <td><%= mark_if product.featured %></td>    
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'Novo Produto', new_product_path %>
+<%= will_paginate @products, :previous_label => '&laquo Anterior', :next_label => 'Próxima &raquo' %>
