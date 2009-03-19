@@ -1,3 +1,5 @@
+<% head javascript_include_tag(:defaults) %>
+
 <% content_for :content_class do %>listaPresentes<% end %>
 
 <% migalha_current_list 'presentes' %>
@@ -32,25 +34,28 @@
       </tr>
     </thead>
     <tbody>
-      <% for i in current_list.list_items %>
+      <% for li in current_list.list_items %>
         <tr>
-          <td><%= i.product.name %></td>
+          <td><%= li.product.name %></td>
           <td>
             <p>
               <span>Desejada:</span>
-              <% form_for i do |f| %>
-                <%= f.text_field :quantity, :class => 'campoTexto', :style => 'width:30px' %>
+              <% unless li.nil? %>
+                <%= in_place_editor_field li, 'quantity' %>
+              <% end %>
+              <% form_for li do |f| %>
+                <%= f.text_field :quantity, :class => 'campoTexto', :style => 'width:30px' %>                
                 <%= f.submit 'alterar quantidade' %>
               <% end %>
             </p>
             <p>
               <span>Comprada:</span>
-              <%= i.quantity_bought %>
+              <%= li.quantity_bought %>
             </p>
           </td>
-          <td><p>R$ <%= number_with_precision i.product.price, :precision => 2 %></p></td>
-          <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
-          <td><%= link_to 'EXCLUIR', destroy_list_item_path(i.id) , :confirm => 'Tem certeza?' %></td>
+          <td><p>R$ <%= number_with_precision li.product.price, :precision => 2 %></p></td>
+          <td><p>R$ <%=  number_with_precision li.total_price, :precision => 2 %></p></td>
+          <td><%= link_to 'EXCLUIR', destroy_list_item_path(li.id) , :confirm => 'Tem certeza?' %></td>
         </tr>
       <% end %>
     </tbody>
