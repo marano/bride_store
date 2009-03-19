@@ -15,23 +15,6 @@ class UsersController < ApplicationController
     end
   end
   
-  def account_list
-    if logged_in?
-      if current_user.lists.size == 1
-        set_current_list current_user.lists.first
-        if current_list.list_items.empty?
-          redirect_to edit_list_nomes_path
-        else
-          redirect_to list_items_path
-        end
-      else
-        redirect_to new_list_path
-      end
-    else
-      redirect_to new_user_path
-    end
-  end
-  
   def edit
     @user = User.find(params[:id])
   end

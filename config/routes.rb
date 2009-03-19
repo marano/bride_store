@@ -61,6 +61,7 @@ ActionController::Routing::Routes.draw do |map|
   map.account '/account', :controller => 'users', :action => 'account'
   map.account_list '/account', :controller => 'users', :action => 'account_list'
 
+  map.my_list '/my_list', :controller => 'lists', :action => 'my_list'
   map.visit_list '/visit_list', :controller => 'lists', :action => 'visit_list'
   
   map.store '/:adress', :controller => 'lists', :action => 'store'
