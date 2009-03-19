@@ -1,3 +1,4 @@
+<% content_for :content_class do %>faleConosco<% end %>
 <% migalha 'fale conosco' %>
 
 <h1 title="Fale Conosco">Fale Conosco</h1>
@@ -16,8 +17,8 @@
     <input class="campoTexto" name="phone" type="text" />
   </p>
   <p>
-    <label for="mensagem">Mensagem:</label><br/>
-    <textarea name="message" cols='40'></textarea>
+    <label for="mensagem">Mensagem:</label>
+    <textarea class="campoAreaTexto" name="message"></textarea>
   </p>
   <p class="checkNews">
     <%= check_box_tag :newsletter, '1', :checked => true %>

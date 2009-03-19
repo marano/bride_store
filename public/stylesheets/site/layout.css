@@ -18,7 +18,7 @@ hr {height:1px; border:none; clear:both;}
 /*---------------ESPECIFICAÇÕES FORMULÁRIOS---------------*/
 form p label {margin-left:4px;}
 .campoTexto, .campoSelect, select {display:block; height:19px; border:none;}
-.campoAreaTexto {display:block; border: none; height: 150px;}
+.campoAreaTexto {display:block; border: none; height: 100px;}
 #armacao {width:780px; position:absolute; left:50%; margin:0 0 0 -389px;}
 /*---------------RESULT---------------*/
 #result{display:none; position:fixed; float:left; min-width:100px; max-width:600px; left:50%;}
@@ -80,6 +80,7 @@ form p label {margin-left:4px;}
 .faleConosco form p .campoTexto{width: 300px;}
 .faleConosco form p .campoAreaTexto {width:300px; min-width:300px; max-width:300px; height:150px;}
 .faleConosco .botaoForm{float:right;}
+.faleConosco .campoAreaTexto, .faleConosco .campoTexto{width: 200px;}
 /*---------------NOVA CONTA---------------*/
 .criarConta #formCriarConta {width:240px;}
 .criarConta .campoTexto {width:100%;}
