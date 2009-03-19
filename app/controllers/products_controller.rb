@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   before_filter :adm_required, :except => ['find', 'view']
   
-  sortable_attributes :name, :price, :featured, :group => "categories.name"
+  sortable_attributes :name, :price, :featured
 
   def view
     @product = Product.find params[:id]
@@ -59,7 +59,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
-    @products = Product.paginate :page => params[:page], :order => sort_order, :per_page => 30
+    @products = Product.paginate :page => params[:page], :order => params[:sort], :per_page => 30
   end
 
   # GET /products/1

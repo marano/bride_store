@@ -1,7 +1,5 @@
 class Product < ActiveRecord::Base
 
-  default_scope :order => :name
-
   after_create :create_galery
   before_save :update_canonical_name
   
@@ -12,6 +10,8 @@ class Product < ActiveRecord::Base
   has_attached_file :display, :styles => { :original => ['780x780>', 'jpg'] }  
   
   #composed_of :price, :class_name => 'Money'
+  
+  default_scope :order => 'name ASC'
   
   private
   
