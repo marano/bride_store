@@ -2,7 +2,7 @@
 
 <% unless featured_testimonial.nil? %>
   <div id="depoimentoTopo">
-    <%= render :partial => featured_testimonial %>
+    <%= render :partial => 'testimonials/featured_testimonial', :object => featured_testimonial %>
     <%= link_to 'Veja todos os depoimentos >', view_testimonials_path %>
   </div>
 <% end %>

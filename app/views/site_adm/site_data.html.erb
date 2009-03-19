@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag :fckeditor %>
+<% end %>
+
 <h1>Site</h1>
 <br />
 <% form_for @site do |f| %>
@@ -5,35 +9,35 @@
   <%= hidden_field_tag :edit_what, 'site_data' %>
   <p>
     <%= f.label :footer_text, 'Rodapé' %><br />
-    <%= f.text_area :footer_text %>
+    <%= fckeditor_textarea(:site, :footer_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <p>
     <%= f.label :create_account_text, "Texto \"Crie sua conta\"" %><br />
-    <%= f.text_area :create_account_text %>
+    <%= fckeditor_textarea(:site, :create_account_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <p>
     <%= f.label :welcome_text, "Texto \"Boas Vindas\"" %><br />
-    <%= f.text_area :welcome_text %>
+    <%= fckeditor_textarea(:site, :welcome_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <p>
     <%= f.label :names_text, "Texto \"Noivos\"" %><br />
-    <%= f.text_area :names_text %>
+    <%= fckeditor_textarea(:site, :names_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <p>
     <%= f.label :personal_space_text, "Texto \"Espaço pessoal\"" %><br />
+    <%= fckeditor_textarea(:site, :personal_space_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
-    <%= f.text_area :personal_space_text %>
   <p>
     <%= f.label :empty_list_text, "Texto \"Lista vazia de presentes\"" %><br />
-    <%= f.text_area :empty_list_text %>
+    <%= fckeditor_textarea(:site, :empty_list_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <p>
     <%= f.label :spam_text, "Texto \"Divulgação\"" %><br />
-    <%= f.text_area :spam_text %>
+    <%= fckeditor_textarea(:site, :spam_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <p>
     <%= f.label :message_text, "Texto \"Mensagens\"" %><br />
-    <%= f.text_area :message_text %>
+    <%= fckeditor_textarea(:site, :message_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <br />
   <p>

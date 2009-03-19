@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag :fckeditor %>
+<% end %>
+
 <% form_for @spam, :html => { :multipart => true } do |f| %>
   <p>    
     <label for="tituloDivulgacao">Escolha o título da mensagem de divulgação da sua lista</label>    
@@ -13,7 +17,7 @@
   </p>
   <p>
     <label for="mensagemLista">Escreva a mensagem de divulgação da sua lista, convidando seus amigos para participar</label>
-    <%= f.text_area :body %>
+    <%= fckeditor_textarea(:spam, :body, :toolbarSet => 'Basic', :width => '100%', :height => '300px') %>
   </p>
   <p>
     <label for="destinatariosMensagem">Destinatários da sua mensagem (separe os endereços de email com vírgulas)</label>

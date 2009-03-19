@@ -5,6 +5,12 @@ class ListItemsController < ApplicationController
   # GET /list_items
   # GET /list_items.xml
   def index
+    @list = current_list
+  end
+  
+  def cart
+    @list = current_store
+    render :action => 'index'
   end
 
   # GET /list_items/1

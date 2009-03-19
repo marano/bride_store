@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag :fckeditor %>
+<% end %>
+
 <h1>Nossa Loja</h1>
 <br/>
 <% form_for @site do |f| %>
@@ -10,7 +14,7 @@
   <br/>
   <p>
     <%= f.label :showroom_text, 'Texto' %><br />
-    <%= f.text_area :showroom_text %>
+    <%= fckeditor_textarea(:site, :showroom_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <br/>
   <p>

@@ -5,6 +5,9 @@ ActionController::Routing::Routes.draw do |map|
   map.we '/we', :controller => 'site', :action => 'we'
   map.showroom '/showroom', :controller => 'site', :action => 'showroom'
   map.adm '/adm', :controller => 'adm', :action => 'home'
+  
+  map.fale_conosco '/fale_conosco', :controller => 'fale_conosco', :action => 'new'
+  map.send_fale_conosco '/fale_conosco/send', :controller => 'fale_conosco', :action => 'enviar'
     
   map.edit_home '/adm/home', :controller => 'site_adm', :action => 'home'
   map.edit_we '/adm/we', :controller => 'site_adm', :action => 'we'
@@ -14,12 +17,10 @@ ActionController::Routing::Routes.draw do |map|
   map.find_list '/lists/find', :controller => 'lists', :action => 'find'
   map.edit_list_nomes '/list/edit_nomes', :controller => 'lists', :action => 'edit_nomes'
   map.edit_list_personal_space '/list/edit_personal_space', :controller => 'lists', :action => 'edit_personal_space'
-  map.select_list '/list/:id/select', :controller => 'lists', :action => 'select'
+  map.select_list '/list/:id/select', :controller => 'lists', :action => 'select'  
+  map.cart '/cart', :controller => 'lists', :action => 'cart'
   
   map.destroy_list_item '/list_item/:id/destroy', :controller => 'list_items', :action => 'destroy'
-  
-  map.fale_conosco '/fale_conosco', :controller => 'fale_conosco', :action => 'new'
-  map.send_fale_conosco '/fale_conosco/send', :controller => 'fale_conosco', :action => 'enviar'
   
   map.destroy_galery_photo '/galery_photo/:id/destroy', :controller => 'galery_photos', :action => 'destroy'
   
@@ -59,7 +60,7 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
   map.account '/account', :controller => 'users', :action => 'account'
   map.account_list '/account', :controller => 'users', :action => 'account_list'
-
+  
   map.store '/:adress', :controller => 'lists', :action => 'store'
 
   # The priority is based upon order of creation: first created -> highest priority.

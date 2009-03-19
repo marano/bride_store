@@ -35,13 +35,10 @@ class ListsController < ApplicationController
     end
   end
 
-  def select
+  def select  
+    set_current_store nil
     set_current_list List.find params[:id]
-    if current_list.list_items.empty?
-      redirect_to edit_list_nomes_path
-    else
-      redirect_to list_items_path
-    end
+    redirect_to personal_space_list_path(current_list)    
   end
 
   def find
@@ -53,9 +50,10 @@ class ListsController < ApplicationController
 
     search = params[:search].canonical
     @list = List.first :conditions => "#{params[:name_filter]}_busca LIKE '#{search}'"
-    if list
-      redirect_to '/list_name'
+    if @list
+      redirect_to store_path(@list.adress)
     else
+      flash[:error] = "Não foi possível localizar a lista de #{search}"
       redirect_to home_path
     end
   end

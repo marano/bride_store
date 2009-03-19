@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag :fckeditor %>
+<% end %>
+
 <h1>Home</h1>
 <br/>
 <% form_for @site do |f| %>
@@ -10,17 +14,17 @@
   <br/>
   <p>
     <%= f.label :home_text, 'Texto' %><br />
-    <%= f.text_area :home_text %>
+    <%= fckeditor_textarea(:site, :home_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <br/>
   <p>
     <%= f.label :login_text, 'Texto Login' %><br />
-    <%= f.text_area :login_text %>
+    <%= fckeditor_textarea(:site, :login_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <br/>
   <p>
     <%= f.label :search_list_text, "Texto \"buscar lista\"" %><br />
-    <%= f.text_area :search_list_text %>
+    <%= fckeditor_textarea(:site, :search_list_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <br/>
   <p>

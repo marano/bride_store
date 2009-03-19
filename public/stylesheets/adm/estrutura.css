@@ -15,6 +15,9 @@ body {
     font-family:arial;
     font-size:12px;
 }
+p {
+  padding: 10px 0 10px 0;
+}
 img {
     border: none;
 }
