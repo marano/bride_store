@@ -47,7 +47,12 @@ span{font-size:11px;}
 #listaProdutos h3 {font-size:20px; }
 #listaProdutos h3 span {font-size:14px;}
 #listaProdutos a {font-size:14px; text-decoration:underline;}
-/**/
+/*---------------PAGINAÇÃO---------------*/
+#listaProdutos .pagination {text-align:center; font-size: 14px;}
+#listaProdutos .pagination * {font-size: 14px;}
+#listaProdutos .pagination a {text-decoration:underline;}
+#listaProdutos .pagination .current {font-weight:bold;}
+/*---------------LISTA DE PRESENTES---------------*/
 .listaPresentes .infoLista{text-align:center;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent form label {font-size:11px;}

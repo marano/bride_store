@@ -118,11 +118,8 @@ form p label {margin-left:4px;}
 #listaProdutos .saibaMais {float:right; position:relative; width:118px; height:20px; margin:4px;}
 #listaProdutos .saibaMais span {background:url(/images/btSaibaMaisContent.gif) no-repeat; position:absolute; width:118px; height:20px;}
 /*---------------PAGINAÇÃO---------------*/
-#listaProdutos .pagination {text-align:center; font-size: 14px;}
-#listaProdutos .pagination * {font-size: 14px; margin:0 3px 0 3px;}
-#listaProdutos .pagination a {text-decoration:underline; float:none; color:#373125;}
-#listaProdutos .pagination .current {font-weight:bold;}
-
+#listaProdutos .pagination * {margin:0 3px 0 3px;}
+#listaProdutos .pagination a {float:none;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent {float:left; padding:20px; width:177px;}
 #sideContent form h3{width:100px; height:17px; position:relative; padding:0; margin:0 0 10px 0;}
