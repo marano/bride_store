@@ -44,7 +44,7 @@ hr {color:#5e5548; background:#5e5548;}
 #navegacaoProdutos li {color:#373125;}
 #navegacaoProdutos li a {color:#373125;}
 /*---------------LISTA PRODUTOS---------------*/
-#listaProdutos table tr td {border-bottom-color: #5e5548;}
+#listaProdutos ul li div h2 span {color:#ffffff;}
 #listaProdutos h3 span {color:#ffffff;}
 #listaProdutos a {color:#373125;}
 /*---------------SIDE CONTENT---------------*/

@@ -36,10 +36,12 @@
         <% if p.photo.file? %>
           <%= link_to image_tag(p.photo.url(:thumb)), view_product_path(p), :class => 'capaProduto', :style => 'padding-bottom: 10px;' %></a>
         <% end %>
-        <h2><%= p.name %> <br/><span>(ref: <%= p.code %>)</span></h2>
-        <p><%= p.description %></p>
-        <h2>R$ <%= number_with_precision p.price, :precision => 2 %></h2>
-        <%= link_to '<span></span>SAIBA MAIS >', view_product_path(p), :class => 'saibaMais', :title => 'saiba mais' %>
+        <div>
+          <h2><%= p.name %> <br/><span>(ref: <%= p.code %>)</span></h2>
+          <p><%= p.description %></p>
+	        <%= link_to '<span></span>SAIBA MAIS >', view_product_path(p), :class => 'saibaMais', :title => 'saiba mais' %>
+          <h2>R$ <%= number_with_precision p.price, :precision => 2 %></h2>
+	      </div>
       </li>
       <hr/>
     <% end %>

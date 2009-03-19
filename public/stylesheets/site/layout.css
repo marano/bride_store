@@ -15,6 +15,7 @@ Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 * html #topo {height:1%;}
 /*fim da corrção*/
 hr {height:1px; border:none; clear:both;}
+.base {clear:both;}
 /*---------------ESPECIFICAÇÕES FORMULÁRIOS---------------*/
 form p label {margin-left:4px;}
 .campoTexto, .campoSelect, select {display:block; height:19px; border:none;}
@@ -110,13 +111,17 @@ form p label {margin-left:4px;}
 #listaProdutos .capaProduto {float:left; margin-right:20px;}
 #listaProdutos p {padding: 0; margin-top:10px;}
 #listaProdutos ul {width:100%;}
-#listaProdutos ul li {padding:15px;}
-#listaProdutos h3 {margin:0; }
-#listaProdutos .saibaMais {float:right; position:relative; width:118px; height:20px;}
+#listaProdutos ul li div {float:left; width:305px; margin:0 0 10px 0;}
+#listaProdutos ul li div h2 {margin:0;}
+#listaProdutos h3 {margin:0;}
+#listaProdutos hr {margin: 20px 0 20px 0;}
+#listaProdutos .saibaMais {float:right; position:relative; width:118px; height:20px; margin:4px;}
 #listaProdutos .saibaMais span {background:url(/images/btSaibaMaisContent.gif) no-repeat; position:absolute; width:118px; height:20px;}
 /*---------------PAGINAÇÃO---------------*/
-#listaProdutos .pagelinks {height:40px; text-align:center; }
-#listaProdutos .pagelinks a { font-size: 12px; text-align:center; text-decoration:none; float:none; color:#373125;}
+#listaProdutos .pagination {text-align:center; font-size: 14px;}
+#listaProdutos .pagination * {font-size: 14px; margin:0 3px 0 3px;}
+#listaProdutos .pagination a {text-decoration:underline; float:none; color:#373125;}
+#listaProdutos .pagination .current {font-weight:bold;}
 
 /*---------------SIDE CONTENT---------------*/
 #sideContent {float:left; padding:20px; width:177px;}
@@ -135,7 +140,6 @@ form p label {margin-left:4px;}
 #rodape ul {margin-left: 50px; text-align:left;}
 /*---------------BORDAS---------------*/
 #content, #destaque, #sideContent, #rodape{border-top-style: solid; border-top-width: 1px;}
-#listaProdutos table tr td {border-style:solid; border-top-width:0; border-right-width:0; border-bottom-width:1px; border-left-width:0;}
 #result{border-bottom-style:solid; border-bottom-width:1px; border-right-style:solid; border-right-width:1px;}
 /*---------------GALERIAS MOLDURA---------------*/
 #thumbInstitucional li a img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0; }
