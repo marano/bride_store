@@ -39,16 +39,29 @@ window.addEvent('domready', function(){
     <p><%= @product.description %></p>
     <h2>R$ <%= number_with_precision @product.price, :precision => 2 %></h2>
     <hr />
+    <!-- Lista de presentes -->
     <% unless current_list.nil? %>
       <% form_for ListItem.new do |f| %>
         <%= hidden_field_tag 'list_item[product_id]', @product.id  %>
         <%= f.label :quantity, 'Quantidade' %>
         <%= text_field_tag 'list_item[quantity]', '1', :class => 'campoTexto' %>
-        <input type="image" title="adicionar à minha lista de presentes" />
-        <hr />
-        <%= link_to '<span></span>ver minha lista de presentes', list_items_path %>
-        <hr />
+        <input type="image" title="adicionar à minha lista de presentes" src="/images/btAddALista.gif" />
       <% end %>
+      <hr />
+      <%= link_to '<span></span>ver minha lista de presentes', list_items_path %>
+      <hr />      
+    <% end %>
+    <!-- Carrinho de compra -->
+    <% unless current_list.nil? %>
+      <% form_for ListItem.new do |f| %>
+        <%= hidden_field_tag 'list_item[product_id]', @product.id  %>
+        <%= f.label :quantity, 'Quantidade' %>
+        <%= text_field_tag 'list_item[quantity]', '1', :class => 'campoTexto' %>
+        <input type="image" title="adicionar à minha lista de presentes" src="/images/btAddALista.gif" />
+      <% end %>
+      <hr />
+      <%= link_to '<span></span>ver minha lista de presentes', list_items_path %>
+      <hr />      
     <% end %>
   </div>
 </div>
