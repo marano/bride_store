@@ -37,9 +37,10 @@ class ListItemsController < ApplicationController
 
   # POST /list_items
   # POST /list_items.xml
-  def create
-    @list_item = ListItem.new(params[:list_item])
-    @list_item.list = current_list
+  def create    
+    @list_item = current_list.list_items.build(params[:list_item])
+    
+
     if @list_item.save
       flash[:notice] = 'Produto adicionado.'
       redirect_to(list_items_path)

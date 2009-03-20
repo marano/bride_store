@@ -4,7 +4,7 @@
 	position: absolute;
 	left: 0;
 	width:100%;
-	background-color: #000; /* set the Milkbox overlay color // opacity: see the js options */
+	background-color: #373125; /* set the Milkbox overlay color // opacity: see the js options */
 	z-index:100;
 	cursor: pointer;
 }
@@ -16,8 +16,11 @@
 	overflow:hidden;
 	left: 50%;
 	top:10%;/* overwritten in the js options to properly position the milkbox when activated in a scrolled window */
-	background-color: #fff;/* set the Milkbox background color */
-	border: 5px solid #fff;/* set the Milkbox border */
+	background-color: #ffffff;/* set the Milkbox background color */
+	border-left:0;
+	border-top:0;
+	border-right:1px #000000 solid;
+	border-bottom:1px #000000 solid;
 	margin:0; padding:5px;/* set the Milkbox padding */
 }
 
@@ -47,34 +50,35 @@
 #mbNavigation{
 	float:right;
 	width:27px;
-	padding-top:3px;
+	padding-top:3px 0 0 10px;
 	border-left:1px solid #9c9c9c;/* set nav border */
 }
 
 
 #mbCount{ 
-	width:55px; 
+	width:70px; 
 	overflow:hidden;
-	padding-top:1px;
+	padding:5px 0 0 17px;
 	float:right;
 	text-align:right;
-	font-size:9px; /* count font size */
+	font-size:10px; /* count font size */
 }
 
 #mbCloseLink, #mbPrevLink, #mbNextLink, #mbPlayPause{
 	outline:none;
 	display:block;
 	float:right;
-	height:19px;
+	height:20px;
 	cursor: pointer;
+  padding: 0 5px 0 5px;
 }
 
 
-#mbPrevLink, #mbNextLink{ width:15px; }
+#mbPrevLink, #mbNextLink{ width:17px; }
 #mbPrevLink{ background: transparent url(prev.gif) no-repeat; }/* IMAGE: prev */
 #mbNextLink{ background: transparent url(next.gif) no-repeat; }/* IMAGE: next */
 
-#mbPlayPause{ width:13px; }
+#mbPlayPause{ width:15px; }
 #mbPlayPause{ background: transparent url(play-pause.gif) no-repeat; }/* IMAGE: prev */
 
 
@@ -82,7 +86,7 @@
 a#mbPrevLink:hover,a#mbNextLink:hover,a#mbCloseLink:hover,a#mbPlayPause:hover { background-position: 0 -22px; }
 
 #mbCloseLink {
-	width:17px;
+	width:20px;
 	background: transparent url(close.gif) no-repeat;/* IMAGE: close */
 }
 

@@ -15,6 +15,15 @@ class Product < ActiveRecord::Base
   
   private
   
+  def add_list_item(product, quantity)
+    
+    list_items.create(:product => product, :quantity => quantity)
+  end
+  
+  def list_item_by_product(product)
+    list_items.first(:conditions => { :product_id => product.id })
+  end
+  
   def update_canonical_name
     write_attribute :canonical_name, name.canonical
   end
