@@ -99,6 +99,8 @@ form p label {margin-left:4px;}
 /*---------------EDITAR ESPAÇO PESSOAL---------------*/
 .espacoPessoal .campoTexto {width:240px;}
 .espacoPessoal form .botaoForm {float:right;}
+/*---------------ESPAÇO PESSOAL---------------*/
+.personalSpace .fotoCapa {display:block; margin-bottom: 10px;}
 /*---------------EDITAR DIVULGAÇÃO---------------*/
 .editarDivulgacao form {width:300px;}
 .editarDivulgacao .campoTexto, .editarDivulgacao .campoAreaTexto {width:100%;}
@@ -166,6 +168,7 @@ form p label {margin-left:4px;}
 #listaProdutos .capaProduto img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0;}
 #listaProdutos .capaProduto img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0;}
 .produtoView ul li a img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0;}
+.personalSpace ul li img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0;}
 /*---------------LISTAS---------------*/
 .listaHorizontal, .listaVertical {margin:0; padding:0; list-style:none; display:block;}
 .listaHorizontal li{display:inline;}
