@@ -5,28 +5,29 @@
 <h1>Divulgação da Lista</h1>
 
 <p><%= site.spam_text %></p>
-<h2><%= link_to 'Criar nova divulgação >>', new_spam_path %></h2>
+
+<h1><%= link_to 'Criar nova divulgação >>', new_spam_path %></h1>
+
 <h2>Divulgações salvas</h2>
+
 <% for s in current_list.spams %>
   <% next if s.sent %>
   <ul class="listaHorizontal listaDivulgacao">
-    <li class="titleDivulgacao"><%= link_to "- #{s.title} - #{s.created_at}", s %></li>
-    <li>-</li>
-    <li><%= link_to 'EDITAR', edit_spam_path(s) %></li>
-    <li>|</li>
-    <li><%= link_to 'VISUALIZAR', s %></li>
-    <li>|</li>
-    <li><%= link_to 'EXCLUIR', s, :method => :delete, :confirm => 'Tem certeza?' %></li>
+    <li><%= link_to 'editar', edit_spam_path(s) %></li>
+    <li></li>
+    <li><%= link_to 'visualizar', s %></li>
+    <li></li>
+    <li><%= link_to 'excluir', s, :method => :delete, :confirm => 'Tem certeza?' %></li>
+    <li></li>
+    <li class="titleDivulgacao"><%= s.title %> - <%= time_ago_in_words s.created_at %></li>
   </ul>
 <% end %>
 <h2>Divulgações enviadas</h2>
 <% for s in current_list.spams %>
   <% next unless s.sent %>
   <ul class="listaHorizontal listaDivulgacao">
-    <li class="titleDivulgacao"><%= link_to "- #{s.title} - #{s.created_at}", s %></li>
-    <li>-</li>
-    <li><%= link_to 'VISUALIZAR', s %></li>
-    <li>|</li>
-    <li><%= link_to 'EXCLUIR', s, :method => :delete, :confirm => 'Tem certeza?' %></li>
+    <li><%= link_to 'visualizar', s %></li>
+    <li><%= link_to 'excluir', s, :method => :delete, :confirm => 'Tem certeza?' %></li>
+    <li class="titleDivulgacao"><%= s.title %> - <%= time_ago_in_words s.created_at %></li>
   </ul>
 <% end %>
