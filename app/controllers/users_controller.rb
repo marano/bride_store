@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
-  before_filter :adm_required, :except => ['new', 'create', 'activate', 'account', 'account_list' ]
+  before_filter :adm_required, :except => ['new', 'create', 'update', 'activate', 'account', 'account_list' ]
+  before_filter :login_required, :only => ['update']
 
   def account
     if logged_in?

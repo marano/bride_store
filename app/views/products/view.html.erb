@@ -13,13 +13,15 @@ window.addEvent('domready', function(){
 });
 </script>
 
-<% migalha [link_to(@product.category.name.downcase, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}), @product.name.downcase] %>
+<% migalha_current_list [ link_to(@product.category.name, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}), @product.name] %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
-<% content_for :content_class do %>produtoView<% end %>
 <%= render :partial => 'layouts/store_menu_panel' %>
 
+<% content_for :content_class do %>produtoView<% end %>
+
 <h1><%= @product.name %></h1>
+
 <div>
   <% unless @product.galery.galery_photos.empty? %>
     <ul class="listaHorizontal">
