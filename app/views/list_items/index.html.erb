@@ -32,7 +32,7 @@
     <tbody>
       <% for i in current_list.list_items %>
         <tr>
-          <td><%= i.product.name %></td>
+          <td><%= link_to i.product.name, view_product_path(i.product) %></td>
           <td>
             <p>
               <span>Desejada:</span>
