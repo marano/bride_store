@@ -25,8 +25,8 @@ class ListsController < ApplicationController
   def store
     @list = List.first(:conditions => { :adress => params[:adress] })
     if @list.nil?
-      redirect_to :back
-      flash[:error] = 'Não foi possível localizar a loja!'
+      redirect_to root_path
+      flash[:error] = "Não foi possível localizar a loja #{params[:adress]}."
     else
       if logged_in?
         if @list.user == current_user
@@ -114,20 +114,24 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
 
     params[:list].delete :photo if params[:list][:photo].blank?
-
+    
     if @list.update_attributes(params[:list])
       flash[:notice] = 'Lista salva com sucesso!'
-
+      
       unless params[:edit_what].blank?
         case params[:edit_what]
         when 'nomes'
           redirect_to edit_list_personal_space_path
         when 'personal_space'
-          if(@list.list_items.empty?)
-            redirect_to list_items_path
+          if params[:list][:photo]
+            redirect_to edit_list_personal_space_path
           else
-            redirect_to personal_space_list_path(@list)
-          end
+            if(@list.list_items.empty?)
+              redirect_to list_items_path
+            else
+              redirect_to personal_space_list_path(@list)
+            end
+          end          
         end
       else
         redirect_to(@list)

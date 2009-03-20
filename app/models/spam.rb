@@ -3,6 +3,8 @@ class Spam < ActiveRecord::Base
   belongs_to :list
   has_attached_file :photo, :styles => { :original => '512x384>' }
   
+  default_scope :order => 'created_at DESC'
+  
   def enviar
     SpamMailer.deliver_spam(self)
     sent_spam = Spam.new

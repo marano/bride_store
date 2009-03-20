@@ -3,6 +3,8 @@ class Testimonial < ActiveRecord::Base
   before_create :set_home_text
   belongs_to :user
   
+  default_scope :order => 'created_at DESC'
+  
   def self.random_featured
     featured_count = count(:conditions => { :featured => true })
     first(:offset => rand(featured_count) , :conditions => { :featured => true })

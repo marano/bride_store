@@ -13,18 +13,21 @@ window.addEvent('domready', function(){
 });
 </script>
 
-<% migalha [link_to(@product.category.name.downcase, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}), @product.name.downcase] %>
+<% migalha_current_list [ link_to(@product.category.name, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}), @product.name] %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
-<% content_for :content_class do %>produtoView<% end %>
 <%= render :partial => 'layouts/store_menu_panel' %>
 
-<% unless current_list.nil? %>
-  <h1>Presentes</h1>
-<% end %>
+<% content_for :content_class do %>produtoView<% end %>
 
+<<<<<<< HEAD:app/views/products/view.html.erb
 <h2><%= @product.name %></h2>
 <div class="product">
+=======
+<h1><%= @product.name %></h1>
+
+<div>
+>>>>>>> fef80dcbb0541b3ab86ca938c07ebfa15fa0af23:app/views/products/view.html.erb
   <% unless @product.galery.galery_photos.empty? %>
     <ul class="listaHorizontal">
       <% if @product.photo.file? %>

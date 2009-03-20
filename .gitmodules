@@ -1,3 +1,6 @@
+<<<<<<< HEAD:.gitmodules
 [submodule "rails"]
 	path = vendor/rails
 	url = git://github.com/rails/rails.git
+=======
+>>>>>>> fef80dcbb0541b3ab86ca938c07ebfa15fa0af23:.gitmodules
