@@ -25,8 +25,8 @@ class ListsController < ApplicationController
   def store
     @list = List.first(:conditions => { :adress => params[:adress] })
     if @list.nil?
-      redirect_to :back
-      flash[:error] = 'Não foi possível localizar a loja!'
+      redirect_to root_path
+      flash[:error] = "Não foi possível localizar a loja #{params[:adress]}."
     else
       if logged_in?
         if @list.user == current_user

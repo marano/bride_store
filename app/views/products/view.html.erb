@@ -19,10 +19,6 @@ window.addEvent('domready', function(){
 <% content_for :content_class do %>produtoView<% end %>
 <%= render :partial => 'layouts/store_menu_panel' %>
 
-<% unless current_list.nil? %>
-  <h1>Presentes</h1>
-<% end %>
-
 <h1><%= @product.name %></h1>
 <div>
   <% unless @product.galery.galery_photos.empty? %>
