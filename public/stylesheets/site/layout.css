@@ -47,9 +47,11 @@ form p label {margin-left:4px;}
 #destaque a{width:119px; height:16px; float:right;}
 #destaque a span{position:absolute; width:119px; height:16px;}
 #destaque h3, #destaque a {margin:8px 0;}
-/*---------------MENU DE AÇÕES---------------*/
+/*---------------MENU PAINEL---------------*/
 #menuPainel p {float:left;}
 #menuPainel ul {float:right;}
+/*---------------MENU LISTA---------------*/
+
 /*---------------MENU DE AÇÕES---------------*/
 #menuAcoes {padding-bottom:5px; text-align:center;}
 #menuAcoes li a {padding: 0 7px 0 7px}
@@ -134,7 +136,13 @@ form p label {margin-left:4px;}
 .produtoView .product .verLista {width:161px; height:40px; display:block; margin-bottom:15px; padding:0; }
 .produtoView .product .verLista span{position:absolute; width:161px; height:40px;}
 .base {display:block;}
-
+/*---------------LISTA DE PRESENTES---------------*/
+.listaPresentes table {text-align:center; border-collapse: collapse;}
+.listaPresentes table col, .listaPresentes table tr {border: 1px solid;}
+.listaPresentes table col {width: 200px;}
+.listaPresentes table tr td {text-align:left; vertical-align:top;}
+.listaPresentes .campoTexto {display:inline; width: 20px;}
+.listaPresentes p {margin:0; padding: 0;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent {float:left; padding:20px; width:177px;}
 #sideContent form h3{width:100px; height:17px; position:relative; padding:0; margin:0 0 10px 0;}
