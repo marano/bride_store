@@ -6,4 +6,5 @@ class AdmController < ApplicationController
   
   def home
   end
+  
 end
