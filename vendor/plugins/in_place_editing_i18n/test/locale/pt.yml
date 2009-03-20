@@ -1,7 +1,0 @@
-pt:
-  in_place_editing:
-    text:
-      cancel: "cancelar"
-      loading: "carregando..."
-      save: "salvar"
-      saving: "salvando..."
