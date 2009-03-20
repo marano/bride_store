@@ -1,6 +1,6 @@
 <% unless current_list.nil? %>
   <h2><%= current_list.name %></h2>
-  <ul class="listaHorizontal">
+  <ul class="listaHorizontal menuLista">
     <li><%= link_to_unless_current 'noivos', edit_list_nomes_path %></li>
     <li>|</li>
     <li><%= link_to_unless_current 'espaco pessoal', edit_list_personal_space_path %></li>

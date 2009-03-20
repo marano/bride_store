@@ -28,6 +28,8 @@ span{font-size:11px;}
 #menuInstitucional ul li a:hover {text-decoration:underline;}
 /*---------------DESTAQUE---------------*/
 #destaque h3{font-size:14px; font-weight:normal;}
+/*---------------MENU LISTA---------------*/
+.menuLista li {font-size: 14px; font-weight: bold;}
 /*---------------MENU DE AÇÕES---------------*/
 #menuAcoes * {font-size:12px;}
 #menuAcoes li a {text-decoration:underline;}
@@ -52,8 +54,13 @@ span{font-size:11px;}
 #listaProdutos .pagination * {font-size: 14px;}
 #listaProdutos .pagination a {text-decoration:underline;}
 #listaProdutos .pagination .current {font-weight:bold;}
+/*---------------PRODUTO VISUALIZAR---------------*/
+.produtoView h2 {font-size:25px; font-family:Arial, helvetica, serif; font-weight:normal; text-decoration:none; font-style: normal;}
+.descricaoProduto label {font-size: 12px; font-weight:normal; text-decoration: underline;}
 /*---------------LISTA DE PRESENTES---------------*/
 .listaPresentes .infoLista{text-align:center;}
+.listaPresentes table{font-size:12px;}
+.listaPresentes table th {font-size:14px;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent form label {font-size:11px;}
 #sideContent #sideProdutos ul a {font-size:14px; line-height:30px; text-decoration:underline;}

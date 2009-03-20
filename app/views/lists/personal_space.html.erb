@@ -4,7 +4,7 @@
   <%= javascript_include_tag 'milkbox/milkbox' %>
   <%= stylesheet_link_tag 'milkbox/milkbox' %>
 <% end  %>
-
+<% content_for :content_class do %>personalSpace<% end %>
 <script>
 window.addEvent('domready', function(){
 	milkbox.setAutoPlay([
@@ -25,14 +25,11 @@ window.addEvent('domready', function(){
 
 <h1><%= @list.title %></h1>
 
-<% if @list.photo.file? %>
-  <%= image_tag @list.photo.url %>
-  <br/>
-  <br/>  
-<% end %>
-
 <% unless @list.galery.galery_photos.empty? %>
   <ul class='listaHorizontal'>
+    <% if @list.photo.file? %>
+      <li class="fotoCapa"><%= image_tag @list.photo.url %></li>
+    <% end %>
     <% for p in @list.galery.galery_photos %>
       <li><%= link_to image_tag(p.url(:thumb)), p.url, :rel => 'milkbox[gal]' %></li> 
     <% end %>

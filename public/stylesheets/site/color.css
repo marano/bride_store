@@ -32,6 +32,8 @@ hr {color:#5e5548; background:#5e5548;}
 #destaque {background: #756b59 url(/images/starDestaque.gif) no-repeat 13px center;}
 #destaque h3{color:#ffffff;}
 #destaque a span{background: url(/images/btSaibaMais.gif) no-repeat;}
+/*---------------MENU LISTA---------------*/
+.menuLista li {color:#373125;}
 /*---------------MENU DE AÇÕES---------------*/
 #menuAcoes * {color:#ffffff;}
 /*---------------BREAD CRUMB---------------*/
@@ -49,6 +51,13 @@ hr {color:#5e5548; background:#5e5548;}
 #listaProdutos a {color:#373125;}
 /*---------------PAGINAÇÃO---------------*/
 #listaProdutos .pagination a {text-decoration:underline; float:none; color:#373125;}
+/*---------------PRODUTO VISUALIZAR---------------*/
+.descricaoProduto label {color:#373125;}
+.produtoView .product .verCarrinho span{background: url(/images/btVerCarrinho.gif) no-repeat;}
+.produtoView .product .verLista span{background: url(/images/btVerListaPresentes.gif) no-repeat;}
+/*---------------LISTA DE PRESENTES---------------*/
+.listaPresentes .infoLista{text-align:center;}
+.listaPresentes table{color:#373125;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent form h3 span{background: url(/images/titleBusca.gif) no-repeat;}
 #sideContent #sideProdutos h3 span{background: url(/images/titleSideMenu.gif) no-repeat;}
@@ -63,3 +72,4 @@ hr {color:#5e5548; background:#5e5548;}
 #thumbInstitucional li a img {background-color:#ffffff; border-color: #000000;}
 #listaProdutos .capaProduto img {background-color:#ffffff; border-color: #000000;}
 .produtoView ul li a img {background-color:#ffffff; border-color: #000000;}
+.personalSpace ul li img {background-color:#ffffff; border-color: #000000;}
