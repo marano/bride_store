@@ -16,6 +16,7 @@ window.addEvent('domready', function(){
 <% migalha [link_to(@product.category.name.downcase, {:controller => 'products', :action => 'find', :category_id_filter => @product.category.id}), @product.name.downcase] %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
+<% content_for :content_class do %>produtoView<% end %>
 <%= render :partial => 'layouts/store_menu_panel' %>
 
 <% unless current_list.nil? %>

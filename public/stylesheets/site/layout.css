@@ -120,6 +120,12 @@ form p label {margin-left:4px;}
 /*---------------PAGINAÇÃO---------------*/
 #listaProdutos .pagination * {margin:0 3px 0 3px;}
 #listaProdutos .pagination a {float:none;}
+/*---------------PRODUTO VISUALIZAR---------------*/
+.produtoView .fotoCapa {display:block;}
+.produtoView ul {width:305px;}
+.produtoView ul li {float:left; margin:4px;}
+
+.descricaoProduto {width:150px;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent {float:left; padding:20px; width:177px;}
 #sideContent form h3{width:100px; height:17px; position:relative; padding:0; margin:0 0 10px 0;}
@@ -142,6 +148,7 @@ form p label {margin-left:4px;}
 #thumbInstitucional li a img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0; }
 #listaProdutos .capaProduto img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0;}
 #listaProdutos .capaProduto img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0;}
+.produtoView ul li a img {padding:5px; border-style:solid; border-top-width:0; border-right-width:1px; border-bottom-width:1px; border-left-width:0;}
 /*---------------LISTAS---------------*/
 .listaHorizontal, .listaVertical {margin:0; padding:0; list-style:none; display:block;}
 .listaHorizontal li{display:inline;}
