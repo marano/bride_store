@@ -37,16 +37,12 @@ class ListItemsController < ApplicationController
 
   # POST /list_items
   # POST /list_items.xml
-  def create    
-    @list_item = current_list.list_items.build(params[:list_item])
+  def create
+    product = Product.find(params[:list_item][:product_id])
+    current_list.add_list_item(product, params[:list_item][:quantity])
     
-
-    if @list_item.save
-      flash[:notice] = 'Produto adicionado.'
-      redirect_to(list_items_path)
-    else
-      render :action => "new"
-    end
+    flash[:notice] = 'Produto adicionado.'
+    redirect_to(list_items_path)
   end
 
   # PUT /list_items/1

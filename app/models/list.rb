@@ -13,6 +13,19 @@ class List < ActiveRecord::Base
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
 
+  def add_list_item(product, quantity)    
+    list_item_old = list_item_by_product(product)
+    if list_item_old.nil?
+      list_items.create(:product => product, :quantity => quantity)
+    else
+      list_item_old.update_attributes(:quantity => quantity)
+    end
+  end
+  
+  def list_item_by_product(product)
+    list_items.first(:conditions => { :product_id => product.id })
+  end
+
   def categories
     ids = []
     for p in products
