@@ -4,7 +4,7 @@
 
 <%= render :partial => 'layouts/list_menu_panel' %>
 
-<h1>Noivos</h1>
+<p><%= site.names_text %></p>
 
 <% form_for(current_list) do |f| %>
   <%= hidden_field_tag 'edit_what', 'nomes' %>
