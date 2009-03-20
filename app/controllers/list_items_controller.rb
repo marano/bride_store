@@ -1,8 +1,6 @@
 class ListItemsController < ApplicationController
 
   layout 'site'
-  
-  in_place_edit_for :list_item, :quantity
 
   # GET /list_items
   # GET /list_items.xml

@@ -1,1 +1,4 @@
 
+[submodule "master"]
+	path = master
+	url = git://github.com/rails/rails.git
