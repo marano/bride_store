@@ -21,12 +21,6 @@ window.addEvent('domready', function(){
 <% content_for :content_class do %>produtoView<% end %>
 
 <h2><%= @product.name %></h2>
-<div class="product">
-<h1><%= @product.name %></h1>
-
-<div>
-
-<h2><%= @product.name %></h2>
 
 <div class="product">
   <% unless @product.galery.galery_photos.empty? %>
@@ -57,7 +51,7 @@ window.addEvent('domready', function(){
       <hr />      
     <% end %>
     <!-- Carrinho de compra -->
-    <% unless current_list.nil? %>
+    <% unless current_store.nil? %>
       <% form_for ListItem.new do |f| %>
         <%= hidden_field_tag 'list_item[product_id]', @product.id  %>
         <%= f.label :quantity, 'Quantidade' %>
