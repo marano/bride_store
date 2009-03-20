@@ -34,6 +34,8 @@ form p label {margin-left:4px;}
 .depoimento {padding-left:20px;}
 .depoimento h3 {padding:10px 30px 0; margin:15px 0 10px 0;}
 .depoimento span {display:block;}
+/*---------------LISTA DEPOIMENTO---------------*/
+.listaDepoimento .dataDepoimento {float:right; }
 /*---------------MENU INSTITUCIONAL---------------*/
 #menuInstitucional{float:right; width:720px; bottom:24px; position:absolute; left:0; padding:0 30px 0 30px;}
 #menuInstitucional ul {float:right;}
