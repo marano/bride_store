@@ -52,6 +52,9 @@ span{font-size:11px;}
 #listaProdutos .pagination * {font-size: 14px;}
 #listaProdutos .pagination a {text-decoration:underline;}
 #listaProdutos .pagination .current {font-weight:bold;}
+/*---------------PRODUTO VISUALIZAR---------------*/
+.produtoView h2 {font-size:25px; font-family:Arial, helvetica, serif; font-weight:normal; text-decoration:none; font-style: normal;}
+.descricaoProduto label {font-size: 12px; font-weight:normal; text-decoration: underline;}
 /*---------------LISTA DE PRESENTES---------------*/
 .listaPresentes .infoLista{text-align:center;}
 /*---------------SIDE CONTENT---------------*/

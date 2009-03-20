@@ -49,6 +49,10 @@ hr {color:#5e5548; background:#5e5548;}
 #listaProdutos a {color:#373125;}
 /*---------------PAGINAÇÃO---------------*/
 #listaProdutos .pagination a {text-decoration:underline; float:none; color:#373125;}
+/*---------------PRODUTO VISUALIZAR---------------*/
+.descricaoProduto label {color:#373125;}
+.produtoView .product .verCarrinho span{background: url(/images/btVerCarrinho.gif) no-repeat;}
+.produtoView .product .verLista span{background: url(/images/btVerListaPresentes.gif) no-repeat;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent form h3 span{background: url(/images/titleBusca.gif) no-repeat;}
 #sideContent #sideProdutos h3 span{background: url(/images/titleSideMenu.gif) no-repeat;}

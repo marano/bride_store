@@ -121,11 +121,20 @@ form p label {margin-left:4px;}
 #listaProdutos .pagination * {margin:0 3px 0 3px;}
 #listaProdutos .pagination a {float:none;}
 /*---------------PRODUTO VISUALIZAR---------------*/
+.product {margin-bottom: 20px;}
+.produtoView h2 {margin-bottom: 5px;}
+.descricaoProduto p {margin:0; padding: 0;}
+.descricaoProduto .campoTexto {display:inline; width: 20px;}
 .produtoView .fotoCapa {display:block;}
-.produtoView ul {width:305px;}
-.produtoView ul li {float:left; margin:4px;}
+.produtoView .product ul {width:295px; float:left;}
+.produtoView .product ul li {float:left; margin-right:4px;}
+.produtoView .descricaoProduto {width:225px; float:right;}
+.produtoView .product .verCarrinho {width:192px; height:39px; display:block; margin-bottom:15px; padding:0; }
+.produtoView .product .verCarrinho span{position:absolute; width:192px; height:39px;}
+.produtoView .product .verLista {width:161px; height:40px; display:block; margin-bottom:15px; padding:0; }
+.produtoView .product .verLista span{position:absolute; width:161px; height:40px;}
+.base {display:block;}
 
-.descricaoProduto {width:150px;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent {float:left; padding:20px; width:177px;}
 #sideContent form h3{width:100px; height:17px; position:relative; padding:0; margin:0 0 10px 0;}

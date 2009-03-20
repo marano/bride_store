@@ -20,6 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.select_list '/list/:id/select', :controller => 'lists', :action => 'select'  
   map.cart '/cart', :controller => 'lists', :action => 'cart'
   
+  map.set_list_item_quantity '/set_list_item_quantity/:id', :controller => 'list_items', :action => 'set_list_item_quantity'
   map.destroy_list_item '/list_item/:id/destroy', :controller => 'list_items', :action => 'destroy'
   
   map.destroy_galery_photo '/galery_photo/:id/destroy', :controller => 'galery_photos', :action => 'destroy'
@@ -38,7 +39,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :spams, :member => [ :enviar ]
   map.resources :galery_photos
   map.resources :messages
-  map.resources :lists, :member => [ :personal_space ]
+  map.resources :lists, :member => [ :personal_space ] 
+  
   map.resources :list_items
   map.resources :testimonials
   map.resources :policies, :collection => [ :view ]
@@ -61,6 +63,7 @@ ActionController::Routing::Routes.draw do |map|
   map.account '/account', :controller => 'users', :action => 'account'
   map.account_list '/account', :controller => 'users', :action => 'account_list'
 
+  map.my_list '/my_list', :controller => 'lists', :action => 'my_list'
   map.visit_list '/visit_list', :controller => 'lists', :action => 'visit_list'
   
   map.store '/:adress', :controller => 'lists', :action => 'store'

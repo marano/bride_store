@@ -1,8 +1,16 @@
 class ListsController < ApplicationController
 
-  before_filter :login_required, :except => ['new', 'create', 'find', 'store', 'visit_list']
+  before_filter :login_required, :except => ['create', 'find', 'store', 'visit_list']
 
   layout 'site'
+  
+  def my_list
+    if current_list.nil?
+      redirect_to new_list_path
+    else
+      redirect_to personal_space_list_path(current_list)
+    end
+  end
 
   def edit_nomes
   end
