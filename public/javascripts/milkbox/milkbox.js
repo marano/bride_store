@@ -530,7 +530,7 @@ var Milkbox = new Class({
 			 if($chk(d)){ this.description.innerHTML = d; };
 			 
 			 if(this.mode == 'fileGallery'){
-			 	this.count.appendText((this.currentIndex+1)+' of '+this.currentGallery.length); 
+			 	this.count.appendText((this.currentIndex+1)+' de '+this.currentGallery.length); 
 			 }
 			 
 			 var currentCenterHeight = this.center.getStyle('height').toInt();

@@ -19,13 +19,8 @@ window.addEvent('domready', function(){
 <%= render :partial => 'layouts/store_menu_panel' %>
 
 <% content_for :content_class do %>produtoView<% end %>
-
-<h2><%= @product.name %></h2>
-<div class="product">
-<h1><%= @product.name %></h1>
-
-<div>
-
+<h1><%= @product.category.name %></h1>
+<hr />
 <h2><%= @product.name %></h2>
 
 <div class="product">
