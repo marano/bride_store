@@ -20,9 +20,8 @@ window.addEvent('domready', function(){
 
 <% content_for :content_class do %>produtoView<% end %>
 
-<h2><%= @product.name %></h2>
-
 <div class="product">
+  <h2><%= @product.name %></h2>
   <% unless @product.galery.galery_photos.empty? %>
     <ul class="listaHorizontal">
       <% if @product.photo.file? %>
