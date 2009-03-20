@@ -19,11 +19,9 @@ window.addEvent('domready', function(){
 <%= render :partial => 'layouts/store_menu_panel' %>
 
 <% content_for :content_class do %>produtoView<% end %>
-<h1><%= @product.category.name %></h1>
-<hr />
-<h2><%= @product.name %></h2>
 
 <div class="product">
+  <h2><%= @product.name %></h2>
   <% unless @product.galery.galery_photos.empty? %>
     <ul class="listaHorizontal">
       <% if @product.photo.file? %>
@@ -52,7 +50,7 @@ window.addEvent('domready', function(){
       <hr />      
     <% end %>
     <!-- Carrinho de compra -->
-    <% unless current_list.nil? %>
+    <% unless current_store.nil? %>
       <% form_for ListItem.new do |f| %>
         <%= hidden_field_tag 'list_item[product_id]', @product.id  %>
         <%= f.label :quantity, 'Quantidade' %>
