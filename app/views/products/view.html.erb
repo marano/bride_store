@@ -51,14 +51,13 @@ window.addEvent('domready', function(){
     <% end %>
     <!-- Carrinho de compra -->
     <% unless current_store.nil? %>
-      <% form_for ListItem.new do |f| %>
-        <%= hidden_field_tag 'list_item[product_id]', @product.id  %>
-        <%= f.label :quantity, 'Quantidade' %>
-        <%= text_field_tag 'list_item[quantity]', '1', :class => 'campoTexto' %>
+      <% form_tag add_to_cart_path(@product.id) do %>
+        <%= label_tag :quantity, 'Quantidade' %>
+        <%= text_field_tag 'quantity', '1', :class => 'campoTexto' %>
         <input type="image" title="adicionar ao meu carrinho de compras" src="/images/btAddCarrinho.gif" />
       <% end %>
       <hr />
-      <%= link_to '<span></span>ver meu carrinho de compras', list_items_path, :class => 'verCarrinho' %>    
+      <%= link_to '<span></span>ver meu carrinho de compras', cart_path, :class => 'verCarrinho' %>    
     <% end %>
   </div>
   <div class="base"></div>

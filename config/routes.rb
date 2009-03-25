@@ -18,7 +18,6 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_list_nomes '/list/edit_nomes', :controller => 'lists', :action => 'edit_nomes'
   map.edit_list_personal_space '/list/edit_personal_space', :controller => 'lists', :action => 'edit_personal_space'
   map.select_list '/list/:id/select', :controller => 'lists', :action => 'select'  
-  map.cart '/cart', :controller => 'lists', :action => 'cart'
   
   map.set_list_item_quantity '/set_list_item_quantity/:id', :controller => 'list_items', :action => 'set_list_item_quantity'
   map.destroy_list_item '/list_item/:id/destroy', :controller => 'list_items', :action => 'destroy'
@@ -34,6 +33,10 @@ ActionController::Routing::Routes.draw do |map|
   map.new_admin '/user/adm/new', :controller => 'users', :action => 'new_admin'
   map.create_admin '/user/adm/create', :controller => 'users', :action => 'create_admin'
   map.update_admin '/user/adm/:id/update', :controller => 'users', :action => 'update_admin'
+  
+  map.cart '/cart', :controller => 'cart', :action => 'show'
+  map.add_to_cart '/cart/:product_id/add', :controller => 'cart', :action => 'add'
+  map.remove_from_cart '/cart/:id/remove', :controller => 'cart', :action => 'remove'
   
   map.resources :email_configs
   map.resources :spams, :member => [ :enviar ]

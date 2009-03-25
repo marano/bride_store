@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include SortableTable::App::Controllers::ApplicationController
 
   helper :all # include all helpers, all the time
-  helper_method :current_list, :current_store, :site
+  helper_method :current_list, :current_store, :current_cart, :site
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
@@ -65,21 +65,15 @@ class ApplicationController < ActionController::Base
   end
 
   def site
-    if @site.nil?
-      @site = Site.first
-      if @site.nil?
-        @site = Site.new
-      end
-    end
-    @site
+    @site ||= Site.first || Site.new
   end
   
   def email_config
-    config = EmailConfig.first
-    if config.nil?
-      config = EmailConfig.new
-    end
-    config
+    EmailConfig.first || EmailConfig.new
+  end
+
+  def current_cart
+    @current_cart ||= session[:cart] ||= Cart.new
   end
 
 #  def authorized?(action = action_name, resource = nil)
