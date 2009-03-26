@@ -18,5 +18,9 @@ class CartController < ApplicationController
     flash[:notice] = "#{product.name} foi removido do carrinho."
     redirect_to cart_path
   end
+  
+  def checkout
+    @user = User.new
+  end
 
 end

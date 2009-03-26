@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090319005548) do
+ActiveRecord::Schema.define(:version => 20090326043209) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20090319005548) do
     t.datetime "photo_updated_at"
     t.integer  "galery_id"
     t.string   "adress"
+    t.boolean  "closed"
   end
 
   create_table "messages", :force => true do |t|
@@ -183,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20090319005548) do
     t.string   "state",                                    :default => "passive"
     t.datetime "deleted_at"
     t.boolean  "admin"
+    t.boolean  "newsletter"
     t.string   "phone"
   end
 

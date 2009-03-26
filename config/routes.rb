@@ -35,6 +35,7 @@ ActionController::Routing::Routes.draw do |map|
   map.update_admin '/user/adm/:id/update', :controller => 'users', :action => 'update_admin'
   
   map.cart '/cart', :controller => 'cart', :action => 'show'
+  map.checkout '/cart/checkout', :controller => 'cart', :action => 'checkout'
   map.add_to_cart '/cart/:product_id/add', :controller => 'cart', :action => 'add'
   map.remove_from_cart '/cart/:id/remove', :controller => 'cart', :action => 'remove'
   
