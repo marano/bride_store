@@ -1,5 +1,13 @@
 class Cart
 
+  def initialize(store)
+    @store_id = store.id
+  end
+  
+  def store
+    List.find @store_id
+  end
+
   def cart_items
     @cart_items ||= []
   end

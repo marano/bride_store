@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090326043209) do
+ActiveRecord::Schema.define(:version => 20090331135505) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -116,6 +116,19 @@ ActiveRecord::Schema.define(:version => 20090326043209) do
     t.datetime "display_updated_at"
   end
 
+  create_table "sales", :force => true do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.text     "adress"
+    t.integer  "store_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "paid"
+    t.boolean  "archived",   :default => false
+    t.string   "phone"
+    t.string   "email"
+  end
+
   create_table "sites", :force => true do |t|
     t.string   "home_title"
     t.text     "home_text"
@@ -143,6 +156,7 @@ ActiveRecord::Schema.define(:version => 20090326043209) do
     t.integer  "logo_footer_file_size"
     t.integer  "we_galery_id"
     t.integer  "showroom_galery_id"
+    t.text     "checkout_text"
   end
 
   create_table "spams", :force => true do |t|

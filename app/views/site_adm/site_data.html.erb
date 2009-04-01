@@ -39,6 +39,10 @@
     <%= f.label :message_text, "Texto \"Mensagens\"" %><br />
     <%= fckeditor_textarea(:site, :message_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
+  <p>
+    <%= f.label :checkout_text, "Texto \"Checkout\"" %><br />
+    <%= fckeditor_textarea(:site, :checkout_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
+  </p>
   <br />
   <p>
     <%= f.submit "Salvar" %>

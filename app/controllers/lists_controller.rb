@@ -1,8 +1,12 @@
 class ListsController < ApplicationController
 
-  before_filter :login_required, :except => ['create', 'find', 'store', 'visit_list']
+  before_filter :login_required, :except => ['find', 'store', 'visit_list']
 
   layout 'site'
+  
+  def confirm_close
+    @list = current_liser
+  end
   
   def my_list
     if current_list.nil?

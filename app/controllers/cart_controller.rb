@@ -20,7 +20,6 @@ class CartController < ApplicationController
   end
   
   def checkout
-    @user = User.new
   end
 
 end

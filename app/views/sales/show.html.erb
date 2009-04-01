@@ -1,0 +1,28 @@
+<h1>Venda</h1>
+
+<p>
+  <b>Data</b><br/>
+  <%=h @sale.created_at %>
+</p>
+
+<p>
+  <b>Cliente</b><br/>
+  <%=h @sale.name %>
+</p>
+
+<p>
+  <b>CPF</b><br/>
+  <%=h @sale.cpf %>
+</p>
+
+<p>
+  <b>Endereço</b><br/>
+  <%=h @sale.adress %>
+</p>
+
+<p>
+  <b>Lista</b><br/>
+  <%=h @sale.store %>
+</p>
+
+<%= link_to 'Voltar', sales_path %>

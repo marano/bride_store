@@ -23,30 +23,15 @@ class ApplicationController < ActionController::Base
   end
   
   def set_current_store(store)
-    if store.nil?
-      session[:current_store] = nil
-    else
-      session[:current_store] = store.id
-    end
+    session[:current_store] = store ? store.id : nil
   end
   
   def current_store
-    if session[:current_store].nil?
-      nil
-    else
-      if(@current_store.nil?)
-        @current_store = List.find(session[:current_store])
-      end
-      @current_store
-    end
+    @current_store ||= List.find(session[:current_store]) unless session[:current_store].nil?
   end
 
   def set_current_list(list)
-    if list.nil?
-      session[:current_list] = nil
-    else
-      session[:current_list] = list.id
-    end
+    session[:current_list] = list ? list.id : nil
   end
 
   def current_list?(list)
@@ -54,14 +39,19 @@ class ApplicationController < ActionController::Base
   end
 
   def current_list
-    if session[:current_list].nil?
-      nil
-    else
-      if(@current_list.nil?)
-        @current_list = List.find(session[:current_list])
-      end
-      @current_list
-    end
+    @current_list ||= List.find(session[:current_list]) unless session[:current_list].nil?
+  end
+
+  def current_cart?
+    session[:cart]
+  end
+  
+  def clear_cart
+    @current_cart = nil if current_cart?
+  end
+
+  def current_cart
+    @current_cart ||= session[:cart] ||= Cart.new(current_store)
   end
 
   def site
@@ -71,26 +61,6 @@ class ApplicationController < ActionController::Base
   def email_config
     EmailConfig.first || EmailConfig.new
   end
-
-  def current_cart
-    @current_cart ||= session[:cart] ||= Cart.new
-  end
-
-#  def authorized?(action = action_name, resource = nil)
-#    #logged_in?
-#    if @require_admin =~ action_name.to_sym
-#      logged_in? and current_user.admin?
-#    else
-#      logged_in?
-#    end    
-#  end
-#  
-#  def admin_required(actions)
-#    unless actions.respond_to? 'each'
-#      actions = [actions]
-#    end
-#    @require_admin = actions
-#  end
-
+  
 end
 

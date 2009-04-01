@@ -35,6 +35,10 @@ class List < ActiveRecord::Base
     end
     Category.all(:conditions => ['id in (?)', ids])
   end
+  
+  def to_s
+    "#{name} (#{user})"
+  end
 
   private
   

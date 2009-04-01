@@ -1,0 +1,32 @@
+<h1>Vendas</h1>
+
+<p>
+  <b>Período</b>&nbsp;
+  <% form_tag sales_path, :method => 'get' do %>
+    Início <%= date_select('date_filter', 'initial', :default => @initial_date_filter) %>&nbsp;
+    Término <%= date_select('date_filter', 'end', :default => @end_date_filter) %>&nbsp;
+    <%= submit_tag 'Filtrar' %>
+  <% end %>
+</p>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Data</th>
+    <th>Nome</th>
+    <th>Paga</th>
+    <th>Lista</th>
+  </tr>
+
+<% @sales.each do |sale| %>
+  <tr>
+    <td><%= link_to image_tag('editar.gif'), sale %></td>
+    <td><%= link_to image_tag('remover.gif'), sale, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%=h sale.created_at %></td>
+    <td><%=h sale.name %></td>
+    <td><%= image_tag sale.paid ? 'checked.gif' : 'uncheck.gif' %></td>
+    <td><%=h sale.store %></td>
+  </tr>
+<% end %>
+</table>

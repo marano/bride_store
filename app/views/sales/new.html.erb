@@ -1,0 +1,27 @@
+<% migalha ['carrinho de compras', 'checkout'] %>
+
+<% content_for(:content_class) { %>criarConta<% } %>
+
+<h1>Checkout</h1>
+
+<p><%= site.checkout_text %></p>
+
+<% form_for @sale, :html => { :id => 'formCriarConta' } do |f| -%>
+
+  <p><%= label_tag 'name', 'Nome:' %><br/>
+  <%= f.text_field :name, :class => 'campoTexto' %></p>
+
+  <p><%= label_tag 'cpf', 'CPF:' %><br/>
+  <%= f.text_field :cpf, :class => 'campoTexto' %></p>
+
+  <p><%= label_tag 'phone', 'Telefone:' %><br/>
+  <%= f.text_field :phone, :class => 'campoTexto' %></p>
+  
+  <p><%= label_tag 'email', 'Email:' %><br/>
+  <%= f.text_field :email, :class => 'campoTexto' %></p>
+
+  <p><%= label_tag 'adress', 'Endereço:' %><br/>
+  <%= f.text_area :adress, :class => 'campoAreaTexto' %></p>
+  
+  <input type="image" title="Confirmar" value="Confirmar" onClick="alert('Você será redirecionado para página de pagamento do visa.')" src='/images/btConfirmar.gif' />
+<% end %>
