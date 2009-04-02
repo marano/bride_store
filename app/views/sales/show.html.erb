@@ -25,4 +25,44 @@
   <%=h @sale.store %>
 </p>
 
+<table>
+    <colgroup>
+      <col id="produtoCol"/>
+      <col id="quantidadeCol"/>
+      <col id="valorUnitarioCol"/>
+      <col id="valorTotalCol"/>
+      <col id="gerenciaCol"/>
+    </colgroup>
+    <thead>
+      <tr>
+        <th scope="col">Produto</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">Valor Unitário</th>
+        <th scope="col">Valo Total</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for i in @sale.sale_items %>
+        <tr>
+          <td><%= link_to i.product.name, i.product %></td>
+          <td>
+            <p>
+              <%= i.quantity %>
+            </p>
+          </td>
+          <td><p>R$ <%= number_with_precision i.price, :precision => 2 %></p></td>
+          <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
+          <td><%= link_to 'EXCLUIR', remove_from_cart_path(i.id) , :confirm => 'Tem certeza?' %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><p>R$ <%= number_with_precision @sale.total_price, :precision => 2 %></p></td>
+      </tr>
+    </tbody>
+  </table>
+
 <%= link_to 'Voltar', sales_path %>

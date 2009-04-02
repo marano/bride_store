@@ -9,7 +9,7 @@ class SalesController < ApplicationController
   def index
     set_date_filter    
     
-    @sales = Sale.all(:conditions => ['created_at > ? AND created_at < ?', @initial_date_filter, @end_date_filter])
+    @sales = Sale.all(:conditions => ['created_at > ? AND created_at < ?', @initial_date_filter, (@end_date_filter + 1.day)])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,7 +44,8 @@ class SalesController < ApplicationController
   def create
     @sale = Sale.new(params[:sale])
     @sale.store = current_store
-
+    @sale.extract current_cart
+    
     respond_to do |format|
       if @sale.save
         flash[:notice] = 'Compra efetuada com sucesso!'
