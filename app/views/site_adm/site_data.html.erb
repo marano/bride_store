@@ -3,47 +3,55 @@
 <% end %>
 
 <h1>Site</h1>
-<br />
+
 <% form_for @site do |f| %>
   <%= f.error_messages %>
   <%= hidden_field_tag :edit_what, 'site_data' %>
   <p>
-    <%= f.label :footer_text, 'Rodapé' %><br />
+    <b><%= f.label :footer_text, 'Rodapé' %></b><br />
     <%= fckeditor_textarea(:site, :footer_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
+  
   <p>
-    <%= f.label :create_account_text, "Texto \"Crie sua conta\"" %><br />
+    <b><%= f.label :create_account_text, "Texto \"Crie sua conta\"" %></b><br />
     <%= fckeditor_textarea(:site, :create_account_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
+  
   <p>
-    <%= f.label :welcome_text, "Texto \"Boas Vindas\"" %><br />
+    <b><%= f.label :welcome_text, "Texto \"Boas Vindas\"" %></b><br />
     <%= fckeditor_textarea(:site, :welcome_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
+  
   <p>
-    <%= f.label :names_text, "Texto \"Noivos\"" %><br />
+    <b><%= f.label :names_text, "Texto \"Noivos\"" %></b><br />
     <%= fckeditor_textarea(:site, :names_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
+  
   <p>
-    <%= f.label :personal_space_text, "Texto \"Espaço pessoal\"" %><br />
+    <b><%= f.label :personal_space_text, "Texto \"Espaço pessoal\"" %></b><br />
     <%= fckeditor_textarea(:site, :personal_space_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
+  
   <p>
-    <%= f.label :empty_list_text, "Texto \"Lista vazia de presentes\"" %><br />
+    <b><%= f.label :empty_list_text, "Texto \"Lista vazia de presentes\"" %></b><br />
     <%= fckeditor_textarea(:site, :empty_list_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
+  
   <p>
-    <%= f.label :spam_text, "Texto \"Divulgação\"" %><br />
+    <b><%= f.label :spam_text, "Texto \"Divulgação\"" %></b><br />
     <%= fckeditor_textarea(:site, :spam_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
+  
   <p>
-    <%= f.label :message_text, "Texto \"Mensagens\"" %><br />
+    <b><%= f.label :message_text, "Texto \"Mensagens\"" %></b><br />
     <%= fckeditor_textarea(:site, :message_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
+  
   <p>
-    <%= f.label :checkout_text, "Texto \"Checkout\"" %><br />
+    <b><%= f.label :checkout_text, "Texto \"Checkout\"" %></b><br />
     <%= fckeditor_textarea(:site, :checkout_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
-  <br />
+  
   <p>
     <%= f.submit "Salvar" %>
   </p>  
@@ -52,7 +60,7 @@
 <% form_for @site, :html => { :multipart => true } do |f| %>
   <br />
   <p>
-    <%= f.label :logo, "Logo" %><br /><br />
+    <b><%= f.label :logo, "Logo" %></b><br /><br />
     <% if site.logo.file? %>
       <%= image_tag site.logo.url %><br /><br />
     <% end %>    
@@ -64,7 +72,7 @@
 <% form_for @site, :html => { :multipart => true } do |f| %>
   <br />
   <p>    
-    <%= f.label :logo_footer, "Logo rodapé" %><br /><br />
+    <b><%= f.label :logo_footer, "Logo rodapé" %></b><br /><br />
     <% if site.logo_footer.file? %>
       <%= image_tag site.logo_footer.url %><br /><br />
     <% end %>    

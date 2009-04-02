@@ -1,16 +1,20 @@
 <h1>Cagegorias</h1>
 
 <table>
-  <tr>
-    <th>Nome</th>
-  </tr>
-
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Nome</th>
+      <th>Produtos</th>
+    </tr>
+  </thead>
 <% for category in @categories %>
   <tr>
-    <td><%=h category.name %></td>
-    <td><%= link_to 'Exibir', category %></td>
-    <td><%= link_to 'Editar', edit_category_path(category) %></td>
-    <td><%= link_to 'Remover', category, :confirm => 'Tem certeza?', :method => :delete %></td>
+    <td><%= link_to image_tag('editar.gif'), edit_category_path(category) %></td>
+    <td><%= link_to image_tag('remover.gif'), category, :confirm => 'Tem certeza?', :method => :delete %></td>
+    <td><%= link_to category.name, category %></td>
+    <td><%= category.products.count %></td>
   </tr>
 <% end %>
 </table>

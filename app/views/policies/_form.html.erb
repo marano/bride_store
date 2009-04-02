@@ -6,25 +6,25 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name, 'Nome' %><br />
+    <b><%= f.label :name, 'Nome' %></b><br />
     <%= f.text_field :name %>
   </p>
-  <br/>
+
   <p>
-    <%= f.label :menu_title, 'Título do menu' %><br />
+    <b><%= f.label :menu_title, 'Título do menu' %></b><br />
     <%= f.text_field :menu_title %>
   </p>
-  <br/>
+
   <p>
-    <%= f.label :text_title, 'Título do texto' %><br />
+    <b><%= f.label :text_title, 'Título do texto' %></b><br />
     <%= f.text_field :text_title %>
   </p>
-  <br/>
+
   <p>
-    <%= f.label :text, 'Texto' %><br />
+    <b><%= f.label :text, 'Texto' %></b><br />
     <%= fckeditor_textarea(:policy, :text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
-  <br/>
+
   <p>
     <%= f.submit "Salvar" %>
   </p>

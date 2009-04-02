@@ -3,20 +3,20 @@
 <% end %>
 
 <h1>Nossa Loja</h1>
-<br/>
+
 <% form_for @site do |f| %>
   <%= f.error_messages %>
   <%= hidden_field_tag :edit_what, 'showroom' %>
   <p>
-    <%= f.label :showroom_title, 'Título' %><br />
+    <b><%= f.label :showroom_title, 'Título' %></b><br />
     <%= f.text_field :showroom_title %>
   </p>
-  <br/>
+
   <p>
-    <%= f.label :showroom_text, 'Texto' %><br />
+    <b><%= f.label :showroom_text, 'Texto' %></b><br />
     <%= fckeditor_textarea(:site, :showroom_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
-  <br/>
+
   <p>
     <%= f.submit "Salvar" %>
   </p>  

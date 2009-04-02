@@ -1,22 +1,27 @@
 <h1>Depoimentos</h1>
 
 <table>
-  <tr>
-    <th>Texto</th>
-    <th>Ativo</th>
-    <th>Destaque</th>
-    <th>Usuário</th>
-  </tr>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Autor</th>
+      <th>Texto</th>
+      <th>Ativo</th>
+      <th>Destaque</th>
+    </tr>
+  </thead>
 
 <% for testimonial in @testimonials %>
   <tr>
-    <td><%=h testimonial.body %></td>
-    <td><%=h testimonial.active %></td>
-    <td><%=h testimonial.featured %></td>
-    <td><%=h testimonial.user %></td>
+    <td><%= link_to image_tag('editar.gif'), edit_testimonial_path(testimonial) %></td>
+    <td><%= link_to image_tag('remover.gif'), testimonial, :confirm => 'Tem certeza?', :method => :delete %></td>
     <td><%= link_to 'Exibir', testimonial %></td>
-    <td><%= link_to 'Editar', edit_testimonial_path(testimonial) %></td>
-    <td><%= link_to 'Remover', testimonial, :confirm => 'Tem certeza?', :method => :delete %></td>
+    <td><%=h testimonial.user %></td>
+    <td><%=h testimonial.body %></td>
+    <td><%= mark testimonial.active %></td>
+    <td><%= mark testimonial.featured %></td>    
   </tr>
 <% end %>
 </table>

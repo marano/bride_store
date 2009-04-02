@@ -1,3 +1,17 @@
+<h1>Usuário <%= 'Administrador' if @user.admin? %></h1>
+
+<p>
+  <b>Nome</b><br/>
+  <%= @user.name %>
+</p>
+<p>
+  <b>Usuário</b><br/>
+  <%= @user.login %>
+</p>
+<p>
+  <b>Email</b><br/>
+  <%= @user.email %>
+</p>
 
 <%= link_to 'Editar', users_path(@user) %> |
 <%= link_to 'Voltar', users_path %>

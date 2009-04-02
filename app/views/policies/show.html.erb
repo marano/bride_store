@@ -1,24 +1,24 @@
 <h1>Política</h1>
-<br/>
+
 <p>
-  <b>Nome:</b>
+  <b>Nome</b><br/>
   <%=h @policy.name %>
 </p>
-<br/>
+
 <p>
-  <b>Título do menu:</b>
+  <b>Título do menu</b><br/>
   <%=h @policy.menu_title %>
 </p>
-<br/>
+
 <p>
-  <b>Título do texto:</b>
+  <b>Título do texto</b><br/>
   <%=h @policy.text_title %>
 </p>
-<br/>
+
 <p>
-  <b>Texto:</b><br/>
-  <%=h @policy.text %>
+  <b>Texto</b>
+  <%= format @policy.text %>
 </p>
-<br/>
+
 <%= link_to 'Editar', edit_policy_path(@policy) %> |
 <%= link_to 'Voltar', policies_path %>

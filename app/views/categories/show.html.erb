@@ -1,9 +1,16 @@
 <h1>Categoria</h1>
-<br/>
+
 <p>
-  <b>Nome:</b>
+  <b>Nome</b><br/>
   <%=h @category.name %>
 </p>
-<br/>
+
 <%= link_to 'Editar', edit_category_path(@category) %> |
 <%= link_to 'Voltar', categories_path %>
+
+<p>
+  <b>Produtos</b> (<%= @category.products.count %>)<br/>
+  <% @category.products.each do |p| %>
+    <%= link_to p.name, p %><br/>
+  <% end %>
+</p>
