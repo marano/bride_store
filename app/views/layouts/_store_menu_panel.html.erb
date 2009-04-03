@@ -3,7 +3,7 @@
   <ul class="listaHorizontal">
     <li><%= link_to_unless_current 'espaço pessoal', store_path(current_store.adress) %></li>
     <li>|</li>
-    <li><%= link_to_unless_current "carrinho de compras (#{current_cart.cart_items.count})", cart_path %></li>
+    <li><%= link_to_unless_current "carrinho de compras (#{current_cart.cart_items.size})", cart_path %></li>
     <% unless current_cart.cart_items.empty? %>
       <li>|</li>
       <li><%= link_to_unless_current 'checkout', checkout_path %></li>      
