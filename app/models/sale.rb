@@ -12,6 +12,13 @@ class Sale < ActiveRecord::Base
     cart.clear
   end
   
+  def pay
+    transaction do
+      update_attribute :paid, true
+      store.add_sale(self)
+    end
+  end
+  
   def total_price
     total = 0
     sale_items.each { |item| total += item.total_price }

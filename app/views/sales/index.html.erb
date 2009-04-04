@@ -17,17 +17,17 @@
       <th>Data</th>
       <th>Nome</th>
       <th>Paga</th>
-    <th>Lista</th>
+      <th>Lista</th>
   </tr>
   </thead>
 
 <% @sales.each do |sale| %>
   <tr>
     <td><%= link_to image_tag('editar.gif'), sale %></td>
-    <td><%= link_to image_tag('remover.gif'), sale, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to image_tag('remover.gif'), sale, :confirm => 'Tem certeza?', :method => :delete %></td>
     <td><%=h sale.created_at %></td>
     <td><%=h sale.name %></td>
-    <td><%= mark sale.paid %></td>
+    <td><%= sale.paid ? mark(sale.paid) : link_to(mark(sale.paid), pay_sale_path(sale), :confirm => 'Tem certeza que deseja marcar a venda como paga?', :method => :post) %></td>
     <td><%=h sale.store %></td>
   </tr>
 <% end %>

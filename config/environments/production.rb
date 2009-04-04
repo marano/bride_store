@@ -26,4 +26,5 @@ config.action_controller.perform_caching             = true
 # Enable threaded mode
 # config.threadsafe!
 
-SITE_URL = "adr.bolongu.com"
+#SITE_URL = "adr.bolongu.com"
+SITE_URL = "artederecebercasa.com.br"

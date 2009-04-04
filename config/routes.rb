@@ -40,7 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.checkout '/cart/checkout', :controller => 'sales', :action => 'new'
   
-  map.resources :sales, :except => [ :edit ]
+  map.resources :sales, :except => [ :edit ], :member => [ :pay ]
   map.resources :email_configs
   map.resources :spams, :member => [ :enviar ]
   map.resources :galery_photos

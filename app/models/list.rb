@@ -13,8 +13,15 @@ class List < ActiveRecord::Base
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
 
+  def add_sale(sale)
+    sale.sale_items.each do |sale_item|
+      list_item = find_list_item_by_product(sale_item.product)
+      list_item.add_bought_quantity(sale_item.quantity)
+    end
+  end
+
   def add_list_item(product, quantity)    
-    list_item_old = list_item_by_product(product)
+    list_item_old = find_list_item_by_product(product)
     if list_item_old.nil?
       list_items.create(:product => product, :quantity => quantity)
     else
@@ -22,7 +29,7 @@ class List < ActiveRecord::Base
     end
   end
   
-  def list_item_by_product(product)
+  def find_list_item_by_product(product)
     list_items.first(:conditions => { :product_id => product.id })
   end
 

@@ -4,9 +4,12 @@
   <b>Data</b><br/>
   <%=h @sale.created_at %>
 </p>
+<p>
+  <b>Paga</b> <%= @sale.paid ? mark(@sale.paid) : link_to(mark(@sale.paid), pay_sale_path(@sale), :confirm => 'Tem certeza que deseja marcar a venda como paga?', :method => :post) %>
+</p>
 <% if @sale.paid %>
   <p>
-    <b>tid</b><br/>
+    <b>Código de transação Visa</b><br/>
     <%=h @sale.tid %>
   </p>  
 <% end %>

@@ -4,6 +4,12 @@ class SalesController < ApplicationController
 
   before_filter :adm_required, :except => [ :new, :create ]
 
+  def pay
+    @sale = Sale.find(params[:id])
+    @sale.pay
+    redirect_to sales_path
+  end
+
   # GET /sales
   # GET /sales.xml
   def index
