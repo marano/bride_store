@@ -1,10 +1,19 @@
 <% if user_session.show_store_menu_panel? %>
-  <h2><%= current_store.title %></h2>
-  <ul class="listaHorizontal">
-    <li><%= link_to_unless_current 'espaço pessoal', store_path(current_store.adress) %></li>
+  <h2>
+    <%= current_store.title %>
+    <% if current_store.closed? %>
+      (encerrada)
+    <% end %>
+  </h2>
+  <ul class="listaHorizontal menuLista">
+    <li><%= link_to_unless_current 'espaço pessoal', store_path(current_store.adress) %></li>    
+    <% if current_list %>
+      <li>|</li>
+      <li><%= link_to_unless_current 'presentes', list_items_path %></li>
+    <% end %>
     <li>|</li>
     <li><%= link_to_unless_current "carrinho de compras (#{current_cart.cart_items.size})", cart_path %></li>
-    <% unless current_cart.cart_items.empty? %>
+    <% if user_session.show_checkout? %>
       <li>|</li>
       <li><%= link_to_unless_current 'checkout', checkout_path %></li>      
     <% end %>

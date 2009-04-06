@@ -3,6 +3,7 @@
 <% migalha_current_list 'presentes' %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
+<%= render :partial => 'layouts/store_menu_panel' %>
 
 <% if current_list.list_items.empty? %>
   <p>
@@ -31,16 +32,19 @@
     </thead>
     <tbody>
       <% for i in current_list.list_items %>
+        <% next if current_list.closed? and i.quantity_bought == 0 %>
         <tr>
           <td><%= link_to i.product.name, view_product_path(i.product) %></td>
           <td>
-            <p>
-              <span>Desejada:</span>
-              <% form_for i do |f| %>
-                <%= f.text_field :quantity, :class => 'campoTexto', :style => 'width:30px' %>
-                <%= f.submit 'alterar' %>
-              <% end %>
-            </p>
+            <% unless current_list.closed? %>
+              <p>
+                <% form_for i do |f| %>
+                  <span>Desejada:</span>
+                  <%= f.text_field :quantity, :class => 'campoTexto', :style => 'width:20px' %>
+                  <%= f.submit 'alterar' %>
+                <% end %>
+              </p>
+            <% end %>
             <p>
               <span>Comprada:</span>
               <%= i.quantity_bought %>
@@ -48,7 +52,18 @@
           </td>
           <td><p>R$ <%= number_with_precision i.product.price, :precision => 2 %></p></td>
           <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
-          <td><%= link_to 'EXCLUIR', destroy_list_item_path(i.id) , :confirm => 'Tem certeza?' %></td>
+          <td>
+            <% if current_list.closed? %>
+              <p>
+                <% form_tag i do %>
+                  <%= text_field_tag :quantity, '1', :class => 'campoTexto', :style => 'width:20px' %>
+                  <%= submit_tag 'Trocar', :confirm => 'Tem certeza?' %>
+                <% end %>
+              </p>
+            <% else %>
+              <%= link_to 'remover', destroy_list_item_path(i) , :confirm => 'Tem certeza?' %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

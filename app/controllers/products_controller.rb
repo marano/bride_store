@@ -51,12 +51,6 @@ class ProductsController < ApplicationController
     
     @products = user_session.find_store_products(search_params)
     
-#    if current_store.nil? or current_store.closed
-#      @products = Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => sql_conditions
-#    else
-#      @products = current_store.products.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => sql_conditions
-#    end
-    
     render :layout => 'site'
   end
 

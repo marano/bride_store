@@ -31,6 +31,10 @@ class UserSession
       end
     end
   end
+  
+  def show_checkout?
+    !current_cart.cart_items.empty? or current_list
+  end
 
   def show_list_menu_panel?
     !current_list.nil? and current_list.open?
