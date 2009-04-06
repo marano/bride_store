@@ -13,6 +13,10 @@
 <% end %>
 
 <% unless current_list.list_items.empty? %>
+  <p>
+    Crédito adquirido na troca de presentes: R$ <%= number_with_precision list.credit %>
+  </p>
+  
   <table>
     <colgroup>
       <col id="produtoCol"/>
@@ -55,13 +59,13 @@
           <td>
             <% if current_list.closed? %>
               <p>
-                <% form_tag i do %>
-                  <%= text_field_tag :quantity, '1', :class => 'campoTexto', :style => 'width:20px' %>
+                <% form_tag change_list_item_path(i) do %>
                   <%= submit_tag 'Trocar', :confirm => 'Tem certeza?' %>
+                  <%= text_field_tag :quantity, '1', :class => 'campoTexto', :style => 'width:20px' %>
                 <% end %>
               </p>
             <% else %>
-              <%= link_to 'remover', destroy_list_item_path(i) , :confirm => 'Tem certeza?' %>
+              <%= link_to 'remover', i , :confirm => 'Tem certeza?', :method => :delete %>
             <% end %>
           </td>
         </tr>

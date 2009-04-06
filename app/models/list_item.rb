@@ -9,6 +9,6 @@ class ListItem < ActiveRecord::Base
   end
   
   def add_bought_quantity(sold_quantity)
-    update_attribute :quantity_bought, (quantity_bought || 0) + sold_quantity
+    update_attribute! :quantity_bought, quantity_bought + sold_quantity
   end
 end

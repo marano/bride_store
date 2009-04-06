@@ -11,7 +11,6 @@ class List < ActiveRecord::Base
   belongs_to :user
   belongs_to :galery, :dependent => :destroy
   has_many :sales, :foreign_key => 'store_id'
-
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
   
@@ -33,9 +32,9 @@ class List < ActiveRecord::Base
   def add_list_item(product, quantity)    
     list_item_old = find_list_item_by_product(product)
     if list_item_old.nil?
-      list_items.create(:product => product, :quantity => quantity)
+      list_items.create!(:product => product, :quantity => quantity)
     else
-      list_item_old.update_attributes(:quantity => quantity)
+      list_item_old.update_attributes!(:quantity => quantity)
     end
   end
   

@@ -1,6 +1,11 @@
 class ListItemsController < ApplicationController
 
   layout 'site'
+  
+  def change
+    @list_item = ListItem.find(params[:id])
+    
+  end
 
   # GET /list_items
   # GET /list_items.xml

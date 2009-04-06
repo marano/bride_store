@@ -22,7 +22,6 @@ ActionController::Routing::Routes.draw do |map|
   map.close_list '/list/close', :controller => 'lists', :action => 'close'
   
   map.set_list_item_quantity '/set_list_item_quantity/:id', :controller => 'list_items', :action => 'set_list_item_quantity'
-  map.destroy_list_item '/list_item/:id/destroy', :controller => 'list_items', :action => 'destroy'
   
   map.destroy_galery_photo '/galery_photo/:id/destroy', :controller => 'galery_photos', :action => 'destroy'
   
@@ -49,7 +48,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :messages
   map.resources :lists, :member => [ :personal_space ] 
   
-  map.resources :list_items
+  map.resources :list_items, :member => [ :change ]
   map.resources :testimonials
   map.resources :policies, :collection => [ :view ]
   map.resources :products, :collection => [ :find ], :member => [ :view ]
