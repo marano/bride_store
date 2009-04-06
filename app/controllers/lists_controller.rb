@@ -4,8 +4,13 @@ class ListsController < ApplicationController
 
   layout 'site'
   
+  def close
+    current_list.update_attribute(:closed, true)
+    redirect_to list_items_path
+  end
+  
   def confirm_close
-    @list = current_liser
+    @list = current_list
   end
   
   def my_list
@@ -17,13 +22,20 @@ class ListsController < ApplicationController
   end
 
   def edit_nomes
+    @list = current_list
   end
 
   def edit_personal_space
+    @list = current_list
   end
 
   def personal_space
     @list = List.find(params[:id])
+  end
+
+  def select
+    user_session.select_list List.find(params[:id])
+    redirect_to personal_space_list_path(current_list)
   end
 
   def store
@@ -32,25 +44,9 @@ class ListsController < ApplicationController
       redirect_to root_path
       flash[:error] = "Não foi possível localizar a loja #{params[:adress]}."
     else
-      if logged_in?
-        if @list.user == current_user
-          set_current_store nil
-          set_current_list @list
-        else
-          set_current_list nil
-          set_current_store @list
-        end
-      else
-        set_current_store @list
-      end
+      user_session.select_list @list
       render :personal_space
     end
-  end
-
-  def select  
-    set_current_store nil
-    set_current_list List.find params[:id]
-    redirect_to personal_space_list_path(current_list)    
   end
 
   def find

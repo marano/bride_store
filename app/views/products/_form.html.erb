@@ -6,27 +6,27 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :category_id, 'Categoria' %><br />
-    <%= f.collection_select :category_id, Category.all, :id, :name %>
-  </p>
-  <p>
-    <%= f.label :name, 'Nome' %><br />
+    <b><%= f.label :name, 'Nome' %></b><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :description, 'Descrição' %><br />
+    <b><%= f.label :category_id, 'Categoria' %></b><br />
+    <%= f.collection_select :category_id, Category.all, :id, :name %>
+  </p>
+  <p>
+    <b><%= f.label :description, 'Descrição' %></b><br />
     <%= fckeditor_textarea(:product, :description, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
   <p>
-    <%= f.label :code, 'Código' %><br />
+    <b><%= f.label :code, 'Código' %></b><br />
     <%= f.text_field :code %>
   </p>
   <p>
-    <%= f.label :price, 'Preço' %><br />
+    <b><%= f.label :price, 'Preço' %></b><br />
     <%= f.text_field :price %>
   </p>
   <p>
-    <%= f.label :featured, 'Destaque' %><br />
+    <b><%= f.label :featured, 'Destaque' %></b><br />
     <%= f.check_box :featured %>
   </p>
   <p>

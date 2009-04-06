@@ -1,4 +1,4 @@
-<% unless current_store.nil? %>
+<% if user_session.show_store_menu_panel? %>
   <h2><%= current_store.title %></h2>
   <ul class="listaHorizontal">
     <li><%= link_to_unless_current 'espaço pessoal', store_path(current_store.adress) %></li>

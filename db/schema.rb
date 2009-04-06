@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090402203910) do
+ActiveRecord::Schema.define(:version => 20090404225009) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(:version => 20090402203910) do
     t.integer  "we_galery_id"
     t.integer  "showroom_galery_id"
     t.text     "checkout_text"
+    t.text     "close_list_text"
   end
 
   create_table "spams", :force => true do |t|

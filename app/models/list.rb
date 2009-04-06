@@ -2,6 +2,7 @@ class List < ActiveRecord::Base
 
   after_create :create_galery
   before_create :create_adress
+  before_save :update_nomes_busca
 
   has_many :list_items, :dependent => :destroy
   has_many :spams, :dependent => :destroy
@@ -9,7 +10,8 @@ class List < ActiveRecord::Base
   has_many :products, :through => :list_items
   belongs_to :user
   belongs_to :galery, :dependent => :destroy
-  before_save :update_nomes_busca
+  has_many :sales, :foreign_key => 'store_id'
+
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
 

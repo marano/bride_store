@@ -40,7 +40,6 @@
         <th>Quantidade</th>
         <th>Valor Unitário</th>
         <th>Valo Total</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -54,7 +53,6 @@
           </td>
           <td><p>R$ <%= number_with_precision i.price, :precision => 2 %></p></td>
           <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
-          <td><%= link_to 'EXCLUIR', remove_from_cart_path(i.id) , :confirm => 'Tem certeza?' %></td>
         </tr>
       <% end %>
       <tr>

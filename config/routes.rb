@@ -17,7 +17,9 @@ ActionController::Routing::Routes.draw do |map|
   map.find_list '/lists/find', :controller => 'lists', :action => 'find'
   map.edit_list_nomes '/list/edit_nomes', :controller => 'lists', :action => 'edit_nomes'
   map.edit_list_personal_space '/list/edit_personal_space', :controller => 'lists', :action => 'edit_personal_space'
-  map.select_list '/list/:id/select', :controller => 'lists', :action => 'select'  
+  map.select_list '/list/:id/select', :controller => 'lists', :action => 'select'
+  map.confirm_close_list '/list/confirm_close', :controller => 'lists', :action => 'confirm_close'
+  map.close_list '/list/close', :controller => 'lists', :action => 'close'
   
   map.set_list_item_quantity '/set_list_item_quantity/:id', :controller => 'list_items', :action => 'set_list_item_quantity'
   map.destroy_list_item '/list_item/:id/destroy', :controller => 'list_items', :action => 'destroy'
