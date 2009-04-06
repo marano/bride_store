@@ -5,11 +5,7 @@ class UserSession
   end
   
   def can_add_to_cart?
-    if current_store
-      current_store.open? or current_store.user == current_user
-    else
-      false
-    end
+    current_store and (current_store.open? or current_store.user == current_user)
   end
   
   def can_add_to_list?
