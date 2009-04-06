@@ -2,7 +2,7 @@
 <% if current_list %>
   <% migalha_current_list [ link_to('presentes', list_items_path), migalha_category] %>
 <% elsif current_store %>
-  <% migalha_current_store [ link_to('presentes', 'cart_path'), migalha_category] %>
+  <% migalha_current_store [ link_to('presentes', cart_path), migalha_category] %>
 <% else %>
   <% migalha migalha_category %>
 <% end %>

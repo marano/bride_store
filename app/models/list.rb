@@ -14,6 +14,14 @@ class List < ActiveRecord::Base
 
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
+  
+  def closed?
+    closed
+  end
+  
+  def open?
+    !closed?
+  end
 
   def add_sale(sale)
     sale.sale_items.each do |sale_item|

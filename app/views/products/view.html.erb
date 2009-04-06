@@ -38,7 +38,7 @@ window.addEvent('domready', function(){
     <h2>R$ <%= number_with_precision @product.price, :precision => 2 %></h2>
     <hr />
     <!-- Lista de presentes -->
-    <% unless current_list.nil? %>
+    <% if user_session.can_add_to_list? %>
       <% form_for ListItem.new do |f| %>
         <%= hidden_field_tag 'list_item[product_id]', @product.id  %>
         <%= f.label :quantity, 'Quantidade' %>
@@ -50,7 +50,7 @@ window.addEvent('domready', function(){
       <hr />      
     <% end %>
     <!-- Carrinho de compra -->
-    <% unless current_store.nil? %>
+    <% if user_session.can_add_to_cart? %>
       <% form_tag add_to_cart_path(@product.id) do %>
         <%= label_tag :quantity, 'Quantidade' %>
         <%= text_field_tag 'quantity', '1', :class => 'campoTexto' %>
