@@ -42,13 +42,14 @@ ActionController::Routing::Routes.draw do |map|
   map.checkout '/cart/checkout', :controller => 'sales', :action => 'new'
   
   map.resources :sales, :except => [ :edit ], :member => [ :pay ]
+  map.resources :sale_items, :only => [ :index ], :member => [ :change ]
   map.resources :email_configs
   map.resources :spams, :member => [ :enviar ]
   map.resources :galery_photos
   map.resources :messages
   map.resources :lists, :member => [ :personal_space ] 
   
-  map.resources :list_items, :member => [ :change ]
+  map.resources :list_items
   map.resources :testimonials
   map.resources :policies, :collection => [ :view ]
   map.resources :products, :collection => [ :find ], :member => [ :view ]

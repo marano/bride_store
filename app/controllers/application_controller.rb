@@ -46,18 +46,18 @@ class ApplicationController < ActionController::Base
     user_session.current_list
   end
 
-  def current_cart?
+  def current_cart
     user_session.current_cart
+  end
+
+  def current_cart?
+   !!current_cart
   end
 
   def clear_cart
     user_session.clear_cart
   end
-
-  def current_cart
-    user_session.current_cart
-  end
-
+  
   def site
     @site ||= Site.first || Site.new
   end

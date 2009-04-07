@@ -12,11 +12,7 @@
   <p class='infoLista'>NÃO HÁ PRESENTES ESCOLHIDOS PARA SUA LISTA.<br />NAVEGE PELAS SEÇÕES DA LOJA PRINCIPAL<br />E FAÇA SUAS ESCOLHAS</p>
 <% end %>
 
-<% unless current_list.list_items.empty? %>
-  <p>
-    Crédito adquirido na troca de presentes: R$ <%= number_with_precision list.credit %>
-  </p>
-  
+<% unless current_list.list_items.empty? %>  
   <table>
     <colgroup>
       <col id="produtoCol"/>
@@ -36,19 +32,16 @@
     </thead>
     <tbody>
       <% for i in current_list.list_items %>
-        <% next if current_list.closed? and i.quantity_bought == 0 %>
         <tr>
           <td><%= link_to i.product.name, view_product_path(i.product) %></td>
           <td>
-            <% unless current_list.closed? %>
-              <p>
-                <% form_for i do |f| %>
-                  <span>Desejada:</span>
-                  <%= f.text_field :quantity, :class => 'campoTexto', :style => 'width:20px' %>
-                  <%= f.submit 'alterar' %>
-                <% end %>
-              </p>
-            <% end %>
+            <p>
+              <% form_for i do |f| %>
+                <span>Desejada:</span>
+                <%= f.text_field :quantity, :class => 'campoTexto', :style => 'width:20px' %>
+                <%= f.submit 'alterar' %>
+              <% end %>
+            </p>
             <p>
               <span>Comprada:</span>
               <%= i.quantity_bought %>
@@ -57,16 +50,7 @@
           <td><p>R$ <%= number_with_precision i.product.price, :precision => 2 %></p></td>
           <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
           <td>
-            <% if current_list.closed? %>
-              <p>
-                <% form_tag change_list_item_path(i) do %>
-                  <%= submit_tag 'Trocar', :confirm => 'Tem certeza?' %>
-                  <%= text_field_tag :quantity, '1', :class => 'campoTexto', :style => 'width:20px' %>
-                <% end %>
-              </p>
-            <% else %>
-              <%= link_to 'remover', i , :confirm => 'Tem certeza?', :method => :delete %>
-            <% end %>
+            <%= link_to 'remover', i , :confirm => 'Tem certeza?', :method => :delete %>
           </td>
         </tr>
       <% end %>

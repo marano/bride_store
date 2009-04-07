@@ -7,9 +7,8 @@ class Sale < ActiveRecord::Base
   
   def extract(cart)
     cart.cart_items.each do |cart_item|
-      cart_items.build.extract(cart_item)
+      sale_items.build.extract(cart_item)
     end
-    cart.clear
   end
   
   def pay

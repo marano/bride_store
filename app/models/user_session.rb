@@ -3,20 +3,24 @@ class UserSession
   def initialize(session)
     @session = session
   end
-  
+
   def can_add_to_cart?
     current_store and (current_store.open? or current_store.user == current_user)
   end
-  
+
   def can_add_to_list?
     current_list and current_list.open?
   end
 
   def find_store_products(params)
-    if current_store.nil? or current_store.closed?
+    if current_store.nil?
       Product.paginate params
     else
-      current_store.products.paginate params
+      if current_store.user == current_user
+        Product.paginate params
+      else
+        current_store.products.paginate params
+      end
     end
   end
 
@@ -32,6 +36,10 @@ class UserSession
     end
   end
   
+  def show_credit?
+    current_list and current_list.closed and current_store
+  end
+
   def show_checkout?
     !current_cart.cart_items.empty? or current_list
   end
@@ -45,6 +53,7 @@ class UserSession
   end
 
   def select_list(list)
+    clear_cart
     if logged_in?
       if list.user == current_user
         if list.closed

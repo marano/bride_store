@@ -42,7 +42,7 @@
         </tr>
       <% end %>
       <tr>
-        <td></td>
+        <td>Total</td>
         <td></td>
         <td></td>
         <td><p>R$ <%= number_with_precision @cart.total_price, :precision => 2 %></p></td>
@@ -50,6 +50,6 @@
     </tbody>
   </table>
   <p>
-    <button>CHECKOUT</button>
+    <%= link_to '<button>CHECKOUT</button>', checkout_path %>
   </p>
 <% end %>

@@ -49,13 +49,14 @@ class SalesController < ApplicationController
   # POST /sales.xml
   def create
     @sale = Sale.new(params[:sale])
-    @sale.store = current_store
-    @sale.extract current_cart
+    @sale.store = current_store    
+    @sale.extract(current_cart)    
+    user_session.clear_cart    
     
     respond_to do |format|
       if @sale.save
         flash[:notice] = 'Compra efetuada com sucesso!'
-        format.html { redirect_to(@sale) }
+        format.html { redirect_to store_path(current_store.adress) }
         format.xml  { render :xml => @sale, :status => :created, :location => @sale }
       else
         format.html { render :action => "new" }

@@ -20,10 +20,6 @@ class Cart
     cart_items.delete cart_items[id]
   end
   
-  def clear
-    @cart_items = nil
-  end
-  
   def total_price
     total = 0
     cart_items.each { |item| total += item.total_price }

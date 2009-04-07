@@ -11,8 +11,13 @@ class List < ActiveRecord::Base
   belongs_to :user
   belongs_to :galery, :dependent => :destroy
   has_many :sales, :foreign_key => 'store_id'
+  has_many :sale_items, :through => :sales
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
+  
+  def add_credit(credit_to_sum)
+    update_attributes! :credit => credit + credit_to_sum
+  end
   
   def closed?
     closed
@@ -24,8 +29,7 @@ class List < ActiveRecord::Base
 
   def add_sale(sale)
     sale.sale_items.each do |sale_item|
-      list_item = find_list_item_by_product(sale_item.product)
-      list_item.add_bought_quantity(sale_item.quantity)
+      find_list_item_by_product(sale_item.product).add_bought_quantity(sale_item.quantity)
     end
   end
 
