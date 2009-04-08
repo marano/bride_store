@@ -10,32 +10,16 @@ class SalesController < ApplicationController
     redirect_to sales_path
   end
 
-  # GET /sales
-  # GET /sales.xml
   def index
     set_date_filter    
     
     @sales = Sale.all(:conditions => ['created_at > ? AND created_at < ?', @initial_date_filter, (@end_date_filter + 1.day)])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @sales }
-    end
   end
 
-  # GET /sales/1
-  # GET /sales/1.xml
   def show
     @sale = Sale.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @sale }
-    end
   end
 
-  # GET /sales/new
-  # GET /sales/new.xml
   def new
     @sale = Sale.new
 
@@ -45,23 +29,16 @@ class SalesController < ApplicationController
     end
   end
 
-  # POST /sales
-  # POST /sales.xml
   def create
     @sale = Sale.new(params[:sale])
     @sale.store = current_store    
     @sale.extract(current_cart)    
     user_session.clear_cart    
     
-    respond_to do |format|
-      if @sale.save
-        flash[:notice] = 'Compra efetuada com sucesso!'
-        format.html { redirect_to store_path(current_store.adress) }
-        format.xml  { render :xml => @sale, :status => :created, :location => @sale }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @sale.errors, :status => :unprocessable_entity }
-      end
+    if @sale.save
+      redirect_to send_visanet_path(@sale.id)
+    else
+      render :action => "new"
     end
   end
 
@@ -89,10 +66,7 @@ class SalesController < ApplicationController
 
     @sale.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(sales_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(sales_url)
   end
   
   private

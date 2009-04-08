@@ -27,4 +27,6 @@ config.action_controller.perform_caching             = true
 # config.threadsafe!
 
 #SITE_URL = "adr.bolongu.com"
-SITE_URL = "artederecebercasa.com.br"
+SITE_URL = 'artederecebercasa.com.br'
+
+AMBIENTE_PAGAMENTO = 'producao'

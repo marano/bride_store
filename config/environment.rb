@@ -46,3 +46,7 @@ end
 
 I18n.default_locale = 'pt-BR'
 #I18n.locale         = 'pt-BR'
+
+COMERCIO_ELETRONICO_LOCAWEB = '2413834'
+LOJA_VISA = '1023757270'
+

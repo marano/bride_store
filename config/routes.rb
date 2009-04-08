@@ -55,6 +55,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :products, :collection => [ :find ], :member => [ :view ]
   map.resources :categories
   
+  map.send_visanet '/visanet/:sale_id/send', :controller => 'visanet', :action => 'send_to_payment'
+  
   map.resources :users, :member => { :suspend   => :put,
                                    :unsuspend => :put,
                                    :purge     => :delete }

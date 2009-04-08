@@ -17,3 +17,5 @@ config.action_controller.perform_caching             = false
 config.action_mailer.raise_delivery_errors = true
 
 SITE_URL = "localhost:3000"
+
+AMBIENTE_PAGAMENTO = 'teste'

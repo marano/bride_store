@@ -9,6 +9,10 @@ module ApplicationHelper
   def head(content)
     content_for(:head) { content }
   end
+  
+  def onload(content)
+    content_for(:onload) { content }
+  end
 
   def mark(value)
     image_tag (value ? 'check.gif' : 'uncheck.gif')

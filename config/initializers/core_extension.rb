@@ -7,3 +7,9 @@ class String
     gsub(/ /,'')
   end
 end
+
+class ActiveRecord::Base
+  def helpers
+    ActionController::Base.helpers
+  end
+end

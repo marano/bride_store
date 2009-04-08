@@ -4,6 +4,7 @@ class Sale < ActiveRecord::Base
   has_many :sale_items, :dependent => :destroy
   
   default_scope :order => 'created_at DESC'
+  alias :orderid :id
   
   def extract(cart)
     cart.cart_items.each do |cart_item|
@@ -23,5 +24,7 @@ class Sale < ActiveRecord::Base
     sale_items.each { |item| total += item.total_price }
     total
   end
+  
+  alias :price :total_price
   
 end
