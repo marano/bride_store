@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
 
   def view
     @product = Product.find params[:id]
-    render :layout => 'site'
+    render :layout => 'application'
   end
 
   def find
@@ -51,7 +51,7 @@ class ProductsController < ApplicationController
     
     @products = user_session.find_store_products(search_params)
     
-    render :layout => 'site'
+    render :layout => 'application'
   end
 
   # GET /products

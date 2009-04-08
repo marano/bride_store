@@ -1,6 +1,5 @@
 class SiteController < ApplicationController
 
-  layout 'site'
   before_filter :adm_required, :only => [:update]
 
   def home

@@ -1,6 +1,4 @@
 class FaleConoscoController < ApplicationController
-
-  layout 'site'
   
   def new
   end

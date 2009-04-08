@@ -24,7 +24,7 @@ class SalesController < ApplicationController
     @sale = Sale.new
 
     respond_to do |format|
-      format.html { render :layout => 'site' }
+      format.html { render :layout => 'application' }
       format.xml  { render :xml => @sale }
     end
   end

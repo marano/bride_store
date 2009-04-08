@@ -1,8 +1,6 @@
 class ListsController < ApplicationController
 
   before_filter :login_required, :except => ['find', 'store', 'visit_list']
-
-  layout 'site'
   
   def close
     current_list.update_attribute(:closed, true)

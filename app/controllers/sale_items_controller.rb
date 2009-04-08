@@ -1,7 +1,5 @@
 class SaleItemsController < ApplicationController
 
-  layout 'site'
-
   def index
     @store = current_list
   end

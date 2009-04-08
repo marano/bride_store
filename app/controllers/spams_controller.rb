@@ -2,8 +2,6 @@ class SpamsController < ApplicationController
 
   before_filter :login_required
 
-  layout 'site'
-
   def enviar
     @spam = Spam.find(params[:id])
     @spam.enviar    

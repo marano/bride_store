@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
 
-  layout 'site'
   before_filter :login_required, :except => [ 'create' ]
   
   # GET /messages

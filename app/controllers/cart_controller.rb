@@ -1,7 +1,5 @@
 class CartController < ApplicationController
   
-  layout 'site'
-  
   def show
     @cart = current_cart
   end

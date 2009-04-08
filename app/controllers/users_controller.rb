@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   # render new.rhtml
   def new
     @user = User.new
-    render :layout  => 'site'
+    render :layout  => 'application'
   end
 
   def new_admin
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
       if(current_user.admin?)
         render :action => 'edit'
       else
-        render :action => 'new', :controller => 'list', :layout => 'site'
+        render :action => 'new', :controller => 'list', :layout => 'application'
       end
     end
   end
@@ -76,7 +76,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       flash[:error]  = "Não foi possível criar esta conta, desculpe.  Por favor tente de novo, ou contacte o administrador do sistema."
-      render :action => 'new', :layout => 'site'
+      render :action => 'new', :layout => 'application'
     end
   end
 
