@@ -2,7 +2,7 @@ class VisanetController < ApplicationController
 
   def send_to_payment
     @sale = Sale.find(params[:sale_id])
-    redirect_page 'https://comercio.locaweb.com.br/comercio.comp', VisanetSale.new(@sale).send_to_payment_params
+    redirect_from_post 'https://comercio.locaweb.com.br/comercio.comp', VisanetSale.new(@sale).send_to_payment_params
   end
   
   def confirm

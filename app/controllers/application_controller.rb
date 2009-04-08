@@ -66,10 +66,6 @@ class ApplicationController < ActionController::Base
     EmailConfig.first || EmailConfig.new
   end
   
-  def redirect_page(to, params)
-    @parameters = params
-    @parameters[:to] = to
-    render 'redirect/to', :layout => 'site'
-  end
+  
 end
 
