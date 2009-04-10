@@ -54,6 +54,12 @@
           </td>
         </tr>
       <% end %>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td><p>R$ <%= number_with_precision current_list.total_price, :precision => 2 %></p></td>
+      </tr>
     </tbody>
   </table>
 <% end %>

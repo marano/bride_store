@@ -19,6 +19,14 @@ class List < ActiveRecord::Base
     update_attributes! :credit => credit + credit_to_sum
   end
   
+  def total_price
+    t = 0
+    list_items.each do |list_item|
+      t = t + list_item.total_price
+    end
+    t
+  end
+  
   def closed?
     closed
   end

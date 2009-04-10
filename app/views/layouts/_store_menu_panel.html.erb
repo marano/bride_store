@@ -6,7 +6,7 @@
     <% end %>
   </h2>
   <ul class="listaHorizontal menuLista">
-    <li><%= link_to_unless_current 'espaço pessoal', store_path(current_store.adress) %></li>    
+    <li><%= link_to_unless_current 'página principal', store_path(current_store.adress) %></li>    
     <% if current_list %>
       <li>|</li>
       <li><%= link_to_unless_current 'presentes', sale_items_path %></li>
