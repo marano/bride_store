@@ -12,7 +12,7 @@ class VisanetController < ApplicationController
   end
 
   def confirm
-    @sale = Sale.find(params[:orderid])    
+    @sale = Sale.find(params[:orderid])
     redirect_to resend_visanet_path(@sale)
   end
 
@@ -34,6 +34,10 @@ class VisanetController < ApplicationController
     else
       flash[:error] = 'Não foi possível concluir o processo de pagamento!'
     end
+    redirect_to transaction_status_path
+  end
+  
+  def transaction_status
   end
 
   def capture
@@ -53,3 +57,4 @@ class VisanetController < ApplicationController
   end
 
 end
+
