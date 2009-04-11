@@ -11,4 +11,8 @@ class ListItem < ActiveRecord::Base
   def add_bought_quantity(sold_quantity)
     update_attributes! :quantity_bought => quantity_bought + sold_quantity
   end
+  
+  def has_gift?
+    quantity_bought > 0
+  end
 end

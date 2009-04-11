@@ -4,10 +4,6 @@ class SalesController < ApplicationController
 
   before_filter :adm_required, :except => [ :new, :create ]
 
-  def invoice
-    @sale = Sale.find(params[:id])
-  end
-
   def pay
     @sale = Sale.find(params[:id])
     @sale.pay

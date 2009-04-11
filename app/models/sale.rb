@@ -28,4 +28,12 @@ class Sale < ActiveRecord::Base
   
   alias :price :total_price
   
+  def has_gift_for_delivery?
+    return false unless paid
+    sale_items.each do |sale_item|
+      return true if sale_item.quantity_left > 0
+    end
+    return false
+  end
+  
 end

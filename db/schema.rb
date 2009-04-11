@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090407214004) do
+ActiveRecord::Schema.define(:version => 20090411195028) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(:version => 20090407214004) do
     t.boolean  "closed"
     t.decimal  "credit",               :default => 0.0
     t.boolean  "delivery"
+    t.date     "delivery_date"
+    t.string   "delivery_adress"
   end
 
   create_table "messages", :force => true do |t|

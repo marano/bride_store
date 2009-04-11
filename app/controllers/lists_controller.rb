@@ -2,13 +2,21 @@ class ListsController < ApplicationController
 
   before_filter :login_required, :except => ['find', 'store', 'visit_list']
   
-  def close
-    current_list.update_attribute(:closed, true)
-    redirect_to list_items_path
+  def new_delivery
+    @list = current_list
+  end
+  
+  def create_delivery
+    @list = current_list
   end
   
   def confirm_close
     @list = current_list
+  end
+  
+  def close
+    current_list.update_attribute(:closed, true)
+    redirect_to select_list_path(current_list)
   end
   
   def my_list

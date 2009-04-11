@@ -17,6 +17,10 @@
       <li>|</li>
       <li><%= link_to_unless_current 'checkout', checkout_path %></li>      
     <% end %>
+    <% if user_session.show_deliver? %>
+      <li>|</li>
+      <li><%= link_to_unless_current 'entregar', new_delivery_path %></li>      
+    <% end %>
   </ul>
   <hr>
   

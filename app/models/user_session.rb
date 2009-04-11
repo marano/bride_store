@@ -35,13 +35,17 @@ class UserSession
       end
     end
   end
-  
+
   def show_credit?
     current_list and current_list.closed and current_store
   end
 
   def show_checkout?
-    !current_cart.cart_items.empty? or current_list
+    !current_cart.cart_items.empty?
+  end
+
+  def show_deliver?
+    current_store.has_gift_for_delivery? and current_store == current_list
   end
 
   def show_list_menu_panel?

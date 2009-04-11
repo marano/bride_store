@@ -15,6 +15,13 @@ class List < ActiveRecord::Base
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
   
+  def has_gift_for_delivery?
+    sales.each do |sale|
+      return true if sale.has_gift_for_delivery?
+    end
+    return false
+  end
+  
   def add_credit(credit_to_sum)
     update_attributes! :credit => credit + credit_to_sum
   end
