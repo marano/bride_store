@@ -18,7 +18,7 @@ class VisanetController < ApplicationController
 
   def resend
     @sale = Sale.find(params[:sale_id])
-    visa_params = VisanetSale.new(@sale).confirm_payment_params
+    visa_params = VisanetSale.new(@sale).resend_to_payment_params
     visa_params['URLRetornoVisa'] = complete_visanet_url
     redirect_from_post 'https://comercio.locaweb.com.br/comercio.comp', visa_params
   end
