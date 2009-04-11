@@ -59,6 +59,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resend_visanet '/visanet/:sale_id/resend', :controller => 'visanet', :action => 'resend'
   map.confirm_visanet '/visanet/confirm', :controller => 'visanet', :action => 'confirm'
   map.complete_visanet '/visanet/complete', :controller => 'visanet', :action => 'complete'
+  map.show_transaction '/visanet/show_transaction', :controller => 'visanet', :action => 'show_transaction'
   
   map.resources :users, :member => { :suspend   => :put,
                                    :unsuspend => :put,

@@ -1,0 +1,28 @@
+redirect_fu
+===========
+
+Very simple plugin for making redirections on your rails applications.
+
+It's useful when you want to make a post request to a resource outside your application that requires a post request, for example when using visanet.
+
+
+Example
+=======
+
+redirect_from_post(to, parameters)
+
+usage:
+
+def send_to_payment
+  @visanet_sale = VisanetSale.new(params[:visanet_sale])
+  redirect_from_post 'https://visanet.com/component', visanet_sale.send_to_payment_params
+end
+
+This code will build a redirect page with a form that is submited after rendered.
+
+<form action='https://visanet.com/component' method='post'>
+  <input type='hidden' name='tid' value='78437986523234' />
+  ...
+</form>
+
+Copyright (c) 2009 Marano, released under the MIT license
