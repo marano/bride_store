@@ -1,10 +1,10 @@
 <p>
-  <%= flash[:notice] %>
-  <%= flash[:error] %>
+  Código da Transação: <%= @tid %>
+  Resultado: <%= @lr %> - <%= @ars %>
 </p>
 <p>
   <h2>Produtos</h2>
 </p>
 <p>
-  <%= link_to 'Voltar para a página principal', store_path(@sale.list.adress) %>
+  <%= link_to 'Voltar para a página principal', store_path(@sale.store.adress) %>
 <p>

@@ -25,7 +25,9 @@ class VisanetController < ApplicationController
 
   def complete
     @sale = Sale.find(params[:orderid])
+    @tid = params[:tid]
     @lr = params[:lr]
+    @ars = params[:ars]
     if @lr == '00' or @lr == '01'
       @sale.pay
       flash[:notice] = 'Pagamento efetuado com sucesso!'
