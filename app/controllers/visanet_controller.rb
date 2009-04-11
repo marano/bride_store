@@ -34,7 +34,7 @@ class VisanetController < ApplicationController
     else
       flash[:error] = 'Não foi possível efetuar o pagamento!'
     end
-    render :layout => nil
+    render :layout => false
   end
 
   def capture
