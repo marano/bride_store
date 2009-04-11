@@ -1,5 +1,9 @@
 class VisanetController < ApplicationController
 
+  def verify_authenticity_token
+    true
+  end
+
   def send_to_payment
     @sale = Sale.find(params[:sale_id])
     visa_params = VisanetSale.new(@sale).send_to_payment_params
