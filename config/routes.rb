@@ -41,7 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.checkout '/cart/checkout', :controller => 'sales', :action => 'new'
   
-  map.resources :sales, :except => [ :edit ], :member => [ :pay ]
+  map.resources :sales, :except => [ :edit ], :member => [ :pay, :invoice ]
   map.resources :sale_items, :only => [ :index ], :member => [ :change ]
   map.resources :email_configs
   map.resources :spams, :member => [ :enviar ]
@@ -56,6 +56,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories
   
   map.send_visanet '/visanet/:sale_id/send', :controller => 'visanet', :action => 'send_to_payment'
+  map.resend_visanet '/visanet/:sale_id/resend', :controller => 'visanet', :action => 'resend'
+  map.confirm_visanet '/visanet/confirm', :controller => 'visanet', :action => 'confirm'
+  map.complete_visanet '/visanet/complete', :controller => 'visanet', :action => 'complete'
   
   map.resources :users, :member => { :suspend   => :put,
                                    :unsuspend => :put,

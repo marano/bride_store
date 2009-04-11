@@ -4,6 +4,7 @@ class Sale < ActiveRecord::Base
   has_many :sale_items, :dependent => :destroy
   
   default_scope :order => 'created_at DESC'
+  
   alias :orderid :id
   
   def extract(cart)

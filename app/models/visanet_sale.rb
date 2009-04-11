@@ -6,13 +6,6 @@ class VisanetSale
   def initialize(sale)
     @sale = sale
   end
-
-  def send_to_payment
-    response = Net::HTTP.post_form(URI.parse('https://comercio.locaweb.com.br/comercio.comp'),
-    send_to_payment_params)
-
-    response['location']
-  end
   
   def send_to_payment_params
     {
@@ -26,6 +19,16 @@ class VisanetSale
       'orderid'=> @sale.orderid,
       'price'=> price,
       'damount'=> damount
+    }
+  end
+  
+  def confirm_payment_params
+    {
+      'identificacao'=> COMERCIO_ELETRONICO_LOCAWEB,
+      'ambiente'=> AMBIENTE_PAGAMENTO,
+      'modulo'=> 'VISAVBV',
+      'operacao'=> 'Retorno',
+      'tid'=> tid
     }
   end
 
@@ -65,5 +68,12 @@ class VisanetSale
   def helpers
     ActionController::Base.helpers
   end
+
+#  def send_to_payment
+#    response = Net::HTTP.post_form(URI.parse('https://comercio.locaweb.com.br/comercio.comp'),
+#    send_to_payment_params)
+
+#    response['location']
+#  end
 
 end
