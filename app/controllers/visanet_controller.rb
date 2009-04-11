@@ -32,7 +32,7 @@ class VisanetController < ApplicationController
       @sale.pay
       flash[:notice] = 'Pagamento efetuado com sucesso!'
     else
-      flash[:error] = 'Não foi possível concluir o processo de pagamento!'
+      flash[:error] = 'Não foi possível efetuar o pagamento!'
     end
     render :layout => nil
   end
