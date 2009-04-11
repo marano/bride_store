@@ -56,6 +56,11 @@
     <b><%= f.label :close_list_text, "Texto \"Encerrar lista\"" %></b><br />
     <%= fckeditor_textarea(:site, :close_list_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
+
+  <p>
+    <b><%= f.label :delivery_text, "Texto \"Entregar\"" %></b><br />
+    <%= fckeditor_textarea(:site, :delivery_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
+  </p>
   
   <p>
     <%= f.submit "Salvar" %>

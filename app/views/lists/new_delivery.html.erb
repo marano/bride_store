@@ -1,0 +1,17 @@
+<% migalha_current_list 'entregar' %>
+
+<%= render :partial => 'layouts/store_menu_panel' %>
+
+<%= site.delivery_text %>
+
+<% form_tag @list do %>
+  <p>
+    <%= label_tag :delivery_adress, 'Endereço' %><br/>
+    <%= text_area_tag :delivery_adress, :class => 'campoAreaTexto' %>
+  </p>
+  
+  <p>
+    <%= label_tag :delivery_date, 'Data' %><br/>
+    <%= select_date %>
+  </p>
+<% end %>
