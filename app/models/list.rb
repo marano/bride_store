@@ -1,7 +1,7 @@
 class List < ActiveRecord::Base
 
   after_create :create_galery
-  before_create :create_adress
+  before_create :fill_adress
   before_save :update_nomes_busca
 
   has_many :list_items, :dependent => :destroy
@@ -36,6 +36,14 @@ class List < ActiveRecord::Base
     t
   end
   
+  def gifts_total_price
+    t = 0
+    gifts.each do |gift|
+      t = t + gift.total_price
+    end
+    t
+  end
+  
   def closed?
     closed
   end
@@ -46,7 +54,10 @@ class List < ActiveRecord::Base
 
   def add_sale(sale)
     sale.sale_items.each do |sale_item|
-      find_list_item_by_product(sale_item.product).add_bought_quantity(sale_item.quantity)
+      list_item = find_list_item_by_product(sale_item.product)
+      unless list_item.nil?
+        list_item.add_bought_quantity(sale_item.quantity)
+      end      
     end
   end
 
@@ -79,7 +90,7 @@ class List < ActiveRecord::Base
 
   private
   
-  def create_adress
+  def fill_adress
     write_attribute :adress, name
   end
   

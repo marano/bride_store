@@ -19,7 +19,6 @@
       <th scope="col">Qtd</th>
       <th scope="col">Valor Unitário</th>
       <th scope="col">Valo Total</th>
-      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -33,18 +32,29 @@
         </td>
         <td><p>R$ <%= number_with_precision i.price, :precision => 2 %></p></td>
         <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
-        <td>
-          <p>
-            <% form_tag change_sale_item_path(i) do %>
-              <%= submit_tag 'Trocar', :confirm => 'Tem certeza?' %>
-              <%= text_field_tag :quantity, '1', :class => 'campoTexto', :style => 'width:20px' %>
-            <% end %>
-          </p>
-        </td>
+        <% unless @store.delivery %>
+          <td>
+            <p>
+              <% form_tag change_sale_item_path(i) do %>
+                <%= submit_tag 'Trocar', :confirm => 'Tem certeza?' %>
+                <%= text_field_tag :quantity, '1', :class => 'campoTexto', :style => 'width:20px' %>
+              <% end %>
+            </p>
+          </td>
+        <% end %>
       </tr>
     <% end %>
+    <tr>
+      <td>Total</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><p>R$ <%= number_with_precision @store.gifts_total_price, :precision => 2 %></p></td>
+    </tr>
   </tbody>
 </table>
-<p>
-  <%= link_to '<button>Entregar</button>', new_delivery_path %>
-</p>
+<% unless @store.delivery %>
+  <p>
+    <%= link_to '<button>Entregar</button>', new_delivery_path %>
+  </p>
+<% end %>

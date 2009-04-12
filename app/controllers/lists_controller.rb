@@ -8,6 +8,11 @@ class ListsController < ApplicationController
   
   def create_delivery
     @list = current_list
+    @list.delivery_adress = params[:delivery_adress]
+    @list.delivery_date = Date.new(params[:delivery_date][:"field(1i)"].to_i, params[:delivery_date][:"field(2i)"].to_i, params[:delivery_date][:"field(3i)"].to_i)
+    @list.delivery = true
+    @list.save!
+    redirect_to account_path
   end
   
   def confirm_close

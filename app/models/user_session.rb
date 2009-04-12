@@ -5,11 +5,11 @@ class UserSession
   end
 
   def can_add_to_cart?
-    current_store and (current_store.open? or current_store.user == current_user)
+    current_store and (current_store.open? or current_store.user == current_user) and !current_store.delivery
   end
 
   def can_add_to_list?
-    current_list and current_list.open?
+    current_list and current_list.open? and !current_list.delivery
   end
 
   def find_store_products(params)
