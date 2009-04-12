@@ -37,7 +37,7 @@ class UserSession
   end
 
   def show_credit?
-    current_list and current_list.closed and current_store
+    current_list and current_list.closed and current_store and !current_store.delivery
   end
 
   def show_checkout?
