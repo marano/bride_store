@@ -1,5 +1,7 @@
 class List < ActiveRecord::Base
 
+  default_scope :order => 'created_at DESC'
+
   after_create :create_galery
   before_create :fill_adress
   before_save :update_nomes_busca
