@@ -22,6 +22,8 @@ ActionController::Routing::Routes.draw do |map|
   map.close_list '/list/close', :controller => 'lists', :action => 'close'
   map.new_delivery 'list/delivery/new', :controller => 'lists', :action => 'new_delivery'
   map.create_delivery 'list/delivery', :controller => 'lists', :action => 'create_delivery', :conditions => { :method => :post}
+  map.delivery 'list/delivery/:id', :controller => 'lists', :action => 'show_delivery'
+  map.deliveries 'list/deliveries', :controller => 'lists', :action => 'deliveries'
   
   map.set_list_item_quantity '/set_list_item_quantity/:id', :controller => 'list_items', :action => 'set_list_item_quantity'
   

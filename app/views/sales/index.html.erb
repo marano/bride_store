@@ -30,5 +30,5 @@
     <td><%= sale.paid ? mark(sale.paid) : link_to(mark(sale.paid), pay_sale_path(sale), :confirm => 'Tem certeza que deseja marcar a venda como paga?', :method => :post) %></td>
     <td><%=h sale.store %></td>
   </tr>
-<% end %>
+<% end %>  
 </table>

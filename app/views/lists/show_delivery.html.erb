@@ -1,0 +1,54 @@
+<h1>Entrega</h1>
+
+<p>
+  <b>Lista</b><br/>
+  <%= @delivery.name %>
+</p>
+
+<p>
+  <b>Dono da lista</b><br/>
+  <%= @delivery.user.name %>
+</p>
+
+<p>
+  <b>Endereço de entrega</b><br/>
+  <%= @delivery.delivery_adress %>
+</p>
+
+<p>
+  <b>Data de entrega</b><br/>
+  <%= @delivery.delivery_date %>
+</p>
+
+<h2>Produtos</h2>
+
+<table>
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Valor Unitário</th>
+        <th>Valor Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @delivery.gifts.each do |i| %>
+        <tr>
+          <td><%= link_to i.product.name, i.product %></td>
+          <td>
+            <p>
+              <%= i.quantity %>
+            </p>
+          </td>
+          <td><p>R$ <%= number_with_precision i.price, :precision => 2 %></p></td>
+          <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td><p>R$ <%= number_with_precision @delivery.total_price, :precision => 2 %></p></td>
+      </tr>
+    </tbody>
+  </table>

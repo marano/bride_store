@@ -1,6 +1,17 @@
 class ListsController < ApplicationController
 
   before_filter :login_required, :except => ['find', 'store', 'visit_list']
+  before_filter :adm_required, :only => [ 'deliveries', 'show_delivery' ]  
+  
+  def show_delivery
+    @delivery = List.find(params[:id])
+    render :layout => 'adm'
+  end
+  
+  def deliveries
+    @deliveries = List.scoped_by_delivery(true).all
+    render :layout => 'adm'
+  end
   
   def new_delivery
     @list = current_list

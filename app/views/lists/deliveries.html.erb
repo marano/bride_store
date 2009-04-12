@@ -1,0 +1,30 @@
+<h1>Vendas</h1>
+
+<p>
+  <b>Período</b>&nbsp;
+  <% form_tag sales_path, :method => 'get' do %>
+    Início <%= date_select('date_filter', 'initial', :default => @initial_date_filter) %>&nbsp;
+    Término <%= date_select('date_filter', 'end', :default => @end_date_filter) %>&nbsp;
+    <%= submit_tag 'Filtrar' %>
+  <% end %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Entrega</th>
+      <th>Cliente</th>
+      <th>Lista</th>
+  </tr>
+  </thead>
+
+<% @deliveries.each do |delivery| %>
+  <tr>
+    <td><%= link_to image_tag('editar.gif'), delivery_path(delivery) %></td>
+    <td><%=h delivery.delivery_date %></td>
+    <td><%=h delivery.user.name %></td>
+    <td><%= link_to delivery.name, store_path(delivery.adress) %></td>
+  </tr>
+<% end %>
+</table>
