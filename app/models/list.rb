@@ -18,7 +18,7 @@ class List < ActiveRecord::Base
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
   
   def has_gift_for_delivery?
-    sales.each do |sale|
+    paid_sales.each do |sale|
       return true if sale.has_gift_for_delivery?
     end
     return false
@@ -50,15 +50,6 @@ class List < ActiveRecord::Base
   
   def open?
     !closed?
-  end
-
-  def add_sale(sale)
-    sale.sale_items.each do |sale_item|
-      list_item = find_list_item_by_product(sale_item.product)
-      unless list_item.nil?
-        list_item.add_bought_quantity(sale_item.quantity)
-      end      
-    end
   end
 
   def add_list_item(product, quantity)    

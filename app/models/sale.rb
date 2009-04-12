@@ -14,10 +14,7 @@ class Sale < ActiveRecord::Base
   end
   
   def pay
-    transaction do
-      update_attribute :paid, true
-      store.add_sale(self)
-    end
+    update_attribute! :paid, true    
   end
   
   def total_price

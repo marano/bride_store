@@ -8,11 +8,15 @@ class ListItem < ActiveRecord::Base
     product.price * quantity
   end
   
-  def add_bought_quantity(sold_quantity)
-    update_attributes! :quantity_bought => quantity_bought + sold_quantity
-  end
-  
   def has_gift?
     quantity_bought > 0
+  end
+  
+  def quantity_bought
+    sum = 0
+    list.gifts.each do |gift|
+      sum = sum + gift.quantity if gift.product == product
+    end
+    sum
   end
 end
