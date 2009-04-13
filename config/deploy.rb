@@ -1,5 +1,5 @@
-set :user, "bolongu"
-set :domain, "adr.bolongu.com"
+set :user, "artederecebercasa"
+set :domain, "artederecebercasa.com.br"
 set :application, "adr"
 
 default_run_options[:pty] = true

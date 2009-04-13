@@ -5,15 +5,17 @@
 <p><%= will_paginate @products, :previous_label => '&laquo Anterior', :next_label => 'Próxima &raquo' %></p>
 
 <table>
-  <tr>
-    <th></th>
-    <th></th>
-    <%= sortable_table_header :name => "Nome",  :sort => "name" %>
-    <th>Categoria</th>
-    <th>Código</th>
-    <%= sortable_table_header :name => "Preço",  :sort => "price" %>
-    <%= sortable_table_header :name => "Destaque",  :sort => "featured" %>
-  </tr>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <%= sortable_table_header :name => "Nome",  :sort => "name" %>
+      <th>Categoria</th>
+      <th>Código</th>
+      <%= sortable_table_header :name => "Preço",  :sort => "price" %>
+      <%= sortable_table_header :name => "Destaque",  :sort => "featured" %>
+    </tr>
+  </thead>
 
 <% for product in @products %>
   <tr>

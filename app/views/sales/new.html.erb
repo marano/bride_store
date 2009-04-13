@@ -1,0 +1,60 @@
+<% migalha [ link_to('carrinho de compras', cart_path), 'checkout'] %>
+
+<% content_for(:content_class) { %>criarConta<% } %>
+
+<%= render :partial => 'layouts/store_menu_panel' %>
+
+<p><%= site.checkout_text %></p>
+
+<% form_for @sale, :html => { :id => 'formCriarConta' } do |f| -%>
+
+  <p><%= label_tag 'name', 'Nome:' %><br/>
+  <%= f.text_field :name, :class => 'campoTexto' %></p>
+
+  <p><%= label_tag 'cpf', 'CPF:' %><br/>
+  <%= f.text_field :cpf, :class => 'campoTexto' %></p>
+
+  <p><%= label_tag 'phone', 'Telefone:' %><br/>
+  <%= f.text_field :phone, :class => 'campoTexto' %></p>
+  
+  <p><%= label_tag 'email', 'Email:' %><br/>
+  <%= f.text_field :email, :class => 'campoTexto' %></p>
+
+  <p><%= label_tag 'adress', 'Endereço:' %><br/>
+  <%= f.text_area :adress, :class => 'campoAreaTexto' %></p>  
+  
+  <h2>Produtos</h2>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Valor Unitário</th>
+        <th>Valor Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for i in current_cart.cart_items %>
+        <tr>
+          <td><%= link_to i.product.name, i.product %></td>
+          <td>
+            <p>
+              <%= i.quantity %>
+            </p>
+          </td>
+          <td><p>R$ <%= number_with_precision i.product.price, :precision => 2 %></p></td>
+          <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td><p>R$ <%= number_with_precision current_cart.total_price, :precision => 2 %></p></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <input type="image" title="Ir para o pagamento" value="Pagamento" src='/images/btConfirmar.gif' />
+<% end %>

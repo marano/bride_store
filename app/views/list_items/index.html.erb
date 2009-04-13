@@ -3,6 +3,7 @@
 <% migalha_current_list 'presentes' %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>
+<%= render :partial => 'layouts/store_menu_panel' %>
 
 <% if current_list.list_items.empty? %>
   <p>
@@ -11,7 +12,7 @@
   <p class='infoLista'>NÃO HÁ PRESENTES ESCOLHIDOS PARA SUA LISTA.<br />NAVEGE PELAS SEÇÕES DA LOJA PRINCIPAL<br />E FAÇA SUAS ESCOLHAS</p>
 <% end %>
 
-<% unless current_list.list_items.empty? %>
+<% unless current_list.list_items.empty? %>  
   <table>
     <colgroup>
       <col id="produtoCol"/>
@@ -35,9 +36,9 @@
           <td><%= link_to i.product.name, view_product_path(i.product) %></td>
           <td>
             <p>
-              <span>Desejada:</span>
               <% form_for i do |f| %>
-                <%= f.text_field :quantity, :class => 'campoTexto', :style => 'width:30px' %>
+                <span>Desejada:</span>
+                <%= f.text_field :quantity, :class => 'campoTexto', :style => 'width:20px' %>
                 <%= f.submit 'alterar' %>
               <% end %>
             </p>
@@ -48,9 +49,17 @@
           </td>
           <td><p>R$ <%= number_with_precision i.product.price, :precision => 2 %></p></td>
           <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
-          <td><%= link_to 'EXCLUIR', destroy_list_item_path(i.id) , :confirm => 'Tem certeza?' %></td>
+          <td>
+            <%= link_to 'remover', i , :confirm => 'Tem certeza?', :method => :delete %>
+          </td>
         </tr>
       <% end %>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td><p>R$ <%= number_with_precision current_list.total_price, :precision => 2 %></p></td>
+      </tr>
     </tbody>
   </table>
 <% end %>

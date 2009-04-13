@@ -5,8 +5,8 @@ class Spam < ActiveRecord::Base
   
   default_scope :order => 'created_at DESC'
   
-  def enviar
-    SpamMailer.deliver_spam(self)
+  def enviar(store_url)
+    SpamMailer.deliver_spam(self, store_url)
     sent_spam = Spam.new
     sent_spam.list = list
     sent_spam.title = title

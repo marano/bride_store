@@ -1,20 +1,23 @@
 <h1>Usuários</h1>
 
 <table>
-  <tr>
-    <td>Nome</td>
-    <td>Usuário</td>
-    <td>Administrador</td>
-  </tr>
+  <thead>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>Nome</td>
+      <td>Usuário</td>
+      <td>Administrador</td>
+    </tr>
+  </thead>
 
 <% for user in @users %>
   <tr>
-    <td><%= user.name %></td>
+    <td><%= link_to image_tag('editar.gif'), edit_user_path(user) %></td>
+    <td><%= link_to image_tag('remover.gif'), user, :confirm => 'Tem certeza?', :method => :delete %></td>
+    <td><%= link_to user.name, user %></td>
     <td><%= user.login %></td>
-    <td><%= user.admin? %></td>
-    <td><%= link_to 'Exibir', user %></td>
-    <td><%= link_to 'Editar', edit_user_path(user) %></td>
-    <td><%= link_to 'Remover', user, :confirm => 'Tem certeza?', :method => :delete %></td>
+    <td><%= mark_if user.admin? %></td>
   </tr>
 <% end %>
 </table>

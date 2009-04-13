@@ -1,22 +1,21 @@
 <h1>Políticas</h1>
 
 <table>
-  <tr>
-    <th>Nome</th>
-    <th>Título do menu</th>
-    <th>Título do texto</th>
-    <th>Texto</th>
-  </tr>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Nome</th>
+      <th>Título do menu</th>
+    </tr>
+  </thead>
 
 <% for policy in @policies %>
   <tr>
-    <td><%=h policy.name %></td>
+    <td><%= link_to image_tag('editar.gif'), edit_policy_path(policy) %></td>
+    <td><%= link_to image_tag('remover.gif'), policy, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to policy.name, policy %></td>
     <td><%=h policy.menu_title %></td>
-    <td><%=h policy.text_title %></td>
-    <td><%=h policy.text %></td>
-    <td><%= link_to 'Exibir', policy %></td>
-    <td><%= link_to 'Editar', edit_policy_path(policy) %></td>
-    <td><%= link_to 'Remover', policy, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

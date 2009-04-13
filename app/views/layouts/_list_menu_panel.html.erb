@@ -1,4 +1,4 @@
-<% unless current_list.nil? %>
+<% if user_session.show_list_menu_panel? %>
   <h2><%= current_list.name %></h2>
   <ul class="listaHorizontal menuLista">
     <li><%= link_to_unless_current 'noivos', edit_list_nomes_path %></li>
@@ -11,7 +11,7 @@
     <li>|</li>
     <li><%= link_to_unless_current 'visualizar', personal_space_list_path(current_list) %></li>
     <li>|</li>
-    <li><%= link_to_unless_current 'encerrar lista', '' %></li>
+    <li><%= link_to_unless_current 'encerrar lista', confirm_close_list_path %></li>
   </ul>
   <hr>
 <% end %>

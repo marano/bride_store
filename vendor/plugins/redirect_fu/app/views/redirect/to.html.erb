@@ -1,0 +1,8 @@
+<% form_tag @parameters.delete(:to), :id => 'form' do %>
+  <% @parameters.each do |key, value| %>
+    <%= hidden_field_tag key, value %>
+  <% end %>
+<% end %>
+<script language="JavaScript">
+  document.getElementById("form").submit()
+</script>

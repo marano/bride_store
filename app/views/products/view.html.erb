@@ -38,11 +38,10 @@ window.addEvent('domready', function(){
     <h2>R$ <%= number_with_precision @product.price, :precision => 2 %></h2>
     <hr />
     <!-- Lista de presentes -->
-    <% unless current_list.nil? %>
+    <% if user_session.can_add_to_list? %>
       <% form_for ListItem.new do |f| %>
         <%= hidden_field_tag 'list_item[product_id]', @product.id  %>
-        <%= f.label :quantity, 'Quantidade' %>
-        <%= text_field_tag 'list_item[quantity]', '1', :class => 'campoTexto' %>
+        <%= hidden_field_tag 'list_item[quantity]', '1' %>
         <input type="image" title="adicionar à minha lista de presentes" src="/images/btAddALista.gif" />
       <% end %>
       <hr />
@@ -50,15 +49,13 @@ window.addEvent('domready', function(){
       <hr />      
     <% end %>
     <!-- Carrinho de compra -->
-    <% unless current_store.nil? %>
-      <% form_for ListItem.new do |f| %>
-        <%= hidden_field_tag 'list_item[product_id]', @product.id  %>
-        <%= f.label :quantity, 'Quantidade' %>
-        <%= text_field_tag 'list_item[quantity]', '1', :class => 'campoTexto' %>
+    <% if user_session.can_add_to_cart? %>
+      <% form_tag add_to_cart_path(@product.id) do %>
+        <%= hidden_field_tag 'quantity', '1' %>
         <input type="image" title="adicionar ao meu carrinho de compras" src="/images/btAddCarrinho.gif" />
       <% end %>
       <hr />
-      <%= link_to '<span></span>ver meu carrinho de compras', list_items_path, :class => 'verCarrinho' %>    
+      <%= link_to '<span></span>ver meu carrinho de compras', cart_path, :class => 'verCarrinho' %>    
     <% end %>
   </div>
   <div class="base"></div>

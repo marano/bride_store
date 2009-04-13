@@ -1,0 +1,58 @@
+<% content_for :content_class do %>listaPresentes<% end %>
+
+<% migalha_current_list 'carrinho de compras' %>
+
+<%= render :partial => 'layouts/list_menu_panel' %>
+<%= render :partial => 'layouts/store_menu_panel' %>
+
+<% if @cart.cart_items.empty? %>
+  <p class='infoLista'>NÃO HÁ PRESENTES ESCOLHIDOS PARA SUA LISTA.<br />NAVEGE PELAS SEÇÕES DA LOJA <br />E FAÇA SUAS ESCOLHAS</p>
+<% end %>
+
+<% unless @cart.cart_items.empty? %>
+  <table>
+    <colgroup>
+      <col id="produtoCol"/>
+      <col id="quantidadeCol"/>
+      <col id="valorUnitarioCol"/>
+      <col id="valorTotalCol"/>
+      <col id="gerenciaCol"/>
+    </colgroup>
+    <thead>
+      <tr>
+        <th scope="col">Produto</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">Valor Unitário</th>
+        <th scope="col">Valo Total</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for i in @cart.cart_items %>
+        <tr>
+          <td><%= link_to i.product.name, view_product_path(i.product) %></td>
+          <td>
+            <p>
+              <% form_tag change_quantity_cart_item_path(i.product.id), :method => :put do %>
+                <%= text_field_tag :quantity, i.quantity , :class => 'campoTexto', :style => 'width:20px' %>
+                <%= submit_tag 'alterar' %>
+              <% end %>
+            </p>
+          </td>
+          <td><p>R$ <%= number_with_precision i.product.price, :precision => 2 %></p></td>
+          <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
+          <td><%= link_to 'EXCLUIR', remove_from_cart_path(i.id) , :confirm => 'Tem certeza?' %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td><p>R$ <%= number_with_precision @cart.total_price, :precision => 2 %></p></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    <%= link_to '<button>CHECKOUT</button>', checkout_path %>
+  </p>
+<% end %>

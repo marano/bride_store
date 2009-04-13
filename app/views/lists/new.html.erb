@@ -8,7 +8,16 @@
 <h1>Minhas Listas - <span>você tem (<%= current_user.lists.size %>) listas de presentes</span></h1>
 <ul class="listaVertical">
   <% for list in current_user.lists %>
-    <li><%= link_to list.name, select_list_path(list) %> - <%= link_to 'excluir', list_path(list), :method => 'DELETE', :confirm => 'Tem certeza?' %></li>
+    <li>
+      <%= link_to list.name, select_list_path(list) %>
+      <% if list.delivery %>
+        (entregue)
+      <% elsif list.closed %>
+        (encerrada)
+      <% end %>
+      - 
+      <%= link_to 'excluir', list_path(list), :method => 'DELETE', :confirm => 'Tem certeza?' %>
+    </li>
   <% end %>
 </ul>
 <h2>Criar Listas</h2>

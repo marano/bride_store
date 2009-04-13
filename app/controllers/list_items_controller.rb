@@ -1,7 +1,5 @@
 class ListItemsController < ApplicationController
 
-  layout 'site'
-
   # GET /list_items
   # GET /list_items.xml
   def index

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090319005548) do
+ActiveRecord::Schema.define(:version => 20090412043817) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(:version => 20090319005548) do
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "quantity_bought", :default => 0
   end
 
   create_table "lists", :force => true do |t|
@@ -74,6 +73,11 @@ ActiveRecord::Schema.define(:version => 20090319005548) do
     t.datetime "photo_updated_at"
     t.integer  "galery_id"
     t.string   "adress"
+    t.boolean  "closed"
+    t.decimal  "credit",               :default => 0.0
+    t.boolean  "delivery"
+    t.date     "delivery_date"
+    t.string   "delivery_adress"
   end
 
   create_table "messages", :force => true do |t|
@@ -115,6 +119,30 @@ ActiveRecord::Schema.define(:version => 20090319005548) do
     t.datetime "display_updated_at"
   end
 
+  create_table "sale_items", :force => true do |t|
+    t.integer  "sale_id"
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.decimal  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "quantity_changed", :default => 0
+  end
+
+  create_table "sales", :force => true do |t|
+    t.string   "name"
+    t.string   "cpf"
+    t.text     "adress"
+    t.integer  "store_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "paid"
+    t.boolean  "archived",   :default => false
+    t.string   "phone"
+    t.string   "email"
+    t.string   "tid"
+  end
+
   create_table "sites", :force => true do |t|
     t.string   "home_title"
     t.text     "home_text"
@@ -142,6 +170,9 @@ ActiveRecord::Schema.define(:version => 20090319005548) do
     t.integer  "logo_footer_file_size"
     t.integer  "we_galery_id"
     t.integer  "showroom_galery_id"
+    t.text     "checkout_text"
+    t.text     "close_list_text"
+    t.text     "delivery_text"
   end
 
   create_table "spams", :force => true do |t|

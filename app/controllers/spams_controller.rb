@@ -2,11 +2,9 @@ class SpamsController < ApplicationController
 
   before_filter :login_required
 
-  layout 'site'
-
   def enviar
     @spam = Spam.find(params[:id])
-    @spam.enviar    
+    @spam.enviar(store_url(@spam.list.adress))
     flash[:notice] = 'Divulgação enviada com sucesso!'
     redirect_to spams_path
   end

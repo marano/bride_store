@@ -1,9 +1,36 @@
-<% unless current_store.nil? %>
-  <h2><%= current_store.title %></h2>
-  <ul class="listaHorizontal">
-    <li><%= link_to_unless_current 'espaço pessoal', store_path(current_store.adress) %></li>
-    <li>|</li>
-    <li><%= link_to_unless_current 'presentes', 'cart_path' %></li>
+<% if user_session.show_store_menu_panel? %>
+  <h2>
+    <%= current_store.title %>
+    <% if current_store.delivery %>
+      (entregue)
+    <% elsif current_store.closed? %>
+      (encerrada)
+    <% end %>
+  </h2>
+  <ul class="listaHorizontal menuLista">
+    <li><%= link_to_unless_current 'página principal', store_path(current_store.adress) %></li>    
+    <% if current_list %>
+        <li>|</li>
+        <li><%= link_to_unless_current 'presentes', sale_items_path %></li>
+    <% end %>
+    <% unless current_store.delivery %>
+      <% if user_session.show_deliver? %>
+        <li>|</li>
+        <li><%= link_to_unless_current 'entregar', new_delivery_path %></li>      
+      <% end %>
+      <li>|</li>
+      <li><%= link_to_unless_current "carrinho de compras (#{current_cart.cart_items.size})", cart_path %></li>
+      <% if user_session.show_checkout? %>
+        <li>|</li>
+        <li><%= link_to_unless_current 'checkout', checkout_path %></li>      
+      <% end %>
+    <% end %>   
   </ul>
   <hr>
+  
+  <% if user_session.show_credit? %>
+    <p>
+      Crédito acumulado na troca de presentes: R$ <%= number_with_precision current_list.credit %>
+    </p>
+  <% end %>
 <% end %>

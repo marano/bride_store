@@ -7,7 +7,7 @@ class TestimonialsController < ApplicationController
   
   def view
     @testimonials = Testimonial.find(:all, :conditions => { :active => true })
-    render :layout => 'site'
+    render :layout => 'application'
   end
   
   # GET /testimonials

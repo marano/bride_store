@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
 
   def view
     @product = Product.find params[:id]
-    render :layout => 'site'
+    render :layout => 'application'
   end
 
   def find
@@ -47,13 +47,11 @@ class ProductsController < ApplicationController
       sql_conditions << "category_id = #{@category_filter.id}"
     end
     
-    if current_store.nil?
-      @products = Product.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => sql_conditions
-    else
-      @products = current_store.products.paginate :page => params[:page], :order => order, :per_page => per_page, :conditions => sql_conditions
-    end
+    search_params = { :page => params[:page], :order => order, :per_page => per_page, :conditions => sql_conditions }
     
-    render :layout => 'site'
+    @products = user_session.find_store_products(search_params)
+    
+    render :layout => 'application'
   end
 
   # GET /products

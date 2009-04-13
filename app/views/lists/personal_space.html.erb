@@ -13,11 +13,10 @@ window.addEvent('domready', function(){
 });
 </script>
 
-<% unless current_list.nil? and current_list != @list %>
+<% if !current_list.nil? and current_list == @list %>
   <% migalha_current_list 'visualizar' %>
-<% end %>
-<% unless current_store.nil? and current_store != @list %>
-  <% migalha_current_list current_store.title %>
+<% elsif !current_store.nil? %>
+  <% migalha_current_store [] %>
 <% end %>
 
 <%= render :partial => 'layouts/list_menu_panel' %>

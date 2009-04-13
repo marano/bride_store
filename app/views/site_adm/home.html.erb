@@ -3,30 +3,30 @@
 <% end %>
 
 <h1>Home</h1>
-<br/>
+
 <% form_for @site do |f| %>
   <%= f.error_messages %>
   <%= hidden_field_tag :edit_what, 'home' %>
   <p>
-    <%= f.label :home_title, 'Título' %><br />
+    <b><%= f.label :home_title, 'Título' %></b><br />
     <%= f.text_field :home_title %>
   </p>
-  <br/>
+
   <p>
-    <%= f.label :home_text, 'Texto' %><br />
+    <b><%= f.label :home_text, 'Texto' %></b><br />
     <%= fckeditor_textarea(:site, :home_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
-  <br/>
+
   <p>
-    <%= f.label :login_text, 'Texto Login' %><br />
+    <b><%= f.label :login_text, 'Texto Login' %></b><br />
     <%= fckeditor_textarea(:site, :login_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
-  <br/>
+
   <p>
-    <%= f.label :search_list_text, "Texto \"buscar lista\"" %><br />
+    <b><%= f.label :search_list_text, "Texto \"buscar lista\"" %></b><br />
     <%= fckeditor_textarea(:site, :search_list_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
   </p>
-  <br/>
+
   <p>
     <%= f.submit "Salvar" %>
   </p>  

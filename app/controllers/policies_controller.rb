@@ -5,7 +5,7 @@ class PoliciesController < ApplicationController
   before_filter :adm_required, :except => [ 'view' ]
   
   def view
-    render :layout => 'site'
+    render :layout => 'application'
   end
   
   # GET /policies

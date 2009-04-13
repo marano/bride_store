@@ -1,7 +1,10 @@
 class List < ActiveRecord::Base
 
+  default_scope :order => 'created_at DESC'
+
   after_create :create_galery
-  before_create :create_adress
+  before_create :fill_adress
+  before_save :update_nomes_busca
 
   has_many :list_items, :dependent => :destroy
   has_many :spams, :dependent => :destroy
@@ -9,20 +12,58 @@ class List < ActiveRecord::Base
   has_many :products, :through => :list_items
   belongs_to :user
   belongs_to :galery, :dependent => :destroy
-  before_save :update_nomes_busca
+  has_many :sales, :foreign_key => 'store_id'
+  has_many :sale_items, :through => :sales
+  has_many :paid_sales, :class_name => 'Sale', :conditions => { :paid => true }, :foreign_key => 'store_id'
+  has_many :gifts, :class_name => 'SaleItem', :through => :paid_sales, :source => :sale_items
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
+  
+  def has_gift_for_delivery?
+    paid_sales.each do |sale|
+      return true if sale.has_gift_for_delivery?
+    end
+    return false
+  end
+  
+  def add_credit(credit_to_sum)
+    update_attributes! :credit => credit + credit_to_sum
+  end
+  
+  def total_price
+    t = 0
+    list_items.each do |list_item|
+      t = t + list_item.total_price
+    end
+    t
+  end
+  
+  def gifts_total_price
+    t = 0
+    gifts.each do |gift|
+      t = t + gift.total_price
+    end
+    t
+  end
+  
+  def closed?
+    closed
+  end
+  
+  def open?
+    !closed?
+  end
 
   def add_list_item(product, quantity)    
-    list_item_old = list_item_by_product(product)
+    list_item_old = find_list_item_by_product(product)
     if list_item_old.nil?
-      list_items.create(:product => product, :quantity => quantity)
+      list_items.create!(:product => product, :quantity => quantity)
     else
-      list_item_old.update_attributes(:quantity => quantity)
+      list_item_old.update_attributes!(:quantity => quantity)
     end
   end
   
-  def list_item_by_product(product)
+  def find_list_item_by_product(product)
     list_items.first(:conditions => { :product_id => product.id })
   end
 
@@ -35,10 +76,14 @@ class List < ActiveRecord::Base
     end
     Category.all(:conditions => ['id in (?)', ids])
   end
+  
+  def to_s
+    "#{name} (#{user})"
+  end
 
   private
   
-  def create_adress
+  def fill_adress
     write_attribute :adress, name
   end
   

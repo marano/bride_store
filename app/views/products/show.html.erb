@@ -1,41 +1,46 @@
 <h1>Pruduto</h1>
-<br/>
+
 <% if @product.photo.file? %>
   <p>
     <b>Foto</b><br/>
     <%= image_tag @product.photo.url :big %>
   </p>
-  <br/>
 <% end %>
 <p>
-  <b>Nome:</b>
+  <b>Nome</b><br/>
   <%=h @product.name %>
 </p>
-<br/>
+
 <p>
-  <b>Código:</b>
+  <b>Código</b><br/>
   <%=h @product.code %>
 </p>
-<br/>
+
 <p>
-  <b>Categoria:</b>
+  <b>Categoria</b><br/>
   <%=h @product.category.name %>
 </p>
-<br/>
+
 <p>
-  <b>Descrição:</b>
+  <b>Descrição</b><br/>
   <%= @product.description %>
 </p>
-<br/>
+
 <p>
-  <b>Price:</b>
-  <%=h @product.price %>
+  <b>Preço</b><br/>
+  R$ <%= number_with_precision @product.price %>
 </p>
-<br/>
+
 <p>
-  <b>Destaque:</b>
-  <%=h @product.featured %>
+  <b>Destaque</b> <%= mark @product.featured %>
 </p>
-<br/>
+
+<% if @product.display.file? %>
+  <p>
+    <b>Display</b><br/>
+    <%= image_tag @product.display.url %>
+  </p>
+<% end %>
+
 <%= link_to 'Editar', edit_product_path(@product) %> |
 <%= link_to 'Voltar', products_path %>
