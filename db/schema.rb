@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(:version => 20090319005548) do
     t.string   "state",                                    :default => "passive"
     t.datetime "deleted_at"
     t.boolean  "admin"
+    t.boolean  "newsletter"
     t.string   "phone"
   end
 
