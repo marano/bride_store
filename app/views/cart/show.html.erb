@@ -33,9 +33,6 @@
           <td><%= link_to i.product.name, view_product_path(i.product) %></td>
           <td>
             <p>
-              <%= i.quantity %>
-            </p>
-            <p>
               <% form_tag change_quantity_cart_item_path(i.product.id), :method => :put do %>
                 <%= text_field_tag :quantity, i.quantity , :class => 'campoTexto', :style => 'width:20px' %>
                 <%= submit_tag 'alterar' %>
