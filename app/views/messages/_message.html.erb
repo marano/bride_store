@@ -1,13 +1,13 @@
 <div id="message_<%= message.id %>" class="mensagensPerfil">
-  <h3><%= time_ago_in_words message.created_at %> atrás</h3>
-  <p><%= message.body %></p>
+  <span class="dataDepoimento"><%= time_ago_in_words message.created_at %> atrás</span>
   <h3>
     <% if message.user.nil? %>
       <%= message.user_name %>
     <% else %>
       <%= message.user.name %>      
     <% end %>    
-  </h3>  
+  </h3>
+  <p><%= message.body %></p>  
   <% if logged_in? and (message.list.user == current_user or message.user == current_user) %>
     <%= link_to 'EXCLUIR', message_path(message), :confirm => 'Tem certeza?', :method => :delete %>
   <% end %>

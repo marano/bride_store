@@ -50,10 +50,10 @@ span{font-size:11px;}
 #listaProdutos h3 span {font-size:14px;}
 #listaProdutos a {font-size:14px; text-decoration:underline;}
 /*---------------PAGINAÇÃO---------------*/
-#listaProdutos .pagination {text-align:center; font-size: 14px;}
-#listaProdutos .pagination * {font-size: 14px;}
-#listaProdutos .pagination a {text-decoration:underline;}
-#listaProdutos .pagination .current {font-weight:bold;}
+.pagination {text-align:center; font-size: 14px;}
+.pagination * {font-size: 14px;}
+.pagination a {text-decoration:underline;}
+.pagination .current {font-weight:bold;}
 /*---------------PRODUTO VISUALIZAR---------------*/
 .produtoView .product h2 {font-size:25px; font-family:Arial, helvetica, serif; font-weight:normal; text-decoration:none; font-style: normal;}
 .descricaoProduto label {font-size: 12px; font-weight:normal; text-decoration: underline;}
