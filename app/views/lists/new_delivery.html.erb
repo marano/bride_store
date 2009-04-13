@@ -12,7 +12,7 @@
   
   <p>
     <%= label_tag :delivery_date, 'Data' %><br/>
-    <%= date_select 'delivery_date', 'field', :default => Date.today + 15.day %>
+    <%= select_date Date.today + 14.day, :prefix => :delivery_date %>
   </p>
   <p>
     <%= submit_tag 'Entregar' %>

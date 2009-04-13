@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.cart '/cart', :controller => 'cart', :action => 'show'
   map.add_to_cart '/cart/:product_id/add', :controller => 'cart', :action => 'add'
+  map.change_quantity_cart_item '/cart/:product_id', :controller => 'cart', :action => 'set', :conditions => { :method => :put }
   map.remove_from_cart '/cart/:id/remove', :controller => 'cart', :action => 'remove'
   
   map.checkout '/cart/checkout', :controller => 'sales', :action => 'new'

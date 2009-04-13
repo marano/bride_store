@@ -13,7 +13,19 @@ class Cart
   end
   
   def add(product, quantity)
-    cart_items << CartItem.new(cart_items.size, product.id, quantity)
+    cart_item = cart_item_by_product(product)
+    if cart_item.nil?
+      cart_items << CartItem.new(cart_items.size, product.id, quantity)
+    else
+      cart_item.quantity = quantity
+    end    
+  end
+  
+  def cart_item_by_product(product)
+  	for cart_item in cart_items do
+		  return cart_item if cart_item.product == product
+	  end
+		return nil
   end
 
   def remove(id)

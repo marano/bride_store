@@ -53,7 +53,7 @@
     </tr>
   </tbody>
 </table>
-<% unless @store.delivery %>
+<% if user_session.show_deliver? %>
   <p>
     <%= link_to '<button>Entregar</button>', new_delivery_path %>
   </p>

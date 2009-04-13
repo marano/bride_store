@@ -72,10 +72,10 @@ class SalesController < ApplicationController
   private
   
   def set_date_filter
-    if params[:date_filter]
+    if params[:initial_date_filter] and params[:end_date_filter]
       begin
-        @initial_date_filter = Date.new(params[:date_filter][:"initial(1i)"].to_i,params[:date_filter][:"initial(2i)"].to_i,params[:date_filter][:"initial(3i)"].to_i)
-        @end_date_filter = Date.new(params[:date_filter][:"end(1i)"].to_i,params[:date_filter][:"end(2i)"].to_i,params[:date_filter][:"end(3i)"].to_i)
+        @initial_date_filter = Date.new(params[:initial_date_filter][:year].to_i, params[:initial_date_filter][:month].to_i, params[:initial_date_filter][:day].to_i)
+        @end_date_filter = Date.new(params[:end_date_filter][:year].to_i, params[:end_date_filter][:month].to_i, params[:end_date_filter][:day].to_i)
       rescue => e
         @initial_date_filter = 1.month.ago
         @end_date_filter = Date.today

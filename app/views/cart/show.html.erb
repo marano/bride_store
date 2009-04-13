@@ -35,6 +35,12 @@
             <p>
               <%= i.quantity %>
             </p>
+            <p>
+              <% form_tag change_quantity_cart_item_path(i.product.id), :method => :put do %>
+                <%= text_field_tag :quantity, i.quantity , :class => 'campoTexto', :style => 'width:20px' %>
+                <%= submit_tag 'alterar' %>
+              <% end %>
+            </p>
           </td>
           <td><p>R$ <%= number_with_precision i.product.price, :precision => 2 %></p></td>
           <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>

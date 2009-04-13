@@ -1,43 +1,43 @@
 class ListsController < ApplicationController
 
   before_filter :login_required, :except => ['find', 'store', 'visit_list']
-  before_filter :adm_required, :only => [ 'deliveries', 'show_delivery' ]  
-  
+  before_filter :adm_required, :only => [ 'deliveries', 'show_delivery' ]
+
   def show_delivery
     @delivery = List.find(params[:id])
     render :layout => 'adm'
   end
-  
+
   def deliveries
     set_date_filter
-    
-    @deliveries = List.scoped_by_delivery(true).all(:conditions => ['delivery_date > ? AND delivery_date < ?', @initial_date_filter, (@end_date_filter + 1.month)])
-    
+
+    @deliveries = List.scoped_by_delivery(true).all(:conditions => ['delivery_date > ? AND delivery_date < ?', @initial_date_filter, (@end_date_filter + 1.day)])
+
     render :layout => 'adm'
   end
-  
+
   def new_delivery
     @list = current_list
   end
-  
+
   def create_delivery
     @list = current_list
     @list.delivery_adress = params[:delivery_adress]
-    @list.delivery_date = Date.new(params[:delivery_date][:"field(1i)"].to_i, params[:delivery_date][:"field(2i)"].to_i, params[:delivery_date][:"field(3i)"].to_i)
+    @list.delivery_date = Date.new(params[:delivery_date][:year].to_i, params[:delivery_date][:month].to_i, params[:delivery_date][:day].to_i)
     @list.delivery = true
     @list.save!
     redirect_to account_path
   end
-  
+
   def confirm_close
     @list = current_list
   end
-  
+
   def close
     current_list.update_attribute(:closed, true)
     redirect_to select_list_path(current_list)
   end
-  
+
   def my_list
     if current_list.nil?
       redirect_to new_list_path
@@ -139,10 +139,10 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
 
     params[:list].delete :photo if params[:list][:photo].blank?
-    
+
     if @list.update_attributes(params[:list])
       flash[:notice] = 'Lista salva com sucesso!'
-      
+
       unless params[:edit_what].blank?
         case params[:edit_what]
         when 'nomes'
@@ -156,7 +156,7 @@ class ListsController < ApplicationController
             else
               redirect_to personal_space_list_path(@list)
             end
-          end          
+          end
         end
       else
         redirect_to(@list)
@@ -177,14 +177,14 @@ class ListsController < ApplicationController
     flash[:notice] = 'Lista removida com sucesso!'
     redirect_to(new_list_path)
   end
-  
+
   private
-  
+
   def set_date_filter
-    if params[:date_filter]
+    if params[:initial_date_filter] and params[:end_date_filter]
       begin
-        @initial_date_filter = Date.new(params[:date_filter][:"initial(1i)"].to_i,params[:date_filter][:"initial(2i)"].to_i,params[:date_filter][:"initial(3i)"].to_i)
-        @end_date_filter = Date.new(params[:date_filter][:"end(1i)"].to_i,params[:date_filter][:"end(2i)"].to_i,params[:date_filter][:"end(3i)"].to_i)
+        @initial_date_filter = Date.new(params[:initial_date_filter][:year].to_i, params[:initial_date_filter][:month].to_i, params[:initial_date_filter][:day].to_i)
+        @end_date_filter = Date.new(params[:end_date_filter][:year].to_i, params[:end_date_filter][:month].to_i, params[:end_date_filter][:day].to_i)
       rescue => e
         @initial_date_filter = 1.month.ago
         @end_date_filter = Date.today + 1.month
@@ -196,3 +196,4 @@ class ListsController < ApplicationController
     end
   end
 end
+

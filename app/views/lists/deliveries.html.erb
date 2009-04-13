@@ -3,8 +3,8 @@
 <p>
   <b>Período</b>&nbsp;
   <% form_tag deliveries_path, :method => 'get' do %>
-    Início <%= date_select('date_filter', 'initial', :default => @initial_date_filter) %>&nbsp;
-    Término <%= date_select('date_filter', 'end', :default => @end_date_filter) %>&nbsp;
+    Início <%= select_date(@initial_date_filter, :prefix => :initial_date_filter) %>&nbsp;
+    Término <%= select_date(@end_date_filter, :prefix => :end_date_filter) %>&nbsp;
     <%= submit_tag 'Filtrar' %>
   <% end %>
 </p>
