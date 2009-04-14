@@ -94,7 +94,7 @@ class ListsController < ApplicationController
     end
 
     search = params[:search].canonical
-    @list = List.first :conditions => "#{params[:name_filter]}_busca LIKE '#{search}'"
+    @list = List.last :conditions => "#{params[:name_filter]}_busca LIKE '#{search}'"
     if @list
       redirect_to store_path(@list.adress)
     else
@@ -171,10 +171,11 @@ class ListsController < ApplicationController
           end
         end
       else
+        flash[:notice] = 'Não foi possível salvar a lista!'
         redirect_to(@list)
       end
     else
-      render :action => "edit"
+      render :action => "edit_personal_space"
     end
   end
 

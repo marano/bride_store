@@ -12,8 +12,8 @@ class SalesController < ApplicationController
 
   def pay
     @sale = Sale.find(params[:id])
-    @sale.pay!
-    redirect_to sales_path
+    @sale.pay!(false)
+    redirect_to @sale
   end
 
   def index

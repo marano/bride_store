@@ -45,7 +45,7 @@ class UserSession
   end
 
   def show_deliver?
-    current_store.has_gift_for_delivery? and current_store == current_list
+    current_store == current_list and current_store.has_gift_for_delivery?
   end
 
   def show_list_menu_panel?

@@ -1,6 +1,6 @@
 <div class='listaDepoimento'>
   <span class='dataDepoimento'><%= time_ago_in_words testimonial.created_at %> atrás</span>
-  <h3>Por: <%= testimonial.user.name %></h3>
+  <h3><%= testimonial.author %></h3>
   <p><%= testimonial.body %></p>  
 </div>
 <hr>

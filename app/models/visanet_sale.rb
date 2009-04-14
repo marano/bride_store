@@ -31,6 +31,16 @@ class VisanetSale
       'tid'=> tid
     }
   end
+  
+  def send_to_capture_params
+    {
+      'identificacao'=> COMERCIO_ELETRONICO_LOCAWEB,
+      'ambiente'=> AMBIENTE_PAGAMENTO,
+      'modulo'=> 'VISAVBV',
+      'operacao'=> 'Captura',
+      'tid'=> tid
+    }
+  end
 
   def price
     helpers.number_with_precision(@sale.price, :precision => 2).gsub(',', '').gsub('.', '')
@@ -41,7 +51,11 @@ class VisanetSale
   end
 
   def tid
-    return @sale.tid unless @sale.tid.blank?
+    if @sale.paid
+      return @sale.tid
+    else
+      return @sale.temp_tid unless @sale.temp_tid.blank?
+    end
 
     id = LOJA_VISA[4..8]
     data = Date.today
@@ -55,7 +69,7 @@ class VisanetSale
     id << hora.usec.to_s[0]
     id << '10'
     id << '01'
-    @sale.update_attributes! :tid => id
+    @sale.update_attributes! :temp_tid => id
     id
   end
 
@@ -69,12 +83,5 @@ class VisanetSale
   def helpers
     ActionController::Base.helpers
   end
-
-  #  def send_to_payment
-  #    response = Net::HTTP.post_form(URI.parse('https://comercio.locaweb.com.br/comercio.comp'),
-  #    send_to_payment_params)
-
-  #    response['location']
-  #  end
 
 end

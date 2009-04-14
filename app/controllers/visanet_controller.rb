@@ -8,7 +8,7 @@ class VisanetController < ApplicationController
     @sale = Sale.find(params[:sale_id])
     visa_params = VisanetSale.new(@sale).send_to_payment_params
     #visa_params['visa_antipopup'] = '1'
-    redirect_from_post 'https://comercio.locaweb.com.br/comercio.comp', visa_params
+    render_redirect_to 'https://comercio.locaweb.com.br/comercio.comp', visa_params
   end
 
   def confirm
@@ -20,7 +20,7 @@ class VisanetController < ApplicationController
     @sale = Sale.find(params[:sale_id])
     visa_params = VisanetSale.new(@sale).resend_to_payment_params
     visa_params['URLRetornoVisa'] = complete_visanet_url
-    redirect_from_post 'https://comercio.locaweb.com.br/comercio.comp', visa_params
+    render_redirect_to 'https://comercio.locaweb.com.br/comercio.comp', visa_params
   end
 
   def complete
@@ -29,7 +29,7 @@ class VisanetController < ApplicationController
     @lr = params[:lr]
     @ars = params[:ars]
     if @lr == '00' or @lr == '01'
-      @sale.pay
+      @sale.pay(true)
       flash[:notice] = 'Pagamento efetuado com sucesso!'
     else
       flash[:error] = 'Não foi possível efetuar o pagamento!'
@@ -37,8 +37,23 @@ class VisanetController < ApplicationController
     render :layout => false
   end
 
-  def capture
-
+  def send_to_capture
+    @sale = Sale.find(params[:sale_id])
+    visa_params = VisanetSale.new(@sale).send_to_capture_params
+    render_redirect_to 'https://comercio.locaweb.com.br/comercio.comp', visa_params
+  end
+  
+  def complete_capture
+    @sale = Sale.scoped_by_tid(params[:tid])    
+    @tid = params[:tid]
+    @lr = params[:lr]
+    @ars = params[:ars]
+    if @lr == '0'
+      @sale.capture!
+      flash[:notice] = 'Pagamento capturado com sucesso!'
+    else
+      flash[:error] = 'Não foi possível capturar o pagamento!'
+    end
   end
 
   def parcial_capture
@@ -54,4 +69,3 @@ class VisanetController < ApplicationController
   end
 
 end
-

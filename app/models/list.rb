@@ -2,7 +2,7 @@ class List < ActiveRecord::Base
 
   default_scope :order => 'created_at DESC'
 
-  after_create :create_galery
+  before_create :fill_galery
   before_create :fill_adress
   before_save :update_nomes_busca
 
@@ -14,17 +14,19 @@ class List < ActiveRecord::Base
   belongs_to :galery, :dependent => :destroy
   has_many :sales, :foreign_key => 'store_id'
   has_many :sale_items, :through => :sales
-  has_many :paid_sales, :class_name => 'Sale', :conditions => { :paid => true }, :foreign_key => 'store_id'
-  has_many :gifts, :class_name => 'SaleItem', :through => :paid_sales, :source => :sale_items
+  has_many :gift_sales, :class_name => 'Sale', :conditions => { :gift => true }, :foreign_key => 'store_id'
+  has_many :gifts, :class_name => 'SaleItem', :through => :gift_sales, :source => :sale_items
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
+  
+  validates_uniqueness_of :adress
   
   def archive!
     update_attributes! :archived => !archived
   end
   
   def has_gift_for_delivery?
-    paid_sales.each do |sale|
+    gift_sales.each do |sale|
       return true if sale.has_gift_for_delivery?
     end
     return false
@@ -88,11 +90,12 @@ class List < ActiveRecord::Base
   private
   
   def fill_adress
-    write_attribute :adress, name
+    new_adress = name.downcase.trim
+    self.adress = new_adress unless List.scoped_by_adress(new_adress).first
   end
   
-  def create_galery
-    update_attributes!(:galery => Galery.new)
+  def fill_galery
+    self.create_galery
   end  
 
   def update_nomes_busca

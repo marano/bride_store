@@ -2,21 +2,29 @@ class SiteAdmController < ApplicationController
 
   layout 'adm'
   
-  before_filter :adm_required
+  before_filter :adm_required, :fetch_site
+  
+  def footer
+  end
+  
+  def logo
+  end
   
   def home
-    @site = site
   end
   
   def we
-    @site = site
   end
   
-  def showroom
-    @site = site
+  def showroom    
   end
   
   def site_data
+  end
+  
+  private
+  
+  def fetch_site
     @site = site
   end
 end

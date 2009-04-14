@@ -1,5 +1,11 @@
 <h1>Depoimentos</h1>
 
+<p>
+  <%= link_to 'Novo Depoimento', new_testimonial_path %>
+</p>
+
+<p><%= will_paginate @testimonials, :previous_label => '&laquo Anterior', :next_label => 'Próxima &raquo' %></p>
+
 <table>
   <thead>
     <tr>
@@ -18,7 +24,7 @@
     <td><%= link_to image_tag('editar.gif'), edit_testimonial_path(testimonial) %></td>
     <td><%= link_to image_tag('remover.gif'), testimonial, :confirm => 'Tem certeza?', :method => :delete %></td>
     <td><%= link_to 'Exibir', testimonial %></td>
-    <td><%=h testimonial.user %></td>
+    <td><%=h testimonial.author %></td>
     <td><%=h testimonial.body %></td>
     <td><%= mark testimonial.active %></td>
     <td><%= mark testimonial.featured %></td>    
@@ -26,4 +32,4 @@
 <% end %>
 </table>
 
-<%= link_to 'Novo Depoimento', new_testimonial_path %>
+<p><%= will_paginate @testimonials, :previous_label => '&laquo Anterior', :next_label => 'Próxima &raquo' %></p>

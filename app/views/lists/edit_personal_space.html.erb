@@ -7,6 +7,7 @@
 
 <p><%= site.personal_space_text %></p>
 <% form_for current_list, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
   <%= hidden_field_tag 'edit_what', 'personal_space' %>
   <p>
     <label for="nome">Nome da lista de presentes</label>

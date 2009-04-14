@@ -5,14 +5,29 @@
   <%=h @sale.created_at %>
 </p>
 <p>
-  <b>Paga</b> <%= @sale.paid ? mark(@sale.paid) : link_to(mark(@sale.paid), pay_sale_path(@sale), :confirm => 'Tem certeza que deseja marcar a venda como paga?', :method => :post) %>
+  <b>Paga</b> <%= mark(@sale.paid) %>
+  <% unless @sale.paid %>
+    <%= link_to('<button>Pagar</button>', pay_sale_path(@sale), :confirm => 'Tem certeza que deseja marcar a venda como paga?', :method => :post) %>
+  <% end %>
 </p>
+
 <% if @sale.paid %>
-  <p>
-    <b>Código de transação Visa</b><br/>
-    <%=h @sale.tid %>
-  </p>  
+  <% unless @sale.tid.blank? %>
+    <p>
+      <b>Código de transação Visa</b><br/>
+      <%=h @sale.tid %>
+    </p>
+  <% end %>
+  <% if @sale.can_be_captured? %>
+    <p>
+      <b>Capturada</b> <%= mark @sale.captured %>    
+      <% unless @sale.captured %>
+        <%= link_to '<button>Capturar</button>', send_capture_visanet_path(@sale.id), :confirm => 'Tem certeza que deseja capturar a venda?', :method => :post %>
+      <% end %>
+    </p>
+  <% end %>
 <% end %>
+
 <p>
   <b>Cliente</b><br/>
   <%=h @sale.name %>
