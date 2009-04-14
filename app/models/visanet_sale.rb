@@ -31,6 +31,16 @@ class VisanetSale
       'tid'=> tid
     }
   end
+  
+  def send_to_capture_params
+    {
+      'identificacao'=> COMERCIO_ELETRONICO_LOCAWEB,
+      'ambiente'=> AMBIENTE_PAGAMENTO,
+      'modulo'=> 'VISAVBV',
+      'operacao'=> 'Captura',
+      'tid'=> tid
+    }
+  end
 
   def price
     helpers.number_with_precision(@sale.price, :precision => 2).gsub(',', '').gsub('.', '')

@@ -8,7 +8,7 @@ class VisanetController < ApplicationController
     @sale = Sale.find(params[:sale_id])
     visa_params = VisanetSale.new(@sale).send_to_payment_params
     #visa_params['visa_antipopup'] = '1'
-    redirect_from_post 'https://comercio.locaweb.com.br/comercio.comp', visa_params
+    render_redirect_to 'https://comercio.locaweb.com.br/comercio.comp', visa_params
   end
 
   def confirm
@@ -20,7 +20,7 @@ class VisanetController < ApplicationController
     @sale = Sale.find(params[:sale_id])
     visa_params = VisanetSale.new(@sale).resend_to_payment_params
     visa_params['URLRetornoVisa'] = complete_visanet_url
-    redirect_from_post 'https://comercio.locaweb.com.br/comercio.comp', visa_params
+    render_redirect_to 'https://comercio.locaweb.com.br/comercio.comp', visa_params
   end
 
   def complete
@@ -38,7 +38,9 @@ class VisanetController < ApplicationController
   end
 
   def capture
-
+    @sale = Sale.find(params[:orderid])
+    visa_params = VisanetSale.new(@sale).send_to_capture_params
+    render_redirect_to 'https://comercio.locaweb.com.br/comercio.comp', visa_params
   end
 
   def parcial_capture
@@ -54,4 +56,3 @@ class VisanetController < ApplicationController
   end
 
 end
-
