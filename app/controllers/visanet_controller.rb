@@ -37,10 +37,23 @@ class VisanetController < ApplicationController
     render :layout => false
   end
 
-  def capture
-    @sale = Sale.find(params[:orderid])
+  def send_to_capture
+    @sale = Sale.find(params[:sale_id])
     visa_params = VisanetSale.new(@sale).send_to_capture_params
     render_redirect_to 'https://comercio.locaweb.com.br/comercio.comp', visa_params
+  end
+  
+  def complete_capture
+    @sale = Sale.scoped_by_tid(params[:tid])    
+    @tid = params[:tid]
+    @lr = params[:lr]
+    @ars = params[:ars]
+    if @lr == '0'
+      @sale.capture!
+      flash[:notice] = 'Pagamento capturado com sucesso!'
+    else
+      flash[:error] = 'Não foi possível capturar o pagamento!'
+    end
   end
 
   def parcial_capture
