@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090412043817) do
+ActiveRecord::Schema.define(:version => 20090413235801) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20090412043817) do
     t.boolean  "delivery"
     t.date     "delivery_date"
     t.string   "delivery_adress"
+    t.boolean  "archived",             :default => false
   end
 
   create_table "messages", :force => true do |t|
@@ -141,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20090412043817) do
     t.string   "phone"
     t.string   "email"
     t.string   "tid"
+    t.boolean  "captured",   :default => false
   end
 
   create_table "sites", :force => true do |t|

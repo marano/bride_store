@@ -46,13 +46,13 @@ ActionController::Routing::Routes.draw do |map|
   
   map.checkout '/cart/checkout', :controller => 'sales', :action => 'new'
   
-  map.resources :sales, :except => [ :edit ], :member => [ :pay, :invoice ]
+  map.resources :sales, :except => [ :edit ], :member => [ :pay, :invoice, :archive ]
   map.resources :sale_items, :only => [ :index ], :member => [ :change ]
   map.resources :email_configs
   map.resources :spams, :member => [ :enviar ]
   map.resources :galery_photos
   map.resources :messages
-  map.resources :lists, :member => [ :personal_space ] 
+  map.resources :lists, :member => [ :personal_space, :archive ] 
   
   map.resources :list_items
   map.resources :testimonials

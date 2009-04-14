@@ -19,6 +19,10 @@ class List < ActiveRecord::Base
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
   
+  def archive!
+    update_attributes! :archived => !archived
+  end
+  
   def has_gift_for_delivery?
     paid_sales.each do |sale|
       return true if sale.has_gift_for_delivery?
