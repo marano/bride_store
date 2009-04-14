@@ -24,7 +24,7 @@
     <td><%= link_to image_tag('editar.gif'), edit_testimonial_path(testimonial) %></td>
     <td><%= link_to image_tag('remover.gif'), testimonial, :confirm => 'Tem certeza?', :method => :delete %></td>
     <td><%= link_to 'Exibir', testimonial %></td>
-    <td><%=h testimonial.user %></td>
+    <td><%=h testimonial.author %></td>
     <td><%=h testimonial.body %></td>
     <td><%= mark testimonial.active %></td>
     <td><%= mark testimonial.featured %></td>    
