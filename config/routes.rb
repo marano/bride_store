@@ -13,6 +13,8 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_we '/adm/we', :controller => 'site_adm', :action => 'we'
   map.edit_showroom '/adm/showroom', :controller => 'site_adm', :action => 'showroom'
   map.edit_site_data '/adm/site_data', :controller => 'site_adm', :action => 'site_data'
+  map.edit_footer '/adm/footer', :controller => 'site_adm', :action => 'footer'
+  map.edit_logo '/adm/logo', :controller => 'site_adm', :action => 'logo'
   
   map.find_list '/lists/find', :controller => 'lists', :action => 'find'
   map.edit_list_nomes '/list/edit_nomes', :controller => 'lists', :action => 'edit_nomes'

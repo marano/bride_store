@@ -2,15 +2,11 @@
   <%= javascript_include_tag :fckeditor %>
 <% end %>
 
-<h1>Site</h1>
+<h1>Textos</h1>
 
 <% form_for @site do |f| %>
   <%= f.error_messages %>
-  <%= hidden_field_tag :edit_what, 'site_data' %>
-  <p>
-    <b><%= f.label :footer_text, 'Rodapé' %></b><br />
-    <%= fckeditor_textarea(:site, :footer_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
-  </p>
+  <%= hidden_field_tag :edit_what, 'site_data' %>  
   
   <p>
     <b><%= f.label :create_account_text, "Texto \"Crie sua conta\"" %></b><br />
@@ -65,28 +61,4 @@
   <p>
     <%= f.submit "Salvar" %>
   </p>  
-<% end %>
-
-<% form_for @site, :html => { :multipart => true } do |f| %>
-  <br />
-  <p>
-    <b><%= f.label :logo, "Logo" %></b><br /><br />
-    <% if site.logo.file? %>
-      <%= image_tag site.logo.url %><br /><br />
-    <% end %>    
-    <%= f.file_field :logo %>
-    <%= f.submit 'Enviar' %>
-  </p>
-<% end %>
-
-<% form_for @site, :html => { :multipart => true } do |f| %>
-  <br />
-  <p>    
-    <b><%= f.label :logo_footer, "Logo rodapé" %></b><br /><br />
-    <% if site.logo_footer.file? %>
-      <%= image_tag site.logo_footer.url %><br /><br />
-    <% end %>    
-    <%= f.file_field :logo_footer %>
-    <%= f.submit 'Enviar' %>
-  </p>
 <% end %>

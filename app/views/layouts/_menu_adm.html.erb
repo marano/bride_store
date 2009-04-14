@@ -2,13 +2,16 @@
   <ul>
     <li><%= link_to 'Vendas', sales_path %></li>
     <li><%= link_to 'Entregas', deliveries_path %></li>
-    <li class="nivelA"><a style="cursor:hand;">Institucional</a>
+    <li class="nivelA"><a style="cursor:hand;">Site</a>
       <ul class="listaA">
         <li><%= link_to 'Home', edit_home_path %></li>
         <li><%= link_to 'Nossa Loja', edit_showroom_path %></li>
         <li><%= link_to 'Quem Somos', edit_we_path %></li>
+        <li><%= link_to 'Textos', edit_site_data_path %></li>
         <li><%= link_to 'Depoimentos', testimonials_path %></li>
         <li><%= link_to 'Políticas', policies_path %></li>
+        <li><%= link_to 'Logo', edit_logo_path %></li>
+        <li><%= link_to 'Rodapé', edit_footer_path %></li>
       </ul>
     </li>
   </ul>
@@ -23,7 +26,6 @@
   <ul>
     <li class="nivelA"><a style="cursor:hand;">Cadastro</a>
       <ul class="listaA">
-        <li><%= link_to 'Site', edit_site_data_path %></li>
         <li><%= link_to 'Email', edit_email_config_path %></li>
         <li><%= link_to 'Usuário', users_path %></li>
       </ul>

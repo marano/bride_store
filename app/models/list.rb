@@ -19,6 +19,8 @@ class List < ActiveRecord::Base
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
   
+  validates_uniqueness_of :adress
+  
   def archive!
     update_attributes! :archived => !archived
   end
