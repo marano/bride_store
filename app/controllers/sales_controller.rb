@@ -12,7 +12,7 @@ class SalesController < ApplicationController
 
   def pay
     @sale = Sale.find(params[:id])
-    @sale.pay!
+    @sale.pay!(false)
     redirect_to @sale
   end
 

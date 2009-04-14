@@ -84,11 +84,4 @@ class VisanetSale
     ActionController::Base.helpers
   end
 
-  #  def send_to_payment
-  #    response = Net::HTTP.post_form(URI.parse('https://comercio.locaweb.com.br/comercio.comp'),
-  #    send_to_payment_params)
-
-  #    response['location']
-  #  end
-
 end

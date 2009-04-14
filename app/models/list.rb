@@ -14,8 +14,8 @@ class List < ActiveRecord::Base
   belongs_to :galery, :dependent => :destroy
   has_many :sales, :foreign_key => 'store_id'
   has_many :sale_items, :through => :sales
-  has_many :paid_sales, :class_name => 'Sale', :conditions => { :paid => true }, :foreign_key => 'store_id'
-  has_many :gifts, :class_name => 'SaleItem', :through => :paid_sales, :source => :sale_items
+  has_many :gift_sales, :class_name => 'Sale', :conditions => { :gift => true }, :foreign_key => 'store_id'
+  has_many :gifts, :class_name => 'SaleItem', :through => :gift_sales, :source => :sale_items
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
   

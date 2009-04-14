@@ -29,7 +29,7 @@ class VisanetController < ApplicationController
     @lr = params[:lr]
     @ars = params[:ars]
     if @lr == '00' or @lr == '01'
-      @sale.pay
+      @sale.pay(true)
       flash[:notice] = 'Pagamento efetuado com sucesso!'
     else
       flash[:error] = 'Não foi possível efetuar o pagamento!'

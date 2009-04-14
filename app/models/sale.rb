@@ -17,12 +17,15 @@ class Sale < ActiveRecord::Base
     end
   end
 
-  def pay!
-    update_attributes! :paid => true, :tid => temp_tid
+  def pay!(visanet = true)
+    self.paid = true    
+    self.tid = temp_tid if visanet
+    self.gift = true unless visanet
+    save!
   end
 
   def capture!
-    update_attributes! :captured => true
+    update_attributes! :captured => true, :gift => true
   end
 
   def archive!

@@ -18,8 +18,10 @@
   </p>
   <p>
     <b>Capturada</b> <%= mark @sale.captured %>
-    <% if @sale.can_be_captured? %>
+    <% if !@sale.can_be_captured? %>
       <%= link_to '<button>Capturar</button>', send_capture_visanet_path(@sale.id), :confirm => 'Tem certeza que deseja capturar a venda?', :method => :post %>
+    <% else %>
+      <span>(Esta venda não pode ser capturada pois não possui código de transação.)</span>
     <% end %>
   </p>
 <% end %>
