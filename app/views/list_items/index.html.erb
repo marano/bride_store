@@ -37,15 +37,16 @@
           <td>
             <p>
               <% form_for i do |f| %>
-                <span>Desejada:</span>
                 <%= f.text_field :quantity, :class => 'campoTexto', :style => 'width:20px' %>
                 <%= f.submit 'alterar' %>
               <% end %>
             </p>
-            <p>
-              <span>Comprada:</span>
-              <%= i.quantity_bought %>
-            </p>
+            <% if i.quantity_bought > 0%>
+              <p>
+                <span>Comprada:</span>
+                <%= i.quantity_bought %>
+              </p>
+            <% end %>
           </td>
           <td><p>R$ <%= number_with_precision i.product.price, :precision => 2 %></p></td>
           <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
