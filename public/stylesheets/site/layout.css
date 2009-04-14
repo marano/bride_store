@@ -35,7 +35,7 @@ form p label {margin-left:4px;}
 .depoimento h3 {padding:10px 30px 0; margin:15px 0 10px 0;}
 .depoimento span {display:block;}
 /*---------------LISTA DEPOIMENTO---------------*/
-.listaDepoimento .dataDepoimento {float:right; }
+.dataDepoimento {float:right; }
 /*---------------MENU INSTITUCIONAL---------------*/
 #menuInstitucional{float:right; width:720px; bottom:24px; position:absolute; left:0; padding:0 30px 0 30px;}
 #menuInstitucional ul {float:right;}
@@ -103,6 +103,9 @@ form p label {margin-left:4px;}
 .espacoPessoal form .botaoForm {float:right;}
 /*---------------ESPAÇO PESSOAL---------------*/
 .personalSpace .fotoCapa {display:block; margin-bottom: 10px;}
+.personalSpace .form {width: 350px;}
+.personalSpace .campoAreaTexto {width: 300px; height: 100px}
+.personalSpace .campoTexto {width: 300px;}
 /*---------------EDITAR DIVULGAÇÃO---------------*/
 .editarDivulgacao form {width:300px;}
 .editarDivulgacao .campoTexto, .editarDivulgacao .campoAreaTexto {width:100%;}
@@ -124,8 +127,8 @@ form p label {margin-left:4px;}
 #listaProdutos .saibaMais {float:right; position:relative; width:118px; height:20px; margin:4px;}
 #listaProdutos .saibaMais span {background:url(/images/btSaibaMaisContent.gif) no-repeat; position:absolute; width:118px; height:20px;}
 /*---------------PAGINAÇÃO---------------*/
-#listaProdutos .pagination * {margin:0 3px 0 3px;}
-#listaProdutos .pagination a {float:none;}
+.pagination * {margin:0 3px 0 3px;}
+.pagination a {float:none;}
 /*---------------PRODUTO VISUALIZAR---------------*/
 .product {margin-bottom: 20px;}
 .produtoView h2 {margin-bottom: 5px;}

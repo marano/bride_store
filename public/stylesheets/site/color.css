@@ -50,7 +50,7 @@ hr {color:#5e5548; background:#5e5548;}
 #listaProdutos h3 span {color:#ffffff;}
 #listaProdutos a {color:#373125;}
 /*---------------PAGINAÇÃO---------------*/
-#listaProdutos .pagination a {text-decoration:underline; float:none; color:#373125;}
+.pagination a {color:#373125;}
 /*---------------PRODUTO VISUALIZAR---------------*/
 .descricaoProduto label {color:#373125;}
 .produtoView .product .verCarrinho span{background: url(/images/btVerCarrinho.gif) no-repeat;}
