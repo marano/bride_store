@@ -1,0 +1,11 @@
+<h1>Logo</h1>
+
+<% form_for @site, :html => { :multipart => true } do |f| %>
+  <p>
+    <% if site.logo.file? %>
+      <%= image_tag site.logo.url %><br /><br />
+    <% end %>    
+    <%= f.file_field :logo %>
+    <%= f.submit 'Enviar' %>
+  </p>
+<% end %>

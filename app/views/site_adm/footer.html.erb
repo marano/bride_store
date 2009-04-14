@@ -1,0 +1,24 @@
+<% content_for :head do %>
+  <%= javascript_include_tag :fckeditor %>
+<% end %>
+
+<h1>Rodapé</h1>
+
+<% form_for @site, :html => { :multipart => true } do |f| %>
+  <p>
+    <b><%= f.label :footer_text, 'Texto' %></b><br />
+    <%= fckeditor_textarea(:site, :footer_text, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
+  </p>
+  <p>    
+    <b><%= f.label :logo_footer, "Logo" %></b><br /><br />
+    <% if site.logo_footer.file? %>
+      <%= image_tag site.logo_footer.url %><br /><br />
+    <% end %>    
+    <%= f.file_field :logo_footer %>    
+  </p>
+  <p>
+    <%= f.submit 'Salvar' %>  
+  </p>
+<% end %>
+
+
