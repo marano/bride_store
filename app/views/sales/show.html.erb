@@ -13,10 +13,10 @@
 
 <% if @sale.paid %>
   <% unless @sale.tid.blank? %>
-  <p>
-    <b>Código de transação Visa</b><br/>
-    <%=h @sale.tid %>
-  </p>
+    <p>
+      <b>Código de transação Visa</b><br/>
+      <%=h @sale.tid %>
+    </p>
   <% end %>
   <% if @sale.can_be_captured? %>
     <p>

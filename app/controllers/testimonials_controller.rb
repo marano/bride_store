@@ -6,14 +6,14 @@ class TestimonialsController < ApplicationController
   before_filter :login_required, :only => [ 'create' ] 
   
   def view
-    @testimonials = Testimonial.find(:all, :conditions => { :active => true })
+    @testimonials = Testimonial.paginate(:page => params[:page], :per_page => 5, :conditions => { :active => true })
     render :layout => 'application'
   end
   
   # GET /testimonials
   # GET /testimonials.xml
   def index
-    @testimonials = Testimonial.find(:all)
+    @testimonials = Testimonial.paginate(:page => params[:page], :per_page => 20)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -55,7 +55,7 @@ class TestimonialsController < ApplicationController
     @testimonial.user = current_user
     respond_to do |format|
       if @testimonial.save
-        save_sucess
+        save_success
         format.html { redirect_to(@testimonial) }
         format.xml  { render :xml => @testimonial, :status => :created, :location => @testimonial }
       else

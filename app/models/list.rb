@@ -90,7 +90,8 @@ class List < ActiveRecord::Base
   private
   
   def fill_adress
-    self.adress = name.downcase.trim
+    new_adress = name.downcase.trim
+    self.adress = new_adress unless List.scoped_by_adress(new_adress).first
   end
   
   def fill_galery
