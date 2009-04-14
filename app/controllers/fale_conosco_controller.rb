@@ -4,6 +4,7 @@ class FaleConoscoController < ApplicationController
   end
   
   def enviar
+    params[:email].strip!
     user = User.find_by_email params[:email]
     if user.nil? 
       user = User.new(:name => params[:name], :email => params[:email], :phone => params[:phone])      

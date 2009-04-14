@@ -14,7 +14,7 @@
 <% form_for @product, :html => { :multipart => true } do |f| %>
   <p>
     <%= f.label :photo, 'Foto' %><br />
-    <%= image_tag @product.photo.url %><br/><br/>
+    <%= image_tag @product.photo.url :big %><br/><br/>
     <%= f.file_field :photo %>
     <%= f.submit "Enviar" %>
   </p>
