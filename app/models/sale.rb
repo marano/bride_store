@@ -13,8 +13,12 @@ class Sale < ActiveRecord::Base
     end
   end
   
-  def pay
-    update_attribute :paid, true    
+  def pay!
+    update_attributes! :paid => true    
+  end
+  
+  def archive!
+    update_attributes! :archived => !archived
   end
   
   def total_price

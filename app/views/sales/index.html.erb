@@ -1,10 +1,11 @@
 <h1>Vendas</h1>
 
-<p>
-  <b>Período</b>&nbsp;
+<p>  
   <% form_tag sales_path, :method => 'get' do %>
+    <b>Período</b>&nbsp;
     Início <%= select_date(@initial_date_filter, :prefix => :initial_date_filter) %>&nbsp;
     Término <%= select_date(@end_date_filter, :prefix => :end_date_filter) %>&nbsp;
+    <%= check_box_tag :archived_filter, '1', @archived_filter %> <b>ver arquivadas</b>&nbsp;
     <%= submit_tag 'Filtrar' %>
   <% end %>
 </p>
@@ -14,9 +15,11 @@
     <tr>
       <th></th>
       <th></th>
+      <th></th>
       <th>Data</th>
       <th>Nome</th>
       <th>Paga</th>
+      <th>Capturada</th>
       <th>Lista</th>
   </tr>
   </thead>
@@ -24,10 +27,12 @@
 <% @sales.each do |sale| %>
   <tr>
     <td><%= link_to image_tag('editar.gif'), sale %></td>
-    <td><%= link_to image_tag('remover.gif'), sale, :confirm => 'Tem certeza?', :method => :delete %></td>
+    <td><%= link_to(image_tag('remover.gif'), sale, :confirm => 'Tem certeza?', :method => :delete) unless sale.captured %></td>
+    <td><%= sale.archived ? 'arquivada' : link_to('arquivar', archive_sale_path(sale), :confirm => 'Tem certeza que deseja arquivar a venda?') %></td>
     <td><%=h sale.created_at %></td>
     <td><%=h sale.name %></td>
     <td><%= sale.paid ? mark(sale.paid) : link_to(mark(sale.paid), pay_sale_path(sale), :confirm => 'Tem certeza que deseja marcar a venda como paga?', :method => :post) %></td>
+    <td><%= mark_if sale.captured %></td>
     <td><%=h sale.store %></td>
   </tr>
 <% end %>  

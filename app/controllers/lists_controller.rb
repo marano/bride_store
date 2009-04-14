@@ -3,6 +3,12 @@ class ListsController < ApplicationController
   before_filter :login_required, :except => ['find', 'store', 'visit_list']
   before_filter :adm_required, :only => [ 'deliveries', 'show_delivery' ]
 
+  def archive
+    @delivery = List.find(params[:id])
+    @delivery.archive!
+    redirect_to :back
+  end
+
   def show_delivery
     @delivery = List.find(params[:id])
     render :layout => 'adm'
@@ -10,9 +16,15 @@ class ListsController < ApplicationController
 
   def deliveries
     set_date_filter
-
-    @deliveries = List.scoped_by_delivery(true).all(:conditions => ['delivery_date > ? AND delivery_date < ?', @initial_date_filter, (@end_date_filter + 1.day)])
-
+    
+    @archived_filter = params[:archived_filter] ? true : false
+    
+    if @archived_filter
+      @deliveries = List.all(:conditions => ['delivery_date > ? AND delivery_date < ?', @initial_date_filter, (@end_date_filter + 1.day)])
+    else
+      @deliveries = List.scoped_by_archived(false).all(:conditions => ['delivery_date > ? AND delivery_date < ?', @initial_date_filter, (@end_date_filter + 1.day)])
+    end
+    
     render :layout => 'adm'
   end
 

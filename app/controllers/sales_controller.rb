@@ -4,16 +4,28 @@ class SalesController < ApplicationController
 
   before_filter :adm_required, :except => [ :new, :create ]
 
+  def archive
+    @sale = Sale.find(params[:id])
+    @sale.archive!
+    redirect_to :back
+  end
+
   def pay
     @sale = Sale.find(params[:id])
-    @sale.pay
+    @sale.pay!
     redirect_to sales_path
   end
 
   def index
-    set_date_filter    
+    set_date_filter
     
-    @sales = Sale.all(:conditions => ['created_at > ? AND created_at < ?', @initial_date_filter, (@end_date_filter + 1.day)])
+    @archived_filter = params[:archived_filter] ? true : false
+    
+    if @archived_filter
+      @sales = Sale.all(:conditions => ['created_at > ? AND created_at < ?', @initial_date_filter, (@end_date_filter + 1.day)])
+    else
+      @sales = Sale.scoped_by_archived(false).all(:conditions => ['created_at > ? AND created_at < ?', @initial_date_filter, (@end_date_filter + 1.day)])
+    end    
   end
 
   def show

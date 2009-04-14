@@ -1,10 +1,11 @@
 <h1>Entregas</h1>
 
-<p>
-  <b>Período</b>&nbsp;
+<p>  
   <% form_tag deliveries_path, :method => 'get' do %>
+    <b>Período</b>&nbsp;
     Início <%= select_date(@initial_date_filter, :prefix => :initial_date_filter) %>&nbsp;
     Término <%= select_date(@end_date_filter, :prefix => :end_date_filter) %>&nbsp;
+    <%= check_box_tag :archived_filter, '1', @archived_filter %> <b>ver arquivadas</b>&nbsp;
     <%= submit_tag 'Filtrar' %>
   <% end %>
 </p>
@@ -12,6 +13,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th></th>
       <th>Entrega</th>
       <th>Cliente</th>
@@ -22,6 +24,7 @@
 <% @deliveries.each do |delivery| %>
   <tr>
     <td><%= link_to image_tag('editar.gif'), delivery_path(delivery) %></td>
+    <td><%= delivery.archived ? 'arquivada' : link_to('arquivar', archive_list_path(delivery), :confirm => 'Tem certeza que deseja arquivar a entrega?') %></td>
     <td><%=h delivery.delivery_date %></td>
     <td><%=h delivery.user.name %></td>
     <td><%= link_to delivery.name, store_path(delivery.adress) %></td>
