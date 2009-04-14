@@ -51,7 +51,11 @@ class VisanetSale
   end
 
   def tid
-    return @sale.tid unless @sale.tid.blank?
+    if @sale.paid
+      return @sale.tid
+    else
+      return @sale.temp_tid unless @sale.temp_tid.blank?
+    end
 
     id = LOJA_VISA[4..8]
     data = Date.today
@@ -65,7 +69,7 @@ class VisanetSale
     id << hora.usec.to_s[0]
     id << '10'
     id << '01'
-    @sale.update_attributes! :tid => id
+    @sale.update_attributes! :temp_tid => id
     id
   end
 

@@ -7,6 +7,10 @@ class Sale < ActiveRecord::Base
 
   alias :orderid :id
 
+  def can_be_captured?
+    paid and !tid.blank?
+  end
+
   def extract(cart)
     cart.cart_items.each do |cart_item|
       sale_items.build.extract(cart_item)
@@ -14,7 +18,7 @@ class Sale < ActiveRecord::Base
   end
 
   def pay!
-    update_attributes! :paid => true
+    update_attributes! :paid => true, :tid => temp_tid
   end
 
   def capture!
