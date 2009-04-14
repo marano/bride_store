@@ -4,18 +4,22 @@
 <br/>
 <% form_for @product, :html => { :multipart => true } do |f| %>
   <p>
-    <%= f.label :display, 'Display' %><br />
-    <%= image_tag @product.display.url %><br/><br/>
-    <%= f.file_field :display %>
+    <%= f.label :photo, 'Foto' %><br />
+    <% if @product.photo.file? %>
+      <%= image_tag @product.photo.url :big %><br/><br/>
+    <% end %>
+    <%= f.file_field :photo %>
     <%= f.submit "Enviar" %>
   </p>
 <% end %>
 <br/>
 <% form_for @product, :html => { :multipart => true } do |f| %>
   <p>
-    <%= f.label :photo, 'Foto' %><br />
-    <%= image_tag @product.photo.url :big %><br/><br/>
-    <%= f.file_field :photo %>
+    <%= f.label :display, 'Display' %><br />
+    <% if @product.display.file? %>
+      <%= image_tag @product.display.url %><br/><br/>
+    <% end %>
+    <%= f.file_field :display %>
     <%= f.submit "Enviar" %>
   </p>
 <% end %>
