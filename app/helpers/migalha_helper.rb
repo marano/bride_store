@@ -42,7 +42,7 @@ module MigalhaHelper
     list = []
     
     unless current_list.nil?
-      list << link_to('minha conta', account_path) << current_list.name.downcase
+      list << link_to('minha conta', account_path) << link_to(current_list.name, personal_space_list_path(current_list))
     end
     
     if text.class == Array
@@ -58,7 +58,7 @@ module MigalhaHelper
     list = []
     
     unless current_store.nil?
-      list << link_to(current_store.title.downcase, store_path(current_store.adress))
+      list << link_to(current_store.title, store_path(current_store.adress))
     end
     
     if text.class == Array
