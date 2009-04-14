@@ -2,7 +2,7 @@ class List < ActiveRecord::Base
 
   default_scope :order => 'created_at DESC'
 
-  after_create :create_galery
+  before_create :fill_galery
   before_create :fill_adress
   before_save :update_nomes_busca
 
@@ -24,7 +24,7 @@ class List < ActiveRecord::Base
   end
   
   def has_gift_for_delivery?
-    paid_sales.each do |sale|
+    gift_sales.each do |sale|
       return true if sale.has_gift_for_delivery?
     end
     return false
@@ -88,11 +88,11 @@ class List < ActiveRecord::Base
   private
   
   def fill_adress
-    write_attribute :adress, name
+    self.adress = name.downcase.trim
   end
   
-  def create_galery
-    update_attributes!(:galery => Galery.new)
+  def fill_galery
+    self.create_galery
   end  
 
   def update_nomes_busca

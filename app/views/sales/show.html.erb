@@ -12,13 +12,15 @@
 </p>
 
 <% if @sale.paid %>
+  <% unless @sale.tid.blank? %>
   <p>
     <b>Código de transação Visa</b><br/>
     <%=h @sale.tid %>
   </p>
+  <% end %>
   <p>
     <b>Capturada</b> <%= mark @sale.captured %>
-    <% if !@sale.can_be_captured? %>
+    <% if @sale.can_be_captured? %>
       <%= link_to '<button>Capturar</button>', send_capture_visanet_path(@sale.id), :confirm => 'Tem certeza que deseja capturar a venda?', :method => :post %>
     <% else %>
       <span>(Esta venda não pode ser capturada pois não possui código de transação.)</span>

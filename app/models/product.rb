@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
 
-  after_create :create_galery
+  before_create :fill_galery
   before_save :update_canonical_name
   
   belongs_to :category
@@ -19,8 +19,8 @@ class Product < ActiveRecord::Base
     write_attribute :canonical_name, name.canonical
   end
   
-  def create_galery
-    update_attributes!(:galery => Galery.new)
+  def fill_galery
+    self.create_galery
   end
   
   def self.random_featured
