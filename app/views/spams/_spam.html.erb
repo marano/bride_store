@@ -17,12 +17,14 @@
   </p>
   <p>
     <label for="mensagemLista">Escreva a mensagem de divulgação da sua lista, convidando seus amigos para participar</label>
-    <%= fckeditor_textarea(:spam, :body, :toolbarSet => 'Basic', :width => '100%', :height => '300px') %>
+    <%= fckeditor_textarea(:spam, :body, :toolbarSet => 'Basic', :width => '100%', :height => '150px') %>
   </p>
   <p>
     <label for="destinatariosMensagem">Destinatários da sua mensagem (separe os endereços de email com vírgulas)</label>
-    <%= f.text_area :to %>
+    <%= f.text_area :to, :class => 'campoAreaTexto campoLarguraTotal' %>
   </p>
-  <%= link_to '<< DESCARTAR', spams_path %>
-  <%= f.submit 'SALVAR >>' %>
+  <p class="centerAlign">
+    <%= link_to '<< DESCARTAR', spams_path, :class => 'floatLeft' %>
+    <%= f.submit 'salvar >>', :type => 'image', :src =>'/images/btSalvar.gif', :class => 'floatRight' %>
+  </p>
 <% end %>

@@ -12,22 +12,26 @@
   <% for s in current_list.spams %>
     <% next if s.sent %>
     <ul class="listaHorizontal listaDivulgacao">
+      <li class="titleDivulgacao"><h4><%= s.title %></h4></li>
+      <li> | </li>
       <li><%= link_to 'editar', edit_spam_path(s) %></li>
-      <li></li>
+      <li> | </li>
       <li><%= link_to 'visualizar', s %></li>
-      <li></li>
+      <li> | </li>
       <li><%= link_to 'excluir', s, :method => :delete, :confirm => 'Tem certeza?' %></li>
-      <li></li>
-      <li class="titleDivulgacao"><%= s.title %> - <%= time_ago_in_words s.created_at %></li>
+      <li><span>(<%= time_ago_in_words s.created_at %> atrás)</span></li>
     </ul>
   <% end %>
   <h2>Divulgações enviadas</h2>
   <% for s in current_list.spams %>
     <% next unless s.sent %>
     <ul class="listaHorizontal listaDivulgacao">
+      <li class="titleDivulgacao"><h4><%= s.title %></h4></li>
+      <li> | </li>
       <li><%= link_to 'visualizar', s %></li>
+      <li> | </li>
       <li><%= link_to 'excluir', s, :method => :delete, :confirm => 'Tem certeza?' %></li>
-      <li class="titleDivulgacao"><%= s.title %> - <%= time_ago_in_words s.created_at %></li>
+      <li><span>(<%= time_ago_in_words s.created_at %> atrás)</span></li>
     </ul>
   <% end %>
 <% end %>

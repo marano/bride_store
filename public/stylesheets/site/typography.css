@@ -12,9 +12,11 @@
 */
 
 *{font-family:Arial, helvetica, serif; font-weight:normal; text-decoration:none;}
-h1{font-family:"Times New Roman", Times, serif; font-style:italic; font-size:36px;}
-h2{font-family:"Times New Roman", Times, serif; font-style:italic; font-size:22px;}
+h1, h2{font-family:"Times New Roman", Times, serif; font-style:italic;}
+h1{font-size:36px;}
+h2{font-size:22px;}
 h3{font-size:14px;}
+h4{font-size:14px;}
 p, li, a{font-size:12px;}
 a{text-decoration:underline;}
 span{font-size:11px;}

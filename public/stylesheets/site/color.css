@@ -11,7 +11,7 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 body {background: #958e80 url(/images/bgSombra.gif) repeat-y center; padding:0; margin:0; border:0;}
-h1, h2, h3{color:#ffffff;}
+h1, h2, h3, h4{color:#ffffff;}
 p, span, a{color:#373125;}
 hr {color:#5e5548; background:#5e5548;}
 #miolo{background: url(/images/bg.gif) repeat;}
