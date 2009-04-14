@@ -67,7 +67,12 @@ class UsersController < ApplicationController
 
   def create
     logout_keeping_session!
-    @user = User.new(params[:user])
+    user_by_mail = User.scoped_by_email(params[:user][:email])
+    if user_by_mail and user_by_mail.state == 'passive'
+      @user = user_by_mail
+    else
+      @user = User.new(params[:user])
+    end    
     @user.admin = false
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?

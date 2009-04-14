@@ -22,16 +22,14 @@ window.addEvent('domready', function(){
 
 <div class="product">
   <h2><%= @product.name %></h2>
-  <% unless @product.galery.galery_photos.empty? %>
-    <ul class="listaHorizontal">
-      <% if @product.photo.file? %>
-        <li class='fotoCapa'><%= link_to image_tag(@product.photo.url(:big)), @product.photo.url, :rel => 'milkbox[gal]' %></li>
-      <% end %>
-      <% for p in @product.galery.galery_photos %>
-        <li><%= link_to image_tag(p.url(:thumb)), p.url, :rel => 'milkbox[gal]' %></li>
-      <% end %>
-    </ul>
-  <% end %>
+  <ul class="listaHorizontal">
+    <% if @product.photo.file? %>
+      <li class='fotoCapa'><%= link_to image_tag(@product.photo.url(:big)), @product.photo.url, :rel => 'milkbox[gal]' %></li>
+    <% end %>
+    <% for p in @product.galery.galery_photos %>
+      <li><%= link_to image_tag(p.url(:thumb)), p.url, :rel => 'milkbox[gal]' %></li>
+    <% end %>
+  </ul>
   <div class='descricaoProduto'>
     <h3>(ref: <%= @product.code %>)</h3>
     <p><%= @product.description %></p>
