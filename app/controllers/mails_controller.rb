@@ -6,6 +6,9 @@ class MailsController < ApplicationController
 
   def enviar
     @mail = Mail.find(params[:id])
+    MailMailer.deliver_message(@mail)
+    flash[:notice] = 'Mensagem enviada com sucesso!'
+    redirec_to mails_path
   end
 
   # GET /mails
