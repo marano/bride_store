@@ -1,0 +1,23 @@
+<h1>Mala Direta</h1>
+
+<h2>Mensagens</h2>
+
+<%= link_to 'Nova Mensagem', new_mail_path %>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Descrição</th>
+    <th>Título</th>
+  </tr>
+
+<% @mails.each do |mail| %>
+  <tr>
+    <td><%= link_to image_tag('editar.gif'), edit_mail_path(mail) %></td>
+    <td><%= link_to image_tag('remover.gif'), mail, :confirm => 'Tem certeza?', :method => :delete %></td>
+    <td><%= link_to(mail.description, mail) %></td>
+    <td><%= mail.title %></td>
+  </tr>
+<% end %>
+</table>

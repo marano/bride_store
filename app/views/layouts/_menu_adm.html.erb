@@ -18,16 +18,17 @@
   <ul>
     <li class="nivelA"><a style="cursor:hand;">Catálogo</a>
       <ul class="listaA">
-        <li><%= link_to 'Produto', products_path %></li>
-        <li><%= link_to 'Categoria', categories_path %></li>
+        <li><%= link_to 'Produtos', products_path %></li>
+        <li><%= link_to 'Categorias', categories_path %></li>
       </ul>
     </li>
   </ul>
   <ul>
-    <li class="nivelA"><a style="cursor:hand;">Cadastro</a>
+    <li class="nivelA"><a style="cursor:hand;">Administração</a>
       <ul class="listaA">
+        <li><%= link_to 'Mala Direta', mails_path %></li>
         <li><%= link_to 'Email', edit_email_config_path %></li>
-        <li><%= link_to 'Usuário', users_path %></li>
+        <li><%= link_to 'Usuários', users_path %></li>
       </ul>
     </li>
   </ul>

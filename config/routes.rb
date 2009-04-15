@@ -54,14 +54,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :spams, :member => [ :enviar ]
   map.resources :galery_photos
   map.resources :messages
-  map.resources :lists, :member => [ :personal_space, :archive ] 
-  
+  map.resources :lists, :member => [ :personal_space, :archive ]   
   map.resources :list_items
   map.resources :testimonials
   map.resources :policies, :collection => [ :view ]
   map.resources :products, :collection => [ :find ], :member => [ :view ]
   map.resources :categories
-  
+  map.resources :mails, :member => [ :enviar ]
+    
   map.send_visanet '/visanet/:sale_id/send', :controller => 'visanet', :action => 'send_to_payment'
   map.resend_visanet '/visanet/:sale_id/resend', :controller => 'visanet', :action => 'resend'
   map.confirm_visanet '/visanet/confirm', :controller => 'visanet', :action => 'confirm'

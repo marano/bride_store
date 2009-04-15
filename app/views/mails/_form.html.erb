@@ -1,0 +1,30 @@
+<% content_for :head do %>
+  <%= javascript_include_tag :fckeditor %>
+<% end %>
+
+
+<% form_for(mail, :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <b><%= f.label :description, 'Descrição' %></b><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <b><%= f.label :title, 'Título' %></b><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <b><%= f.label :image, 'Imagem' %></b><br /><br/>
+    <% if mail.image.file? %>
+      <%= image_tag mail.image.url %><br/><br/>
+    <% end %>
+    Alterar <%= f.file_field :image %>
+  </p>
+  <p>
+    <b><%= f.label :body, 'Texto' %></b><br />
+    <%= fckeditor_textarea(:mail, :body, :toolbarSet => 'Basic', :width => '60%', :height => '300px') %>
+  </p>
+  <p>
+    <%= f.submit 'Salvar' %>
+  </p>
+<% end %>
