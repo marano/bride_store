@@ -13,6 +13,7 @@
   <thead>
     <tr>
       <th scope="col"><span>Produto</span></th>
+      <th scope="col"><span>Quem comprou</span></th>
       <th scope="col"><span>Quantidade</span></th>
       <th scope="col"><span>Valor Unitário</span></th>
       <th scope="col"><span>Valo Total</span></th>
@@ -23,7 +24,7 @@
     <% for i in @store.gifts %>
       <tr>
         <td><%= link_to i.product.name, view_product_path(i.product) %></td>
-        <td><%= i.sale.name %></td>
+        <td><p><%= i.sale.name %></p></td>
         <td>
           <p><%= i.quantity %></p>
           <%= "<p>Trocou: #{i.quantity_changed}</p>" if i.quantity_changed > 0 %>
@@ -33,8 +34,8 @@
         <% unless @store.delivery %>
           <td>
               <% form_tag change_sale_item_path(i) do %>
-                <%= submit_tag 'Trocar', :confirm => 'Tem certeza?' %>
                 <%= text_field_tag :quantity, '1', :class => 'campoTexto', :style => 'width:20px' %>
+                <%= submit_tag 'Trocar', :confirm => 'Tem certeza?' %>                
               <% end %>
           </td>
         <% end %>
