@@ -37,8 +37,12 @@ class Sale < ActiveRecord::Base
     sale_items.each { |item| total += item.total_price }
     total
   end
+  
+  def total_price_to_pay
+    total_price - credit
+  end
 
-  alias :price :total_price
+  alias :price :total_price_to_pay
 
   def has_gift_for_delivery?
     return false unless gift

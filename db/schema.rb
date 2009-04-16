@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090415013032) do
+ActiveRecord::Schema.define(:version => 20090416023547) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(:version => 20090415013032) do
     t.boolean  "captured",   :default => false
     t.string   "temp_tid"
     t.boolean  "gift",       :default => false
+    t.decimal  "credit",     :default => 0.0
   end
 
   create_table "sites", :force => true do |t|
