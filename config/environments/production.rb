@@ -29,4 +29,4 @@ config.action_controller.perform_caching             = true
 #SITE_URL = "adr.bolongu.com"
 SITE_URL = 'artederecebercasa.com.br'
 
-AMBIENTE_PAGAMENTO = 'teste'
+AMBIENTE_PAGAMENTO = 'producao'
