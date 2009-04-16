@@ -25,6 +25,10 @@ class SaleItem < ActiveRecord::Base
   def quantity_left
     quantity - quantity_changed
   end
+  
+  def has_quantity_left?
+    quantity_left > 0
+  end
 
   def total_price
     price * quantity

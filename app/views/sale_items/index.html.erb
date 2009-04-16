@@ -17,7 +17,9 @@
       <th scope="col"><span>Quantidade</span></th>
       <th scope="col"><span>Valor Unitário</span></th>
       <th scope="col"><span>Valo Total</span></th>
-      <th scope="col"></th>
+      <% unless @store.delivery %>
+        <th scope="col"></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -31,7 +33,7 @@
         </td>
         <td><p>R$ <%= number_with_precision i.price, :precision => 2 %></p></td>
         <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
-        <% unless @store.delivery %>
+        <% if i.has_quantity_left? and !@store.delivery %>
           <td>
               <% form_tag change_sale_item_path(i) do %>
                 <%= text_field_tag :quantity, '1', :class => 'campoTexto', :style => 'width:20px' %>
