@@ -1,3 +1,4 @@
+<% content_for :content_class do %>minhaConta<% end %>
 <% migalha 'minha conta' %>
 
 <% if current_user.lists.empty? %>
@@ -5,29 +6,38 @@
   <p><%= site.welcome_text %></p>
 <% else %>
 
-<h1>Minhas Listas - <span>você tem (<%= current_user.lists.size %>) listas de presentes</span></h1>
-<ul class="listaVertical">
-  <% for list in current_user.lists %>
+<h1>Minhas Listas<br />
+  <span>você tem <%= current_user.lists.size %> listas de presentes</span>
+</h1>
+<% for list in current_user.lists %>
+  <ul class="listaHorizontal lineHeight">
     <li>
-      <%= link_to list.name, select_list_path(list) %>
-      <% if list.delivery %>
-        (entregue)
-      <% elsif list.closed %>
-        (encerrada)
-      <% end %>
-      - 
-      <%= link_to 'excluir', list_path(list), :method => 'DELETE', :confirm => 'Tem certeza?' %>
+      <h4>
+        <%= list.name %>
+        <sup>
+          <% if list.delivery %>
+            (entregue)
+          <% elsif list.closed %>
+            (encerrada)
+          <% end %>
+        </sup>
+      </h4>
     </li>
-  <% end %>
-</ul>
+    <li> <span>|</span> </li>
+    <li><%= link_to '<span>editar</span>', select_list_path(list) %></li>
+    <li> <span>|</span> </li>
+    <li><%= link_to '<span>excluir</span>', list_path(list), :method => 'DELETE', :confirm => 'Tem certeza?' %></li>
+    <li><span>(criada <%= time_ago_in_words list.created_at %> atrás)</span></li>
+  </ul>
+<% end %>
 <h2>Criar Listas</h2>
 <% end %>
 
-<% form_for List.new, :html => { :id => 'formCriarLista' } do |f| %>
+<% form_for List.new, :html => { :id => 'formCriarLista', :class => "form" } do |f| %>
   <p>
     <%= label_tag 'nomeLista', 'Nome da lista:' %>
-    <%= f.text_field :name, :class => 'campoTexto' %>
-    <input class="botaoForm" type="image" title="criar lista" value="criar lista" src="/images/btCriarLista.gif"/>
+    <%= f.text_field :name, :class => 'campoTexto campoLarguraTotal' %>
+    <input class="botaoForm floatRight" type="image" title="criar lista" value="criar lista" src="/images/btCriarLista.gif"/>
   </p>
 <% end %>
 
@@ -35,15 +45,15 @@
   <% current_user.password = current_user.password_confirmation = nil  %>
   <hr/>
   <h2>Alterar Dados</2h>
-  <% form_for current_user do |f| %>
+  <% form_for current_user, :html => {:class => "form" } do |f| %>
     <p>
-      <%= f.label :password, '*Senha:' %><br/>
-      <%= f.password_field :password, :class => 'campoTexto' %>
+      <%= f.label :password, '*Senha:' %>
+      <%= f.password_field :password, :class => 'campoTexto campoLarguraTotal' %>
     </p>
     <p>
-      <%= f.label :password_confirmation, '*Confirmar senha:' %><br/>
-      <%= f.password_field :password_confirmation, :class => 'campoTexto' %>
+      <%= f.label :password_confirmation, '*Confirmar senha:' %>
+      <%= f.password_field :password_confirmation, :class => 'campoTexto campoLarguraTotal' %>
     </p>
-    <input class="botaoForm" type="image" title="confirmar" value="confirmar" src="/images/btConfirmar.gif"/>
+    <input class="botaoForm floatRight" type="image" title="confirmar" value="confirmar" src="/images/btConfirmar.gif"/>
   <% end %>
 <% end %>

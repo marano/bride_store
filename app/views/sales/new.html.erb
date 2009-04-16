@@ -25,13 +25,19 @@
   
   <h2>Produtos</h2>
   
-  <table>
+  <table class="listaPresentes">
+    <colgroup>
+      <col id="produtoCol"/>
+      <col id="quantidadeCol"/>
+      <col id="valorUnitarioCol"/>
+      <col id="valorTotalCol"/>
+    </colgroup>
     <thead>
       <tr>
-        <th>Produto</th>
-        <th>Quantidade</th>
-        <th>Valor Unitário</th>
-        <th>Valor Total</th>
+        <th scope="col"><span>Produto</span></th>
+        <th scope="col"><span>Quantidade</span></th>
+        <th scope="col"><span>Valor Unitário</span></th>
+        <th scope="col"><span>Valo Total</span></th>
       </tr>
     </thead>
     <tbody>
@@ -47,14 +53,8 @@
           <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
         </tr>
       <% end %>
-      <tr>
-        <td>Total</td>
-        <td></td>
-        <td></td>
-        <td><p>R$ <%= number_with_precision current_cart.total_price, :precision => 2 %></p></td>
-      </tr>
     </tbody>
   </table>
-  
-  <input type="image" title="Ir para o pagamento" value="Pagamento" src='/images/btConfirmar.gif' />
+  <p class="floatRight">Total: R$ <%= number_with_precision current_cart.total_price, :precision => 2 %></p>
+  <input type="image" title="Ir para o pagamento" value="Ir para o pagamento" src='/images/btConfirmar.gif' />
 <% end %>

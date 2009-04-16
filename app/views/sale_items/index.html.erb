@@ -1,10 +1,8 @@
-<% content_for :content_class do %>listaPresentes<% end %>
-
 <% migalha_current_list 'presentes' %>
 
 <%= render :partial => 'layouts/store_menu_panel' %>
   
-<table>
+<table class="listaPresentes">
   <colgroup>
     <col id="produtoCol"/>
     <col id="quantidadeCol"/>
@@ -14,11 +12,11 @@
   </colgroup>
   <thead>
     <tr>
-      <th scope="col">Produto</th>
-      <th scope="col">Comprador</th>
-      <th scope="col">Qtd</th>
-      <th scope="col">Valor Unitário</th>
-      <th scope="col">Valo Total</th>
+      <th scope="col"><span>Produto</span></th>
+      <th scope="col"><span>Quantidade</span></th>
+      <th scope="col"><span>Valor Unitário</span></th>
+      <th scope="col"><span>Valo Total</span></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -34,25 +32,17 @@
         <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
         <% unless @store.delivery %>
           <td>
-            <p>
               <% form_tag change_sale_item_path(i) do %>
                 <%= submit_tag 'Trocar', :confirm => 'Tem certeza?' %>
                 <%= text_field_tag :quantity, '1', :class => 'campoTexto', :style => 'width:20px' %>
               <% end %>
-            </p>
           </td>
         <% end %>
       </tr>
     <% end %>
-    <tr>
-      <td>Total</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><p>R$ <%= number_with_precision @store.gifts_total_price, :precision => 2 %></p></td>
-    </tr>
   </tbody>
 </table>
+<p class="floatRight">Total: R$ <%= number_with_precision @store.gifts_total_price, :precision => 2 %></p>
 <% if user_session.show_deliver? %>
   <p>
     <%= link_to '<button>Entregar</button>', new_delivery_path %>

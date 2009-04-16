@@ -24,7 +24,9 @@
 <% end %>
 
 <p><%= @spam.body %></p>
-
-<%= link_to '<< VOLTAR', spams_path %>
-<%= link_to 'EDITAR', edit_spam_path(@spam) %>
-<%= link_to @spam.sent? ? 'REENVIAR >>' : 'ENVIAR >>', enviar_spam_path(@spam) %>
+<ul class="listaHorizontal floatLeft">
+  <li><%= link_to '<< VER DIVULGAÇÕES', spams_path %></li>
+  <li> | </li>
+  <li><%= link_to 'EDITAR', edit_spam_path(@spam) %></li>
+</ul>
+<%= link_to @spam.sent? ? 'REENVIAR >>' : 'ENVIAR >>', enviar_spam_path(@spam), :class => 'floatRight' %>

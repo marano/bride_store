@@ -9,7 +9,7 @@
   </h3>
   <p><%= message.body %></p>  
   <% if logged_in? and (message.list.user == current_user or message.user == current_user) %>
-    <%= link_to 'EXCLUIR', message_path(message), :confirm => 'Tem certeza?', :method => :delete %>
+    <%= link_to 'EXCLUIR', message_path(message), :confirm => 'Tem certeza?', :method => :delete, :class => 'floatRight' %>
   <% end %>
   <hr/>
 </div>
