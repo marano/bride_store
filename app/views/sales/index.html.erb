@@ -31,7 +31,7 @@
     <td><%= sale.archived ? 'arquivada' : link_to('arquivar', archive_sale_path(sale), :confirm => 'Tem certeza que deseja arquivar a venda?') %></td>
     <td><%=h sale.created_at %></td>
     <td><%=h sale.name %></td>
-    <td><%= mark(sale.paid) %></td>
+    <td><%= mark(sale.paid) if sale.has_payment? %></td>
     <td><%= mark(sale.captured) if sale.can_be_captured? %></td>
     <td><%=h sale.store %></td>
   </tr>

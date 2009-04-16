@@ -4,27 +4,30 @@
   <b>Data</b><br/>
   <%=h @sale.created_at %>
 </p>
-<p>
-  <b>Paga</b> <%= mark(@sale.paid) %>
-  <% unless @sale.paid %>
-    <%= link_to('<button>Pagar</button>', pay_sale_path(@sale), :confirm => 'Tem certeza que deseja marcar a venda como paga?', :method => :post) %>
-  <% end %>
-</p>
 
-<% if @sale.paid %>
-  <% unless @sale.tid.blank? %>
-    <p>
-      <b>Código de transação Visa</b><br/>
-      <%=h @sale.tid %>
-    </p>
-  <% end %>
-  <% if @sale.can_be_captured? %>
-    <p>
-      <b>Capturada</b> <%= mark @sale.captured %>    
-      <% unless @sale.captured %>
-        <%= link_to '<button>Capturar</button>', send_capture_visanet_path(@sale.id), :confirm => 'Tem certeza que deseja capturar a venda?', :method => :post %>
-      <% end %>
-    </p>
+<% if @sale.has_payment? %>
+  <p>
+    <b>Paga</b> <%= mark(@sale.paid) %>
+    <% unless @sale.paid %>
+      <%= link_to('<button>Pagar</button>', pay_sale_path(@sale), :confirm => 'Tem certeza que deseja marcar a venda como paga?', :method => :post) %>
+    <% end %>
+  </p>
+
+  <% if @sale.paid %>
+    <% unless @sale.tid.blank? %>
+      <p>
+        <b>Código de transação Visa</b><br/>
+        <%=h @sale.tid %>
+      </p>
+    <% end %>
+    <% if @sale.can_be_captured? %>
+      <p>
+        <b>Capturada</b> <%= mark @sale.captured %>    
+        <% unless @sale.captured %>
+          <%= link_to '<button>Capturar</button>', send_capture_visanet_path(@sale.id), :confirm => 'Tem certeza que deseja capturar a venda?', :method => :post %>
+        <% end %>
+      </p>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -49,34 +52,44 @@
 </p>
 
 <table>
-    <thead>
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Valor Unitário</th>
+      <th>Valor Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for i in @sale.sale_items %>
       <tr>
-        <th>Produto</th>
-        <th>Quantidade</th>
-        <th>Valor Unitário</th>
-        <th>Valor Total</th>
+        <td><%= link_to i.product.name, i.product %></td>
+        <td>
+          <p>
+            <%= i.quantity %>
+          </p>
+        </td>
+        <td><p>R$ <%= number_with_precision i.price, :precision => 2 %></p></td>
+        <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
       </tr>
-    </thead>
-    <tbody>
-      <% for i in @sale.sale_items %>
-        <tr>
-          <td><%= link_to i.product.name, i.product %></td>
-          <td>
-            <p>
-              <%= i.quantity %>
-            </p>
-          </td>
-          <td><p>R$ <%= number_with_precision i.price, :precision => 2 %></p></td>
-          <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td>Total</td>
-        <td></td>
-        <td></td>
-        <td><p>R$ <%= number_with_precision @sale.total_price, :precision => 2 %></p></td>
-      </tr>
-    </tbody>
-  </table>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <b>Total</b><br/>
+  R$ <%= number_with_precision @sale.total_price, :precision => 2 %>
+</p>
+
+<% if @sale.has_credit? %>
+  <p>
+    <b>Crédito</b><br/>
+    R$ <%= number_with_precision @sale.credit, :precision => 2 %>
+  </p>
+  <p>
+    <b>Total a pagar</b><br/>
+    R$ <%= number_with_precision @sale.total_price_to_pay, :precision => 2 %>
+  </p>
+<% end %>
 
 <%= link_to 'Voltar', sales_path %>

@@ -69,6 +69,14 @@ class Sale < ActiveRecord::Base
     end
   end
   
+  def has_credit?
+    credit > 0
+  end
+  
+  def has_payment?
+    total_price_to_pay > 0
+  end
+  
   def need_payment?
     total_price_to_pay > 0
   end
