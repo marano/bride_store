@@ -14,8 +14,9 @@
     <%= f.text_field :name, :class => 'campoTexto' %>
   </p>
   <p>
-    <label for="nome">Endereço da loja pessoal</label><br/>
-    <%= SITE_URL + '/' %><%= f.text_field :adress, :class => 'campoTexto' %>
+    <label for="nome">Endereço da loja pessoal</label><br />
+    <span><%= SITE_URL + '/' %>exemplo</span>
+    <%= f.text_field :adress, :class => 'campoTexto' %>
   </p>
   <p>
     <label for="titulo">Escolha o título da sua Lista de Presentes que aparecerá no seu espaço pessoal</label>
@@ -31,14 +32,12 @@
     <%= f.file_field :photo %> <input type="submit" value="Enviar"/>
   </p>
   <p>
-    <p><label for="texto">Escreva uma mensagem de boas vindas para os convidados que visitarem a sua lista de presentes</label></p>
-    <p>
-      <%= fckeditor_textarea(:list, :text, :toolbarSet => 'Basic', :width => '100%', :height => '200px') %>
-    </p>
+    <label for="texto">Escreva uma mensagem de boas vindas para os convidados que visitarem a sua lista de presentes</label>
+    <%= fckeditor_textarea(:list, :text, :toolbarSet => 'Basic', :width => '100%', :height => '200px') %>
   </p>
-  <input class="botaoForm" type="image" title="salvar" value="salvar" src="/images/btSalvar.gif"/>
+  <input class="botaoForm floatRight" type="image" title="salvar" value="salvar" src="/images/btSalvar.gif"/>
 <% end %>
-
+<hr />
 <h2>Galeria de Imagens<span>(máximo de 08 imagens)</span></h2>
 <% form_for GaleryPhoto.new, :html => { :multipart => true } do |f| %>
   <%= hidden_field_tag 'galery_photo[galery_id]', current_list.galery.id %>
@@ -49,9 +48,9 @@
   </p>  
 <% end %>
 
-<ul class='listaHorizontal'>
+<ul class='thumbPersonalSpace'>
   <% for p in current_list.galery.galery_photos %>
-    <li><%= image_tag p.url :thumb %><%= link_to 'remover', destroy_galery_photo_path(p), :confirm => 'Tem certeza?' %></li> 
+    <li><%= image_tag p.url :thumb %><div><%= link_to 'remover', destroy_galery_photo_path(p), :confirm => 'Tem certeza?' %></div></li> 
   <% end %>
 </ul>
 <br/>

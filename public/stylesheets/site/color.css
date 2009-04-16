@@ -16,6 +16,8 @@ p, span, a{color:#373125;}
 hr {color:#5e5548; background:#5e5548;}
 #miolo{background: url(/images/bg.gif) repeat;}
 #armacao{background-color:#776d5b;}
+/*---------------ESPECIFICAÇÕES FORMULÁRIOS---------------*/
+.campoTexto, .campoSelect, select, .campoAreaTexto {color:#373125;}
 /*---------------RESULT---------------*/
 #result{background-color: #fffabe; border-bottom-color:#5e5548; border-right-color:#5e5548;}
 #result #container #mensagem{color:#373125;}
@@ -56,8 +58,7 @@ hr {color:#5e5548; background:#5e5548;}
 .produtoView .product .verCarrinho span{background: url(/images/btVerCarrinho.gif) no-repeat;}
 .produtoView .product .verLista span{background: url(/images/btVerListaPresentes.gif) no-repeat;}
 /*---------------LISTA DE PRESENTES---------------*/
-.listaPresentes .infoLista{text-align:center;}
-.listaPresentes table{color:#373125;}
+.listaPresentes {color:#5e5548;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent form h3 span{background: url(/images/titleBusca.gif) no-repeat;}
 #sideContent #sideProdutos h3 span{background: url(/images/titleSideMenu.gif) no-repeat;}

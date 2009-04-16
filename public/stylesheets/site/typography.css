@@ -11,7 +11,7 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
-*{font-family:Arial, helvetica, serif; font-weight:normal; text-decoration:none;}
+*{font-family:Arial; font-weight:normal; text-decoration:none;}
 h1, h2{font-family:"Times New Roman", Times, serif; font-style:italic;}
 h1{font-size:36px;}
 h2{font-size:22px;}
@@ -20,6 +20,8 @@ h4{font-size:14px;}
 p, li, a{font-size:12px;}
 a{text-decoration:underline;}
 span{font-size:11px;}
+/*---------------ESPECIFICAÇÕES FORMULÁRIOS---------------*/
+.campoTexto, .campoSelect, select, .campoAreaTexto {font-size:12px;}
 /*---------------RESULT---------------*/
 #result #container #mensagem{font-size:14px; text-align:center;}
 /*---------------TOPO---------------*/
@@ -61,8 +63,8 @@ span{font-size:11px;}
 .descricaoProduto label {font-size: 12px; font-weight:normal; text-decoration: underline;}
 /*---------------LISTA DE PRESENTES---------------*/
 .listaPresentes .infoLista{text-align:center;}
-.listaPresentes table{font-size:12px;}
-.listaPresentes table th {font-size:14px;}
+.listaPresentes {font-size:12px;}
+.listaPresentes th {font-size:14px;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent form label {font-size:11px;}
 #sideContent #sideProdutos ul a {font-size:14px; line-height:30px; text-decoration:underline;}

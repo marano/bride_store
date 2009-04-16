@@ -88,9 +88,8 @@ form p label {margin-left:4px;}
 .faleConosco .botaoForm{float:right;}
 .faleConosco .campoAreaTexto, .faleConosco .campoTexto{width: 200px;}
 /*---------------NOVA CONTA---------------*/
-.criarConta #formCriarConta {width:240px;}
-.criarConta .campoTexto {width:100%;}
-.criarConta .botaoForm {float:right;}
+.criarConta .campoTexto, .criarConta .campoAreaTexto {width:240px;}
+.criarConta .campoAreaTexto {height: 40px;}
 /*---------------MINHA CONTA---------------*/
 .minhasListas form {width:240px;}
 .minhasListas .campoTexto {width:100%;}
@@ -107,6 +106,9 @@ form p label {margin-left:4px;}
 .personalSpace form{width: 320px;}
 .personalSpace .campoAreaTexto {width: 100%; height: 100px}
 .personalSpace .campoTexto {width: 100%;}
+.thumbPersonalSpace {margin: 40px 0 0 0; padding:0;}
+.thumbPersonalSpace li {display:inline-table; margin: 0 15px 15px 0;}
+.thumbPersonalSpace div {width:100%; text-align: center;}
 /*---------------EDITAR DIVULGAÇÃO---------------*/
 .editarDivulgacao form {width:300px;}
 .editarDivulgacao .campoTexto, .editarDivulgacao .campoAreaTexto {width:100%;}
@@ -145,11 +147,11 @@ form p label {margin-left:4px;}
 .produtoView .product .verLista span{position:absolute; width:161px; height:40px;}
 .base {display:block;}
 /*---------------LISTA DE PRESENTES---------------*/
-.listaPresentes table {text-align:center; border-collapse: collapse;}
-.listaPresentes table col, .listaPresentes table tr {border: 1px solid;}
-.listaPresentes table col {width: 200px;}
-.listaPresentes table tr td {text-align:left; vertical-align:top;}
-.listaPresentes .campoTexto {display:inline; width: 20px;}
+.listaPresentes {text-align:center; border-collapse: collapse; margin-bottom: 15px;}
+.listaPresentes col, .listaPresentes tr {border: 1px solid;}
+.listaPresentes col {width: 200px; text-align:center}
+.listaPresentes tr td {text-align:center; vertical-align:top;}
+.listaPresentes .campoTexto {display:inline; width: 20px; height:15px;}
 .listaPresentes p {margin:0; padding: 0;}
 /*---------------SIDE CONTENT---------------*/
 #sideContent {float:left; padding:20px; width:177px;}
@@ -184,3 +186,4 @@ form p label {margin-left:4px;}
 .floatRight {float:right; margin-bottom:10px;}
 .centerAlign {text-align: center;}
 .form {width: 320px;}
+.lineHeight {line-height: 20px;}
