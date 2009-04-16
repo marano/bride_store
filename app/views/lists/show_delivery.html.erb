@@ -27,8 +27,7 @@
       <tr>
         <th>Produto</th>
         <th>Quantidade</th>
-        <th>Valor Unitário</th>
-        <th>Valor Total</th>
+        <th>Venda</th>
       </tr>
     </thead>
     <tbody>
@@ -40,15 +39,10 @@
               <%= i.quantity %>
             </p>
           </td>
-          <td><p>R$ <%= number_with_precision i.price, :precision => 2 %></p></td>
-          <td><p>R$ <%=  number_with_precision i.total_price, :precision => 2 %></p></td>
+          <td>
+            <%= link_to(i.sale.name, i.sale) %>
+          </td>
         </tr>
       <% end %>
-      <tr>
-        <td>Total</td>
-        <td></td>
-        <td></td>
-        <td><p>R$ <%= number_with_precision @delivery.total_price, :precision => 2 %></p></td>
-      </tr>
     </tbody>
   </table>
