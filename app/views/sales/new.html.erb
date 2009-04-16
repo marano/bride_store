@@ -55,6 +55,14 @@
       <% end %>
     </tbody>
   </table>
-  <p class="floatRight">Total: R$ <%= number_with_precision current_cart.total_price, :precision => 2 %></p>
-  <input type="image" title="Ir para o pagamento" value="Ir para o pagamento" src='/images/btConfirmar.gif' />
+  <p class="floatRight">Total: R$ <%= number_with_precision current_cart.total_price, :precision => 2 %></p>  
+  <% if user_session.show_credit? %>
+    <p class="floatRight" style='clear: right'>Total de crédito: R$ <%= number_with_precision current_list.credit, :precision => 2 %></p>
+    <p class="floatRight" style='clear: right'>Total a pagar: R$ <%= number_with_precision user_session.total_price_to_pay, :precision => 2 %></p>
+  <% end %>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <input style='clear: both' type="image" title="Ir para o pagamento" value="Ir para o pagamento" src='/images/btConfirmar.gif' />
 <% end %>

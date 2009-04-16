@@ -42,13 +42,16 @@ class SalesController < ApplicationController
   end
 
   def create
-    @sale = Sale.new(params[:sale])
-    @sale.store = current_store    
+    @sale = Sale.new(params[:sale]) 
     @sale.extract(current_cart)    
     user_session.clear_cart    
     
     if @sale.save
-      redirect_to send_visanet_path(@sale.id)
+      if @sale.paid
+        redirect_to sale_items_path
+      else
+        redirect_to send_visanet_path(@sale.id)
+      end      
     else
       render :action => "new"
     end

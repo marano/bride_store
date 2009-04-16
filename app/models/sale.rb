@@ -12,16 +12,39 @@ class Sale < ActiveRecord::Base
   end
 
   def extract(cart)
+    self.store = cart.store
     cart.cart_items.each do |cart_item|
       sale_items.build.extract(cart_item)
     end
+    use_list_credit!
+    verify_if_need_payment!
+  end
+  
+  def verify_if_need_payment!
+    unless need_payment?
+      pay!(false, false)
+    end
+  end
+  
+  def use_list_credit!
+    return if store.credit == 0
+    
+    if store.credit < total_price
+      self.credit = store.credit
+    else
+      self.credit = total_price
+    end
+    
+    store.update_attributes! :credit => store.credit - credit
   end
 
-  def pay!(visanet = true)
+  def pay!(visanet = true, save_after = true)
     self.paid = true    
     self.tid = temp_tid if visanet
     self.gift = true unless visanet
-    save!
+    if save_after
+      save!
+    end
   end
 
   def capture!
@@ -39,7 +62,15 @@ class Sale < ActiveRecord::Base
   end
   
   def total_price_to_pay
-    total_price - credit
+    if total_price >= credit
+      total_price - credit
+    else
+      0
+    end
+  end
+  
+  def need_payment?
+    total_price_to_pay > 0
   end
 
   alias :price :total_price_to_pay

@@ -37,7 +37,7 @@ class UserSession
   end
 
   def show_credit?
-    current_list and current_list.closed and current_store and !current_store.delivery
+    current_list and current_list.closed and has_credit? and current_store and !current_store.delivery
   end
 
   def show_checkout?
@@ -73,6 +73,22 @@ class UserSession
       end
     else
       self.current_store = list
+    end
+  end
+  
+  def credit
+    current_list ? current_list.credit : 0      
+  end
+  
+  def has_credit?
+    credit > 0
+  end
+  
+  def total_price_to_pay
+    if current_cart.total_price >= credit
+      current_cart.total_price - credit
+    else
+      0
     end
   end
 
