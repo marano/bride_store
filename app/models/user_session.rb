@@ -14,10 +14,10 @@ class UserSession
 
   def find_store_products(params)
     if current_store.nil?
-      Product.paginate params
+      Product.scoped_by_active(true).paginate params
     else
       if current_store.user == current_user
-        Product.paginate params
+        Product.scoped_by_active(true).paginate params
       else
         current_store.products.paginate params
       end

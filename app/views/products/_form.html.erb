@@ -26,7 +26,11 @@
     <%= f.text_field :price %>
   </p>
   <p>
-    <b><%= f.label :featured, 'Destaque' %></b><br />
+    <b><%= f.label :featured, 'Ativo' %></b>
+    <%= f.check_box :active %>
+  </p>
+  <p>
+    <b><%= f.label :featured, 'Destaque' %></b>
     <%= f.check_box :featured %>
   </p>
   <p>

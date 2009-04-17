@@ -14,18 +14,20 @@
       <th>Código</th>
       <%= sortable_table_header :name => "Preço",  :sort => "price" %>
       <%= sortable_table_header :name => "Destaque",  :sort => "featured" %>
+      <%= sortable_table_header :name => "Ativo",  :sort => "active" %>
     </tr>
   </thead>
 
 <% for product in @products %>
   <tr>
     <td><%= link_to image_tag('editar.gif'), edit_product_path(product) %></td>
-    <td><%= link_to image_tag('remover.gif'), product, :confirm => 'Tem certeza?', :method => :delete %></td>
+    <td><%= link_to(image_tag('remover.gif'), product, :confirm => 'Tem certeza?', :method => :delete) if product.can_delete? %></td>
     <td><%= link_to product.name, product %></td>
     <td><%=h product.category %></td>
     <td><%=h product.code %></td>
     <td><%=h number_with_precision product.price %></td>
     <td><%= mark_if product.featured %></td>    
+    <td><%= mark_if product.active %></td> 
   </tr>
 <% end %>
 </table>

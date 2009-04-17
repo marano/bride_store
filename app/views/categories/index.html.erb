@@ -12,7 +12,7 @@
 <% for category in @categories %>
   <tr>
     <td><%= link_to image_tag('editar.gif'), edit_category_path(category) %></td>
-    <td><%= link_to image_tag('remover.gif'), category, :confirm => 'Tem certeza?', :method => :delete %></td>
+    <td><%= link_to(image_tag('remover.gif'), category, :confirm => 'Tem certeza?', :method => :delete) if category.can_delete? %></td>
     <td><%= link_to category.name, category %></td>
     <td><%= category.products.count %></td>
   </tr>

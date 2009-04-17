@@ -6,12 +6,19 @@ class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :galery, :dependent => :destroy
   
+  has_many :list_items
+  has_many :sale_items
+  
   has_attached_file :photo, :styles => { :original => ['800x800>', 'jpg'], :big => ['276x276>', 'jpg'], :thumb => ['150x150>', 'jpg'] }
   has_attached_file :display, :styles => { :original => ['780x780>', 'jpg'] }  
   
   #composed_of :price, :class_name => 'Money'
   
   default_scope :order => 'name ASC'
+  
+  def can_delete?
+    list_items.empty? and sale_items.empty?
+  end
   
   private
   
