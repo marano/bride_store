@@ -53,7 +53,7 @@ class VisanetController < ApplicationController
   end
 
   def complete_capture
-    @sale = Sale.scoped_by_tid(params[:tid])
+    @sale = Sale.scoped_by_tid(params[:tid]).first
     @tid = params[:tid]
     @lr = params[:lr]
     @ars = params[:ars]
