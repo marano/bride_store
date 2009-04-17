@@ -5,12 +5,14 @@
 <%= link_to 'Nova Mensagem', new_mail_path %>
 
 <table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th>Descrição</th>
-    <th>Título</th>
-  </tr>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Descrição</th>
+      <th>Título</th>
+    </tr>
+  </thead>
 
 <% @mails.each do |mail| %>
   <tr>

@@ -28,11 +28,17 @@ class VisanetController < ApplicationController
     @tid = params[:tid]
     @lr = params[:lr]
     @ars = params[:ars]
-    if @lr == '00' or @lr == '01'
-      @sale.pay(true)
-      flash[:notice] = 'Pagamento efetuado com sucesso!'
+    @price = params[:price]
+    
+    if @price != VisanetSale.new(@sale).price
+      flash[:error] = 'O valor pago é diferente do valor da venda!'
     else
-      flash[:error] = 'Não foi possível efetuar o pagamento!'
+      if @lr == '00' or @lr == '01'
+        @sale.pay(true)
+        flash[:notice] = 'Pagamento efetuado com sucesso!'
+      else
+        flash[:error] = 'Não foi possível efetuar o pagamento!'
+      end
     end
     render :layout => false
   end
@@ -42,9 +48,9 @@ class VisanetController < ApplicationController
     visa_params = VisanetSale.new(@sale).send_to_capture_params
     render_redirect_to 'https://comercio.locaweb.com.br/comercio.comp', visa_params
   end
-  
+
   def complete_capture
-    @sale = Sale.scoped_by_tid(params[:tid])    
+    @sale = Sale.scoped_by_tid(params[:tid])
     @tid = params[:tid]
     @lr = params[:lr]
     @ars = params[:ars]
@@ -69,3 +75,4 @@ class VisanetController < ApplicationController
   end
 
 end
+
