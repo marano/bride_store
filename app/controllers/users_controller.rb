@@ -65,18 +65,28 @@ class UsersController < ApplicationController
     end
   end
 
-  def create
+  def create        
     logout_keeping_session!
     params[:user][:email].strip!
-    user_by_mail = User.scoped_by_email(params[:user][:email])
-    if user_by_mail and user_by_mail.state == 'passive'
+    
+    user_by_mail = User.scoped_by_email(params[:user][:email]).first
+    if user_by_mail and user_by_mail.passive?
       @user = user_by_mail
+      @user.attributes = params[:user]
     else
       @user = User.new(params[:user])
-    end    
+    end
+    
+    unless params[:aceitouTermos]
+      flash[:error]  = "É necessário aceitar os termos de uso para criar uma conta!"
+      render :action => 'new', :layout => 'application'
+      return
+    end
+    
     @user.admin = false
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
+    
     if success && @user.errors.empty?
       flash[:notice] = "Obrigado por cadastrar-se! Estamos enviando para você o email de ativação."
       redirect_to root_path
@@ -87,7 +97,14 @@ class UsersController < ApplicationController
   end
 
   def create_admin
-    @user = User.new(params[:user])
+    params[:user][:email].strip!
+    user_by_mail = User.scoped_by_email(params[:user][:email])
+    if user_by_mail and user_by_mail.state == 'passive'
+      @user = user_by_mail
+    else
+      @user = User.new(params[:user])
+    end
+    
     @user.admin = params[:admin]
     @user.activate!
     if @user.save
@@ -110,10 +127,10 @@ class UsersController < ApplicationController
       redirect_to account_list_path
       flash[:notice] = "Usuário ativado!"      
     when params[:activation_code].blank?
-      flash[:error] = "The activation code was missing.  Please follow the URL from your email."
+      flash[:error] = "Por favor informe o código de ativação"
       redirect_back_or_default('/')
     else
-      flash[:error]  = "We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in."
+      flash[:error]  = "Não foi possível achar o usuário com o código de ativação!"
       redirect_back_or_default('/')
     end
   end

@@ -1,0 +1,127 @@
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+** [localized_dates] localized_dates plugin loaded.
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/en.rb
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/pt-BR.rb
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/de.yml
+** [localized_dates] loading file /home/marano/Projetos/adr/config/locales/en.yml
+** [localized_dates] locales loaded from config/locales.
+  [4;36;1mSQL (1.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.7ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090305024433)
+Migrating to CreateCategories (20090305034624)
+Migrating to CreateProducts (20090305035340)
+Migrating to CreateSites (20090305040433)
+Migrating to CreatePolicies (20090305041227)
+Migrating to AddSiteContentToSite (20090305041900)
+Migrating to CreateTestimonials (20090305175808)
+Migrating to AddAttachmentsLogoToSite (20090305185340)
+Migrating to AddAttachmentsLogoFooterToSite (20090305185355)
+Migrating to AddAdminToUser (20090306005049)
+Migrating to CorrectCreateAccountTextField (20090306233350)
+Migrating to CreateLists (20090307042832)
+Migrating to AddListsToUser (20090307173603)
+Migrating to AddAttachmentsPhotoToList (20090307194652)
+Migrating to CreateListItems (20090307214254)
+Migrating to CreateMessages (20090308035751)
+Migrating to AddAttachmentsPhotoToProduct (20090308193406)
+Migrating to CreateGaleries (20090308221024)
+Migrating to CreateGaleryPhotos (20090308221127)
+Migrating to AddAttachmentsPhotoToGaleryPhoto (20090308221200)
+Migrating to AddProductToGalery (20090308221526)
+Migrating to RemoveProductIdFromGalery (20090308231353)
+Migrating to AddGaleriesToSite (20090308232825)
+Migrating to AddAttachmentsDisplayToProduct (20090309030736)
+Migrating to RemoveTimeFromTestimonial (20090309050813)
+Migrating to CreateSpams (20090309192105)
+Migrating to AddAttachmentsPhotoToSpam (20090309192126)
+Migrating to CreateEmailConfigs (20090309195449)
+Migrating to AddListIdToSpam (20090310002012)
+Migrating to AddSentToSpam (20090310003431)
+Migrating to AddGaleryToList (20090310182811)
+Migrating to AddDefaultBoughtQuantityToListItem (20090311005704)
+Migrating to AddHomeTextToTestimonial (20090311023106)
+Migrating to AddDefaultsBooleansToTestimonial (20090311024938)
+Migrating to AddPhoneToUser (20090315225110)
+Migrating to AddAdressToList (20090317185208)
+Migrating to AddNameToMessage (20090319005548)
+Migrating to AddClosedToList (20090326043209)
+Migrating to AddCheckoutTextToSite (20090330152504)
+Migrating to CreateSales (20090330161933)
+Migrating to AddPaidToSale (20090330175430)
+Migrating to AddArchivedToSale (20090330183907)
+Migrating to AddPhoneAndEmailToSale (20090331135505)
+Migrating to CreateSaleItems (20090401201914)
+Migrating to AddTidToSale (20090402203910)
+Migrating to AddCloseListTextToSite (20090404225009)
+Migrating to AddQuantityChangedToListItem (20090406215522)
+Migrating to AddCreditToList (20090406215546)
+Migrating to AddQuantityChangedToSaleItem (20090406221155)
+Migrating to AddDeliveryToSale (20090406221658)
+Migrating to RemoveQuantityChangedFromListItem (20090407205543)
+Migrating to RemoveDeliveryFromSale (20090407213934)
+Migrating to AddDeliveryToList (20090407214004)
+Migrating to AddDeliveryDataToList (20090411195028)
+Migrating to AddDeliveryTextToSite (20090411223937)
+Migrating to RemoveQuantityBoughtFromListItem (20090412043817)
+Migrating to AddCapturedToSale (20090413230338)
+Migrating to AddArchivedToList (20090413235801)
+Migrating to AddTempTidToSale (20090414034901)
+Migrating to AddGiftToSale (20090414040151)
+Migrating to AddAuthorToTestimonial (20090414052949)
+Migrating to CreateMails (20090415011930)
+Migrating to AddAttachmentsImageToMail (20090415012006)
+Migrating to AddDescriptionToMail (20090415013032)
+Migrating to AddCreditToSale (20090416023547)
+  [4;36;1mSQL (0.8ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (1.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (1.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("categories")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("email_configs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("galeries")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("galery_photos")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("list_items")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("lists")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("mails")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("messages")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("policies")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("products")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("sale_items")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("sales")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("sites")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("spams")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("testimonials")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m

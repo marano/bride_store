@@ -9,13 +9,13 @@ class User < ActiveRecord::Base
   has_many :lists, :dependent => :destroy
   has_many :testmonials
 
-  validates_presence_of     :login
-  validates_length_of       :login,    :within => 3..40
-  validates_uniqueness_of   :login
-  validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
+  validates_presence_of     :login, :unless => :passive?
+  validates_length_of       :login, :unless => :passive?, :within => 3..40
+  validates_uniqueness_of   :login, :unless => :passive?
+  validates_format_of       :login, :unless => :passive?, :with => Authentication.login_regex, :message => Authentication.bad_login_message
 
-  validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
-  validates_length_of       :name,     :maximum => 100
+  validates_format_of       :name, :unless => :passive?,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message
+  validates_length_of       :name, :unless => :passive?,     :maximum => 100
 
   validates_presence_of     :email
   validates_length_of       :email,    :within => 6..100 #r@a.wk
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation
+  attr_accessible :login, :email, :name, :phone, :password, :password_confirmation
 
 
 
@@ -52,21 +52,35 @@ class User < ActiveRecord::Base
   end
 
   def login=(value)
-    write_attribute :login, (value ? value.downcase : nil)
+    write_attribute :login, (value ? value.downcase.trim : nil)
   end
 
   def email=(value)
-    write_attribute :email, (value ? value.downcase : nil)
+    write_attribute :email, (value ? value.downcase.trim : nil)
   end
   
   def to_s
     name
+  end
+    
+  def passive?
+    state == 'passive'
   end    
+  
+  def recently_registered?
+    @recently_registered
+  end
 
   protected
     
     def make_activation_code
         self.deleted_at = nil
         self.activation_code = self.class.make_token
+        update_state_to_pending
+        @recently_registered = true
+    end
+    
+    def update_state_to_pending
+      self.state = 'pending'
     end
 end
