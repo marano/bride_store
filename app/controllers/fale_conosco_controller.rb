@@ -10,7 +10,7 @@ class FaleConoscoController < ApplicationController
       user = User.new(:name => params[:name], :email => params[:email], :phone => params[:phone])      
     end
     user.newsletter = params[:newsletter]
-    user.save!
+    user.save
     FaleConosco.deliver_message(email_config.email_adress, params[:name], params[:email], params[:phone], params[:message])
     flash[:notice] = 'Mensagem enviada com sucesso!'
     redirect_to home_path

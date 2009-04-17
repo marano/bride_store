@@ -5,23 +5,25 @@
   <%= error_messages_for @user %>
   <% form_for :user, @user, :url => create_admin_path do |f| -%>
 
-  <p><%= label_tag 'name', 'Nome' %><br/>
+  <p><b><%= label_tag 'admin', 'Administrador' %></b>
+  <%= f.check_box :admin %></p>
+
+  <p><b><%= label_tag 'name', 'Nome' %></b><br/>
   <%= f.text_field :name %></p>
-  <br/>
-  <p><%= label_tag 'login', 'Usuário' %><br/>
+
+  <p><b><%= label_tag 'login', 'Usuário' %></b><br/>
   <%= f.text_field :login %></p>
-  <br/>
-  <p><%= label_tag 'email', 'Email' %><br/>
+
+  <p><b><%= label_tag 'email', 'Email' %></b><br/>
   <%= f.text_field :email %></p>
-  <br/>
-  <p><%= label_tag 'admin', 'Administrador' %>
-  <%= check_box_tag 'admin', '1' %></p>
-  <br/>
-  <p><%= label_tag 'password', 'Senha' %><br/>
+  
+  <p><b><b><%= label_tag 'newsletter', 'Receber newsletter' %></b> <%= f.check_box :newsletter %></p>
+
+  <p><b><%= label_tag 'password', 'Senha' %></b><br/>
   <%= f.password_field :password %></p>
-  <br/>
-  <p><%= label_tag 'password_confirmation', 'Confirmar senha' %><br/>
+
+  <p><b><%= label_tag 'password_confirmation', 'Confirmar senha' %></b><br/>
   <%= f.password_field :password_confirmation %></p>
-  <br/>
+
   <p><%= submit_tag 'Salvar' %></p>
 <% end -%>

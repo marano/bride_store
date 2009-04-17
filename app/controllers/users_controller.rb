@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all :conditions => "state NOT LIKE 'deleted'"
+    @users = User.all :conditions => "state NOT LIKE 'deleted' AND state NOT LIKE 'passive'"
   end
 
   def update
@@ -115,8 +115,10 @@ class UsersController < ApplicationController
       @user.newsletter = true
     end
     
-    @user.admin = params[:admin]
+    @user.admin = !params[:user].delete(:admin).nil?
+    
     @user.activate!
+    
     if @user.save
       redirect_to users_path
       flash[:notice] = "Usuário criado com sucesso!"

@@ -22,7 +22,7 @@ module Authorization
         end
         
         aasm_event :activate do
-          transitions :from => :passive, :to => :active, :guard => Proc.new {|u| u.admin? } 
+          transitions :from => :passive, :to => :active
           transitions :from => :pending, :to => :active 
         end
         
@@ -58,6 +58,7 @@ module Authorization
         @activated = true
         self.activated_at = Time.now.utc
         self.deleted_at = self.activation_code = nil
+        self.state = 'active'
       end
     end # instance methods
   end
