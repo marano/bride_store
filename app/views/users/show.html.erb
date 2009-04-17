@@ -12,6 +12,9 @@
   <b>Email</b><br/>
   <%= @user.email %>
 </p>
+<p>
+  <b>Receber Newsletter</b> <%= mark @user.newsletter %>
+</p>
 
-<%= link_to 'Editar', users_path(@user) %> |
+<%= link_to 'Editar', edit_user_path(@user) %> |
 <%= link_to 'Voltar', users_path %>

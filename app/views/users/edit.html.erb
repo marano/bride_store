@@ -3,25 +3,27 @@
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
 
-  <p><%= label_tag 'name', 'Nome' %><br/>
+  <p><b><%= label_tag 'name', 'Nome' %></b><br/>
   <%= f.text_field :name %></p>
 
-  <p><%= label_tag 'login', 'Usuário' %><br/>
+  <p><b><%= label_tag 'login', 'Usuário' %></b><br/>
   <%= label_tag @user.login %></p>
 
-  <p><%= label_tag 'email', 'Email' %><br/>
+  <p><b><%= label_tag 'email', 'Email' %></b><br/>
   <%= label_tag @user.email %></p>
 
-  <p><%= label_tag 'password', 'Senha' %><br/>
+  <p><b><%= label_tag 'newsletter', 'Receber newsletter' %></b> <%= f.check_box :newsletter %></p>
+
+  <p><b><%= label_tag 'password', 'Senha' %></b><br/>
   <%= f.password_field :password %></p>
 
-  <p><%= label_tag 'password_confirmation', 'Confirmar senha' %><br/>
+  <p><b><%= label_tag 'password_confirmation', 'Confirmar senha' %></b><br/>
   <%= f.password_field :password_confirmation %></p>
-
+  
   <p>
     <%= f.submit "Salvar" %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Exibir', @user %> |
+<%= link_to 'Voltar', users_path %>

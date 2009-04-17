@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   # render new.rhtml
   def new
     @user = User.new
+    @user.newsletter = true
     render :layout  => 'application'
   end
 
@@ -83,6 +84,10 @@ class UsersController < ApplicationController
       return
     end
     
+    if params[:newsletter]
+      @user.newsletter = true
+    end
+    
     @user.admin = false
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
@@ -98,11 +103,16 @@ class UsersController < ApplicationController
 
   def create_admin
     params[:user][:email].strip!
-    user_by_mail = User.scoped_by_email(params[:user][:email])
-    if user_by_mail and user_by_mail.state == 'passive'
+    user_by_mail = User.scoped_by_email(params[:user][:email]).first
+    if user_by_mail and user_by_mail.passive?
       @user = user_by_mail
+      @user.attributes = params[:user]
     else
       @user = User.new(params[:user])
+    end
+    
+    if params[:newsletter]
+      @user.newsletter = true
     end
     
     @user.admin = params[:admin]

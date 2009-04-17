@@ -22,12 +22,17 @@
   <%= f.password_field :password, :class => 'campoTexto' %></p>
 
   <p><%= label_tag 'password_confirmation', '*Confirmar senha:' %><br/>
-  <%= f.password_field :password_confirmation, :class => 'campoTexto' %></p>
+  <%= f.password_field :password_confirmation, :class => 'campoTexto' %></p>  
+  
+  <p class="checkNews">
+    <%= check_box_tag :newsletter, '1', :checked => true %>
+    <label for="cadastroCliente">Desejo receber informações sobre a Arte de Receber.</label>
+  </p>
   
   <p class="checkNews">
     <input id="aceitouTermos" type="checkbox" value="true" value="true" onclick="this.value = this.checked" name="aceitouTermos" checked>
     <label for="cadastroCliente">Li e aceito os <%= link_to 'termos de uso', view_policies_path %>!</label>
   </p>
   
-   <input class="botaoForm" type="image" title="confirmar" value="confirmar" src="/images/btEnviar.gif"/>
+  <input class="botaoForm" type="image" title="confirmar" value="confirmar" src="/images/btEnviar.gif"/>
 <% end %>
