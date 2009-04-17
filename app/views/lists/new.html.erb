@@ -24,9 +24,11 @@
       </h4>
     </li>
     <li> <span>|</span> </li>
-    <li><%= link_to '<span>editar</span>', select_list_path(list) %></li>
-    <li> <span>|</span> </li>
-    <li><%= link_to '<span>excluir</span>', list_path(list), :method => 'DELETE', :confirm => 'Tem certeza?' %></li>
+    <li><%= link_to '<span>editar</span>', select_list_path(list) %></li>    
+    <% if list.can_delete? %>
+      <li> <span>|</span> </li>
+      <li><%= link_to '<span>excluir</span>', list_path(list), :method => 'DELETE', :confirm => 'Tem certeza?' %></li>
+    <% end %>
     <li><span>(criada <%= time_ago_in_words list.created_at %> atrás)</span></li>
   </ul>
 <% end %>

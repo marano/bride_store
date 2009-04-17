@@ -1,5 +1,9 @@
-<h1><%= @mail.title %></h1>
+<% unless @mail.title.blank? %>
+  <h1><%= @mail.title %></h1>
+<% end %>
 
 <% if @has_image %><p><%= image_tag @image %></p><% end %>
 
-<p><%= @mail.body %></p>
+<% unless @mail.body.blank? %>
+  <p><%= @mail.body %></p>
+<% end %>

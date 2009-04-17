@@ -10,7 +10,8 @@ module Authorization
         include StatefulRolesInstanceMethods
         include AASM
         aasm_column :state
-        aasm_initial_state :initial => :passive
+        #aasm_initial_state :initial => :passive
+        aasm_initial_state :passive
         aasm_state :passive
         aasm_state :pending, :enter => :make_activation_code
         aasm_state :active,  :enter => :do_activate
@@ -19,11 +20,13 @@ module Authorization
 
         aasm_event :register do
           transitions :from => :passive, :to => :pending, :guard => Proc.new {|u| !(u.crypted_password.blank? && u.password.blank?) }
+          transitions :from => :deleted, :to => :pending, :guard => Proc.new {|u| !(u.crypted_password.blank? && u.password.blank?) }
         end
         
         aasm_event :activate do
           transitions :from => :passive, :to => :active
           transitions :from => :pending, :to => :active 
+          transitions :from => :deleted, :to => :active 
         end
         
         aasm_event :suspend do

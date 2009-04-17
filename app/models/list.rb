@@ -21,6 +21,10 @@ class List < ActiveRecord::Base
   
   validates_uniqueness_of :adress
   
+  def can_delete?
+    !has_gift_for_delivery?
+  end
+  
   def archive!
     update_attributes! :archived => !archived
   end

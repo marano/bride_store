@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
   def recently_registered?
     @recently_registered
   end
+  
+  def self.newsletters
+    scoped_by_newsletter(true).all(:conditions => "state NOT LIKE 'deleted'")
+  end
 
   protected
     

@@ -1,16 +1,21 @@
 <h1>Mensagem</h1>
 
-<h2>
-  <%=h @mail.title %>
-</h2>
-<p>
-  <% if @mail.image.file? %>
+<% unless @mail.title.blank? %>
+  <h2>
+    <%=h @mail.title %>
+  </h2>
+<% end %>
+
+<% if @mail.image.file? %>
+  <p>  
     <%= image_tag @mail.image.url %><br/><br/>
-  <% end %>
-</p>
-<p>
-  <%= @mail.body %>
-</p>
+  </p>
+<% end %>
+<% unless @mail.body.blank? %>
+  <p>
+    <%= @mail.body %>
+  </p>
+<% end %>
 
 <%= link_to '<button>Enviar</button>', enviar_mail_path(@mail) %> | 
 <%= link_to 'Editar', edit_mail_path(@mail) %> |

@@ -2,7 +2,7 @@ class MailMailer < ActionMailer::Base
   
   def message(mail)
     @recipients = fetch_to
-    @from = "Arte de Receber Casa"
+    @from = "Arte de Receber Casa <#{MAILER_ADRESS}>"
     @subject = mail.title
     @sent_on = Time.now
     @content_type = "text/html"
@@ -12,10 +12,10 @@ class MailMailer < ActionMailer::Base
   private
   
   def fetch_to
-    users = User.scoped_by_newsletter(true).all
-    adresses = ''
+    users = User.newsletters
+    adresses = []
     users.each do |user|
-      adresses << "#{user.email}, "
+      adresses << "#{user.name} <#{user.email}>"
     end
     adresses
   end
