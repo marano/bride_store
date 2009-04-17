@@ -31,13 +31,16 @@ class VisanetController < ApplicationController
     @price = params[:price]
     
     if @price != VisanetSale.new(@sale).price
-      flash[:error] = 'O valor pago é diferente do valor da venda!'
+      @message = 'O valor pago é diferente do valor da venda!'
+      flash[:error] = @message
     else
       if @lr == '00' or @lr == '01'
         @sale.pay!(true)
-        flash[:notice] = 'Pagamento efetuado com sucesso!'
+        @message = 'Pagamento efetuado com sucesso!'
+        flash[:notice] = @message
       else
-        flash[:error] = 'Não foi possível efetuar o pagamento!'
+        @message = 'Não foi possível efetuar o pagamento!'
+        flash[:error] = @message
       end
     end
     render :layout => false
