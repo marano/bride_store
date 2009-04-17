@@ -34,7 +34,7 @@ class VisanetController < ApplicationController
       flash[:error] = 'O valor pago é diferente do valor da venda!'
     else
       if @lr == '00' or @lr == '01'
-        @sale.pay(true)
+        @sale.pay!(true)
         flash[:notice] = 'Pagamento efetuado com sucesso!'
       else
         flash[:error] = 'Não foi possível efetuar o pagamento!'
