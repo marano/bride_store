@@ -43,7 +43,6 @@ class VisanetController < ApplicationController
         flash[:error] = @message
       end
     end
-    render :layout => false
   end
 
   def send_to_capture
@@ -63,6 +62,7 @@ class VisanetController < ApplicationController
     else
       flash[:error] = 'Não foi possível capturar o pagamento!'
     end
+    render :layout => false
   end
 
   def parcial_capture
