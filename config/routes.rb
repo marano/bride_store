@@ -1,4 +1,4 @@
-rActionController::Routing::Routes.draw do |map|
+ActionController::Routing::Routes.draw do |map|
    
   map.root :controller => 'site', :action => 'home'
   map.home '/home', :controller => 'site', :action => 'home'
@@ -67,7 +67,7 @@ rActionController::Routing::Routes.draw do |map|
   map.confirm_visanet '/visanet/confirm', :controller => 'visanet', :action => 'confirm'
   map.complete_visanet '/visanet/complete', :controller => 'visanet', :action => 'complete', :conditions => { :method => :post }
   map.send_capture_visanet '/visanet/:sale_id/capture/send', :controller => 'visanet', :action => 'send_to_capture'
-  map.send_capture '/visanet/capture', :controller => 'visanet', :action => 'complete_capture', :conditions => { :method => :post }
+  map.complete_capture '/visanet/capture', :controller => 'visanet', :action => 'complete_capture', :conditions => { :method => :post }
   
   map.resources :users, :member => { :suspend   => :put,
                                    :unsuspend => :put,
