@@ -23,7 +23,7 @@
   <ul class="listaVertical">
       <li>Políticas do site</li>
       <% for polyce in Policy.all %>      
-        <li><%= link_to '> ' + polyce.menu_title, view_policies_path %></li>
+        <li><%= link_to '> ' + polyce.menu_title, view_policies_path, :anchor => polyce.name %></li>
       <% end %>
   </ul>
 </div>
