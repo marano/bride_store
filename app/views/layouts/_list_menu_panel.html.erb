@@ -12,6 +12,8 @@
     <li><%= link_to_unless_current 'visualizar', personal_space_list_path(current_list) %></li>
     <li>|</li>
     <li><%= link_to_unless_current 'encerrar lista', confirm_close_list_path %></li>
+    <li>|</li>
+    <li><%= link_to_unless_current 'sair', exit_list_path %></li>
   </ul>
   <hr>
 <% end %>

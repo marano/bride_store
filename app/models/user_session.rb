@@ -91,6 +91,12 @@ class UserSession
       0
     end
   end
+  
+  def exit_list
+    self.current_list = nil
+    self.current_store = nil
+    clear_cart
+  end
 
   def current_store=(store)
     @current_store = store

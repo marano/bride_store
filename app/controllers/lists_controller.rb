@@ -1,7 +1,16 @@
 class ListsController < ApplicationController
 
-  before_filter :login_required, :except => ['find', 'store', 'visit_list']
-  before_filter :adm_required, :only => [ 'deliveries', 'show_delivery' ]
+  before_filter :login_required, :except => ['find', 'store', 'visit_list', 'exit']
+  before_filter :adm_required, :only => [ 'deliveries', 'show_delivery', 'archive' ]
+
+  def exit
+    user_session.exit_list
+    if logged_in?
+      redirect_to account_path
+    else
+      redirect_to home_path
+    end
+  end
 
   def archive
     @delivery = List.find(params[:id])
