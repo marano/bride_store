@@ -65,7 +65,15 @@ class User < ActiveRecord::Base
     
   def passive?
     state == 'passive'
-  end    
+  end
+  
+  def deleted?
+    state == 'deleted'
+  end
+  
+  def can_be_created?
+    passive? or deleted?
+  end
   
   def recently_registered?
     @recently_registered

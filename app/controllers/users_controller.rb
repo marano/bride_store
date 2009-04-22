@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     params[:user][:email].strip!
     
     user_by_mail = User.scoped_by_email(params[:user][:email]).first
-    if user_by_mail and user_by_mail.passive?
+    if user_by_mail and user_by_mail.can_be_created?
       @user = user_by_mail
       @user.attributes = params[:user]
     else
@@ -104,7 +104,7 @@ class UsersController < ApplicationController
   def create_admin
     params[:user][:email].strip!
     user_by_mail = User.scoped_by_email(params[:user][:email]).first
-    if user_by_mail and user_by_mail.passive?
+    if user_by_mail and user_by_mail.can_be_created?
       @user = user_by_mail
       @user.attributes = params[:user]
     else
