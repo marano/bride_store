@@ -6,13 +6,13 @@
   <h2>Políticas do Site</h2>
   <ul class='listaVertical'>
     <% for p in Policy.all %>
-      <li><%= link_to '> ' + p.name, :anchor => p.name %></li>
+      <li><%= link_to '> ' + p.menu_title, :anchor => p.name %></li>
     <% end %>
   </ul>
 <% end %>
 
 <% for p in Policy.all %>
   <a name="<%= p.name %>"></a>
-  <h2><%= p.name %></h2>
+  <h2><%= p.text_title %></h2>
   <p><%= p.text %></p>
 <% end %>
