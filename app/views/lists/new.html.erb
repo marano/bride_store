@@ -24,7 +24,11 @@
       </h4>
     </li>
     <li> <span>|</span> </li>
-    <li><%= link_to '<span>editar</span>', select_list_path(list) %></li>    
+    <li><%= link_to '<span>visualizar</span>', select_list_path(list) %></li>
+    <% if user_session.show_edit_list?(list) %>
+      <li> <span>|</span> </li>
+      <li><%= link_to '<span>editar</span>', edit_list_path(list) %></li>    
+    <% end %>
     <% if list.can_delete? %>
       <li> <span>|</span> </li>
       <li><%= link_to '<span>excluir</span>', list_path(list), :method => 'DELETE', :confirm => 'Tem certeza?' %></li>

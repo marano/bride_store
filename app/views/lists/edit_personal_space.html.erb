@@ -29,7 +29,7 @@
       <br/><br/>
     <% end %>
     <label for="photo">Alterar imagem</label>
-    <%= f.file_field :photo %> <input type="submit" value="Enviar"/>
+    <%= f.file_field :photo %>
   </p>
   <p>
     <label for="texto">Escreva uma mensagem de boas vindas para os convidados que visitarem a sua lista de presentes</label>
@@ -50,7 +50,12 @@
 
 <ul class='thumbPersonalSpace'>
   <% for p in current_list.galery.galery_photos %>
-    <li><%= image_tag p.url :thumb %><div><%= link_to 'remover', destroy_galery_photo_path(p), :confirm => 'Tem certeza?' %></div></li> 
+    <li><%= image_tag p.url :thumb %><div><%= link_to 'remover', destroy_galery_photo_path(p), :confirm => 'Tem certeza?' %></div></li>
   <% end %>
 </ul>
+
+  <% form_tag personal_space_list_path(current_list), :method => :get do %>
+    <input class="botaoForm floatRight" type="image" title="avançar" value="avançar" src="/images/btAvancar.gif"/>
+  <% end %>
+
 <br/>

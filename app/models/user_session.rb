@@ -3,6 +3,10 @@ class UserSession
   def initialize(session)
     @session = session
   end
+  
+  def show_edit_list?(list)
+    !list.closed?
+  end
 
   def can_add_to_cart?
     current_store and (current_store.open? or current_store.user == current_user) and !current_store.delivery

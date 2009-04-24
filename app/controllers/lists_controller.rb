@@ -84,6 +84,11 @@ class ListsController < ApplicationController
     redirect_to personal_space_list_path(current_list)
   end
 
+  def edit
+    user_session.select_list List.find(params[:id])
+    redirect_to edit_list_nomes_path
+  end
+
   def store
     @list = List.first(:conditions => { :adress => params[:adress] })
     if @list.nil?
@@ -135,11 +140,6 @@ class ListsController < ApplicationController
     @list = List.new
   end
 
-  # GET /lists/1/edit
-  def edit
-    @list = List.find(params[:id])
-  end
-
   # POST /lists
   # POST /lists.xml
   def create
@@ -169,15 +169,7 @@ class ListsController < ApplicationController
         when 'nomes'
           redirect_to edit_list_personal_space_path
         when 'personal_space'
-          if params[:list][:photo]
-            redirect_to edit_list_personal_space_path
-          else
-            if(@list.list_items.empty?)
-              redirect_to list_items_path
-            else
-              redirect_to personal_space_list_path(@list)
-            end
-          end
+          redirect_to edit_list_personal_space_path
         end
       else
         flash[:notice] = 'Não foi possível salvar a lista!'
