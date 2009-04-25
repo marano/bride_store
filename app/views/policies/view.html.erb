@@ -3,12 +3,14 @@
 <% migalha 'políticas' %>
 
 <% content_for :sidebar do %>
-  <h2>Políticas do Site</h2>
-  <ul class='listaVertical'>
-    <% for p in Policy.all %>
-      <li><%= link_to '> ' + p.name, :anchor => p.name %></li>
-    <% end %>
-  </ul>
+  <div id="sidePolicies">
+    <h2>Políticas do Site</h2>
+    <ul class='listaVertical'>
+      <% for p in Policy.all %>
+        <li><%= link_to '> ' + p.name, :anchor => p.name %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <% for p in Policy.all %>

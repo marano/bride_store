@@ -5,18 +5,18 @@
 <h2>Divulgação da Lista</h2>
 
 <h1><%= @spam.title %></h1>
-
-<h3>
-  <% if @spam.sent? %>
-    enviada em:
-  <% else %>
-    salva em:
-  <% end %>
-  <%= @spam.created_at %>  
-</h3>
-
-<p><%= @spam.to %></p>
-
+<p>
+  <span>
+    <% if @spam.sent? %>
+      Enviada em:
+    <% else %>
+      Salva em:
+    <% end %>
+    <%= @spam.created_at %>
+    <br />
+    <span>Para: <%= @spam.to %></span>
+  </span>
+</p>
 <% if @spam.photo.file? %>
   <p>
     <%= image_tag @spam.photo.url %>
@@ -24,6 +24,7 @@
 <% end %>
 
 <p><%= @spam.body %></p>
+<br />
 <ul class="listaHorizontal floatLeft">
   <li><%= link_to '<< VER DIVULGAÇÕES', spams_path %></li>
   <li> | </li>

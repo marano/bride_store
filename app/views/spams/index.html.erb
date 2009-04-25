@@ -28,10 +28,12 @@
     <% next unless s.sent %>
     <ul class="listaHorizontal listaDivulgacao">
       <li class="titleDivulgacao"><h4><%= s.title %></h4></li>
-      <li> | </li>
-      <li><%= link_to 'visualizar', s %></li>
-      <li> | </li>
-      <li><%= link_to 'excluir', s, :method => :delete, :confirm => 'Tem certeza?' %></li>
+      <li> <span>|</span> </li>
+      <li><%= link_to '<span>editar</span>', edit_spam_path(s) %></li>
+      <li> <span>| </span></li>
+      <li><%= link_to '<span>visualizar</span>', s %></li>
+      <li> <span>| </span></li>
+      <li><%= link_to '<span>excluir</span>', s, :method => :delete, :confirm => 'Tem certeza?' %></li>
       <li><span>(<%= time_ago_in_words s.created_at %> atrás)</span></li>
     </ul>
   <% end %>
