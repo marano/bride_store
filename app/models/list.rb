@@ -2,7 +2,8 @@ class List < ActiveRecord::Base
 
   default_scope :order => 'created_at DESC'
 
-  before_create :fill_galery
+  before_create :fill_galery  
+  before_create :fill_title
   before_create :fill_adress
   before_save :update_nomes_busca
 
@@ -96,6 +97,10 @@ class List < ActiveRecord::Base
   def fill_adress
     new_adress = name.downcase.trim
     self.adress = new_adress unless List.scoped_by_adress(new_adress).first
+  end
+  
+  def fill_title
+    self.title = self.name
   end
   
   def fill_galery

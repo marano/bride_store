@@ -39,7 +39,8 @@
 <h2>Criar Listas</h2>
 <% end %>
 
-<% form_for List.new, :html => { :id => 'formCriarLista', :class => "form" } do |f| %>
+<% form_for @list, :html => { :id => 'formCriarLista', :class => "form" } do |f| %>
+  <%= f.error_messages %>
   <p>
     <%= label_tag 'nomeLista', 'Nome da lista:' %>
     <%= f.text_field :name, :class => 'campoTexto campoLarguraTotal' %>

@@ -146,10 +146,12 @@ class ListsController < ApplicationController
     @list = List.new(params[:list])
     @list.user = current_user
     if @list.save
-      set_current_list @list
+      user_session.select_list @list
       flash[:notice] = 'Lista criada com sucesso!'
       redirect_to edit_list_nomes_path
     else
+      flash[:notice] = 'Não foi possível uma nova lista!'
+      flash[:notice] = "name:'#{@list.name}' adress:'#{@list.adress}'"
       render :action => "new"
     end
   end
