@@ -11,7 +11,7 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
-*{font-family:Arial; font-weight:normal; text-decoration:none;}
+*{font-family:Arial, helvetica, serif; font-weight:normal; text-decoration:none;}
 h1, h2{font-family:"Times New Roman", Times, serif; font-style:italic;}
 h1{font-size:36px;}
 h2{font-size:22px;}
@@ -69,6 +69,7 @@ span{font-size:11px;}
 #sideContent form label {font-size:11px;}
 #sideContent #sideProdutos ul a {font-size:14px; line-height:30px; text-decoration:underline;}
 #sideContent #sideProdutos ul a:hover {font-weight:bold;}
+#sideContent #sidePolicies ul a {font-size:14px; line-height:30px; text-decoration:underline;}
 /*---------------RODAPE---------------*/
 #rodape {text-align:center;}
 #rodape ul {text-align:left;}

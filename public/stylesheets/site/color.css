@@ -16,6 +16,12 @@ p, span, a{color:#373125;}
 hr {color:#5e5548; background:#5e5548;}
 #miolo{background: url(/images/bg.gif) repeat;}
 #armacao{background-color:#776d5b;}
+/*---------------BOTÕES---------------*/
+.btDescartar {width:125px; height:20px; padding:0; margin:0; text-align:left;}
+.btDescartar span {position:absolute; width:125px; height:20px; background: url(/images/btDescartar.gif) no-repeat 0 0;}
+.btEnviar {width:91px; height:20px; padding:0; margin:0; text-align:left;}
+.btEnviar span {position:absolute; width:91px; height:20px; background: url(/images/btEnviar.gif) no-repeat 0 0;}
+
 /*---------------ESPECIFICAÇÕES FORMULÁRIOS---------------*/
 .campoTexto, .campoSelect, select, .campoAreaTexto {color:#373125;}
 /*---------------RESULT---------------*/
@@ -64,6 +70,8 @@ hr {color:#5e5548; background:#5e5548;}
 #sideContent #sideProdutos h3 span{background: url(/images/titleSideMenu.gif) no-repeat;}
 #sideContent #sideProdutos ul a {color:#ffffff;}
 #sideContent #sideProdutos ul a:hover {color:#494235;}
+#sideContent #sidePolicies ul a {color:#ffffff;}
+#sideContent #sidePolicies ul a:hover {color:#494235;}
 /*---------------RODAPE---------------*/
 #rodape {background-color:#776d5b;}
 #rodape * {color:#ffffff;}

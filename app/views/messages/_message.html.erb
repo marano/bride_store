@@ -1,6 +1,7 @@
 <div id="message_<%= message.id %>" class="mensagensPerfil">
   <span class="dataDepoimento"><%= time_ago_in_words message.created_at %> atrás</span>
   <h3>
+    <span>Por: </span>
     <% if message.user.nil? %>
       <%= message.user_name %>
     <% else %>

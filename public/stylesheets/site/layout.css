@@ -163,6 +163,7 @@ form p label {margin-left:4px;}
 #sideContent #sideProdutos h3{width:161px; height:22px; position:relative; padding:0; margin:25px 0 15px 0;}
 #sideContent #sideProdutos h3 span{position:absolute; width:100%; height:100%; left:0;}
 #sideContent #sideProdutos ul {margin-left:18px;}
+#sideContent #sidePolicies ul {margin-left:5px;}
 /*---------------RODAPE---------------*/
 #rodape {padding:15px 30px 30px 30px; float:left; clear:both; background-color:#776d5b; width:720px; text-align:center;}
 #rodape div {max-width:170px;}
