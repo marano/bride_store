@@ -20,7 +20,7 @@ class List < ActiveRecord::Base
   
   has_attached_file :photo, :styles => { :original => ['512x384>', 'jpg'] }
   
-  validates_uniqueness_of :adress
+  validates_uniqueness_of :adress, :allow_blank => true
   
   def can_delete?
     !has_gift_for_delivery?
