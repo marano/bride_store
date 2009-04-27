@@ -94,6 +94,9 @@
       :models => { 
         :user => { 
           :one => "Usuário", :other => "Usuários",
+        },
+        :list => { 
+          :one => "Lista", :other => "Listas",
         }
       },
       :attributes => {
@@ -103,6 +106,9 @@
           :password => "Senha",
           :password_confirmation => "Confirmação de senha",
           :email => "E-mail",
+        },
+        :list => {
+          :adress => "Endereço"
         }
       }
     },

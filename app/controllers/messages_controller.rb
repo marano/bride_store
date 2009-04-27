@@ -48,13 +48,12 @@ class MessagesController < ApplicationController
     @message.user = current_user
     respond_to do |format|
       if @message.save
-        #flash[:notice] = 'Message was successfully created.'
+        flash[:notice] = 'Recado enviado com sucesso!'
         format.html { redirect_to :back }
-        format.xml  { render :xml => @message, :status => :created, :location => @message }
         format.js
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
+        flash[:error] = 'Não foi possível enviar recado!'
+        format.html { redirect_to :back }
       end
     end
   end

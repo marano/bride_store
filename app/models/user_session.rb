@@ -39,6 +39,11 @@ class UserSession
       end
     end
   end
+  
+  def show_store_status?
+    #logged_in? and current_user == current_store.user
+    true
+  end
 
   def show_credit?
     current_list and current_list.closed and has_credit? and current_store and !current_store.delivery
@@ -61,22 +66,33 @@ class UserSession
   end
 
   def select_list(list)
-    clear_cart
     if logged_in?
       if list.user == current_user
         if list.closed
-          self.current_store = list
-          self.current_list = list
+          if current_store != list || current_list != list
+            clear_cart
+            self.current_store = list
+            self.current_list = list            
+          end
         else
-          self.current_store = nil
-          self.current_list = list
+          if current_store != nil || current_list != list
+            clear_cart
+            self.current_store = nil
+            self.current_list = list
+          end
         end
       else
-        self.current_store = list
-        self.current_list = nil
+        if current_store != list || current_list != nil
+          clear_cart
+          self.current_store = list
+          self.current_list = nil
+        end
       end
     else
-      self.current_store = list
+      if current_store != list
+        clear_cart
+        self.current_store = list
+      end
     end
   end
   

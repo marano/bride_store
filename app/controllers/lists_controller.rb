@@ -90,7 +90,7 @@ class ListsController < ApplicationController
   end
 
   def store
-    @list = List.first(:conditions => { :adress => params[:adress] })
+    @list = List.scoped_by_adress(params[:adress]).first
     if @list.nil?
       redirect_to root_path
       flash[:error] = "Não foi possível localizar a loja #{params[:adress]}."
@@ -151,7 +151,6 @@ class ListsController < ApplicationController
       redirect_to edit_list_nomes_path
     else
       flash[:notice] = 'Não foi possível uma nova lista!'
-      flash[:notice] = "name:'#{@list.name}' adress:'#{@list.adress}'"
       render :action => "new"
     end
   end
@@ -174,10 +173,11 @@ class ListsController < ApplicationController
           redirect_to edit_list_personal_space_path
         end
       else
-        flash[:notice] = 'Não foi possível salvar a lista!'
+        flash[:error] = 'Não foi possível salvar a lista!'
         redirect_to(@list)
       end
     else
+      flash[:error] = 'Não foi possível salvar a lista!'
       render :action => "edit_personal_space"
     end
   end

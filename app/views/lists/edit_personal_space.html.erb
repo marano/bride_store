@@ -6,7 +6,7 @@
 <% end %>
 
 <p><%= site.personal_space_text %></p>
-<% form_for current_list, :html => { :multipart => true } do |f| %>
+<% form_for @list, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <%= hidden_field_tag 'edit_what', 'personal_space' %>
   <p>
@@ -24,8 +24,8 @@
    </p>
    <h2>Imagem Principal</h2>
    <p>
-    <% if current_list.photo.file? %>
-      <%= image_tag current_list.photo.url %>
+    <% if @list.photo.file? %>
+      <%= image_tag @list.photo.url %>
       <br/><br/>
     <% end %>
     <label for="photo">Alterar imagem</label>
@@ -40,7 +40,7 @@
 <hr />
 <h2>Galeria de Imagens<span>(máximo de 08 imagens)</span></h2>
 <% form_for GaleryPhoto.new, :html => { :multipart => true } do |f| %>
-  <%= hidden_field_tag 'galery_photo[galery_id]', current_list.galery.id %>
+  <%= hidden_field_tag 'galery_photo[galery_id]', @list.galery.id %>
   <p>
     <label for="addImgGaleria">Adicionar imagem</label>
     <%= f.file_field :photo %>
@@ -49,14 +49,14 @@
 <% end %>
 
 <ul class='thumbPersonalSpace'>
-  <% for p in current_list.galery.galery_photos %>
+  <% for p in @list.galery.galery_photos %>
     <li><%= image_tag p.url :thumb %><div><%= link_to 'remover', destroy_galery_photo_path(p), :confirm => 'Tem certeza?' %></div></li>
   <% end %>
 </ul>
 
 <br/>
 
-<% form_tag personal_space_list_path(current_list), :method => :get do %>
+<% form_tag personal_space_list_path(@list), :method => :get do %>
   <input class="botaoForm floatRight" type="image" title="avançar" value="avançar" src="/images/btAvancar.gif"/>
 <% end %>
 

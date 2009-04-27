@@ -1,10 +1,12 @@
 <% if user_session.show_store_menu_panel? %>
   <h2>
     <%= current_store.title %>
-    <% if current_store.delivery %>
-      (entregue)
-    <% elsif current_store.closed? %>
-      (encerrada)
+    <% if user_session.show_store_status? %>
+      <% if current_store.delivery %>
+        (entregue)
+      <% elsif current_store.closed? %>
+        (encerrada)
+      <% end %>
     <% end %>
   </h2>
   <ul class="listaHorizontal menuLista">
