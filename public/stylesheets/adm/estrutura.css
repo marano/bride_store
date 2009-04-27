@@ -15,7 +15,7 @@ body {
     font-family:arial;
     font-size:12px;
 }
-p {
+p, h1, h2, h3 {
   padding: 10px 0 10px 0;
 }
 img {
@@ -52,6 +52,6 @@ img {
 
 #conteudo {
     padding-left:180px;
+    padding-right:180px;
 }
-
 

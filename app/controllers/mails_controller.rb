@@ -32,6 +32,33 @@ class MailsController < ApplicationController
       format.xml  { render :xml => @mail }
     end
   end
+  
+  def add
+    if params[:email].blank?
+      redirect_to :back
+      return
+    end
+    params[:email].strip!
+    user = User.find_by_email params[:email]
+    if user.nil? 
+      user = User.new(:email => params[:email])
+    end
+    user.newsletter = true
+    user.save
+    flash[:notice] = 'Email adicionado com sucesso!'
+    redirect_to :back
+  end
+  
+  def remove
+    user = User.find(params[:id])
+    if user.nil? 
+      flash[:error] = 'Não foi possível remover o email da lista!'
+    else
+      flash[:notice] = 'Email removido com sucesso!'
+      user.update_attributes! :newsletter => false
+    end    
+    redirect_to :back
+  end
 
   # GET /mails/new
   # GET /mails/new.xml

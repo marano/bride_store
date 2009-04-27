@@ -17,6 +17,8 @@
   </p>
 <% end %>
 
-<%= link_to '<button>Enviar</button>', enviar_mail_path(@mail) %> | 
-<%= link_to 'Editar', edit_mail_path(@mail) %> |
-<%= link_to 'Voltar', mails_path %>
+<% form_tag enviar_mail_path(@mail) do  %>
+  <%= submit_tag 'Enviar' %> | 
+  <%= link_to 'Editar', edit_mail_path(@mail) %> |
+  <%= link_to 'Voltar', mails_path %>
+<% end %>

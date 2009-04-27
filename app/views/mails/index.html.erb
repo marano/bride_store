@@ -23,3 +23,16 @@
   </tr>
 <% end %>
 </table>
+
+<h2>Emails cadastrados</h2>
+
+<% form_tag add_mail_path do  %>
+  <p>
+    Adicionar email <%= text_field_tag :email %>
+    <%= submit_tag 'Adicionar' %>
+  </p>
+<% end %>
+
+<% for user in User.newsletters %>
+  <%= user.email %> (<%= link_to 'remover', remove_mail_path(user) %>)<br/>
+<% end %>

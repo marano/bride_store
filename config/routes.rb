@@ -62,7 +62,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :products, :collection => [ :find ], :member => [ :view ]
   map.resources :categories
   map.resources :mails, :member => [ :enviar ]
-    
+  
+  map.add_mail 'mails/add', :controller => 'mails', :action => 'add'
+  map.remove_mail 'mails/:id/remove', :controller => 'mails', :action => 'remove'
+  
   map.send_visanet '/visanet/:sale_id/send', :controller => 'visanet', :action => 'send_to_payment'
   map.resend_visanet '/visanet/:sale_id/resend', :controller => 'visanet', :action => 'resend'
   map.confirm_visanet '/visanet/confirm', :controller => 'visanet', :action => 'confirm'
