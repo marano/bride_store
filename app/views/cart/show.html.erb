@@ -43,5 +43,9 @@
     </tbody>
   </table>
   <p class="floatRight">Total: R$ <%= number_with_precision @cart.total_price, :precision => 2 %></p>
+  <% if user_session.show_credit? %>
+    <p class="floatRight" style='clear: right'>Total de crédito: R$ <%= number_with_precision current_list.credit, :precision => 2 %></p>
+    <p class="floatRight" style='clear: right'>Total a pagar: R$ <%= number_with_precision user_session.total_price_to_pay, :precision => 2 %></p>
+  <% end %>
   <p><%= link_to '<button>CHECKOUT</button>', checkout_path %></p>
 <% end %>
