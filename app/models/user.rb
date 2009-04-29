@@ -43,6 +43,11 @@ class User < ActiveRecord::Base
     u && u.authenticated?(password) ? u : nil
   end
   
+  def generate_random_password!
+    self.password_confirmation = self.password = String.random
+    save
+  end
+  
   def find_by_email(email)
     User.first(:conditions => { :email => email })
   end

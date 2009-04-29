@@ -5,8 +5,29 @@ class UsersController < ApplicationController
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
-  before_filter :adm_required, :except => ['new', 'create', 'update', 'activate', 'account', 'account_list' ]
+  before_filter :adm_required, :except => ['new', 'create', 'update', 'activate', 'account', 'account_list', 'forgot_password', 'send_password' ]
   before_filter :login_required, :only => ['update']
+
+  def send_password
+    @user = User.scoped_by_email(params[:email]).first
+    if @user
+      if @user.generate_random_password!
+        UserMailer.deliver_password(@user)
+        flash[:notice] = "Obrigado! Estamos enviando uma nova senha!"      
+        redirect_to login_path
+      else
+        flash[:error] = "Não foi possível gerar uma nova senha para #{params[:email]}!"
+        redirect_to forgot_password_path
+      end
+    else
+      flash[:error] = "Não foi possível localizar o usuário com o endereço #{params[:email]}!"
+      redirect_to forgot_password_path
+    end
+  end
+  
+  def forgot_password
+    render :layout => 'application'
+  end
 
   def account
     if logged_in?

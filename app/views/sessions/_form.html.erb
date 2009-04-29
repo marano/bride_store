@@ -1,4 +1,5 @@
 <h2> > Minha lista de presentes</h2>
+
 <p><%= site.login_text %></p>        
 
 <% form_tag session_path do -%>
@@ -16,6 +17,6 @@
   </p>
   <p>
     <input class="botaoForm" name="login" type="image" src="/images/btLogin.gif"  title="login" onclick="this.form.submit()">
-    <a href="/sessions/forgot_password">Esqueci minha senha</a>
+    <%= link_to 'Esqueci minha senha', forgot_password_path %>
   </p>
 <% end %>

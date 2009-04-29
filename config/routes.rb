@@ -88,6 +88,8 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
   map.account '/account', :controller => 'users', :action => 'account'
   map.account_list '/account', :controller => 'users', :action => 'account_list'
+  map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
+  map.send_password '/send_password', :controller => 'users', :action => 'send_password'
 
   map.my_list '/my_list', :controller => 'lists', :action => 'my_list'
   map.visit_list '/visit_list', :controller => 'lists', :action => 'visit_list'

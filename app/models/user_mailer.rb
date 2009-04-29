@@ -10,6 +10,12 @@ class UserMailer < ActionMailer::Base
     @subject    += 'Sua conta foi ativada!'
     @body[:url]  = "http://#{SITE_URL}/"
   end
+  
+  def password(user)
+    setup_email(user)
+    @subject += 'Nova senha!'
+    @body[:password] = user.password
+  end
 
   protected
   def setup_email(user)
