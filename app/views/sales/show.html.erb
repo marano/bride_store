@@ -25,7 +25,7 @@
         <b>Capturada</b> <%= mark @sale.captured %>    
         <% unless @sale.captured %>
           <%= link_to '<button>Capturar</button>', send_capture_visanet_path(@sale.id), :confirm => 'Tem certeza que deseja capturar a venda?', :method => :post %>
-          <%= link_to '<button>Marcar como capturada</button>', capture_sale(@sale.id), :confirm => 'Tem certeza que deseja marcar a venda como capturada?', :method => :put %>
+          <%= link_to '<button>Marcar como capturada</button>', capture_sale_path(@sale.id), :confirm => 'Tem certeza que deseja marcar a venda como capturada?', :method => :put %>
         <% end %>
       </p>
     <% end %>
