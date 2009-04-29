@@ -23,26 +23,26 @@
 <h2>Produtos</h2>
 
 <table>
-    <thead>
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Venda</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @delivery.gifts.each do |i| %>
       <tr>
-        <th>Produto</th>
-        <th>Quantidade</th>
-        <th>Venda</th>
+        <td><%= link_to i.product.name, i.product %></td>
+        <td>
+          <p>
+            <%= i.quantity %>
+          </p>
+        </td>
+        <td>
+          <%= link_to(i.sale.name, i.sale) %>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% @delivery.gifts.each do |i| %>
-        <tr>
-          <td><%= link_to i.product.name, i.product %></td>
-          <td>
-            <p>
-              <%= i.quantity %>
-            </p>
-          </td>
-          <td>
-            <%= link_to(i.sale.name, i.sale) %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </tbody>
+</table>
