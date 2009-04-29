@@ -35,7 +35,7 @@ class VisanetController < ApplicationController
       flash[:error] = @message
     else
       if @lr == '00' or @lr == '01'
-        @sale.pay!(true)
+        @sale.pay!(true, true)
         @message = 'Pagamento efetuado com sucesso!'
         flash[:notice] = @message
       else
