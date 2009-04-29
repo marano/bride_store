@@ -19,7 +19,10 @@
             (entregue)
           <% elsif list.closed %>
             (encerrada)
-          <% end %>
+            <% if list.credit > 0 %>
+              (crédito R$ <%= number_with_precision list.credit, :precision => 2 %>)
+            <% end %>
+          <% end %>          
         </sup>
       </h4>
     </li>

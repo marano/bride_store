@@ -9,7 +9,7 @@
     <li>|</li>
     <li><%= link_to_unless_current 'divulgação', spams_path %></li>
     <li>|</li>
-    <li><%= link_to_unless_current 'visualizar', personal_space_list_path(current_list) %></li>
+    <li><%= link_to_unless_current 'visualizar', store_path(current_list.adress) %></li>
     <li>|</li>
     <li><%= link_to_unless_current 'encerrar lista', confirm_close_list_path %></li>
     <li>|</li>

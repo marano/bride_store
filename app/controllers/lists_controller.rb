@@ -38,7 +38,7 @@ class ListsController < ApplicationController
   end
 
   def new_delivery
-    @list = current_list
+    @delivery = current_list
   end
 
   def create_delivery
@@ -48,6 +48,7 @@ class ListsController < ApplicationController
     @list.delivery = true
     @list.save!
     AdminMailer.deliver_delivery(email_config.email_adress, @list, delivery_url(@list))
+    flash[:notice] = 'Lista marcada para entrega!'
     redirect_to account_path
   end
 
@@ -78,6 +79,9 @@ class ListsController < ApplicationController
 
   def personal_space
     @list = List.find(params[:id])
+    unless @list.adress.blank?
+      redirect_to store_path(@list.adress)
+    end
   end
 
   def select

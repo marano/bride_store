@@ -44,6 +44,8 @@ class Sale < ActiveRecord::Base
   end
 
   def pay!(visanet = true)
+    return false if store.delivery
+    
     self.paid = true
     self.tid = temp_tid if visanet
     self.gift = true unless visanet
@@ -64,6 +66,8 @@ class Sale < ActiveRecord::Base
   end
 
   def capture!
+    return false if store.delivery
+  
     status = true
 
     Sale.transaction do

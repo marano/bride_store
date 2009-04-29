@@ -4,8 +4,9 @@ class List < ActiveRecord::Base
 
   before_create :fill_galery  
   before_create :fill_title
-  before_create :fill_adress
+  
   before_save :update_nomes_busca
+  before_save :generate_adress
 
   has_many :list_items, :dependent => :destroy
   has_many :spams, :dependent => :destroy
@@ -97,6 +98,15 @@ class List < ActiveRecord::Base
   def fill_adress
     new_adress = name.downcase.trim
     self.adress = new_adress unless List.scoped_by_adress(new_adress).first
+  end
+  
+  def generate_adress
+    if adress.blank?
+      fill_adress
+      if adress.blank?
+        self.adress = String.random
+      end
+    end
   end
   
   def fill_title
