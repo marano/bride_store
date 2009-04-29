@@ -17,6 +17,7 @@ class SalesController < ApplicationController
     else
       flash[:error] = 'A venda não pode ser marcada como capturada!'
     end
+    redirect_to @sale
   end
 
   def pay
