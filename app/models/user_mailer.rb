@@ -23,6 +23,7 @@ class UserMailer < ActionMailer::Base
     @from        = "Arte de Receber Casa <#{MAILER_ADRESS}>"
     @subject     = "[ADR] "
     @sent_on     = Time.now
+    @content_type = "text/html"
     @body[:user] = user
   end
 end
