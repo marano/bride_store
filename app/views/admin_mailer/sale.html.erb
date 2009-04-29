@@ -1,0 +1,17 @@
+<h1>Arte de Receber Casa</h1>
+
+<h2>Nova Venda</h2>
+
+<p>
+  <b>Cliente</b><br/>
+  <%= @sale.name %>
+<p>
+
+<p>
+  <b>Valor</b><br/>
+  R$ <%= number_with_precision @sale.price, :precision => 2 %>
+<p>
+
+<p>
+  <%= link_to 'Exibir venda', @url %>  
+</p>

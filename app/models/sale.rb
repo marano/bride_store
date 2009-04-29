@@ -11,22 +11,23 @@ class Sale < ActiveRecord::Base
     paid and !tid.blank?
   end
 
-  def extract(cart)
+  def extract!(cart)
     self.store = cart.store
     cart.cart_items.each do |cart_item|
       sale_items.build.extract(cart_item)
     end
-    use_list_credit!
+    use_list_credit
     verify_if_need_payment!
+    save
   end
   
   def verify_if_need_payment!
     unless need_payment?
-      pay!(false, false)
+      pay!(false)
     end
   end
   
-  def use_list_credit!
+  def use_list_credit
     return if store.credit == 0
     
     if store.credit < total_price
@@ -34,21 +35,45 @@ class Sale < ActiveRecord::Base
     else
       self.credit = total_price
     end
-    
-    store.update_attributes! :credit => store.credit - credit
+  end
+  
+  def remove_credit_from_store
+    return true if credit == 0
+    return false if store.credit < credit
+    store.update_attributes :credit => store.credit - credit
   end
 
-  def pay!(visanet = true, save_after = true)
-    self.paid = true    
+  def pay!(visanet = true)
+    self.paid = true
     self.tid = temp_tid if visanet
     self.gift = true unless visanet
-    if save_after
-      save!
+    
+    status = true
+    
+    Sale.transaction do
+      status = remove_credit_from_store unless visanet
+    
+      if status
+        status = save
+      else
+        status = false
+      end
     end
+    
+    return status
   end
 
   def capture!
-    update_attributes! :captured => true, :gift => true
+    status = true
+
+    Sale.transaction do
+      credit_ok = remove_credit_from_store
+      if credit_ok
+        status = update_attributes :captured => true, :gift => true
+      end
+    end
+    
+    return status
   end
 
   def archive!

@@ -47,6 +47,7 @@ class ListsController < ApplicationController
     @list.delivery_date = Date.new(params[:delivery_date][:year].to_i, params[:delivery_date][:month].to_i, params[:delivery_date][:day].to_i)
     @list.delivery = true
     @list.save!
+    AdminMailer.deliver_delivery(email_config.email_adress, @list, delivery_url(@list))
     redirect_to account_path
   end
 

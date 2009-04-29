@@ -49,7 +49,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.checkout '/cart/checkout', :controller => 'sales', :action => 'new'
   
-  map.resources :sales, :except => [ :edit ], :member => [ :pay, :archive ]
+  map.resources :sales, :except => [ :edit ], :member => { :pay => :put, :capture => :put, :archive => :put }
   map.resources :sale_items, :only => [ :index ], :member => [ :change ]
   map.resources :email_configs
   map.resources :spams, :member => [ :enviar ]

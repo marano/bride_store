@@ -9,10 +9,23 @@ class SalesController < ApplicationController
     @sale.archive!
     redirect_to :back
   end
+  
+  def capture
+    @sale = Sale.find(params[:id])
+    if @sale.capture!
+      flash[:notice] = 'Venda marcada como capturada!'
+    else
+      flash[:error] = 'A venda não pode ser marcada como capturada!'
+    end
+  end
 
   def pay
     @sale = Sale.find(params[:id])
-    @sale.pay!(false)
+    if @sale.pay!(false)
+      flash[:notice] = 'Venda marcada como paga com sucesso!'
+    else
+      flash[:error] = 'Não foi possível marcar a venda como paga!'
+    end
     redirect_to @sale
   end
 
@@ -43,15 +56,14 @@ class SalesController < ApplicationController
 
   def create
     @sale = Sale.new(params[:sale]) 
-    @sale.extract(current_cart)    
-    user_session.clear_cart    
-    
-    if @sale.save
+    if @sale.extract!(current_cart)    
+      user_session.clear_cart
+      AdminMailer.deliver_sale(email_config.email_adress, @sale, sale_url(@sale))
       if @sale.paid
         redirect_to sale_items_path
       else
         redirect_to send_visanet_path(@sale.id)
-      end      
+      end
     else
       render :action => "new"
     end
