@@ -31,7 +31,9 @@ window.addEvent('domready', function(){
     <% end %>
   </ul>
   <div class='descricaoProduto'>
-    <h3>(ref: <%= @product.code %>)</h3>
+    <% unless @produtc.code.blank? %>
+     <h3>(ref: <%= @product.code %>)</h3>
+    <% end %>
     <p><%= @product.description %></p>
     <h2>R$ <%= number_with_precision @product.price, :precision => 2 %></h2>
     <hr />
