@@ -89,6 +89,7 @@ class UsersController < ApplicationController
 
   def create
     unless params[:aceitouTermos]
+      @user = User.new(params[:user])
       render :action => 'new'
       flash[:error] = 'É necessário aceitar os termos de uso para criar uma nova conta.'
       return
