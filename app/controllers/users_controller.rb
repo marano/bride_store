@@ -45,7 +45,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # render new.rhtml
   def new
     @user = User.new
     @user.newsletter = true
@@ -89,9 +88,9 @@ class UsersController < ApplicationController
 
   def create
     unless params[:aceitouTermos]
-      @user = User.new(params[:user])
-      render :action => 'new'
+      @user = User.new(params[:user])      
       flash[:error] = 'É necessário aceitar os termos de uso para criar uma nova conta.'
+      render :action => 'new', :layout => 'application'
       return
     end
     
