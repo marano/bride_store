@@ -10,25 +10,25 @@
     <% end %>
   </h2>
   <ul class="listaHorizontal menuLista">
-    <li><%= link_to_unless_current 'página principal', store_path(current_store.adress) %></li>    
+    <li><%= link_menu 'página principal', store_path(current_store.adress) %></li>    
     <% if current_list %>
         <li>|</li>
-        <li><%= link_to_unless_current 'presentes', sale_items_path %></li>
+        <li><%= link_menu 'presentes', sale_items_path %></li>
     <% end %>
     <% unless current_store.delivery %>
       <% if user_session.show_deliver? %>
         <li>|</li>
-        <li><%= link_to_unless_current 'entregar', new_delivery_path %></li>      
+        <li><%= link_menu 'entregar', new_delivery_path %></li>      
       <% end %>
       <li>|</li>
-      <li><%= link_to_unless_current "carrinho de compras (#{current_cart.cart_items.size})", cart_path %></li>
+      <li><%= link_menu "carrinho de compras (#{current_cart.cart_items.size})", [ cart_path, find_products_path, (view_product_path(@product.id) if @product) ] %></li>
       <% if user_session.show_checkout? %>
         <li>|</li>
-        <li><%= link_to_unless_current 'checkout', checkout_path %></li>      
+        <li><%= link_menu 'checkout', checkout_path %></li>      
       <% end %>
     <% end %>  
     <li>|</li>
-    <li><%= link_to_unless_current 'sair', exit_list_path %></li>
+    <li><%= link_menu 'sair', exit_list_path %></li>
   </ul>
   <hr>
   
