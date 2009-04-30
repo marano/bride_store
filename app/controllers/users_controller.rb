@@ -87,7 +87,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def create        
+  def create
+    unless params[:aceitouTermos]
+      render :action => 'new'
+      flash[:error] = 'É necessário aceitar os termos de uso para criar uma nova conta.'
+      return
+    end
+    
     logout_keeping_session!
     params[:user][:email].strip!
     
