@@ -31,7 +31,7 @@ window.addEvent('domready', function(){
     <% end %>
   </ul>
   <div class='descricaoProduto'>
-    <% unless @produtc.code.blank? %>
+    <% unless @product.code.blank? %>
      <h3>(ref: <%= @product.code %>)</h3>
     <% end %>
     <p><%= @product.description %></p>
