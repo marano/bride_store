@@ -17,7 +17,7 @@
   <tbody>
     <% @delivery.gifts.each do |i| %>
       <tr>
-        <td><%= link_to i.product.name, i.product %></td>
+        <td><%= link_to i.product.name, view_product_path(i.product) %></td>
         <td>
           <p>
             <%= i.quantity_left %>
@@ -43,6 +43,6 @@
   </p>  
   
   <p>
-    <%= submit_tag 'Entregar' %>
+    <input type="image" title="Confirmar" value="confirmar" src='/images/btConfirmar.gif' onclick="if(confirm('Tem certeza que deseja marcar a entrega?')) { return true } else { return false }" />
   </p>
 <% end %>
