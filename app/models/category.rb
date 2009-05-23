@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
   
   has_many :products  
-  default_scope :order => 'name DESC'
+  default_scope :order => 'name'
   
   def can_delete?
     !has_product?
