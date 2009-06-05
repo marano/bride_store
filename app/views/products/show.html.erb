@@ -2,8 +2,8 @@
 
 <% if @product.photo.file? %>
   <p>
-    <b>Foto</b><br/>
-    <%= image_tag @product.photo.url :big %>
+    <b>Foto</b> <%= link_to image_tag('remover.gif'), destroy_photo_product_path(@product), :confirm => 'Deseja mesmo remover a foto do produto?' %>
+    <br/><br/><%= image_tag @product.photo.url :big %>
   </p>
 <% end %>
 <p>
@@ -41,7 +41,8 @@
 
 <% if @product.display.file? %>
   <p>
-    <b>Display</b><br/>
+    <b>Display</b> <%= link_to image_tag('remover.gif'), destroy_display_product_path(@product), :confirm => 'Deseja mesmo remover o display do produto?' %>
+    <br/><br/>
     <%= image_tag @product.display.url %>
   </p>
 <% end %>

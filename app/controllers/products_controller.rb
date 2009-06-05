@@ -6,6 +6,28 @@ class ProductsController < ApplicationController
   
   sortable_attributes :name, :price, :featured
 
+  def destroy_display
+    @product = Product.find params[:id]
+    @product.display = nil
+    if @product.save
+      flash[:notice] = 'Display removido com sucesso!'
+    else
+      flash[:error] = 'Não foi possível remover o display do produto!'
+    end
+    redirect_to @product
+  end
+
+  def destroy_photo
+    @product = Product.find params[:id]
+    @product.photo = nil
+    if @product.save
+      flash[:notice] = 'Foto removida com sucesso!'
+    else
+      flash[:error] = 'Não foi possível remover a foto do produto!'
+    end
+    redirect_to @product
+  end
+
   def view
     @product = Product.find params[:id]
     render :layout => 'application'

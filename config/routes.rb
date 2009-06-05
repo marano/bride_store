@@ -59,7 +59,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :list_items
   map.resources :testimonials
   map.resources :policies, :collection => [ :view ]
-  map.resources :products, :collection => [ :find ], :member => [ :view ]
+  map.resources :products, :collection => [ :find ], :member => [ :view, :destroy_photo, :destroy_display ]
   map.resources :categories
   map.resources :mails, :member => [ :enviar ]
   
