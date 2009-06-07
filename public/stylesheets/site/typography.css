@@ -1,4 +1,4 @@
-/* 
+﻿/* 
     Document   : typography
     Created on : 26/01/2009, 14:17:03
     Author     : Administrador
@@ -28,8 +28,8 @@ span{font-size:11px;}
 .depoimento span{font-size:12px; font-style:italic; font-weight:bolder;}
 #depoimentoTopo a {font-size:12px; font-weight:bold;}
 /*---------------MENU INSTITUCIONAL---------------*/
-#menuInstitucional ul li * {font-size:12px; font-weight:bold;}
-#menuInstitucional ul li a:hover {text-decoration:underline;}
+#menuInstitucional li * {font-size:12px; font-weight:bold;}
+#menuInstitucional li a:hover {text-decoration:underline;}
 /*---------------DESTAQUE---------------*/
 #destaque h3{font-size:14px; font-weight:normal;}
 /*---------------MENU LISTA---------------*/

@@ -14,16 +14,26 @@
 </head>
 <body id="<%= yield :body_id %>" onload="<%= yield :onload %>">
 
-  <div id="armacao">  
+  <div id="armacao">
   
-    <div id="topo">
-      <%= render :partial => 'layouts/testimonial' %>
-      <div id="logomarca">
-        <%= image_tag site.logo.url if site.logo.file?%>
-      </div>
-      <%= render :partial => 'layouts/institutional_menu' %>
-    </div>
-  
+    <table id="topo" style="" border="0" cellspacing="0">
+      <tbody>
+        <tr style="height: 122px;">
+          <td style="width: 275px;" align="center" valign="bottom">
+            <%= image_tag site.logo.url if site.logo.file?%>
+          </td>
+          <td valign="top" style="padding-right: 30px;">
+            <%= render :partial => 'layouts/testimonial' %>
+          </td>
+        </tr>
+        <tr style="height: 44px; vertical-align: top; text-align: right;">
+            <td colspan="2">
+              <%= render :partial => 'layouts/institutional_menu' %>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+      
     <%= yield :display %>
     
     <div id="miolo">      

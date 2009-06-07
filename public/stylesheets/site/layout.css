@@ -1,4 +1,4 @@
-/* 
+﻿/* 
 Document   : layout
 Created on : 26/01/2009, 14:16:42
 Author     : Administrador
@@ -28,7 +28,7 @@ form p label {margin-left:4px;}
 #result #container #btClose{position:absolute; float:right; right:6px; top:5px;}
 #result #container #btClose img{border:none;}
 /*---------------TOPO---------------*/
-#topo {height:166px; padding:0 30px 0 30px; position:relative;}
+#topo {height:166px; width:100%;}
 #logomarca{float:left; position:relative; top:30px; left:-22px;}
 #depoimentoTopo{float:right; max-width:350px; text-align:right;}
 #depoimentoTopo a {clear:both; float:right;}
@@ -38,9 +38,8 @@ form p label {margin-left:4px;}
 /*---------------LISTA DEPOIMENTO---------------*/
 .dataDepoimento {float:right; }
 /*---------------MENU INSTITUCIONAL---------------*/
-#menuInstitucional{float:right; width:720px; bottom:24px; position:absolute; left:0; padding:0 30px 0 30px;}
-#menuInstitucional ul {float:right;}
-#menuInstitucional ul li {padding-left:7px;}
+#menuInstitucional{padding:0 30px 0 30px;}
+#menuInstitucional li {padding-left:7px;}
 #menuInstitucional span{display:none;}
 /*---------------MIOLO---------------*/
 #miolo{float:left;}

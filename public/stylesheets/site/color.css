@@ -1,4 +1,4 @@
-/* 
+﻿/* 
     Document   : color
     Created on : 26/01/2009, 14:17:12
     Author     : Administrador
@@ -34,8 +34,8 @@ hr {color:#5e5548; background:#5e5548;}
 .depoimento {background:url(/images/depoimentoAbreAspas.gif) no-repeat 0 -15px;}
 .depoimento h3 {background:url(/images/depoimentoFechaAspas.gif) no-repeat right bottom;}
 /*---------------MENU INSTITUCIONAL---------------*/
-#menuInstitucional ul * {color:#ffffff;}
-#menuInstitucional ul li a:hover {color:#d2c09e;}
+#menuInstitucional * {color:#ffffff;}
+#menuInstitucional li a:hover {color:#d2c09e;}
 /*---------------DESTAQUE---------------*/
 #destaque {background: #756b59 url(/images/starDestaque.gif) no-repeat 13px center;}
 #destaque h3{color:#ffffff;}
@@ -49,7 +49,7 @@ hr {color:#5e5548; background:#5e5548;}
 /*---------------CONTENT---------------*/
 #primaryContent a span{background: url(/images/btCriarListaPresentes.gif) no-repeat;}
 .home form a {color:#373125;}
-/*#content #boxHome {background:url(/images/bgContentBoxHome.gif) repeat-y -15px 0;}*/
+/*#content #boxHome {background:url(bgContentBoxHome.gif) repeat-y -15px 0;}*/
 /*---------------NAVEGAÇÃO PRODUTOS---------------*/
 #navegacaoProdutos li {color:#373125;}
 #navegacaoProdutos li a {color:#373125;}
