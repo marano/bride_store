@@ -20,7 +20,7 @@
       <tbody>
         <tr style="height: 122px;">
           <td style="width: 275px;" align="center" valign="bottom">
-            <%= image_tag(site.logo.url, :style => "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='caminhoLogo.png', sizingMethod='scale')") if site.logo.file?%>
+            <%= image_tag(site.logo.url, :style => "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{site.logo.url}', sizingMethod='scale')") if site.logo.file?%>
           </td>
           <td valign="top" style="padding-right: 30px;">
             <%= render :partial => 'layouts/testimonial' %>
