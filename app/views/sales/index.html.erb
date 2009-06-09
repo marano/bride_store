@@ -27,7 +27,7 @@
 <% @sales.each do |sale| %>
   <tr>
     <td><%= link_to image_tag('editar.gif'), sale %></td>
-    <td><%= link_to(image_tag('remover.gif'), sale, :confirm => 'Tem certeza?', :method => :delete) if sale.can_be_remove? %></td>
+    <td><%= link_to(image_tag('remover.gif'), sale, :confirm => 'Tem certeza?', :method => :delete) if sale.can_be_removed? %></td>
     <td><%= sale.archived ? 'arquivada' : link_to('arquivar', archive_sale_path(sale), :confirm => 'Tem certeza que deseja arquivar a venda?', :method => :put) %></td>
     <td><%=h sale.created_at %></td>
     <td><%=h sale.name %></td>
