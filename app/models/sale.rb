@@ -6,6 +6,10 @@ class Sale < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
 
   alias :orderid :id
+  
+  def can_be_removed?
+    !gift
+  end
 
   def can_be_captured?
     paid and !tid.blank?
