@@ -5,6 +5,7 @@ class ListItem < ActiveRecord::Base
   has_one :category, :through => :product
   
   def total_price
+    return 0 if product.price.blank?
     product.price * quantity
   end
   
