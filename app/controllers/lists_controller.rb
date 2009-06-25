@@ -112,12 +112,12 @@ class ListsController < ApplicationController
       return
     end
 
-    search = params[:search].canonical
-    @list = List.last :conditions => "#{params[:name_filter]}_busca LIKE '#{search}'"
-    if @list
-      redirect_to store_path(@list.adress)
-    else
-      flash[:error] = "Não foi possível localizar a lista de #{search}"
+    @search = params[:search].canonical
+    @lists = List.all :conditions => "#{params[:name_filter]}_busca LIKE '%#{@search}%'"
+    if @lists.size == 1
+      redirect_to store_path(@lists[0].adress)
+    elsif @lists.empty?
+      flash[:error] = "Não foi possível localizar a lista de #{@search}"
       redirect_to home_path
     end
   end

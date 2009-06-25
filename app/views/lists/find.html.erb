@@ -1,0 +1,15 @@
+<% migalha ['visitar lista de presentes', @search] %>
+
+<%= render 'find' %>
+
+<hr/>
+
+<h2>Você buscou <%= @search %></h2>
+
+<p>
+  <ul>
+  <% @lists.each do |list| %>
+    <li><%= link_to list.name, store_path(list.adress) %></li>
+  <% end %>
+  </ul>
+</p>
