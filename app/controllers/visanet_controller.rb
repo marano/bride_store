@@ -67,7 +67,7 @@ class VisanetController < ApplicationController
     else
       flash[:error] = 'Não foi possível capturar o pagamento!'
     end
-    render :layout => 'adm'
+    redirect_to @sale
   end
 
   def parcial_capture
