@@ -6,10 +6,16 @@
 
 <h2>Você buscou <%= @search %></h2>
 
-<p>
+
   <ul>
   <% @lists.each do |list| %>
-    <li><%= link_to list.name, store_path(list.adress) %></li>
+    <li>
+      <h3><%= link_to list.name, store_path(list.adress) %></h3>
+      <p>Noivo<br/>
+      <%= list.nome_noivo %></p>
+      <p>Noiva<br/>
+      <%= list.nome_noiva %></p>
+    </li>
   <% end %>
   </ul>
-</p>
+

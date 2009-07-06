@@ -23,6 +23,12 @@ class List < ActiveRecord::Base
   
   validates_uniqueness_of :adress, :allow_blank => true
   
+  def item_by_product(product)
+    found_item = nil
+    list_items.each { |item| found_item = item if item.product == product }
+    found_item
+  end
+  
   def can_delete?
     !has_gift_for_delivery?
   end

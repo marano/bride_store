@@ -19,6 +19,11 @@ window.addEvent('domready', function(){
   <% migalha_current_store [] %>
 <% end %>
 
+<h3>Bem vindo à lista:<br/>
+  <%= user_session.current_place.name %>
+  <br/>Para escolher os presentes clique no menu de produtos ao lado.
+</h3>
+
 <%= render :partial => 'layouts/list_menu_panel' %>
 <%= render :partial => 'layouts/store_menu_panel' %>
 

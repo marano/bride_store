@@ -16,6 +16,18 @@ class UserMailer < ActionMailer::Base
     @subject += 'Nova senha!'
     @body[:password] = user.password
   end
+  
+  def sale_notification(user, sale)
+    setup_email(user)
+    @subject += 'Novo presente!'
+    @body[:sale] = sale
+  end
+  
+  def message_notification(user, message)
+    setup_email(user)
+    @subject += 'Novo presente!'
+    @body[:message] = message
+  end
 
   protected
   def setup_email(user)

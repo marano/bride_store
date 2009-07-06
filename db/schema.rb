@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090417040523) do
+ActiveRecord::Schema.define(:version => 20090706004132) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20090417040523) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "user_name"
+    t.boolean  "private_message"
   end
 
   create_table "policies", :force => true do |t|

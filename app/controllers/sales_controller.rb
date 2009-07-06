@@ -56,6 +56,13 @@ class SalesController < ApplicationController
   end
 
   def create
+    user = User.find_by_email params[:sale][:email]
+    if user.nil? 
+      user = User.new(:name => params[:sale][:name], :email => params[:sale][:email], :phone => params[:sale][:phone])      
+    end
+    user.newsletter = params[:newsletter]
+    user.save
+    
     @sale = Sale.new(params[:sale]) 
     if @sale.extract!(current_cart)    
       user_session.clear_cart

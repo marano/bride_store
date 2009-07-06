@@ -45,12 +45,14 @@ class MessagesController < ApplicationController
   # POST /messages.xml
   def create
     @message = Message.new(params[:message])
+    @message.private_message = true if params[:message][:private_message] == '1'
     @message.user = current_user
     respond_to do |format|
       if @message.save
         flash[:notice] = 'Recado enviado com sucesso!'
         format.html { redirect_to :back }
         format.js
+        UserMailer.deliver_message_notification(@message.list.user, @message)
       else
         flash[:error] = 'Não foi possível enviar recado!'
         format.html { redirect_to :back }

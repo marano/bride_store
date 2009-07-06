@@ -11,6 +11,13 @@
     <%= javascript_include_tag 'site/result' %>
   <% end %>
   <%= yield :head %>
+  
+  <!--[if lte IE 6]>
+    <style type="text/css">
+      #content { width:504px; float:left; }
+    </style>
+  <![endif]-->
+  
 </head>
 <body id="<%= yield :body_id %>" onload="<%= yield :onload %>">
 

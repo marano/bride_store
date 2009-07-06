@@ -6,7 +6,7 @@
       <%= message.user_name %>
     <% else %>
       <%= message.user.name %>      
-    <% end %>    
+    <% end %>
   </h3>
   <p><%= message.body %></p>  
   <% if logged_in? and (message.list.user == current_user or message.user == current_user) %>

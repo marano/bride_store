@@ -19,6 +19,11 @@
   
   <p><%= label_tag 'email', 'Email:' %><br/>
   <%= f.text_field :email, :class => 'campoTexto' %></p>
+  
+  <p class="checkNews">
+    <%= check_box_tag :newsletter, '1', :checked => true %>
+    <label for="cadastroCliente">Desejo receber informações sobre a Arte de Receber.</label>
+  </p>
 
   <p><%= label_tag 'adress', 'Endereço:' %><br/>
   <%= f.text_area :adress, :class => 'campoAreaTexto' %></p>  

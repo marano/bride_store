@@ -10,5 +10,6 @@
     <label>Mensagem:</label>
     <%= f.text_area :body, :class => 'campoAreaTexto' %>
   </p>
+  <%= f.check_box :private_message %> Privada
   <%= f.submit 'enviar', :type => 'image', :src =>'/images/btEnviar.gif', :class => 'floatRight' %>
 <% end %>

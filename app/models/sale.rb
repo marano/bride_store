@@ -46,6 +46,13 @@ class Sale < ActiveRecord::Base
     return false if store.credit < credit
     store.update_attributes :credit => store.credit - credit
   end
+  
+  def gift=(value)    
+    write_attribute :gift, value
+    if value
+      UserMailer.deliver_sale_notification(store.user, self)
+    end
+  end
 
   def pay!(visanet = true)
     return false if store.delivery

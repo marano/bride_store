@@ -36,6 +36,10 @@ window.addEvent('domready', function(){
     <% end %>
     <p><%= @product.description %></p>
     <h2>R$ <%= number_with_precision @product.price, :precision => 2 %></h2>
+    <% if user_session.show_quantities? %>
+      <p>Quantidade desejada <%= user_session.wished_quantity(@product) %></p>
+      <p>Quantidade comprada <%= user_session.bought_quantity(@product) %></p>
+    <% end %>
     <hr />
     <!-- Lista de presentes -->
     <% if user_session.can_add_to_list? %>

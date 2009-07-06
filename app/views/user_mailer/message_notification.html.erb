@@ -1,0 +1,14 @@
+<p>Sua lista <%= @message.list %> recebeu uma nova mensagem!</p>
+
+<p>
+  De
+  <% if @message.user.nil? %>
+    <%= @message.user_name %>
+  <% else %>
+    <%= @message.user.name %>      
+  <% end %>
+</p>
+
+<p>
+  <%= @message.body %>
+</p>

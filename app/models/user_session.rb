@@ -4,6 +4,38 @@ class UserSession
     @session = session
   end
   
+  def show_quantities?
+    current_list or current_store
+  end
+  
+  def current_place
+    current_list or current_store
+  end
+  
+  def wished_quantity(product)
+    query_list = current_place
+    unless query_list.nil?
+      item = query_list.item_by_product(product)
+    end
+    if item
+      item.quantity
+    else
+      0
+    end
+  end
+  
+  def bought_quantity(product)
+    query_list = current_place
+    unless query_list.nil?
+      item = query_list.item_by_product(product)
+    end
+    if item
+      item.quantity_bought
+    else
+      0
+    end
+  end
+  
   def show_edit_list?(list)
     !list.closed?
   end
@@ -69,30 +101,20 @@ class UserSession
     if logged_in?
       if list.user == current_user
         if list.closed
-          if current_store != list || current_list != list
-            clear_cart
-            self.current_store = list
-            self.current_list = list            
-          end
+          smart_select_list(list, list)
         else
-          if current_store != nil || current_list != list
-            clear_cart
-            self.current_store = nil
-            self.current_list = list
-          end
+          smart_select_list(nil, list)
         end
       else
-        if current_store != list || current_list != nil
-          clear_cart
-          self.current_store = list
-          self.current_list = nil
-        end
+        smart_select_list(list, nil)
       end
     else
       if current_store != list
         clear_cart
         self.current_store = list
+        self.current_store = nil
       end
+      smart_select_list(list, nil)
     end
   end
   
@@ -155,6 +177,16 @@ class UserSession
 
   def current_user
     @current_user ||= @session[:user_id] ? User.find(@session[:user_id]) : nil
+  end
+  
+  private
+  
+  def smart_select_list(store, list)
+    if current_store != store || current_list != list
+      clear_cart
+      self.current_store = store
+      self.current_list = list
+    end
   end
 
 end
