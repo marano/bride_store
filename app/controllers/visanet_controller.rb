@@ -61,7 +61,7 @@ class VisanetController < ApplicationController
     @tid = params[:tid]
     @lr = params[:lr]
     @ars = params[:ars]
-    if @lr == '0'
+    if @lr == '0' or @lr == '3'
       @sale.capture!
       flash[:notice] = 'Pagamento capturado com sucesso!'
     else
