@@ -18,8 +18,7 @@ class VisanetSale
       'tid'=> tid,
       'orderid'=> @sale.orderid,
       'price'=> price,
-      'damount'=> damount,
-      'visa_antipopup'=> '1'
+      'damount'=> damount
     }
   end
 
